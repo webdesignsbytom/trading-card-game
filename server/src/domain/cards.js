@@ -27,6 +27,18 @@ export const findAllCardsFromPack = (packType) =>
     },
   });
 
+export const findCardsByCardType = (cardType) =>
+  dbClient.card.findMany({
+    where: {
+      cardType: cardType,
+    },
+    include: {
+      memberCard: true,
+      partyCard: true,
+      policyCard: true,
+    },
+  });
+
 export const findAllPartyCards = () =>
   dbClient.card.findMany({
     where: {

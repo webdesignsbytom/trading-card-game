@@ -16,22 +16,22 @@ enum Role {
 }
 
 model User {
-  id                 String            @id @default(uuid())
-  email              String            @unique
-  password           String            @db.VarChar(250)
-  role               Role              @default(USER)
-  profile            Profile?
-  passwordReset      PasswordReset?
-  verifications      UserVerification?
-  cards              Card[]
-  lastLoggedIn       DateTime          @updatedAt
-  isVerified         Boolean           @default(false)
-  agreedToTerms      Boolean           @default(false)
-  isActive           Boolean           @default(true)
-  createdEvents      Event[]           @relation("createdEvents")
-  receivedEvents     Event[]           @relation("receivedEvents")
-  createdAt          DateTime          @default(now())
-  updatedAt          DateTime?         @updatedAt
+  id             String            @id @default(uuid())
+  email          String            @unique
+  password       String            @db.VarChar(250)
+  role           Role              @default(USER)
+  profile        Profile?
+  passwordReset  PasswordReset?
+  verifications  UserVerification?
+  cards          Card[]
+  lastLoggedIn   DateTime          @updatedAt
+  isVerified     Boolean           @default(false)
+  agreedToTerms  Boolean           @default(false)
+  isActive       Boolean           @default(true)
+  createdEvents  Event[]           @relation("createdEvents")
+  receivedEvents Event[]           @relation("receivedEvents")
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime?         @updatedAt
 }
 
 model Profile {
@@ -114,9 +114,16 @@ enum PackType {
   ELECTION
 }
 
+enum CardType {
+  POLICY
+  MEMBER
+  PARTY
+}
+
 model Card {
   id          Int         @id @default(autoincrement()) // pack id
   cardName    String      @unique @db.VarChar(48) // name of the card
+  cardType    CardType
   memberCard  MemberCard?
   partyCard   PartyCard?
   policyCard  PolicyCard?
@@ -154,7 +161,6 @@ model PartyCard {
   holographic  Boolean   @default(false) // holo card option available
   health       Int       @default(40) // health of player card + 10 per year in office
   attack       Int       @default(10) // Plus 5 per year in office
-  packType     PackType // election, brexit, covid
   cardStat     String    @default("") @db.VarChar(500) // whats written on the card
   cardId       Int       @unique
   card         Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
@@ -172,7 +178,6 @@ model PolicyCard {
   holographic  Boolean   @default(false) // holo card option available
   health       Int       @default(40) // health of player card + 10 per year in office
   attack       Int       @default(10) // Plus 5 per year in office
-  packType     PackType // election, brexit, covid
   cardStat     String    @default("") @db.VarChar(500) // whats written on the card
   cardId       Int       @unique
   card         Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)

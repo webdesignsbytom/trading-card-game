@@ -59,6 +59,7 @@ export const EVENT_MESSAGES = {
   cardsTag: `Cards database`,
   notFoundCards: `Failed to find cards/s`,
   userCardsNotFound: `Failed to find user cards`,
+  notFoundCardType: `Cant find card type`,
   createCardsFail: `Failed to create cards`,
   markCardsViewedFailed: `Failed to mark cards as viewed`,
   // PackTypes
