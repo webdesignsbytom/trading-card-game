@@ -15,3 +15,7 @@ https://wweb.dev/resources/animated-css-background-generator
 background-color: #004f8c;
 background-image: url("https://www.transparenttextures.com/patterns/shattered.png");
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+
+background-color: #004f8c;
+background-image: url("https://www.transparenttextures.com/patterns/xv.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
