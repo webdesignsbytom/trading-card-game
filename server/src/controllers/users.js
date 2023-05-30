@@ -51,158 +51,176 @@ const hashRate = 8;
 //   await testEmail(email);
 // };
 
-export const getAllUsers = async (req, res) => {}
-// export const getAllUsers = async (req, res) => {
-//   console.log('getAllUsers');
-//   try {
-//     const foundUsers = await findAllUsers();
+export const getAllUsers = async (req, res) => {
+  console.log('getAllUsers');
+  try {
+    const foundUsers = await findAllUsers();
 
-//     if (!foundUsers) {
-//       const notFound = new NotFoundEvent(
-//         req.user,
-//         EVENT_MESSAGES.notFound,
-//         EVENT_MESSAGES.userNotFound
-//       );
-//       myEmitterErrors.emit('error', notFound);
-//       return sendMessageResponse(res, notFound.code, notFound.message);
-//     }
+    if (!foundUsers) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
 
-//     foundUsers.forEach((user) => {
-//       delete user.password;
-//     });
+    foundUsers.forEach((user) => {
+      delete user.password;
+    });
 
-//     // myEmitterUsers.emit('get-all-users', req.user);
-//     return sendDataResponse(res, 200, { users: foundUsers });
-//   } catch (err) {
-//     // Error
-//     const serverError = new ServerErrorEvent(req.user, `Get all users`);
-//     myEmitterErrors.emit('error', serverError);
-//     sendMessageResponse(res, serverError.code, serverError.message);
-//     throw err;
-//   }
-// };
+    // myEmitterUsers.emit('get-all-users', req.user);
+    return sendDataResponse(res, 200, { users: foundUsers });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get all users`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
 
-export const getUserById = async (req, res) => {}
-// export const getUserById = async (req, res) => {
-//   console.log('getUserById');
-//   const userId = req.params.id;
-//   console.log('xxx');
-//   try {
-//     const foundUser = await findUserById(userId);
-//     if (!foundUser) {
-//       const notFound = new NotFoundEvent(
-//         req.user,
-//         EVENT_MESSAGES.notFound,
-//         EVENT_MESSAGES.userNotFound
-//       );
-//       myEmitterErrors.emit('error', notFound);
-//       return sendMessageResponse(res, notFound.code, notFound.message);
-//     }
+export const getUserById = async (req, res) => {
+  console.log('getUserById');
+  const userId = req.params.id;
+  console.log('xxx');
+  try {
+    const foundUser = await findUserById(userId);
+    if (!foundUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
 
-//     console.log('found', foundUser);
-//     delete foundUser.password;
-//     delete foundUser.agreedToTerms;
+    console.log('found', foundUser);
+    delete foundUser.password;
+    delete foundUser.agreedToTerms;
 
-//     myEmitterUsers.emit('get-user-by-id', req.user);
-//     return sendDataResponse(res, 200, { user: foundUser });
-//   } catch (err) {
-//     // Error
-//     const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
-//     myEmitterErrors.emit('error', serverError);
-//     sendMessageResponse(res, serverError.code, serverError.message);
-//     throw err;
-//   }
-// };
+    myEmitterUsers.emit('get-user-by-id', req.user);
+    return sendDataResponse(res, 200, { user: foundUser });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
 
-export const registerNewUser = async (req, res) => {}
-// export const registerNewUser = async (req, res) => {
-//   console.log('create new user');
-//   const {
-//     email,
-//     password,
-//     firstName,
-//     lastName,
-//     agreedToTerms,
-//     agreedToNewsletter,
-//   } = req.body;
-//   const lowerCaseEmail = email.toLowerCase();
-//   const lowerCaseFirstName = firstName.toLowerCase();
-//   const lowerCaseLastName = lastName.toLowerCase();
+export const getUserByEmail = async (req, res) => {
+  console.log('getUserByEmail');
+  const { email } = req.params;
+  console.log('xxx', email);
 
-//   try {
-//     if (!lowerCaseEmail || !password) {
-//       //
-//       const missingField = new MissingFieldEvent(
-//         null,
-//         'Registration: Missing Field/s event'
-//       );
-//       myEmitterErrors.emit('error', missingField);
-//       return sendMessageResponse(res, missingField.code, missingField.message);
-//     }
+  const lowerCaseEmail = email.toLowerCase();
+  try {
+    const foundUser = await findUserByEmail(lowerCaseEmail);
 
-//     const foundUser = await findUserByEmail(lowerCaseEmail);
-//     if (foundUser) {
-//       return sendDataResponse(res, 400, { email: EVENT_MESSAGES.emailInUse });
-//     }
+    if (!foundUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
 
-//     const hashedPassword = await bcrypt.hash(password, hashRate);
+    console.log('found', foundUser);
+    delete foundUser.password;
+    delete foundUser.agreedToTerms;
 
-//     const createdUser = await createUser(
-//       lowerCaseEmail,
-//       hashedPassword,
-//       lowerCaseFirstName,
-//       lowerCaseLastName,
-//       agreedToTerms,
-//       agreedToNewsletter
-//     );
+    myEmitterUsers.emit('get-user-by-id', req.user);
+    return sendDataResponse(res, 200, { user: foundUser });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
 
-//     if (!createdUser) {
-//       const notCreated = new BadRequestEvent(
-//         EVENT_MESSAGES.badRequest,
-//         EVENT_MESSAGES.createUserFail
-//       );
-//       myEmitterErrors.emit('error', notCreated);
-//       return sendMessageResponse(res, notCreated.code, notCreated.message);
-//     }
+export const registerNewUser = async (req, res) => {
+  console.log('create new user');
+  const {
+    email,
+    password,
+    username,
+    country,
+    agreedToTerms,
+  } = req.body;
+  const lowerCaseEmail = email.toLowerCase();
+  const lowerCaseUsername = username.toLowerCase();
 
-//     console.log('created user', createdUser);
+  try {
+    if (!lowerCaseEmail || !password) {
+      //
+      const missingField = new MissingFieldEvent(
+        null,
+        'Registration: Missing Field/s event'
+      );
+      myEmitterErrors.emit('error', missingField);
+      return sendMessageResponse(res, missingField.code, missingField.message);
+    }
 
-//     delete createdUser.password;
-//     delete createdUser.updatedAt;
+    const foundUser = await findUserByEmail(lowerCaseEmail);
+    if (foundUser) {
+      return sendDataResponse(res, 400, { email: EVENT_MESSAGES.emailInUse });
+    }
 
-//     if (createdUser.agreedToNewsletter === true) {
-//       console.log('TRE');
+    const hashedPassword = await bcrypt.hash(password, hashRate);
 
-//       const signedUp = await createNewsletterMembershipForNewMember(
-//         createdUser.id,
-//         lowerCaseEmail
-//       );
-//       console.log('signed', signedUp);
-//     }
+    const createdUser = await createUser(
+      lowerCaseEmail,
+      hashedPassword,
+      lowerCaseUsername,
+      country,
+      agreedToTerms,
+    );
 
-//     myEmitterUsers.emit('register', createdUser);
+    if (!createdUser) {
+      const notCreated = new BadRequestEvent(
+        EVENT_MESSAGES.badRequest,
+        EVENT_MESSAGES.createUserFail
+      );
+      myEmitterErrors.emit('error', notCreated);
+      return sendMessageResponse(res, notCreated.code, notCreated.message);
+    }
 
-//     // const uniqueString = uuid() + createdUser.id;
-//     // const hashedString = await bcrypt.hash(uniqueString, hashRate);
+    console.log('created user', createdUser);
 
-//     // await createVerificationInDB(createdUser.id, hashedString);
-//     // await sendVerificationEmail(
-//     //   createdUser.id,
-//     //   createdUser.email,
-//     //   uniqueString
-//     // );
+    delete createdUser.password;
+    delete createdUser.updatedAt;
 
-//     return sendDataResponse(res, 201, { createdUser });
-//   } catch (err) {
-//     // Error
-//     const serverError = new RegistrationServerErrorEvent(
-//       `Register Server error`
-//     );
-//     myEmitterErrors.emit('error', serverError);
-//     sendMessageResponse(res, serverError.code, serverError.message);
-//     throw err;
-//   }
-// };
+    myEmitterUsers.emit('register', createdUser);
+
+    // const uniqueString = uuid() + createdUser.id;
+    // const hashedString = await bcrypt.hash(uniqueString, hashRate);
+
+    // await createVerificationInDB(createdUser.id, hashedString);
+    // await sendVerificationEmail(
+    //   createdUser.id,
+    //   createdUser.email,
+    //   uniqueString
+    // );
+
+    return sendDataResponse(res, 201, { createdUser });
+  } catch (err) {
+    // Error
+    const serverError = new RegistrationServerErrorEvent(
+      `Register Server error`
+    );
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
 
 // export const verifyUser = async (req, res) => {
 //   console.log('Verifying user');
@@ -467,33 +485,33 @@ export const registerNewUser = async (req, res) => {}
 //   }
 // };
 
-// export const deleteUser = async (req, res) => {
-//   console.log('deleteUser');
-//   const userId = req.params.userId;
+export const deleteUser = async (req, res) => {
+  console.log('deleteUser');
+  const userId = req.params.id;
 
-//   try {
-//     const foundUser = await findUserById(userId);
-//     if (!foundUser) {
-//       const notFound = new NotFoundEvent(
-//         req.user,
-//         EVENT_MESSAGES.notFound,
-//         EVENT_MESSAGES.userNotFound
-//       );
-//       myEmitterErrors.emit('error', notFound);
-//       return sendMessageResponse(res, notFound.code, notFound.message);
-//     }
+  try {
+    const foundUser = await findUserById(userId);
+    if (!foundUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
 
-//     await deleteUserById(userId);
-//     myEmitterUsers.emit('deleted-user', req.user);
-//     return sendDataResponse(res, 200, {
-//       user: foundUser,
-//       message: `User ${foundUser.email} deleted`,
-//     });
-//   } catch (err) {
-//     //
-//     const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
-//     myEmitterErrors.emit('error', serverError);
-//     sendMessageResponse(res, serverError.code, serverError.message);
-//     throw err;
-//   }
-// };
+    await deleteUserById(userId);
+    myEmitterUsers.emit('deleted-user', req.user);
+    return sendDataResponse(res, 200, {
+      user: foundUser,
+      message: `User ${foundUser.email} deleted`,
+    });
+  } catch (err) {
+    //
+    const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};

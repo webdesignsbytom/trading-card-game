@@ -7,7 +7,6 @@ export const findAllUsers = () =>
     },
     include: {
       profile: true,
-      newsletterMember: true,
     },
   });
 
@@ -15,10 +14,7 @@ export const findUserByEmail = (email) =>
   dbClient.user.findUnique({
     where: { email: email },
     include: {
-      messages: true,
-      notifications: true,
       profile: true,
-      newsletterMember: true,
     },
   });
 
@@ -29,7 +25,6 @@ export const findUserById = (userId) =>
     },
     include: {
       profile: true,
-      newsletterMember: true,
     },
   });
 
@@ -39,31 +34,26 @@ export const findUsersByRole = (role) =>
       role: role,
     },
     include: {
-      messages: true,
-      notifications: true,
       profile: true,
-      newsletterMember: true,
     },
   });
 
 export const createUser = (
   email,
   password,
-  firstName,
-  lastName,
+  username,
+  country,
   agreedToTerms,
-  agreedToNewsletter
 ) =>
   dbClient.user.create({
     data: {
       email: email,
       password: password,
       agreedToTerms: agreedToTerms,
-      agreedToNewsletter: agreedToNewsletter,
       profile: {
         create: {
-          firstName: firstName,
-          lastName: lastName,
+          username: username,
+          country: country,
         },
       },
     },
