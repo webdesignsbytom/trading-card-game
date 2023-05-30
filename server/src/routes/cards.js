@@ -1,9 +1,14 @@
-import { Router } from 'express'
-import { getAllCards, getAllCardsFromPack } from '../controllers/cards.js'
+import { Router } from 'express';
+import {
+  getAllCards,
+  getAllCardsByType,
+  getAllCardsFromPackType,
+} from '../controllers/cards.js';
 
-const router = Router()
+const router = Router();
 
-router.get('/all-cards', getAllCards)
-router.get('/:packType', getAllCardsFromPack)
+router.get('/all-cards', getAllCards);
+router.get('/pack/:packType', getAllCardsFromPackType);
+router.get('/type/:cardType', getAllCardsByType);
 
-export default router
+export default router;
