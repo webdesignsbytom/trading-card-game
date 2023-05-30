@@ -8,7 +8,7 @@ import * as url from 'url';
 // Import routers
 import authRouter from './routes/auth.js';
 import cardsRouter from './routes/cards.js';
-// import userRouter from './routes/users.js';
+import userRouter from './routes/users.js';
 // Env
 import { HTTP_URL, PORT } from './utils/config.js';
 
@@ -32,7 +32,7 @@ const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 // Start of actions
 app.use('/', authRouter);
 app.use('/con-cards', cardsRouter);
-// app.use('/users', userRouter);
+app.use('/users', userRouter);
 
 // Server interface page
 app.get('/', (req, res) => {
