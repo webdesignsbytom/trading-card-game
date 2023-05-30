@@ -27,7 +27,6 @@ model User {
   lastLoggedIn       DateTime          @updatedAt
   isVerified         Boolean           @default(false)
   agreedToTerms      Boolean           @default(false)
-  agreedToNewsletter Boolean           @default(true)
   isActive           Boolean           @default(true)
   createdEvents      Event[]           @relation("createdEvents")
   receivedEvents     Event[]           @relation("receivedEvents")
