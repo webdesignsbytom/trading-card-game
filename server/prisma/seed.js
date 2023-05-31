@@ -261,6 +261,197 @@ async function seed() {
       },
     },
   });
+
+  const memberCardElection2 = await dbClient.card.create({
+    data: {
+      cardName: 'Member 2 Test Card Election Pack',
+      edition: 'First',
+      rarity: 1,
+      holographic: true,
+      packType: 'ELECTION',
+      cardType: 'MEMBER',
+      memberCard: {
+        create: {
+          serialNumber: '23/100-2023',
+          health: 100,
+          attack: 20,
+          cardStat: `Testing card edition `,
+          image:
+            'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
+        },
+      },
+    },
+  });
+
+  const memberCardBrexit2 = await dbClient.card.create({
+    data: {
+      cardName: 'Member 2 Test Card Brexit Pack',
+      edition: 'First',
+      rarity: 1,
+      holographic: true,
+      packType: 'BREXIT',
+      cardType: 'MEMBER',
+      memberCard: {
+        create: {
+          serialNumber: '23/100-2023',
+          health: 100,
+          attack: 20,
+          cardStat: `Testing card edition `,
+          image:
+            'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
+        },
+      },
+    },
+  });
+
+  const memberCardCovid2 = await dbClient.card.create({
+    data: {
+      cardName: 'Member 2 Test Card Covid Pack',
+      edition: 'First',
+      rarity: 1,
+      holographic: true,
+      packType: 'COVID',
+      cardType: 'MEMBER',
+      memberCard: {
+        create: {
+          serialNumber: '23/100-2023',
+          health: 100,
+          attack: 20,
+          cardStat: `Testing card edition `,
+          image:
+            'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
+        },
+      },
+    },
+  });
+
+  // Party card
+  const partyCardElection2 = await dbClient.card.create({
+    data: {
+      cardName: 'Party Test 2 Card Election Pack',
+      edition: 'First',
+      rarity: 1,
+      holographic: true,
+      packType: 'ELECTION',
+      cardType: 'PARTY',
+      partyCard: {
+        create: {
+          serialNumber: '23/100-2023',
+          health: 100,
+          attack: 20,
+          cardStat: `Testing card edition `,
+          image:
+            'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
+        },
+      },
+    },
+  });
+
+  const partyCardBrexit2 = await dbClient.card.create({
+    data: {
+      cardName: 'Party Test 2 Card Brexit Pack',
+      edition: 'First',
+      rarity: 1,
+      holographic: true,
+      packType: 'BREXIT',
+      cardType: 'PARTY',
+      partyCard: {
+        create: {
+          serialNumber: '23/100-2023',
+          health: 100,
+          attack: 20,
+          cardStat: `Testing card edition `,
+          image:
+            'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
+        },
+      },
+    },
+  });
+
+  const partyCardCovid2 = await dbClient.card.create({
+    data: {
+      cardName: 'Party Test 2 Card Covid Pack',
+      edition: 'First',
+      rarity: 1,
+      holographic: true,
+      packType: 'COVID',
+      cardType: 'PARTY',
+      partyCard: {
+        create: {
+          serialNumber: '23/100-2023',
+          health: 100,
+          attack: 20,
+          cardStat: `Testing card edition `,
+          image:
+            'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
+        },
+      },
+    },
+  });
+
+  // Policy card
+  const policyCardElection2 = await dbClient.card.create({
+    data: {
+      cardName: 'Policy Test 2 Card Election Pack',
+      edition: 'First',
+      rarity: 1,
+      holographic: true,
+      packType: 'ELECTION',
+      cardType: 'POLICY',
+      policyCard: {
+        create: {
+          serialNumber: '23/100-2023',
+          health: 100,
+          attack: 20,
+          cardStat: `Testing card edition `,
+          image:
+            'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
+        },
+      },
+    },
+  });
+
+  const policyCardBrexit2 = await dbClient.card.create({
+    data: {
+      cardName: 'Policy Test 2 Card Brexit Pack',
+      edition: 'First',
+      rarity: 1,
+      holographic: true,
+      packType: 'BREXIT',
+      cardType: 'POLICY',
+      policyCard: {
+        create: {
+          serialNumber: '23/100-2023',
+          health: 100,
+          attack: 20,
+          cardStat: `Testing card edition `,
+          image:
+            'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
+        },
+      },
+    },
+  });
+
+  const policyCardCovid2 = await dbClient.card.create({
+    data: {
+      cardName: 'Policy Test 2 Card Covid Pack',
+      edition: 'First',
+      rarity: 1,
+      holographic: true,
+      packType: 'COVID',
+      cardType: 'POLICY',
+      policyCard: {
+        create: {
+          serialNumber: '23/100-2023',
+          health: 100,
+          attack: 20,
+          cardStat: `Testing card edition `,
+          image:
+            'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
+        },
+      },
+    },
+  });
 }
 
 seed().catch(async (error) => {

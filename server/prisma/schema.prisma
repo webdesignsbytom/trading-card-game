@@ -140,11 +140,11 @@ model Card {
 model MemberCard {
   id           Int       @id @default(autoincrement()) // pack id
   serialNumber String    @default("") @db.VarChar(28) // number from all cards
-  image        String    @default("") @db.VarChar(1000)
-  name         String    @default("") @db.VarChar(250) // name of conservative memer
+  image        String    @default("image") @db.VarChar(1000)
+  name         String    @default("name") @db.VarChar(250) // name of conservative memer
   health       Int       @default(40) // health of player card + 10 per year in office
   attack       Int       @default(10) // Plus 5 per year in office
-  cardStat     String    @default("") @db.VarChar(500) // whats written on the card
+  cardStat     String    @default("stats are cool") @db.VarChar(500) // whats written on the card
   cardId       Int       @unique
   card         Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
   createdAt    DateTime  @default(now())

@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+// Components
 import ClosedAlbumPage from '../../components/collection/ClosedAlbumPage';
 import OpenAlbumPage from '../../components/collection/OpenAlbumPage';
+// Context
+import { UserContext } from '../../context/UserContext';
 
 function CollectionPage() {
+    const { user } = useContext(UserContext)
   const [albumOpen, setAlbumOpen] = useState(false);
-  const [usersCardCollectionArray, setUsersCardCollectionArray] = useState([]);
+  const [usersCardCollectionArray, setUsersCardCollectionArray] = useState(user.cards);
 
+  console.log('user', user);
+//   console.log('usersCardCollectionArray', usersCardCollectionArray);
   const openAlbum = () => {
     setAlbumOpen(!albumOpen);
   };
+
 
   return (
     <div className='bg-red-200 h-screen'>
