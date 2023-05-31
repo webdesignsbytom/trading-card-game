@@ -10,6 +10,7 @@ const UserContextProvider = ({ children }) => {
     email: '',
     username: '',
     isVerified: false,
+    cards: [],
   });
   const [token, setToken] = useState(
     localStorage.getItem(process.env.REACT_APP_USER_TOKEN) || ''
@@ -17,6 +18,20 @@ const UserContextProvider = ({ children }) => {
   const [toggleCookiePolicy, setToggleCookiePolicy] = useState(false);
 
   console.log('usercontext', user);
+
+  useEffect(() => {
+    client
+      .get(`/con-cards/all-cards`)
+      .then((res) => {
+        setUser({
+          ...user,
+          cards: res.data.data.cards,
+        });
+      })
+      .catch((err) => {
+        console.error('Unable to retrieve user data', err);
+      });
+  }, []);
   // useEffect(() => {
   //   const decodedUserData = LoggedInUser();
 

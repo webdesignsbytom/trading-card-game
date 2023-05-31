@@ -13,6 +13,11 @@ const client = {
     return axios.get(url, { headers });
   },
 
+  getAll: path => {
+    const url = `${host}${path}`;
+    return axios.get(url);
+  },
+
   post: (path, data, withToken = true) => {
     const url = `${host}${path}`;
     const token = localStorage.getItem(tokenKey);

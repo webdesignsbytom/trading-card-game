@@ -5,16 +5,27 @@ export const ToggleContext = React.createContext();
 
 const ToggleContextProvider = ({ children }) => {
   const [toggleNavigation, setToggleNavigation] = useState(false);
+  const [viewCard, setViewCard] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({});
 
   const toggleNavbar = () => {
-    setToggleNavigation(!toggleNavigation)
-  }
- 
+    setToggleNavigation(!toggleNavigation);
+  };
+
+  const toggleCardData = (card) => {
+    console.log('xxxx');
+    setViewCard(!viewCard);
+    setSelectedCard(card);
+  };
+  console.log('selectedCard', selectedCard);
   return (
     <ToggleContext.Provider
       value={{
         toggleNavigation,
-        toggleNavbar
+        toggleNavbar,
+        toggleCardData,
+        viewCard,
+        selectedCard,
       }}
     >
       {children}

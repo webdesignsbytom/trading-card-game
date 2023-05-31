@@ -8,6 +8,8 @@ import ToggleContextProvider from './context/ToggleContext';
 
 // Styles
 import './styles/index.css';
+import './styles/components.css';
+import './styles/cards.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

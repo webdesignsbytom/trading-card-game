@@ -24,6 +24,12 @@ export const getAllCards = async (req, res) => {
         return sendMessageResponse(res, notFound.code, notFound.message);
       }
 
+      foundCards.forEach((card) => {
+        console.log('card', card.cardType.toLowerCase());
+        let newType = card.cardType.toLowerCase();
+        card.cardType = newType;
+      })
+      
     return sendDataResponse(res, 200, { cards: foundCards });
 
   } catch (err) {
