@@ -65,6 +65,7 @@ module.exports = {
         '1a1': '1fr 0.4fr 1fr',
         aa: 'auto auto',
         '3x': '3fr 1fr',
+        'c8': '1fr 6fr',
         'x3': '0.8fr 3fr',
         '2x': '2fr 1fr',
       },
