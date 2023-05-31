@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 // Components
 import Card from '../card/Card';
+// Context
 import { UserContext } from '../../context/UserContext';
 
 function OpenAlbumPage({ usersCardCollectionArray }) {

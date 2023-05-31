@@ -2,20 +2,26 @@ import React, { useContext, useState } from 'react';
 // Components
 import ClosedAlbumPage from '../../components/collection/ClosedAlbumPage';
 import OpenAlbumPage from '../../components/collection/OpenAlbumPage';
+import CardOverview from '../../components/card/CardOverview';
 // Context
 import { UserContext } from '../../context/UserContext';
+import { ToggleContext } from '../../context/ToggleContext';
 
 function CollectionPage() {
-    const { user } = useContext(UserContext)
+  const { user } = useContext(UserContext);
+  const { toggleCardData, viewCard } = useContext(ToggleContext);
+
   const [albumOpen, setAlbumOpen] = useState(false);
-  const [usersCardCollectionArray, setUsersCardCollectionArray] = useState(user.cards);
+
+  const [usersCardCollectionArray, setUsersCardCollectionArray] = useState(
+    user.cards
+  );
 
   console.log('user', user);
-//   console.log('usersCardCollectionArray', usersCardCollectionArray);
+
   const openAlbum = () => {
     setAlbumOpen(!albumOpen);
   };
-
 
   return (
     <div className='bg-red-200 h-screen'>
@@ -24,11 +30,15 @@ function CollectionPage() {
         <section className='bg-red-600 p-4'>
           <div className='bg-blue-200 grid h-full'>
             <main className='bg-blue-400 grid'>
-              {!albumOpen ? (
+              {!albumOpen && !viewCard && (
                 <ClosedAlbumPage openAlbum={openAlbum} />
-              ) : (
-                <OpenAlbumPage usersCardCollectionArray={usersCardCollectionArray} />
               )}
+              {albumOpen && !viewCard && (
+                <OpenAlbumPage
+                  usersCardCollectionArray={usersCardCollectionArray}
+                />
+              )}
+              {viewCard && <CardOverview />}
             </main>
           </div>
         </section>

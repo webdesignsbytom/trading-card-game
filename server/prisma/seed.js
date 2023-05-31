@@ -126,7 +126,7 @@ async function seed() {
           serialNumber: '23/100-2023',
           health: 100,
           attack: 20,
-          cardStat: `Testing card edition `,
+          cardStat: `Testing card`,
           image:
             'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
         },
@@ -148,7 +148,7 @@ async function seed() {
           serialNumber: '23/100-2023',
           health: 100,
           attack: 20,
-          cardStat: `Testing card edition `,
+          cardStat: `Testing card`,
           image:
             'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
         },
@@ -169,7 +169,7 @@ async function seed() {
           serialNumber: '23/100-2023',
           health: 100,
           attack: 20,
-          cardStat: `Testing card edition `,
+          cardStat: `Testing card`,
           image:
             'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
         },
@@ -190,7 +190,7 @@ async function seed() {
           serialNumber: '23/100-2023',
           health: 100,
           attack: 20,
-          cardStat: `Testing card edition `,
+          cardStat: `Testing card`,
           image:
             'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
         },
@@ -212,7 +212,7 @@ async function seed() {
           serialNumber: '23/100-2023',
           health: 100,
           attack: 20,
-          cardStat: `Testing card edition `,
+          cardStat: `Testing card`,
           image:
             'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
         },
@@ -233,7 +233,7 @@ async function seed() {
           serialNumber: '23/100-2023',
           health: 100,
           attack: 20,
-          cardStat: `Testing card edition `,
+          cardStat: `Testing card`,
           image:
             'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
         },
@@ -254,7 +254,7 @@ async function seed() {
           serialNumber: '23/100-2023',
           health: 100,
           attack: 20,
-          cardStat: `Testing card edition `,
+          cardStat: `Testing card`,
           image:
             'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
         },
@@ -275,7 +275,7 @@ async function seed() {
           serialNumber: '23/100-2023',
           health: 100,
           attack: 20,
-          cardStat: `Testing card edition `,
+          cardStat: `Testing card`,
           image:
             'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
         },
@@ -296,7 +296,7 @@ async function seed() {
           serialNumber: '23/100-2023',
           health: 100,
           attack: 20,
-          cardStat: `Testing card edition `,
+          cardStat: `Testing card`,
           image:
             'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
         },
@@ -317,7 +317,7 @@ async function seed() {
           serialNumber: '23/100-2023',
           health: 100,
           attack: 20,
-          cardStat: `Testing card edition `,
+          cardStat: `Testing card`,
           image:
             'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
         },
@@ -339,7 +339,7 @@ async function seed() {
           serialNumber: '23/100-2023',
           health: 100,
           attack: 20,
-          cardStat: `Testing card edition `,
+          cardStat: `Testing card`,
           image:
             'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
         },
@@ -360,7 +360,7 @@ async function seed() {
           serialNumber: '23/100-2023',
           health: 100,
           attack: 20,
-          cardStat: `Testing card edition `,
+          cardStat: `Testing card`,
           image:
             'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
         },
@@ -381,7 +381,7 @@ async function seed() {
           serialNumber: '23/100-2023',
           health: 100,
           attack: 20,
-          cardStat: `Testing card edition `,
+          cardStat: `Testing card`,
           image:
             'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
         },
@@ -403,7 +403,7 @@ async function seed() {
           serialNumber: '23/100-2023',
           health: 100,
           attack: 20,
-          cardStat: `Testing card edition `,
+          cardStat: `Testing card`,
           image:
             'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
         },
@@ -424,7 +424,7 @@ async function seed() {
           serialNumber: '23/100-2023',
           health: 100,
           attack: 20,
-          cardStat: `Testing card edition `,
+          cardStat: `Testing card`,
           image:
             'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
         },
@@ -445,7 +445,7 @@ async function seed() {
           serialNumber: '23/100-2023',
           health: 100,
           attack: 20,
-          cardStat: `Testing card edition `,
+          cardStat: `Testing card`,
           image:
             'https://static.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest/scale-to-width-down/700?cb=20200620223403',
         },

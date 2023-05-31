@@ -156,9 +156,6 @@ model PartyCard {
   serialNumber String    @default("") @db.VarChar(28) // number from all cards
   image        String    @default("") @db.VarChar(1000)
   name         String    @default("") @db.VarChar(250) // name of conservative memer
-  edition      String    @default("") @db.VarChar(28) // first second third fouth
-  rarity       Int       @default(1) // rarity out of 100
-  holographic  Boolean   @default(false) // holo card option available
   health       Int       @default(40) // health of player card + 10 per year in office
   attack       Int       @default(10) // Plus 5 per year in office
   cardStat     String    @default("") @db.VarChar(500) // whats written on the card
@@ -173,9 +170,6 @@ model PolicyCard {
   serialNumber String    @default("") @db.VarChar(28) // number from all cards
   image        String    @default("") @db.VarChar(1000)
   name         String    @default("") @db.VarChar(250) // name of conservative memer
-  edition      String    @default("") @db.VarChar(28) // first second third fouth
-  rarity       Int       @default(1) // rarity out of 100
-  holographic  Boolean   @default(false) // holo card option available
   health       Int       @default(40) // health of player card + 10 per year in office
   attack       Int       @default(10) // Plus 5 per year in office
   cardStat     String    @default("") @db.VarChar(500) // whats written on the card
