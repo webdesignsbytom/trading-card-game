@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 // API
 import client from '../../utils/client';
+import LoadingSpinner from '../../components/utils/LoadingSpinner';
+// Utils
+import CountrySelect from '../../utils/CountrySelect';
 
 function RegisterPage() {
   const [registerFormData, setRegisterFormData] = useState({
@@ -9,16 +13,40 @@ function RegisterPage() {
     confirmPassword: '',
     username: '',
     country: '',
-    agreedToNewsletter: true,
+    termsChecked: true,
   });
+
+  const [registrationFormData, setRegistrationFormData] = useState({
+    active: false,
+    success: false,
+  });
+
+  let navigate = useNavigate();
+
+  const loginPage = () => {
+    navigate('/login', { replace: true });
+  };
 
   const handleSubmitRegisterForm = (event) => {
     event.preventDefault();
+
+    setRegistrationFormData({
+      ...registrationFormData,
+      active: true,
+    });
 
     client
       .post('/users/register', registerFormData, false)
       .then((res) => {
         console.log('res', res.data);
+        setRegistrationFormData({
+          ...registrationFormData,
+          active: false,
+          success: true,
+        });
+        setTimeout(() => {
+          loginPage();
+        }, 2000);
       })
 
       .catch((err) => {
@@ -34,6 +62,14 @@ function RegisterPage() {
       [name]: value,
     });
   };
+
+  const handleChecked = (event) => {
+    setRegisterFormData({
+      ...registerFormData,
+      termsChecked: !registerFormData.termsChecked,
+    });
+  };
+
   return (
     <div className='h-screen grid justify-center items-center'>
       <div className='mb-12 lg:mb-0'>
@@ -42,27 +78,15 @@ function RegisterPage() {
             <h1 className='text-3xl font-semibold'>Sign Up Now</h1>
           </div>
           <form onSubmit={handleSubmitRegisterForm}>
-            <div className='grid md:grid-cols-2 md:gap-6'>
-              <div className='mb-6'>
-                <input
-                  type='text'
-                  className='form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-main-colour focus:outline-none'
-                  placeholder='First name'
-                  id='firstName'
-                  name='firstName'
-                  onChange={handleChange}
-                />
-              </div>
-              <div className='mb-6'>
-                <input
-                  type='text'
-                  id='lastName'
-                  name='lastName'
-                  className='form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-main-colour focus:outline-none'
-                  placeholder='Last name'
-                  onChange={handleChange}
-                />
-              </div>
+            <div className='mb-6'>
+              <input
+                type='text'
+                className='form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-main-colour focus:outline-none'
+                placeholder='Username'
+                id='username'
+                name='username'
+                onChange={handleChange}
+              />
             </div>
             <input
               type='email'
@@ -88,21 +112,8 @@ function RegisterPage() {
               placeholder='Password'
               onChange={handleChange}
             />
-            <div className='form-check flex justify-center mb-6'>
-              <input
-                className='form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-main-colour checked:border-main-colour focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer'
-                type='checkbox'
-                value=''
-                id='newsletterChecked'
-                name='newsletterChecked'
-                checked
-              />
-              <label
-                className='form-check-label inline-block text-gray-800'
-                for='newsletterChecked'
-              >
-                Subscribe to our newsletter
-              </label>
+            <div className='mb-6'>
+              <CountrySelect />
             </div>
             <div className='form-check flex justify-center mb-6'>
               <input
@@ -112,22 +123,43 @@ function RegisterPage() {
                 id='termsChecked'
                 name='termsChecked'
                 checked
+                onChange={handleChecked}
               />
               <label
                 className='form-check-label inline-block text-gray-800'
-                for='termsChecked'
+                htmlFor='termsChecked'
               >
                 I agree to all terms and conditions.
               </label>
             </div>
-            <button
-              type='submit'
-              data-mdb-ripple='true'
-              data-mdb-ripple-color='light'
-              className='inline-block px-6 py-2.5 mb-6 w-full bg-main-colour text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-colour-dark hover:shadow-lg focus:bg-colour-dark focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-900 active:shadow-lg transition duration-150 ease-in-out'
-            >
-              Sign up
-            </button>
+            {/* Submit button */}
+            <div>
+              <button
+                type='submit'
+                data-mdb-ripple='true'
+                data-mdb-ripple-color='light'
+                className='inline-block px-6 py-2.5 mb-6 w-full bg-main-colour text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-colour-dark hover:shadow-lg focus:bg-colour-dark focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-900 active:shadow-lg transition duration-150 ease-in-out'
+              >
+                {!registrationFormData.active &&
+                  !registrationFormData.success && <span>Sign Up</span>}
+                {registrationFormData.active && (
+                  <span className='flex items-center justify-center'>
+                    <LoadingSpinner width={'w-5'} height={'h-5'} />
+                  </span>
+                )}
+                {registrationFormData.success && <span>Success!</span>}
+              </button>
+            </div>
+
+            <p className='font-light text-gray-500 dark:text-gray-400'>
+              Already a member?{' '}
+              <Link
+                to='/sign-up'
+                className='font-medium text-main-colour hover:underline'
+              >
+                Login Now
+              </Link>
+            </p>
             <div className='text-center'>
               <p className='mb-6'>or sign up with:</p>
             </div>
