@@ -1,12 +1,45 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 // Context
 import { ToggleContext } from '../../context/ToggleContext';
 
 function PartyCard({ cardData }) {
   const { toggleCardData } = useContext(ToggleContext);
+  const [bgColour, setBgColour] = useState('bg-white');
+  const [holoCard, setHoloCard] = useState(false);
+  const [rareholoCard, setRareHoloCard] = useState(false);
 
+  useEffect(() => {
+    if (!cardData.holographic)
+    switch (cardData.backgroundColour) {
+      case 'BLACK':
+        return setBgColour('bg-black');
+      case 'RED':
+        return setBgColour('bg-red-400');
+      case 'PURPLE':
+        return setBgColour('bg-purple-400');
+      case 'BLUE':
+        return setBgColour('bg-blue-400');
+      case 'YELLOW':
+        return setBgColour('bg-yellow-400');
+      case 'GREEN':
+        return setBgColour('bg-green-400');
+      default:
+        return setBgColour('bg-white');
+    } else if (cardData.rarity === 'RAREHOLO') {
+      setHoloCard(true)
+      setBgColour("bg-slate-700")
+    } else if (cardData.rarity === 'MEGARAREHOLO') {
+      setRareHoloCard(true)
+      setBgColour("bg-slate-700")
+    }
+
+  }, []);
+  
   return (
-    <section onClick={() => toggleCardData(cardData)} className='outline outline-1 grid grid-rows-a1a outline-white h-full text-white rounded-lg px-2 py-[1px] card__bg'>
+    <section
+      onClick={() => toggleCardData(cardData)}
+      className={`outline outline-1 grid grid-rows-a1a outline-white h-full text-white rounded px-2 py-[1px] ${bgColour} card__bg`}
+    >
       <div className='flex justify-between items-center text-sm'>
         <h2 className='text-white capitalize'>{cardData.partyCard.name}</h2>
         <h5>Health: {cardData.partyCard.health}</h5>
@@ -14,7 +47,7 @@ function PartyCard({ cardData }) {
 
       <section className='grid grid-rows-2 h-full'>
         <div className='mb-1 h-full'>
-          <img className='h-full' src={cardData.partyCard.image} alt='card' />
+          <img className='h-full' src={cardData.image} alt='card' />
         </div>
 
         <section className='grid grid-rows-reg'>
@@ -37,7 +70,7 @@ function PartyCard({ cardData }) {
 
           <div className='py-1 px-[2px]'>
             <h3 className='text-white text-sm flex justify-between'>
-              <span>Attack:</span> <span>{cardData.partyCard.attack}</span>
+              <span>Attack:</span> <span>{cardData.partyCard.effect}</span>
             </h3>
             <h4 className='text-white text-xs'>
               <span className='text-sm'>Stat:</span>{' '}
@@ -46,10 +79,9 @@ function PartyCard({ cardData }) {
           </div>
         </section>
       </section>
-      {/* <p className='text-white'>{cardData.holographic}</p> */}
       <div className='flex justify-between text-ss'>
-        <p className='text-white'>Rarity: {cardData.rarity} / 100</p>
-        <p className='text-white'>Serial: {cardData.id}</p>
+        <p className='text-white'>{cardData.rarity}</p>
+        <p className='text-white'>{cardData.id}</p>
       </div>
     </section>
   );

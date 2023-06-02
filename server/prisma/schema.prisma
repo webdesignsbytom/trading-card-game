@@ -120,61 +120,75 @@ enum CardType {
   PARTY
 }
 
+enum Rarity {
+  COMMON
+  UNCOMMON
+  RARE
+  RAREHOLO
+  MEGARARE
+  MEGARAREHOLO
+}
+
+enum BackgroundColour {
+  WHITE
+  BLACK
+  RED
+  PURPLE
+  BLUE
+  YELLOW
+  GREEN
+}
+
 model Card {
-  id          Int         @id @default(autoincrement()) // pack id
-  cardName    String      @unique @db.VarChar(48) // name of the card
-  cardType    CardType
-  memberCard  MemberCard?
-  partyCard   PartyCard?
-  policyCard  PolicyCard?
-  packType    PackType // election, brexit, covid
-  holographic Boolean     @default(false) // holo card option available
-  edition     String      @default("") @db.VarChar(28) // first second third fouth
-  rarity      Int         @default(1) // rarity out of 100
-  userId      String?     @unique
-  user        User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime?   @updatedAt
+  id               Int              @id @default(autoincrement()) // pack id
+  serialNumber     String           @unique @default("") @db.VarChar(28) // number from all cards
+  cardName         String           @unique @db.VarChar(48) // name of the card
+  edition          String           @default("") @db.VarChar(28) // first second third fouth
+  rarity           Rarity           @default(COMMON)
+  holographic      Boolean          @default(false) // holo card option available
+  packType         PackType // election, brexit, covid
+  cardType         CardType
+  image            String           @default("image") @db.VarChar(5000)
+  backgroundColour BackgroundColour @default(WHITE)
+  memberCard       MemberCard?
+  partyCard        PartyCard?
+  policyCard       PolicyCard?
+  userId           String?          @unique
+  user             User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime?        @updatedAt
 }
 
 model MemberCard {
-  id           Int       @id @default(autoincrement()) // pack id
-  serialNumber String    @default("") @db.VarChar(28) // number from all cards
-  image        String    @default("image") @db.VarChar(1000)
-  name         String    @default("name") @db.VarChar(250) // name of conservative memer
-  health       Int       @default(40) // health of player card + 10 per year in office
-  attack       Int       @default(10) // Plus 5 per year in office
-  cardStat     String    @default("stats are cool") @db.VarChar(500) // whats written on the card
-  cardId       Int       @unique
-  card         Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime? @updatedAt
+  id         Int       @id @default(autoincrement()) // pack id
+  memberName String    @default("name") @db.VarChar(250) // name of conservative memer
+  health     Int       @default(40) // health of player card + 10 per year in office
+  attack     Int       @default(10) // Plus 5 per year in office
+  cardStat   String    @default("stats are cool") @db.VarChar(500) // whats written on the card
+  cardId     Int       @unique
+  card       Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime? @updatedAt
 }
 
 model PartyCard {
-  id           Int       @id @default(autoincrement()) // pack id
-  serialNumber String    @default("") @db.VarChar(28) // number from all cards
-  image        String    @default("") @db.VarChar(1000)
-  name         String    @default("") @db.VarChar(250) // name of conservative memer
-  health       Int       @default(40) // health of player card + 10 per year in office
-  attack       Int       @default(10) // Plus 5 per year in office
-  cardStat     String    @default("") @db.VarChar(500) // whats written on the card
-  cardId       Int       @unique
-  card         Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime? @updatedAt
+  id        Int       @id @default(autoincrement()) // pack id
+  name      String    @default("") @db.VarChar(250) // name of conservative memer
+  cardStat  String    @default("") @db.VarChar(500) // whats written on the card
+  effect    String    @default("") @db.VarChar(200)
+  cardId    Int       @unique
+  card      Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
 
 model PolicyCard {
-  id           Int       @id @default(autoincrement()) // pack id
-  serialNumber String    @default("") @db.VarChar(28) // number from all cards
-  image        String    @default("") @db.VarChar(1000)
-  name         String    @default("") @db.VarChar(250) // name of conservative memer
-  health       Int       @default(40) // health of player card + 10 per year in office
-  attack       Int       @default(10) // Plus 5 per year in office
-  cardStat     String    @default("") @db.VarChar(500) // whats written on the card
-  cardId       Int       @unique
-  card         Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime? @updatedAt
+  id        Int       @id @default(autoincrement()) // pack id
+  name      String    @default("") @db.VarChar(250) // name of conservative memer
+  cardStat  String    @default("") @db.VarChar(500) // whats written on the card
+  effect    String    @default("") @db.VarChar(200)
+  cardId    Int       @unique
+  card      Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }

@@ -1,20 +1,55 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 // Context
 import { ToggleContext } from '../../context/ToggleContext';
 
 function MemberCard({ cardData, viewCardData }) {
   const { toggleCardData } = useContext(ToggleContext);
+  const [bgColour, setBgColour] = useState('bg-white');
+  const [holoCard, setHoloCard] = useState(false);
+  const [rareholoCard, setRareHoloCard] = useState(false);
+
+  useEffect(() => {
+    if (!cardData.holographic)
+    switch (cardData.backgroundColour) {
+      case 'BLACK':
+        return setBgColour('bg-black');
+      case 'RED':
+        return setBgColour('bg-red-400');
+      case 'PURPLE':
+        return setBgColour('bg-purple-400');
+      case 'BLUE':
+        return setBgColour('bg-blue-400');
+      case 'YELLOW':
+        return setBgColour('bg-yellow-400');
+      case 'GREEN':
+        return setBgColour('bg-green-400');
+      default:
+        return setBgColour('bg-white');
+    } else if (cardData.rarity === 'RAREHOLO') {
+      setHoloCard(true)
+      setBgColour("bg-slate-700")
+    } else if (cardData.rarity === 'MEGARAREHOLO') {
+      setRareHoloCard(true)
+      setBgColour("bg-slate-700")
+    }
+
+  }, []);
 
   return (
-    <section onClick={() => toggleCardData(cardData)} className='outline outline-1 grid grid-rows-a1a outline-white h-full text-white rounded-lg px-2 py-[1px] card__bg'>
+    <section
+      onClick={() => toggleCardData(cardData)}
+      className={`${holoCard} ${rareholoCard} outline outline-1 grid grid-rows-a1a outline-white h-full text-white rounded px-2 py-[1px] ${bgColour} card__bg`}
+    >
       <div className='flex justify-between items-center text-sm'>
-        <h2 className='text-white capitalize '>{cardData.memberCard.name}</h2>
+        <h2 className='text-white capitalize '>
+          {cardData.memberCard.memberName}
+        </h2>
         <h5>Health: {cardData.memberCard.health}</h5>
       </div>
 
       <section className='grid grid-rows-2 h-full'>
         <div className='mb-1 h-full'>
-          <img className='h-full' src={cardData.memberCard.image} alt='card' />
+          <img src={cardData.image} alt='card' />
         </div>
 
         <section className='grid grid-rows-reg'>
@@ -46,10 +81,9 @@ function MemberCard({ cardData, viewCardData }) {
           </div>
         </section>
       </section>
-      {/* <p className='text-white'>{cardData.holographic}</p> */}
       <div className='flex justify-between text-ss'>
-        <p className='text-white'>Rarity: {cardData.rarity} / 100</p>
-        <p className='text-white'>Serial: {cardData.id}</p>
+        <p className='text-white'>{cardData.rarity}</p>
+        <p className='text-white'>{cardData.serialNumber}</p>
       </div>
     </section>
   );
