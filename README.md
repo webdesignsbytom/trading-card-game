@@ -7,6 +7,7 @@ Sticker book and card collecting game - pokemon style
 - [Trading Card Game](#trading-card-game)
   - [Table of contents](#table-of-contents)
   - [Colours](#colours)
+  - [Cards](#cards)
 
 ## Colours
 
@@ -27,3 +28,11 @@ background-image: url("https://www.transparenttextures.com/patterns/shattered.pn
 background-color: #004f8c;
 background-image: url("https://www.transparenttextures.com/patterns/xv.png");
 /_ This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! _/
+
+## Cards
+
+There are 3 types of cards
+
+1. Member Card - Main playable character card
+2. Party Card - Power up your character - attack, defence, specail attack,
+3. Policy Card - A effect that can be caused in the game - skip turn, gain, lose.
