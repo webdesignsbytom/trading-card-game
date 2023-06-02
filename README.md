@@ -36,3 +36,18 @@ There are 3 types of cards
 1. Member Card - Main playable character card
 2. Party Card - Power up your character - attack, defence, specail attack,
 3. Policy Card - A effect that can be caused in the game - skip turn, gain, lose.
+
+The rarity levels are
+
+1. Common
+2. Uncommon
+3. Rare
+4. Rare Holographic
+5. Mega Rare
+6. Mega Rare Holo
+
+There are 3 type of pack
+
+1. Election
+2. Brexit
+3. Covid
