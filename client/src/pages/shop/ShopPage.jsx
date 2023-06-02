@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import client from '../../utils/client';
 // Context
 import { UserContext } from '../../context/UserContext';
+import Navbar from '../../components/nav/Navbar';
 
 function ShopPage() {
   const { user, setUser } = useContext(UserContext);
@@ -13,7 +14,7 @@ function ShopPage() {
     packType: 'BREXIT',
   });
 
-  const buySinglePack = () => {
+  const buyPacketsOfCards = () => {
     console.log('Buy Single Pack');
 
     client
@@ -23,8 +24,8 @@ function ShopPage() {
         console.log('res', res.data.data.packs);
         setUser({
           ...user,
-          unopenedPacks: res.data.data.packs
-        })
+          unopenedPacks: res.data.data.packs,
+        });
       })
 
       .catch((err) => {
@@ -33,13 +34,19 @@ function ShopPage() {
   };
 
   return (
-    <div className='h-screen bg-red-100 grid items-center justify-center'>
-      <button
-        onClick={buySinglePack}
-        className='rounded outline outline-2 outline-black p-4'
-      >
-        Buy Pack
-      </button>
+    <div className='h-screen bg-red-100 grid'>
+      <section className='bg-blue-500 grid h-full overflow-hidden grid-cols-reg'>
+        <Navbar />
+        <main className='grid items-center justify-center'>
+          <button
+            onClick={buyPacketsOfCards}
+            className='rounded outline outline-2 outline-black p-4'
+          >
+            Buy Pack
+          </button>
+          <h2>Unopened: {user.unopenedPacks.length}</h2>
+        </main>
+      </section>
     </div>
   );
 }

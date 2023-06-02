@@ -13,7 +13,7 @@ const UserContextProvider = ({ children }) => {
     cards: [],
     unopenedPacks: []
   });
-  
+
   const [token, setToken] = useState(
     localStorage.getItem(process.env.REACT_APP_USER_TOKEN) || ''
   );

@@ -6,6 +6,7 @@ import CardOverview from '../../components/card/CardOverview';
 // Context
 import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
+import Navbar from '../../components/nav/Navbar';
 
 function CollectionPage() {
   const { user } = useContext(UserContext);
@@ -25,8 +26,8 @@ function CollectionPage() {
 
   return (
     <div className='bg-red-200 h-screen'>
-      <section className='bg-blue-500 grid h-full overflow-hidden grid-cols-c8'>
-        <section className='bg-red-300'>nav</section>
+      <section className='bg-blue-500 grid h-full overflow-hidden grid-cols-reg'>
+        <Navbar />
         <section className='bg-red-600 p-4'>
           <div className='bg-blue-200 grid h-full'>
             <main className='bg-blue-400 grid'>
