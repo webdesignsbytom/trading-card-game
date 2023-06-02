@@ -213,7 +213,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Voted to send ban protest`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -233,7 +233,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Voted to send ban protest`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -253,7 +253,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Voted to send ban protest`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -273,7 +273,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Voted to send ban protest`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -293,7 +293,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Voted to send ban protest`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -313,7 +313,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Voted to send ban protest`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -334,7 +334,7 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Old people ride bus to stay warm`,
-          effect: `Skip 2 turns`
+          effect: `Skip 2 turns`,
         },
       },
     },
@@ -354,7 +354,7 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Old people ride bus to stay warm`,
-          effect: `Lose any attack`
+          effect: `Lose any attack`,
         },
       },
     },
@@ -374,7 +374,7 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Old people ride bus to stay warm`,
-          effect: `Lose any attack`
+          effect: `Lose any attack`,
         },
       },
     },
@@ -394,7 +394,7 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Old people ride bus to stay warm`,
-          effect: `Lose any attack`
+          effect: `Lose any attack`,
         },
       },
     },
@@ -414,7 +414,7 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Old people ride bus to stay warm`,
-          effect: `Lose any attack`
+          effect: `Lose any attack`,
         },
       },
     },
@@ -434,14 +434,35 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Old people ride bus to stay warm`,
-          effect: `Lose any attack`
+          effect: `Lose any attack`,
         },
       },
     },
   });
 
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
+  // ULTIMATE Brexit Policy
+  const ultimateBrexitPolicy = await dbClient.card.create({
+    data: {
+      serialNumber: 't23/306-2023', // t = test
+      cardName: 'Ultimate Brexit Policy card test 1',
+      edition: 'First',
+      rarity: 'ULTIMATE',
+      holographic: true,
+      packType: 'BREXIT',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/149.png',
+      backgroundColour: 'RED',
+      policyCard: {
+        create: {
+          cardStat: `So rare`,
+          effect: `Skip 2 turns`,
+        },
+      },
+    },
+  });
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
 
   // COMMON Election Member
   const commElectionMember = await dbClient.card.create({
@@ -585,7 +606,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Voted to send ban protest`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -605,7 +626,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Voted to send ban protest`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -625,7 +646,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Voted to send ban protest`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -645,7 +666,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Voted to send ban protest`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -665,7 +686,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Voted to send ban protest`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -685,7 +706,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Voted to send ban protest`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -706,7 +727,7 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Old people ride bus to stay warm`,
-          effect: `Lose any attack`
+          effect: `Lose any attack`,
         },
       },
     },
@@ -726,7 +747,7 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Old people ride bus to stay warm`,
-          effect: `Lose any attack`
+          effect: `Lose any attack`,
         },
       },
     },
@@ -746,7 +767,7 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Old people ride bus to stay warm`,
-          effect: `Lose any attack`
+          effect: `Lose any attack`,
         },
       },
     },
@@ -766,7 +787,7 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Old people ride bus to stay warm`,
-          effect: `Lose any attack`
+          effect: `Lose any attack`,
         },
       },
     },
@@ -786,7 +807,7 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Old people ride bus to stay warm`,
-          effect: `Lose any attack`
+          effect: `Lose any attack`,
         },
       },
     },
@@ -806,15 +827,34 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Old people ride bus to stay warm`,
-          effect: `Lose any attack`
+          effect: `Lose any attack`,
+        },
+      },
+    },
+  });
+  // ULTIMATE Election Policy
+  const ultimateElectionPolicy = await dbClient.card.create({
+    data: {
+      serialNumber: 't23/606-2023', // t = test
+      cardName: 'Ultimate Election Policy card test 1',
+      edition: 'First',
+      rarity: 'ULTIMATE',
+      holographic: true,
+      packType: 'ELECTION',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png',
+      backgroundColour: 'RED',
+      policyCard: {
+        create: {
+          cardStat: `So rare`,
+          effect: `Skip 2 turns`,
         },
       },
     },
   });
 
-
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
 
   // COMMON Covid Member
   const commCovidMember = await dbClient.card.create({
@@ -958,7 +998,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
-          effect: `Plus 100 damage to all regular people`
+          effect: `Plus 100 damage to all regular people`,
         },
       },
     },
@@ -978,7 +1018,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -998,7 +1038,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -1018,7 +1058,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -1038,7 +1078,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -1058,7 +1098,7 @@ async function seed() {
       partyCard: {
         create: {
           cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
-          effect: `Plus 50 damage`
+          effect: `Plus 50 damage`,
         },
       },
     },
@@ -1079,7 +1119,7 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Allow billions in fraud`,
-          effect: `Skip 2 turns`
+          effect: `Skip 2 turns`,
         },
       },
     },
@@ -1099,7 +1139,7 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Allow billions in fraud`,
-          effect: `Skip 2 turns`
+          effect: `Skip 2 turns`,
         },
       },
     },
@@ -1119,7 +1159,7 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Allow billions in fraud`,
-          effect: `Skip 2 turns`
+          effect: `Skip 2 turns`,
         },
       },
     },
@@ -1139,7 +1179,7 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Allow billions in fraud`,
-          effect: `Skip 2 turns`
+          effect: `Skip 2 turns`,
         },
       },
     },
@@ -1159,7 +1199,7 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Allow billions in fraud`,
-          effect: `Skip 2 turns`
+          effect: `Skip 2 turns`,
         },
       },
     },
@@ -1179,12 +1219,32 @@ async function seed() {
       policyCard: {
         create: {
           cardStat: `Allow billions in fraud`,
-          effect: `Skip 2 turns`
+          effect: `Skip 2 turns`,
         },
       },
     },
   });
- 
+
+  // ULTIMATE Covid Policy
+  const ultimateCovidPolicy = await dbClient.card.create({
+    data: {
+      serialNumber: 't23/906-2023', // t = test
+      cardName: 'Ultimate Covid Policy card test 1',
+      edition: 'First',
+      rarity: 'ULTIMATE',
+      holographic: true,
+      packType: 'COVID',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/151.png',
+      backgroundColour: 'RED',
+      policyCard: {
+        create: {
+          cardStat: `So rare`,
+          effect: `Skip 2 turns`,
+        },
+      },
+    },
+  });
 }
 
 seed().catch(async (error) => {

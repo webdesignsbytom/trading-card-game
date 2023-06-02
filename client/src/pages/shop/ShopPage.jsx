@@ -7,8 +7,8 @@ import { UserContext } from '../../context/UserContext';
 function ShopPage() {
   const { user } = useContext(UserContext);
   const [purchaseRequest, setPurchaseRequest] = useState({
-    numPacks: 1,
-    userId: 'f931a3ab-5d4c-4613-8124-64271ea9df71',
+    numPacks: 2,
+    userId: '83ec7407-5ad3-4c56-8c62-0b3fb03c7f22',
     packType: 'BREXIT',
   });
 
@@ -19,6 +19,7 @@ function ShopPage() {
       .post('/con-cards/buyPacketsOfCards', purchaseRequest, false)
       .then((res) => {
         console.log('res', res.data);
+        console.log('res', res.data.data.packs);
       })
 
       .catch((err) => {

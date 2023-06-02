@@ -18,6 +18,7 @@ import {
   selectUltimateRarityCard,
   selectUncommonCard,
 } from '../utils/selectCard.js';
+import { createPacksOfCards } from '../utils/createPackets.js';
 
 // Get all cards from all packs
 export const getAllCards = async (req, res) => {
@@ -115,7 +116,7 @@ export const getAllCardsByType = async (req, res) => {
 };
 
 export const buyPacketsOfCards = async (req, res) => {
-  console.log('buySinglePack');
+  console.log('buyPacks');
   const { numPacks, userId, packType } = req.body;
   console.log('num', numPacks, userId, packType);
 
@@ -132,62 +133,16 @@ export const buyPacketsOfCards = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    console.log('found', foundUser);
-    delete foundUser.password;
-    delete foundUser.agreedToTerms;
-    // For each pack the user wants to buy
-    for (let i = 0; i < numPacks; i++) {
-      if (packType === 'BREXIT') {
-        // Create pack
-        let numCards = 22;
-        // Get all cards from pack
-        const allCardsInPack = await findAllCardsFromPack(packType);
-        console.log('all cards in pack', allCardsInPack);
-        const commonCards = allCardsInPack.filter(card => card.rarity === 'COMMON')
-        const uncommonCards = allCardsInPack.filter(card => card.rarity === 'UNCOMMON')
-        const rareCards = allCardsInPack.filter(card => card.rarity === 'RARE')
-        const megaRareCards = allCardsInPack.filter(card => card.rarity === 'MEGARARE')
-        const ultimateCards = allCardsInPack.filter(card => card.rarity === 'ULTIMATE')
+    const createdPacks = await createPacksOfCards(numPacks, packType)
+    console.log('Created Packs of cards', createdPacks);
 
-        console.log('common cards', commonCards);
-        // For each card find its rariry value
-        for (let i = 0; i < numCards; i++) {
-          let rarityNum = Math.floor(Math.random() * 200) + 1;
-          console.log('rarityNum', rarityNum);
+    return sendDataResponse(res, 201, { packs: createdPacks });
 
-          if (rarityNum < 90) {
-            console.log('COMMON');
-            selectCommonCard(commonCards);
-          }
-
-          if (rarityNum < 151 && rarityNum >= 90) {
-            console.log('UNCOMMON');
-            selectUncommonCard(uncommonCards);
-          }
-
-          if (rarityNum < 181 && rarityNum >= 151) {
-            console.log('Rare');
-            selectRareCard(rareCards);
-          }
-
-          if (rarityNum < 198 && rarityNum >= 181) {
-            console.log('Mega Rare');
-            selectMegaRareCard(megaRareCards);
-          }
-
-          if (rarityNum < 201 && rarityNum >= 198) {
-            selectUltimateRarityCard(ultimateCards);
-            console.log('Ultimate');
-          }
-        }
-      }
-    }
-    // return sendDataResponse(res, 200, { cards: foundCards });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(
       req.user,
-      `Get all cards from pack ${packType}`
+      `Create pack of ${packType}`
     );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
