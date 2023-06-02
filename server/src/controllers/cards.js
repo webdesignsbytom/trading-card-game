@@ -11,13 +11,6 @@ import {
   findCardsByCardType,
 } from '../domain/cards.js';
 import { findUserById } from '../domain/users.js';
-import {
-  selectCommonCard,
-  selectMegaRareCard,
-  selectRareCard,
-  selectUltimateRarityCard,
-  selectUncommonCard,
-} from '../utils/selectCard.js';
 import { createPacksOfCards } from '../utils/createPackets.js';
 
 // Get all cards from all packs

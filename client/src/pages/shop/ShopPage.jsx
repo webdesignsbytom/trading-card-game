@@ -5,7 +5,8 @@ import client from '../../utils/client';
 import { UserContext } from '../../context/UserContext';
 
 function ShopPage() {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+
   const [purchaseRequest, setPurchaseRequest] = useState({
     numPacks: 2,
     userId: '83ec7407-5ad3-4c56-8c62-0b3fb03c7f22',
@@ -20,6 +21,10 @@ function ShopPage() {
       .then((res) => {
         console.log('res', res.data);
         console.log('res', res.data.data.packs);
+        setUser({
+          ...user,
+          unopenedPacks: res.data.data.packs
+        })
       })
 
       .catch((err) => {
