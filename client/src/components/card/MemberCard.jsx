@@ -5,30 +5,40 @@ import { ToggleContext } from '../../context/ToggleContext';
 function MemberCard({ cardData, viewCardData }) {
   const { toggleCardData } = useContext(ToggleContext);
   const [bgColour, setBgColour] = useState('bg-white');
+  const [holoCard, setHoloCard] = useState(false);
+  const [rareholoCard, setRareHoloCard] = useState(false);
 
   useEffect(() => {
-    switch(cardData.backgroundColour) {
+    if (!cardData.holographic)
+    switch (cardData.backgroundColour) {
       case 'BLACK':
-        return setBgColour("bg-black")
+        return setBgColour('bg-black');
       case 'RED':
-        return setBgColour("bg-red-400")
+        return setBgColour('bg-red-400');
       case 'PURPLE':
-        return setBgColour("bg-purple-400")
+        return setBgColour('bg-purple-400');
       case 'BLUE':
-        return setBgColour("bg-blue-400")
+        return setBgColour('bg-blue-400');
       case 'YELLOW':
-        return setBgColour("bg-yellow-400")
+        return setBgColour('bg-yellow-400');
       case 'GREEN':
-        return setBgColour("bg-green-400")
+        return setBgColour('bg-green-400');
       default:
-        return null
+        return setBgColour('bg-white');
+    } else if (cardData.rarity === 'RAREHOLO') {
+      setHoloCard(true)
+      setBgColour("bg-slate-700")
+    } else if (cardData.rarity === 'MEGARAREHOLO') {
+      setRareHoloCard(true)
+      setBgColour("bg-slate-700")
     }
-  }, [])
+
+  }, []);
 
   return (
     <section
       onClick={() => toggleCardData(cardData)}
-      className={`outline outline-1 grid grid-rows-a1a outline-white h-full text-white rounded px-2 py-[1px] ${bgColour} card__bg`}
+      className={`${holoCard} ${rareholoCard} outline outline-1 grid grid-rows-a1a outline-white h-full text-white rounded px-2 py-[1px] ${bgColour} card__bg`}
     >
       <div className='flex justify-between items-center text-sm'>
         <h2 className='text-white capitalize '>
@@ -71,10 +81,9 @@ function MemberCard({ cardData, viewCardData }) {
           </div>
         </section>
       </section>
-      {/* <p className='text-white'>{cardData.holographic}</p> */}
       <div className='flex justify-between text-ss'>
         <p className='text-white'>{cardData.rarity}</p>
-        <p className='text-white'>Serial: {cardData.serialNumber}</p>
+        <p className='text-white'>{cardData.serialNumber}</p>
       </div>
     </section>
   );

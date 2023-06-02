@@ -5,8 +5,11 @@ import { ToggleContext } from '../../context/ToggleContext';
 function PartyCard({ cardData }) {
   const { toggleCardData } = useContext(ToggleContext);
   const [bgColour, setBgColour] = useState('bg-white');
+  const [holoCard, setHoloCard] = useState(false);
+  const [rareholoCard, setRareHoloCard] = useState(false);
 
   useEffect(() => {
+    if (!cardData.holographic)
     switch (cardData.backgroundColour) {
       case 'BLACK':
         return setBgColour('bg-black');
@@ -21,8 +24,15 @@ function PartyCard({ cardData }) {
       case 'GREEN':
         return setBgColour('bg-green-400');
       default:
-        return null;
+        return setBgColour('bg-white');
+    } else if (cardData.rarity === 'RAREHOLO') {
+      setHoloCard(true)
+      setBgColour("bg-slate-700")
+    } else if (cardData.rarity === 'MEGARAREHOLO') {
+      setRareHoloCard(true)
+      setBgColour("bg-slate-700")
     }
+
   }, []);
   
   return (
@@ -69,10 +79,9 @@ function PartyCard({ cardData }) {
           </div>
         </section>
       </section>
-      {/* <p className='text-white'>{cardData.holographic}</p> */}
       <div className='flex justify-between text-ss'>
-        <p className='text-white'>Rarity: {cardData.rarity} / 100</p>
-        <p className='text-white'>Serial: {cardData.id}</p>
+        <p className='text-white'>{cardData.rarity}</p>
+        <p className='text-white'>{cardData.id}</p>
       </div>
     </section>
   );
