@@ -9,6 +9,7 @@ import * as url from 'url';
 import authRouter from './routes/auth.js';
 import cardsRouter from './routes/cards.js';
 import userRouter from './routes/users.js';
+import packRouter from './routes/packs.js';
 // Env
 import { HTTP_URL, PORT } from './utils/config.js';
 
@@ -33,6 +34,7 @@ const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 app.use('/', authRouter);
 app.use('/con-cards', cardsRouter);
 app.use('/users', userRouter);
+app.use('/packs', packRouter);
 
 // Server interface page
 app.get('/', (req, res) => {

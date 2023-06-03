@@ -1,6 +1,8 @@
 import { findAllCardsFromPack } from '../domain/cards.js';
+import { addCardsToEmptyPack, createBlankPackOfCards, createNewFullPackOfCards } from '../domain/packs.js';
 import { myEmitterErrors } from '../event/errorEvents.js';
-import { NotFoundEvent } from '../event/utils/errorUtils.js';
+import { NotFoundEvent, ServerErrorEvent } from '../event/utils/errorUtils.js';
+import { createCardsForPack } from './createCards.js';
 import { EVENT_MESSAGES, sendMessageResponse } from './responses.js';
 import {
   cheakForHolographic,
@@ -12,6 +14,19 @@ import {
   selectUncommonCard,
 } from './selectCard.js';
 
+export async function createSinglePacksOfCards(packType) {
+  console.log('AAA');
+
+  const newPack = await createBlankPackOfCards();
+  console.log('NEW', newPack);
+
+  const fullPack = await createCardsForPack(packType, newPack.id)
+  console.log('FULL', fullPack);
+
+  const newFullPack = await createNewFullPackOfCards(fullPack, newPack.id)
+  console.log('addCardsToEmptyPack', newFullPack);
+}
+
 export async function createPacksOfCards(numPacks, packType) {
   let purchasedPacksArray = [];
   // For each pack the user wants to buy
@@ -19,7 +34,6 @@ export async function createPacksOfCards(numPacks, packType) {
     // Create pack
     let numCards = 6;
     let packArray = [];
-    let containsHolo = false;
 
     // Get all cards from pack
     const allCardsInPack = await findAllCardsFromPack(packType);
@@ -40,13 +54,15 @@ export async function createPacksOfCards(numPacks, packType) {
     // Create required cards for pack.
 
     // Create one holo card
-    const holoCard = await createHolographicCardForPack(rareCards, megaRareCards)
+    const holoCard = await createHolographicCardForPack(
+      rareCards,
+      megaRareCards
+    );
     console.log('HOLOCARD: ', holoCard);
     packArray.push(holoCard);
-    // Create one policy card
 
     // For each card find its rariry value
-    while (packArray.length < numCards && containsHolo === false) {
+    while (packArray.length < numCards) {
       let rarityNum = Math.floor(Math.random() * 200) + 1;
 
       if (rarityNum < 90) {
@@ -66,7 +82,6 @@ export async function createPacksOfCards(numPacks, packType) {
         if (packArray.includes(newCard)) {
           continue;
         } else {
-          cheakForHolographic(packArray, numCards);
           packArray.push(newCard);
         }
       }
@@ -88,7 +103,6 @@ export async function createPacksOfCards(numPacks, packType) {
         if (packArray.includes(newCard)) {
           continue;
         } else {
-          cheakForHolographic(packArray, numCards);
           packArray.push(newCard);
         }
       }
@@ -109,7 +123,6 @@ export async function createPacksOfCards(numPacks, packType) {
         if (packArray.includes(newCard)) {
           continue;
         } else {
-          cheakForHolographic(packArray, numCards);
           packArray.push(newCard);
         }
       }
@@ -130,7 +143,6 @@ export async function createPacksOfCards(numPacks, packType) {
         if (packArray.includes(newCard)) {
           continue;
         } else {
-          cheakForHolographic(packArray, numCards);
           packArray.push(newCard);
         }
       }
@@ -151,19 +163,12 @@ export async function createPacksOfCards(numPacks, packType) {
         if (packArray.includes(newCard)) {
           continue;
         } else {
-          cheakForHolographic(packArray, numCards);
           packArray.push(newCard);
         }
-      }
-
-      if (packArray.length === numCards) {
-        console.log('PACK FULL');
-        // containsHolo = true;
       }
     }
 
     // End of while
-    console.log('END OF WHILE');
     if (!packArray) {
       const notFound = new NotFoundEvent(
         req.user,
@@ -178,4 +183,16 @@ export async function createPacksOfCards(numPacks, packType) {
   }
 
   return purchasedPacksArray;
+}
+
+export async function addPacksToUser(createdPacks, foundUser) {
+  console.log('Adding packs to user');
+  console.log('Created Packages', createdPacks.length);
+  console.log('FOundle', foundUser);
+
+  // Create packs
+  createdPacks.forEach((pack) => {
+    console.log('PACKKKK');
+    addPackToUser(pack, foundUser.id);
+  });
 }

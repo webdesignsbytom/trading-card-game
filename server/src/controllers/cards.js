@@ -11,7 +11,7 @@ import {
   findCardsByCardType,
 } from '../domain/cards.js';
 import { findUserById } from '../domain/users.js';
-import { createPacksOfCards } from '../utils/createPackets.js';
+import { addPacksToUser, createPacksOfCards } from '../utils/createPackets.js';
 
 // Get all cards from all packs
 export const getAllCards = async (req, res) => {
@@ -129,12 +129,14 @@ export const buyPacketsOfCards = async (req, res) => {
     const createdPacks = await createPacksOfCards(numPacks, packType)
     console.log('Created Packs of cards', createdPacks);
 
+    const addPacks = await addPacksToUser(createdPacks, foundUser)
+
     return sendDataResponse(res, 201, { packs: createdPacks });
 
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(
-      req.user,
+      'req.user,',
       `Create pack of ${packType}`
     );
     myEmitterErrors.emit('error', serverError);
