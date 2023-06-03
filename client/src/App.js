@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 // Pages
 import HomePage from './pages/home/HomePage';
-import CollectionPage from './pages/collection/CollectionPage';
+import CollectionPage from './pages/album/CollectionPage';
 import LoginPage from './users/login/LoginPage';
 import RegisterPage from './users/register/RegisterPage';
 import Error404 from './pages/error/Error404';
