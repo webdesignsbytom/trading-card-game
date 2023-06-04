@@ -13,6 +13,7 @@ const UserContextProvider = ({ children }) => {
   const [token, setToken] = useState(
     localStorage.getItem(process.env.REACT_APP_USER_TOKEN) || ''
   );
+
   const [toggleCookiePolicy, setToggleCookiePolicy] = useState(false);
 
   console.log('usercontext', user);
@@ -27,7 +28,7 @@ const UserContextProvider = ({ children }) => {
       .catch((err) => {
         console.error('Unable to retrieve user data', err);
       });
-  }, [user.collectedStartedPacks]);
+  }, []);
 
   // useEffect(() => {
   //   const decodedUserData = LoggedInUser();

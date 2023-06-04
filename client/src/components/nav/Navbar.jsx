@@ -1,9 +1,20 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+// Context
 import { UserContext } from '../../context/UserContext';
+import { ToggleContext } from '../../context/ToggleContext';
 
 function Navbar() {
   const { user } = useContext(UserContext);
+  const { toggleOpenPackets } = useContext(ToggleContext)
+  
+  let navigate = useNavigate();
+
+  const goToUnopenedPacks = () => {
+    toggleOpenPackets();
+
+    navigate('/invintory', { replace: true });
+  }
 
   return (
     <nav className='bg-red-300 grid p-2'>
@@ -18,9 +29,9 @@ function Navbar() {
 
       <section className='text-center'>
         {user?.packs?.length > 0 && (
-          <Link to='/invintory'>
+          <button onClick={goToUnopenedPacks}>
             <div>{user.packs.length} Unopened Pack</div>
-          </Link>
+          </button>
         )}
       </section>
       {/* Navigation */}

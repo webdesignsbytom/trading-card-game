@@ -4,12 +4,6 @@ import Navbar from '../../components/nav/Navbar';
 import InvintoryOptions from '../../components/invintory/InvintoryOptions';
 
 function InvintoryPage() {
-  const [togglePacketsDisplay, setTogglePacketDisplay] = useState(false);
-
-  const toggleOpenPackets = () => {
-    console.log('toggle');
-    setTogglePacketDisplay(!togglePacketsDisplay);
-  };
 
   return (
     <div className='grid h-screen grid-cols-reg'>
@@ -22,10 +16,7 @@ function InvintoryPage() {
         </article>
 
         <section className='p-2'>
-          <InvintoryOptions
-            togglePacketsDisplay={togglePacketsDisplay}
-            toggleOpenPackets={toggleOpenPackets}
-          />
+          <InvintoryOptions />
         </section>
       </main>
     </div>

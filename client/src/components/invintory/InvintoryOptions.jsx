@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+// Components
 import UnopenedPackets from '../packets/UnopenedPackets';
+// Context
+import { ToggleContext } from '../../context/ToggleContext';
+import OpenedPacketDisplay from '../packets/OpenedPacketDisplay';
 
-function InvintoryOptions({ toggleOpenPackets, togglePacketsDisplay }) {
+function InvintoryOptions() {
+  const { toggleOpenPackets, toggleUnopenedPacketsDisplay, toggleOpeningPackDiplay } = useContext(ToggleContext)
 
-  if (!togglePacketsDisplay) {
+  console.log('togglePacketsDisplay', toggleUnopenedPacketsDisplay);
+
+  if (!toggleUnopenedPacketsDisplay && !toggleOpeningPackDiplay) {
     return (
       <section>
         <div>
@@ -14,10 +21,18 @@ function InvintoryOptions({ toggleOpenPackets, togglePacketsDisplay }) {
     );
   }
 
-  if (togglePacketsDisplay) {
+  if (toggleUnopenedPacketsDisplay && !toggleOpeningPackDiplay) {
     return (
       <section className='grid h-full'>
         <UnopenedPackets />
+      </section>
+    );
+  }
+
+  if (toggleOpeningPackDiplay) {
+    return (
+      <section className='grid h-full'>
+        <OpenedPacketDisplay />
       </section>
     );
   }
