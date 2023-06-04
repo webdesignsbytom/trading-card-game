@@ -16,22 +16,24 @@ enum Role {
 }
 
 model User {
-  id             String            @id @default(uuid())
-  email          String            @unique
-  password       String            @db.VarChar(250)
-  role           Role              @default(USER)
-  profile        Profile?
-  passwordReset  PasswordReset?
-  verifications  UserVerification?
-  cards          Card[]
-  lastLoggedIn   DateTime          @updatedAt
-  isVerified     Boolean           @default(false)
-  agreedToTerms  Boolean           @default(false)
-  isActive       Boolean           @default(true)
-  createdEvents  Event[]           @relation("createdEvents")
-  receivedEvents Event[]           @relation("receivedEvents")
-  createdAt      DateTime          @default(now())
-  updatedAt      DateTime?         @updatedAt
+  id                    String            @id @default(uuid())
+  email                 String            @unique
+  password              String            @db.VarChar(250)
+  role                  Role              @default(USER)
+  profile               Profile?
+  passwordReset         PasswordReset?
+  verifications         UserVerification?
+  cards                 String[]
+  packs                 Pack[]
+  lastLoggedIn          DateTime          @updatedAt
+  isVerified            Boolean           @default(false)
+  agreedToTerms         Boolean           @default(false)
+  collectedStartedPacks Boolean           @default(false)
+  isActive              Boolean           @default(true)
+  createdEvents         Event[]           @relation("createdEvents")
+  receivedEvents        Event[]           @relation("receivedEvents")
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime?         @updatedAt
 }
 
 model Profile {
@@ -127,6 +129,7 @@ enum Rarity {
   RAREHOLO
   MEGARARE
   MEGARAREHOLO
+  ULTIMATE
 }
 
 enum BackgroundColour {
@@ -137,6 +140,16 @@ enum BackgroundColour {
   BLUE
   YELLOW
   GREEN
+}
+
+model Pack {
+  id        String    @id @default(uuid()) // pack id
+  packType  String
+  cards     String[]
+  userId    String?
+  user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
 
 model Card {
@@ -153,8 +166,7 @@ model Card {
   memberCard       MemberCard?
   partyCard        PartyCard?
   policyCard       PolicyCard?
-  userId           String?          @unique
-  user             User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  availability     Boolean          @default(true)
   createdAt        DateTime         @default(now())
   updatedAt        DateTime?        @updatedAt
 }

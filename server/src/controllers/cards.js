@@ -5,33 +5,37 @@ import {
   sendMessageResponse,
 } from '../utils/responses.js';
 import { myEmitterErrors } from '../event/errorEvents.js';
-import { findAllCards, findAllCardsFromPack, findCardsByCardType } from '../domain/cards.js';
+import {
+  findAllCards,
+  findAllCardsFromPack,
+  findCardsByCardType,
+} from '../domain/cards.js';
+import { findUserById } from '../domain/users.js';
 
 // Get all cards from all packs
 export const getAllCards = async (req, res) => {
   console.log('getAllUsers');
   try {
-      const foundCards = await findAllCards();
-      console.log('found cards', foundCards);
+    const foundCards = await findAllCards();
+    console.log('found cards', foundCards);
 
-      if (!foundCards) {
-        const notFound = new NotFoundEvent(
-          req.user,
-          EVENT_MESSAGES.notFound,
-          EVENT_MESSAGES.notFoundCards
-        );
-        myEmitterErrors.emit('error', notFound);
-        return sendMessageResponse(res, notFound.code, notFound.message);
-      }
+    if (!foundCards) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundCards
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
 
-      foundCards.forEach((card) => {
-        console.log('card', card.cardType.toLowerCase());
-        let newType = card.cardType.toLowerCase();
-        card.cardType = newType;
-      })
-      
+    foundCards.forEach((card) => {
+      console.log('card', card.cardType.toLowerCase());
+      let newType = card.cardType.toLowerCase();
+      card.cardType = newType;
+    });
+
     return sendDataResponse(res, 200, { cards: foundCards });
-
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Get all cards`);
@@ -101,5 +105,4 @@ export const getAllCardsByType = async (req, res) => {
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
   }
-}
-
+};

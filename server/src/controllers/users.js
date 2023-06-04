@@ -15,7 +15,6 @@ import {
   findUserById,
   resetUserPassword,
   deleteUserById,
-  updateUserById,
   findUsersByRole,
   createNewsletterMembershipForNewMember,
 } from '../domain/users.js';

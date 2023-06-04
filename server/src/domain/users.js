@@ -15,6 +15,7 @@ export const findUserByEmail = (email) =>
     where: { email: email },
     include: {
       profile: true,
+      packs: true,
     },
   });
 
@@ -25,6 +26,7 @@ export const findUserById = (userId) =>
     },
     include: {
       profile: true,
+      packs: true,
     },
   });
 
@@ -35,16 +37,11 @@ export const findUsersByRole = (role) =>
     },
     include: {
       profile: true,
+      packs: true,
     },
   });
 
-export const createUser = (
-  email,
-  password,
-  username,
-  country,
-  agreedToTerms,
-) =>
+export const createUser = (email, password, username, country, agreedToTerms) =>
   dbClient.user.create({
     data: {
       email: email,
@@ -98,15 +95,24 @@ export const deleteUserById = (userId) =>
     },
   });
 
-export const updateUserById = (userId, email, firstName, lastName, country) =>
+
+export const setStarterCardsToClaimed = (userId) =>
   dbClient.user.update({
     where: {
       id: userId,
     },
     data: {
-      email,
-      firstName,
-      lastName,
-      country,
-    },
+      collectedStartedPacks: true
+    }
   });
+
+export const updateUserCardArray = (userId, newCardArray) =>
+  dbClient.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      cards: newCardArray
+    }
+  });
+
