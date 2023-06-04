@@ -25,12 +25,12 @@ function AlbumPage() {
   };
 
   return (
-    <div className='bg-red-100 h-screen grid'>
+    <div className='h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
-        <section className='bg-red-600 p-4'>
-          <div className='bg-blue-200 grid h-full'>
-            <main className='bg-blue-400 grid'>
+        <section className='bg-blue-500 main__bg p-4'>
+          <div className='grid h-full'>
+            <main className='bg-red-200 grid rounded-lg outline-black outline-4 outline'>
               {!albumOpen && !viewCard && (
                 <ClosedAlbumPage openAlbum={openAlbum} />
               )}
