@@ -8,7 +8,7 @@ import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
 import Navbar from '../../components/nav/Navbar';
 
-function CollectionPage() {
+function AlbumPage() {
   const { user } = useContext(UserContext);
   const { toggleCardData, viewCard } = useContext(ToggleContext);
 
@@ -25,8 +25,8 @@ function CollectionPage() {
   };
 
   return (
-    <div className='bg-red-200 h-screen'>
-      <section className='bg-blue-500 grid h-full overflow-hidden grid-cols-reg'>
+    <div className='bg-red-100 h-screen grid'>
+      <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
         <section className='bg-red-600 p-4'>
           <div className='bg-blue-200 grid h-full'>
@@ -48,4 +48,4 @@ function CollectionPage() {
   );
 }
 
-export default CollectionPage;
+export default AlbumPage;
