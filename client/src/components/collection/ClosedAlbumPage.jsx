@@ -9,7 +9,7 @@ function ClosedAlbumPage({ openAlbum }) {
     <section className='bg-green-400 grid grid-rows-2'>
       <section className='grid justify-center items-center'>
         <article>
-          <h4 className='text-3xl uppercase font-bold'>{user?.profile.username}'S COLLECTION</h4>
+          <h4 className='text-3xl uppercase font-bold'>{user?.profile?.username}'S COLLECTION</h4>
         </article>
       </section>
       <section className='grid items-center justify-center'>
