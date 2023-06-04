@@ -7,6 +7,7 @@ import { myEmitterErrors } from '../event/errorEvents.js';
 import { ServerErrorEvent } from '../event/utils/errorUtils.js';
 import { sendDataResponse, sendMessageResponse } from '../utils/responses.js';
 import { starterPackNames } from '../utils/constants.js';
+import { findUserById, setStarterCardsToClaimed } from '../domain/users.js';
 
 export const getPackById = async (req, res) => {
   const id = req.params.id;
@@ -49,8 +50,23 @@ export const createPacksAndAddToUser = async (req, res) => {
   const { packType, userId } = req.body;
 
   try {
+
+    const foundUser = await findUserById(userId);
+    if (!foundUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
     const createdPack = await createSinglePacksOfCardsForUser(packType, userId);
     console.log('Created Pack', createdPack);
+
+
+
     return sendDataResponse(res, 201, { pack: createdPack });
   } catch (err) {
     // Error
@@ -68,6 +84,18 @@ export const createStarterPacksForUser = async (req, res) => {
   const { userId } = req.body;
 
   try {
+
+    const foundUser = await findUserById(userId);
+    if (!foundUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
     const starterPacks = [];
 
     const createdPack1 = await createSinglePacksOfCardsForUser(
@@ -86,7 +114,10 @@ export const createStarterPacksForUser = async (req, res) => {
     );
     starterPacks.push(createdPack3);
 
-    return sendDataResponse(res, 201, { pack: starterPacks });
+    const updatedUser = await setStarterCardsToClaimed(userId)
+    console.log('updatedUser', updatedUser);
+
+    return sendDataResponse(res, 201, { packs: starterPacks, updatedUser: updatedUser });
 
   } catch (err) {
     // Error

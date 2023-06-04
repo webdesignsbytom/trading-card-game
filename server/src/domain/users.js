@@ -96,3 +96,14 @@ export const deleteUserById = (userId) =>
   });
 
 
+export const setStarterCardsToClaimed = (userId) =>
+  dbClient.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      collectedStartedPacks: true
+    }
+  });
+
+

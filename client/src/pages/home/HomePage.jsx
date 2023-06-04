@@ -27,6 +27,11 @@ function HomePage() {
           <section className='grid h-full p-2'>
             {!user.email && <RegisterForm />}
             {user.email && !user.collectedStartedPacks && <StartingPacks />}
+            {user.email && user.collectedStartedPacks && (
+              <div>
+                HEllo
+              </div>
+            )}
           </section>
         </main>
       </section>

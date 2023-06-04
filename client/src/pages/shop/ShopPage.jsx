@@ -53,7 +53,7 @@ function ShopPage() {
               <span>Money: £1000</span>
             </div>
             <div>
-              <span>Unopened: {user.unopenedPacks.length}</span>
+              <span>Unopened: {user?.unopenedPacks?.length}</span>
             </div>
           </section>
 

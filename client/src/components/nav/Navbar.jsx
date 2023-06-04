@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
 
 function Navbar() {
+  const { user } = useContext(UserContext);
+
   return (
     <nav className='bg-red-300 grid p-2'>
       <section className='text-center'>
@@ -13,6 +16,13 @@ function Navbar() {
         </p>
       </section>
 
+      <section className='text-center'>
+        {user?.packs?.length > 0 && (
+          <Link to='/invintory'>
+            <div>{user.packs.length} Unopened Pack</div>
+          </Link>
+        )}
+      </section>
       {/* Navigation */}
       <section>
         <ul className='text-center'>

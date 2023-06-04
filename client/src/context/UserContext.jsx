@@ -7,12 +7,7 @@ export const UserContext = React.createContext();
 
 const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState({
-    email: 'e@gmail.com',
-    username: '',
-    isVerified: false,
-    cards: [],
-    unopenedPacks: [],
-    collectedStartedPacks: false
+    id: 'a275cc11-caa5-4b47-b314-d8ff4c68856a',
   });
 
   const [token, setToken] = useState(
@@ -23,18 +18,17 @@ const UserContextProvider = ({ children }) => {
   console.log('usercontext', user);
 
   useEffect(() => {
+    console.log('STARTER PACKS');
     client
-      .get(`/con-cards/all-cards`)
+      .get(`/users/user/id/${user.id}`)
       .then((res) => {
-        setUser({
-          ...user,
-          cards: res.data.data.cards,
-        });
+        setUser(res.data.data.user);
       })
       .catch((err) => {
         console.error('Unable to retrieve user data', err);
       });
-  }, []);
+  }, [user.collectedStartedPacks]);
+
   // useEffect(() => {
   //   const decodedUserData = LoggedInUser();
 
