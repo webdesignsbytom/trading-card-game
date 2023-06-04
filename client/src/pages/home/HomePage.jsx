@@ -11,7 +11,7 @@ function HomePage() {
 
   return (
     <div className='bg-red-100 h-screen grid'>
-      <section className='bg-blue-500 grid h-full overflow-hidden grid-cols-reg'>
+      <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
         <main className='grid grid-rows-reg'>
           <section className='p-4 flex items-center justify-center'>

@@ -19,7 +19,7 @@ function ShopPage() {
   const buyPacketsOfCards = (event) => {
     const { id } = event.target;
     console.log('id', id);
-    
+
     console.log('Buy Single Pack');
 
     client
@@ -39,12 +39,12 @@ function ShopPage() {
   };
 
   const openPackPurchasing = () => {
-    setTogglePackPurchasing(!togglePackPurchasing)
+    setTogglePackPurchasing(!togglePackPurchasing);
   };
 
   return (
-    <div className='h-screen bg-red-100 grid'>
-      <section className='bg-blue-500 grid h-full overflow-hidden grid-cols-reg'>
+    <div className='bg-red-100 h-screen grid'>
+      <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
         <main className='grid bg-red-400 p-4 grid-rows-reg'>
           {/* Player data */}
