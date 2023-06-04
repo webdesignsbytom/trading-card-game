@@ -16,7 +16,6 @@ export const findUserByEmail = (email) =>
     include: {
       profile: true,
       packs: true,
-      cards: true,
     },
   });
 
@@ -28,7 +27,6 @@ export const findUserById = (userId) =>
     include: {
       profile: true,
       packs: true,
-      cards: true,
     },
   });
 
@@ -40,7 +38,6 @@ export const findUsersByRole = (role) =>
     include: {
       profile: true,
       packs: true,
-      cards: true,
     },
   });
 

@@ -13,10 +13,8 @@ import {
 } from './selectCard.js';
 
 export async function createCardsForPack(packType, packId) {
-  console.log('CREated');
   // Create pack
   let numCards = NumCardsInPack;
-  console.log('NUMCARDS', numCards);
   let packArray = [];
 
   // Get all cards from pack
@@ -38,7 +36,6 @@ export async function createCardsForPack(packType, packId) {
   // Create one holo card
   const holoCard = await createHolographicCardForPack(rareCards, megaRareCards);
   holoCard.packId = packId;
-  console.log('HOLOCARD: ', holoCard);
   packArray.push(holoCard);
 
   // For each card find its rariry value

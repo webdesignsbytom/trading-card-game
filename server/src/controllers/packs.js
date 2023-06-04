@@ -1,45 +1,39 @@
 import { findPackById } from '../domain/packs.js';
+import {
+  createSinglePacksOfCards,
+  createSinglePacksOfCardsForUser,
+} from '../utils/createPackets.js';
 import { myEmitterErrors } from '../event/errorEvents.js';
 import { ServerErrorEvent } from '../event/utils/errorUtils.js';
-import { createSinglePacksOfCards } from '../utils/createPackets.js';
 import { sendDataResponse, sendMessageResponse } from '../utils/responses.js';
+import { starterPackNames } from '../utils/constants.js';
 
 export const getPackById = async (req, res) => {
-  console.log('getPackById');
-  const id = Number(req.params.id)
-  console.log('ID', id);
+  const id = req.params.id;
 
   try {
-
-    const foundPack = await findPackById(id)
-    console.log('Created Packs of cards', foundPack);
+    const foundPack = await findPackById(id);
+    let cards = JSON.parse(foundPack.cards);
+    foundPack.cards = cards;
 
     return sendDataResponse(res, 201, { pack: foundPack });
-
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(
-      req.user,
-      `Get pack by id`
-    );
+    const serverError = new ServerErrorEvent(req.user, `Get pack by id`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
   }
-}
+};
 
 export const createNewpack = async (req, res) => {
-  console.log('createNewpack');
+  console.log('Creating new packet');
   const { packType } = req.body;
-  console.log('Pack type: ' + packType);
 
   try {
+    const createdPack = await createSinglePacksOfCards(packType);
 
-    const createdPack = await createSinglePacksOfCards(packType)
-    console.log('Created Packs of cards', createdPack);
-
-    return sendDataResponse(res, 201, { packs: createdPack });
-
+    return sendDataResponse(res, 201, { pack: createdPack });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(
@@ -54,7 +48,59 @@ export const createNewpack = async (req, res) => {
 
 export const createPacksAndAddToUser = async (req, res) => {
   console.log('createPackAndAddToUser');
-}
+  const { packType, userId } = req.body;
+  console.log('USER_ID', userId);
 
+  try {
+    const createdPack = await createSinglePacksOfCardsForUser(packType, userId);
+    console.log('Created Pack', createdPack);
+    return sendDataResponse(res, 201, { pack: createdPack });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Create pack of ${packType}`
+    );
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
 
+export const createStarterPacksForUser = async (req, res) => {
+  console.log('createStarterPacksForUser');
+  const { userId } = req.body;
+  console.log('USER_ID', userId);
 
+  try {
+    const starterPacks = [];
+
+    const createdPack1 = await createSinglePacksOfCardsForUser(
+      starterPackNames[0],
+      userId
+    );
+    starterPacks.push(createdPack1);
+    const createdPack2 = await createSinglePacksOfCardsForUser(
+      starterPackNames[1],
+      userId
+    );
+    starterPacks.push(createdPack2);
+    const createdPack3 = await createSinglePacksOfCardsForUser(
+      starterPackNames[2],
+      userId
+    );
+    starterPacks.push(createdPack3);
+
+    return sendDataResponse(res, 201, { pack: starterPacks });
+
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Create start packs`
+    );
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};

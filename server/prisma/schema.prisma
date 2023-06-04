@@ -23,7 +23,7 @@ model User {
   profile        Profile?
   passwordReset  PasswordReset?
   verifications  UserVerification?
-  cards          Card[]
+  cards          String[]
   packs          Pack[]
   lastLoggedIn   DateTime          @updatedAt
   isVerified     Boolean           @default(false)
@@ -143,16 +143,16 @@ enum BackgroundColour {
 
 model Pack {
   id        String    @id @default(uuid()) // pack id
-  cards     Card[]
-  userId    String?   @unique
+  packType  String
+  cards     String[]
+  userId    String?
   user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 }
 
 model Card {
-  id               String           @id @default(uuid()) // pack id
-  cardId           Int              @default(autoincrement()) // pack id
+  id               Int              @id @default(autoincrement()) // pack id
   serialNumber     String           @unique @default("") @db.VarChar(28) // number from all cards
   cardName         String           @unique @db.VarChar(48) // name of the card
   edition          String           @default("") @db.VarChar(28) // first second third fouth
@@ -165,10 +165,7 @@ model Card {
   memberCard       MemberCard?
   partyCard        PartyCard?
   policyCard       PolicyCard?
-  userId           String?          @unique
-  user             User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  pack             Pack?            @relation(fields: [packId], references: [id])
-  packId           String?
+  availability     Boolean          @default(true)
   createdAt        DateTime         @default(now())
   updatedAt        DateTime?        @updatedAt
 }
@@ -179,7 +176,7 @@ model MemberCard {
   health     Int       @default(40) // health of player card + 10 per year in office
   attack     Int       @default(10) // Plus 5 per year in office
   cardStat   String    @default("stats are cool") @db.VarChar(500) // whats written on the card
-  cardId     String    @unique
+  cardId     Int       @unique
   card       Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
   createdAt  DateTime  @default(now())
   updatedAt  DateTime? @updatedAt
@@ -190,7 +187,7 @@ model PartyCard {
   name      String    @default("") @db.VarChar(250) // name of conservative memer
   cardStat  String    @default("") @db.VarChar(500) // whats written on the card
   effect    String    @default("") @db.VarChar(200)
-  cardId    String    @unique
+  cardId    Int       @unique
   card      Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
@@ -201,7 +198,7 @@ model PolicyCard {
   name      String    @default("") @db.VarChar(250) // name of conservative memer
   cardStat  String    @default("") @db.VarChar(500) // whats written on the card
   effect    String    @default("") @db.VarChar(200)
-  cardId    String    @unique
+  cardId    Int       @unique
   card      Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt

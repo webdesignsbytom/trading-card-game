@@ -1,34 +1,33 @@
 import dbClient from '../utils/dbClient.js';
 
-export const createBlankPackOfCards = () => dbClient.pack.create({ data: {} });
+export const createBlankPackOfCards = (packType) =>
+  dbClient.pack.create({
+      data: {
+        packType: packType,
+      },
+  });
 
-export const findPackById = (id) => dbClient.pack.findFirst({
-    where: {
-        id: id,
-    },
-    include: {
-        cards: true
-    }
-})
-
-export const addCardsToEmptyPack = (fullPack, newPack) =>
-  dbClient.pack.update({
-    where: {
-      id: newPack.id,
-    },
+export const createBlankPackOfCardsForUser = (packType, userId) =>
+  dbClient.pack.create({
     data: {
-      cards: fullPack,
+      packType: packType,
+      userId: userId,
     },
   });
 
-export const createNewFullPackOfCards = (fullPack, packId) =>
+export const findPackById = (id) =>
+  dbClient.pack.findFirst({
+    where: {
+      id: id,
+    },
+  });
+
+export const addCardsToEmptyPack = (myJsonString, packId) =>
   dbClient.pack.update({
     where: {
       id: packId,
     },
     data: {
-      cards: {
-        fullPack,
-      },
+      cards: myJsonString,
     },
   });

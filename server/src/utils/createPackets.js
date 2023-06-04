@@ -1,11 +1,14 @@
 import { findAllCardsFromPack } from '../domain/cards.js';
-import { addCardsToEmptyPack, createBlankPackOfCards, createNewFullPackOfCards } from '../domain/packs.js';
+import {
+  addCardsToEmptyPack,
+  createBlankPackOfCards,
+  createBlankPackOfCardsForUser,
+} from '../domain/packs.js';
 import { myEmitterErrors } from '../event/errorEvents.js';
-import { NotFoundEvent, ServerErrorEvent } from '../event/utils/errorUtils.js';
+import { NotFoundEvent } from '../event/utils/errorUtils.js';
 import { createCardsForPack } from './createCards.js';
 import { EVENT_MESSAGES, sendMessageResponse } from './responses.js';
 import {
-  cheakForHolographic,
   createHolographicCardForPack,
   selectCommonCard,
   selectMegaRareCard,
@@ -15,16 +18,26 @@ import {
 } from './selectCard.js';
 
 export async function createSinglePacksOfCards(packType) {
-  console.log('AAA');
+  const newPack = await createBlankPackOfCards(packType);
 
-  const newPack = await createBlankPackOfCards();
-  console.log('NEW', newPack);
+  const cards = await createCardsForPack(packType, newPack.id);
+  var myJsonString = JSON.stringify(cards);
 
-  const fullPack = await createCardsForPack(packType, newPack.id)
-  console.log('FULL', fullPack);
+  const fullPack = await addCardsToEmptyPack(myJsonString, newPack.id);
 
-  const newFullPack = await createNewFullPackOfCards(fullPack, newPack.id)
-  console.log('addCardsToEmptyPack', newFullPack);
+  return fullPack;
+}
+
+export async function createSinglePacksOfCardsForUser(packType, userId) {
+
+  const newPack = await createBlankPackOfCardsForUser(packType, userId);
+console.log('NEwpack', newPack);
+  const cards = await createCardsForPack(packType, newPack.id);
+  var myJsonString = JSON.stringify(cards);
+
+  const fullPack = await addCardsToEmptyPack(myJsonString, newPack.id);
+
+  return fullPack;
 }
 
 export async function createPacksOfCards(numPacks, packType) {
