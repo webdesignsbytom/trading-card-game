@@ -7,7 +7,7 @@ import { UserContext } from '../../context/UserContext';
 function UnopenedPackets() {
   const { user } = useContext(UserContext);
   const [unopenedPacks, setUnopenedPacks] = useState([]);
-  const [packIndex, setPackIndex] = useState([0,1,2]);
+  const [packIndex, setPackIndex] = useState([0, 1, 2]);
 
   useEffect(() => {
     let packs = user.packs;
@@ -17,7 +17,7 @@ function UnopenedPackets() {
     packs.forEach((pack) => {
       let newPack = JSON.parse(pack.cards);
       console.log('newPack', newPack);
-      pack.cards = newPack
+      pack.cards = newPack;
       newArray.push(pack);
     });
 
@@ -33,9 +33,15 @@ function UnopenedPackets() {
       </div>
 
       <section className='w-full grid grid-cols-3 items-center justify-center gap-4 my-4'>
-        <OpenablePacket pack={unopenedPacks[packIndex[0]]} />
-        <OpenablePacket pack={unopenedPacks[packIndex[1]]} />
-        <OpenablePacket pack={unopenedPacks[packIndex[2]]} />
+        {unopenedPacks[packIndex[0]] && (
+          <OpenablePacket pack={unopenedPacks[packIndex[0]]} />
+        )}
+        {unopenedPacks[packIndex[1]] && (
+          <OpenablePacket pack={unopenedPacks[packIndex[1]]} />
+        )}
+        {unopenedPacks[packIndex[2]] && (
+          <OpenablePacket pack={unopenedPacks[packIndex[2]]} />
+        )}
       </section>
 
       <section className='grid gap-5 mt-6 grid-cols-2'>
