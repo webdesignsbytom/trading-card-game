@@ -2,9 +2,9 @@ import dbClient from '../utils/dbClient.js';
 
 export const createBlankPackOfCards = (packType) =>
   dbClient.pack.create({
-      data: {
-        packType: packType,
-      },
+    data: {
+      packType: packType,
+    },
   });
 
 export const createBlankPackOfCardsForUser = (packType, userId) =>
@@ -29,5 +29,12 @@ export const addCardsToEmptyPack = (myJsonString, packId) =>
     },
     data: {
       cards: myJsonString,
+    },
+  });
+
+export const deletePackbyIdWhenOpened = (packId) =>
+  dbClient.pack.delete({
+    where: {
+      id: packId,
     },
   });

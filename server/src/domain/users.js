@@ -106,4 +106,13 @@ export const setStarterCardsToClaimed = (userId) =>
     }
   });
 
+export const updateUserCardArray = (userId, newCardArray) =>
+  dbClient.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      cards: newCardArray
+    }
+  });
 

@@ -3,7 +3,8 @@ import {
   createNewpack,
   createPacksAndAddToUser,
   createStarterPacksForUser,
-  getPackById
+  getPackById,
+  openPackAndAddToUser
 } from '../controllers/packs.js';
 
 const router = Router();
@@ -12,5 +13,6 @@ router.get('/get-pack-by-id/:id', getPackById);
 router.post('/create-new-pack', createNewpack);
 router.post('/create-packs-for-user', createPacksAndAddToUser);
 router.post('/create-starter-packs-for-user', createStarterPacksForUser);
+router.post('/open-pack', openPackAndAddToUser);
 
 export default router;

@@ -12,6 +12,7 @@ function StartingPacks() {
     console.log('CLAIMed');
 
     let data = { userId: user.id };
+    
     client
       .post(`/packs/create-starter-packs-for-user`, data, true)
       .then((res) => {

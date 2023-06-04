@@ -1,13 +1,28 @@
 import React, { useContext } from 'react';
 import { ToggleContext } from '../../context/ToggleContext';
+import client from '../../utils/client';
+import { UserContext } from '../../context/UserContext';
 
 function OpenablePacket({ pack }) {
   console.log('PPSPSWD', pack);
-  const { toggleOpeningNewPack } = useContext(ToggleContext)
+  const { toggleOpeningNewPack } = useContext(ToggleContext);
+  const { user } = useContext(UserContext);
 
   const openPack = (pack) => {
-    toggleOpeningNewPack(pack)
-  }
+    toggleOpeningNewPack(pack);
+    console.log('OPEN XXX');
+    const data = { packId: pack.id, userId: user.id };
+
+    client
+      .post('/packs/open-pack', data, true)
+      .then((res) => {
+        console.log('res', res.data);
+      })
+
+      .catch((err) => {
+        console.error('Unable to open packs', err);
+      });
+  };
 
   return (
     <div className='w-full grid items-center justify-center'>
@@ -18,7 +33,10 @@ function OpenablePacket({ pack }) {
       </article>
 
       <section className='w-full'>
-        <button onClick={() => openPack(pack)} className='outline outline-2 outline-black rounded p-2'>
+        <button
+          onClick={() => openPack(pack)}
+          className='outline outline-2 outline-black rounded p-2'
+        >
           Open Pack
         </button>
       </section>
