@@ -1,9 +1,6 @@
 using HtmlAgilityPack;
 using System.Xml.Linq;
 
-// This progream collects a list of people from a website
-// Narrows down to get each members name and an image url
-// The adds items to a Dictionary
 namespace WebScrapper2
 {
      class Program
@@ -28,7 +25,7 @@ namespace WebScrapper2
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(html);
 
-            HtmlNode[] nodes = htmlDocument.DocumentNode.SelectNodes("/html/body/div[3]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]").ToArray();
+            HtmlNode[] nodes = htmlDocument.DocumentNode.SelectNodes("/html/body/div[3]/div[3]/div/div/div[2]/div/div/div[1]/div[1]").ToArray();
 
             List<string> nameList = new List<string>();
 
@@ -59,11 +56,14 @@ namespace WebScrapper2
 
             foreach (MemberCard card in cards.Values)
             {
-                Console.WriteLine("FOUND " + card.Name);
-                Console.WriteLine("FOUND " + card.ImageURL);
+   
+                var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(card);
+                Console.WriteLine(jsonString + ",");
             }
 
             Console.ReadLine();
+
+
         }
     }
 
