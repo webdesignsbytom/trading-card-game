@@ -7,11 +7,12 @@ export const UserContext = React.createContext();
 
 const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState({
-    email: '',
+    email: 'e@gmail.com',
     username: '',
     isVerified: false,
     cards: [],
-    unopenedPacks: []
+    unopenedPacks: [],
+    collectedStartedPacks: false
   });
 
   const [token, setToken] = useState(

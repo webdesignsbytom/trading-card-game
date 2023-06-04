@@ -16,23 +16,24 @@ enum Role {
 }
 
 model User {
-  id             String            @id @default(uuid())
-  email          String            @unique
-  password       String            @db.VarChar(250)
-  role           Role              @default(USER)
-  profile        Profile?
-  passwordReset  PasswordReset?
-  verifications  UserVerification?
-  cards          String[]
-  packs          Pack[]
-  lastLoggedIn   DateTime          @updatedAt
-  isVerified     Boolean           @default(false)
-  agreedToTerms  Boolean           @default(false)
-  isActive       Boolean           @default(true)
-  createdEvents  Event[]           @relation("createdEvents")
-  receivedEvents Event[]           @relation("receivedEvents")
-  createdAt      DateTime          @default(now())
-  updatedAt      DateTime?         @updatedAt
+  id                    String            @id @default(uuid())
+  email                 String            @unique
+  password              String            @db.VarChar(250)
+  role                  Role              @default(USER)
+  profile               Profile?
+  passwordReset         PasswordReset?
+  verifications         UserVerification?
+  cards                 String[]
+  packs                 Pack[]
+  lastLoggedIn          DateTime          @updatedAt
+  isVerified            Boolean           @default(false)
+  agreedToTerms         Boolean           @default(false)
+  collectedStartedPacks Boolean           @default(false)
+  isActive              Boolean           @default(true)
+  createdEvents         Event[]           @relation("createdEvents")
+  receivedEvents        Event[]           @relation("receivedEvents")
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime?         @updatedAt
 }
 
 model Profile {

@@ -11,7 +11,6 @@ import {
   findCardsByCardType,
 } from '../domain/cards.js';
 import { findUserById } from '../domain/users.js';
-import { addPacksToUser, createPacksOfCards } from '../utils/createPackets.js';
 
 // Get all cards from all packs
 export const getAllCards = async (req, res) => {
@@ -101,43 +100,6 @@ export const getAllCardsByType = async (req, res) => {
     const serverError = new ServerErrorEvent(
       req.user,
       `Get all cards from pack ${packType}`
-    );
-    myEmitterErrors.emit('error', serverError);
-    sendMessageResponse(res, serverError.code, serverError.message);
-    throw err;
-  }
-};
-
-export const buyPacketsOfCards = async (req, res) => {
-  console.log('buyPacks');
-  const { numPacks, userId, packType } = req.body;
-  console.log('num', numPacks, userId, packType);
-
-  try {
-    const foundUser = await findUserById(userId);
-
-    if (!foundUser) {
-      const notFound = new NotFoundEvent(
-        req.user,
-        EVENT_MESSAGES.notFound,
-        EVENT_MESSAGES.userNotFound
-      );
-      myEmitterErrors.emit('error', notFound);
-      return sendMessageResponse(res, notFound.code, notFound.message);
-    }
-
-    const createdPacks = await createPacksOfCards(numPacks, packType)
-    console.log('Created Packs of cards', createdPacks);
-
-    const addPacks = await addPacksToUser(createdPacks, foundUser)
-
-    return sendDataResponse(res, 201, { packs: createdPacks });
-
-  } catch (err) {
-    // Error
-    const serverError = new ServerErrorEvent(
-      'req.user,',
-      `Create pack of ${packType}`
     );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);

@@ -27,7 +27,6 @@ export const getPackById = async (req, res) => {
 };
 
 export const createNewpack = async (req, res) => {
-  console.log('Creating new packet');
   const { packType } = req.body;
 
   try {
@@ -47,9 +46,7 @@ export const createNewpack = async (req, res) => {
 };
 
 export const createPacksAndAddToUser = async (req, res) => {
-  console.log('createPackAndAddToUser');
   const { packType, userId } = req.body;
-  console.log('USER_ID', userId);
 
   try {
     const createdPack = await createSinglePacksOfCardsForUser(packType, userId);
@@ -68,9 +65,7 @@ export const createPacksAndAddToUser = async (req, res) => {
 };
 
 export const createStarterPacksForUser = async (req, res) => {
-  console.log('createStarterPacksForUser');
   const { userId } = req.body;
-  console.log('USER_ID', userId);
 
   try {
     const starterPacks = [];
