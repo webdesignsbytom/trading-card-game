@@ -7,6 +7,7 @@ import {
 import { myEmitterErrors } from '../event/errorEvents.js';
 import {
   createNewInstanceForCard,
+  findAllCardInstances,
   findAllCards,
   findAllCardsFromPack,
   findCardsByCardType,
@@ -32,6 +33,33 @@ export const getAllCards = async (req, res) => {
     }
 
     return sendDataResponse(res, 200, { cards: foundCards });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get all cards`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+// Get all cards isntances from all packs
+export const getAllCardInstances = async (req, res) => {
+  console.log('getAllCardInstances');
+  try {
+    const foundInstances = await findAllCardInstances();
+    console.log('found cards', foundInstances);
+
+    if (!foundInstances) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundInstances
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    return sendDataResponse(res, 200, { total: foundInstances.length, cards: foundInstances });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Get all cards`);

@@ -12,6 +12,13 @@ export const findAllCards = () =>
     },
   });
 
+export const findAllCardInstances = () =>
+  dbClient.cardInstance.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+
 export const findCardById = (id) =>
   dbClient.card.findFirst({
     where: {

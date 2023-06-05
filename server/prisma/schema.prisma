@@ -147,7 +147,7 @@ model Pack {
   packType  String
   cards     CardInstance[]
   userId    String?
-  user      User?          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User?          @relation(fields: [userId], references: [id])
   createdAt DateTime       @default(now())
   updatedAt DateTime?      @updatedAt
 }
@@ -159,7 +159,7 @@ model CardInstance {
   cardId    Int       
   card      Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
   packId    String?
-  pack      Pack?     @relation(fields: [packId], references: [id], onDelete: Cascade)
+  pack      Pack?     @relation(fields: [packId], references: [id])
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 }
