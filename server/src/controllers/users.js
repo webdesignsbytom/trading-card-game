@@ -40,6 +40,7 @@ import {
 } from '../event/utils/errorUtils.js';
 // Time
 import { v4 as uuid } from 'uuid';
+import { findCardById } from '../domain/cards.js';
 // Password hash
 const hashRate = 8;
 
@@ -229,6 +230,47 @@ export const registerNewUser = async (req, res) => {
     const serverError = new RegistrationServerErrorEvent(
       `Register Server error`
     );
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+
+export const getAllCardsForUser = async (req, res) => {
+  console.log('getAllCardsForUser');
+  const userId = req.params.id;
+  console.log('xxx', userId);
+
+  try {
+    const foundUser = await findUserById(userId);
+    if (!foundUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    const cardsToFindArray = foundUser.cards
+    console.log('cardsToFindArray', cardsToFindArray);
+
+    const userCardArray = []
+
+    for (let index = 0; index < cardsToFindArray.length; index++) {
+      const card = cardsToFindArray[index];
+      const foundCard = await findCardById(card.cardId);
+      console.log('FOUND', foundCard);
+      userCardArray.push(foundCard);
+    }
+
+    // myEmitterUsers.emit('get-user-by-id', req.user);
+    return sendDataResponse(res, 200, { cards: userCardArray });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;

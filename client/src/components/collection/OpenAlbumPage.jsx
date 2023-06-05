@@ -3,12 +3,15 @@ import React, { useContext, useEffect, useState } from 'react';
 import Card from '../card/Card';
 // Context
 import { UserContext } from '../../context/UserContext';
+import { CardContext } from '../../context/CardContext';
 // Icons
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 import { BsFillArrowRightSquareFill } from 'react-icons/bs';
 
 function OpenAlbumPage() {
   const { user } = useContext(UserContext);
+  const { userCardsArray, setUserCardsArray } = useContext(CardContext)
+
   const [openPageCards, setOpenPageCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(10);
 
@@ -54,37 +57,37 @@ function OpenAlbumPage() {
         <div className='grid h-full grid-rows-2 gap-4 py-4'>
           <section className='grid grid-cols-5 gap-4'>
             <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={openPageCards[1]} />
+              <Card cardData={userCardsArray[0]} />
             </article>
             <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={openPageCards[1]} />
+              <Card cardData={userCardsArray[1]} />
             </article>
             <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={openPageCards[2]} />
+              <Card cardData={userCardsArray[2]} />
             </article>
             <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={openPageCards[3]} />
+              <Card cardData={userCardsArray[3]} />
             </article>
             <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={openPageCards[4]} />
+              <Card cardData={userCardsArray[4]} />
             </article>
           </section>
 
           <section className='grid grid-cols-5 gap-4'>
             <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={openPageCards[5]} />
+              <Card cardData={userCardsArray[5]} />
             </article>
             <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={openPageCards[6]} />
+              <Card cardData={userCardsArray[6]} />
             </article>
             <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={openPageCards[7]} />
+              <Card cardData={userCardsArray[7]} />
             </article>
             <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={openPageCards[8]} />
+              <Card cardData={userCardsArray[8]} />
             </article>
             <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={openPageCards[9]} />
+              <Card cardData={userCardsArray[9]} />
             </article>
           </section>
         </div>

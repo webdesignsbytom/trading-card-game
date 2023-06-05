@@ -12,6 +12,18 @@ export const findAllCards = () =>
     },
   });
 
+export const findCardById = (id) =>
+  dbClient.card.findFirst({
+    where: {
+      id: id,
+    },
+    include: {
+      memberCard: true,
+      partyCard: true,
+      policyCard: true,
+    },
+  });
+
 export const findAllCardsFromPack = (packType) =>
   dbClient.card.findMany({
     where: {
