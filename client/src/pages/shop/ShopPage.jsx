@@ -11,8 +11,8 @@ function ShopPage() {
 
   const [togglePackPurchasing, setTogglePackPurchasing] = useState(false);
   const [purchaseRequest, setPurchaseRequest] = useState({
-    numPacks: 2,
-    userId: 'd31932ab-9f32-4461-9cfa-66cbdb02986e',
+    numPacks: 1,
+    userId: user.id,
     packType: 'BREXIT',
   });
 
@@ -23,13 +23,13 @@ function ShopPage() {
     console.log('Buy Single Pack');
 
     client
-      .post('/con-cards/buyPacketsOfCards', purchaseRequest, false)
+      .post('/packs/create-packs-for-user', purchaseRequest, false)
       .then((res) => {
         console.log('res', res.data);
       })
 
       .catch((err) => {
-        console.error('Unable to login', err);
+        console.error('Unable to buy packs', err);
       });
   };
 

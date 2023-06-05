@@ -28,9 +28,9 @@ function AlbumPage() {
     <div className='h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
-        <section className='bg-blue-500 main__bg p-4'>
-          <div className='grid h-full'>
-            <main className='bg-red-200 grid rounded-lg outline-black outline-4 outline'>
+        <section className='bg-blue-500 grid h-full overflow-hidden main__bg p-4'>
+          <div className='grid h-full overflow-hidden outline-black outline-4 outline rounded'>
+            <main className='grid h-full overflow-hidden rounded'>
               {!albumOpen && !viewCard && (
                 <ClosedAlbumPage openAlbum={openAlbum} />
               )}
