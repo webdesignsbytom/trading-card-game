@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
+// context
 import { ToggleContext } from '../../context/ToggleContext';
-import client from '../../utils/client';
 import { UserContext } from '../../context/UserContext';
+// API
+import client from '../../utils/client';
 
 function OpenablePacket({ pack }) {
   console.log('PPSPSWD', pack);
+
   const { toggleOpeningNewPack } = useContext(ToggleContext);
   const { user } = useContext(UserContext);
 

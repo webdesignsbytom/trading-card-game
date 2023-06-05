@@ -12,16 +12,6 @@ function UnopenedPackets() {
   useEffect(() => {
     let packs = user.packs;
     console.log('packs', packs);
-    let newArray = [];
-
-    packs.forEach((pack) => {
-      let newPack = JSON.parse(pack.cards);
-      console.log('newPack', newPack);
-      pack.cards = newPack;
-      newArray.push(pack);
-    });
-
-    setUnopenedPacks(newArray);
   }, []);
 
   console.log('unopenedPacks', unopenedPacks);

@@ -17,8 +17,8 @@ function StartingPacks() {
       .post(`/packs/create-starter-packs-for-user`, data, true)
       .then((res) => {
         console.log('res', res.data);
-        setStarterPacks(res.data.data.packs);
-        setUser(res.data.data.updatedUser);
+        // setStarterPacks(res.data.data.packs);
+        // setUser(res.data.data.updatedUser);
         setClaimedFreePacks(true);
       })
       .catch((err) => {

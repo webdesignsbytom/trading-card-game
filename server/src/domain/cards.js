@@ -68,3 +68,34 @@ export const findAllPolicyCards = () =>
       createdAt: 'desc',
     },
   });
+
+export const findAllCardsAvailableToBuy = () =>
+  dbClient.card.findMany({
+    where: {
+      availability: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    include: {
+      memberCard: true,
+      partyCard: true,
+      policyCard: true,
+    }
+  });
+
+export const createNewInstanceForCard = (cardId, userId) =>
+  dbClient.cardInstance.create({
+    data: {
+      userId: userId,
+      cardId: cardId,
+    },
+  });
+
+export const createNewInstanceForPack = (packId, cardId) =>
+  dbClient.cardInstance.create({
+    data: {
+      packId: packId,
+      cardId: cardId,
+    },
+  });

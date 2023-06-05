@@ -7,7 +7,7 @@ export const UserContext = React.createContext();
 
 const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState({
-    id: 'ca002c84-7866-442c-b5fa-52481bcff5e9',
+    id: 'd31932ab-9f32-4461-9cfa-66cbdb02986e',
   });
 
   const [token, setToken] = useState(
@@ -19,7 +19,6 @@ const UserContextProvider = ({ children }) => {
   console.log('usercontext', user);
 
   useEffect(() => {
-    console.log('STARTER PACKS');
     client
       .get(`/users/user/id/${user.id}`)
       .then((res) => {

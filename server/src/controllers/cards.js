@@ -6,11 +6,13 @@ import {
 } from '../utils/responses.js';
 import { myEmitterErrors } from '../event/errorEvents.js';
 import {
+  createNewInstanceForCard,
   findAllCards,
   findAllCardsFromPack,
   findCardsByCardType,
 } from '../domain/cards.js';
 import { findUserById } from '../domain/users.js';
+import { createSingleCardsForUser } from '../utils/createCards.js';
 
 // Get all cards from all packs
 export const getAllCards = async (req, res) => {
@@ -45,6 +47,7 @@ export const getAllCards = async (req, res) => {
   }
 };
 
+// get all cards from pack type i.e brexit
 export const getAllCardsFromPackType = async (req, res) => {
   console.log('getAllCardsFromPack');
   const { packType } = req.params;
@@ -76,6 +79,7 @@ export const getAllCardsFromPackType = async (req, res) => {
   }
 };
 
+// Get all cards by type i.e policy
 export const getAllCardsByType = async (req, res) => {
   console.log('getAllCardsByType');
   const { cardType } = req.params;
@@ -101,6 +105,38 @@ export const getAllCardsByType = async (req, res) => {
       req.user,
       `Get all cards from pack ${packType}`
     );
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+// Get one of any card currently available
+export const buySingleRandomCard = async (req, res) => {
+  console.log('buySingleRandomCard');
+  const { userId } = req.body;
+
+  try {
+    let cardFound = await createSingleCardsForUser();
+    console.log('AAWW cardFound', cardFound);
+
+    let newInstance = await createNewInstanceForCard(cardFound.id, userId);
+
+    if (!newInstance) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundCardType
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    return sendDataResponse(res, 200, { card: cardFound, cardInstance: newInstance });
+    
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Create single card`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;

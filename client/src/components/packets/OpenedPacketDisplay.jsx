@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+// Context
 import { ToggleContext } from '../../context/ToggleContext';
 // Card components
 import MemberCard from '../card/MemberCard';

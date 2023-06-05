@@ -3,10 +3,10 @@ import React, { useContext, useState } from 'react';
 import ClosedAlbumPage from '../../components/collection/ClosedAlbumPage';
 import OpenAlbumPage from '../../components/collection/OpenAlbumPage';
 import CardOverview from '../../components/card/CardOverview';
+import Navbar from '../../components/nav/Navbar';
 // Context
 import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
-import Navbar from '../../components/nav/Navbar';
 
 function AlbumPage() {
   const { user } = useContext(UserContext);
