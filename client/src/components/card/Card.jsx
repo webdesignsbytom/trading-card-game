@@ -11,13 +11,13 @@ function Card({ cardData }) {
   if (!cardData) {
     return <EmptyCardSlot />;
   }
-  if (cardData.cardType === 'member') {
+  if (cardData.cardType === 'MEMBER') {
     return <MemberCard cardData={cardData} />;
   }
-  if (cardData.cardType === 'party') {
+  if (cardData.cardType === 'PARTY') {
     return <PartyCard cardData={cardData} />;
   }
-  if (cardData.cardType === 'policy') {
+  if (cardData.cardType === 'POLICY') {
     return <PolicyCard cardData={cardData} />;
   }
 }

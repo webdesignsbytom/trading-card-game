@@ -10,13 +10,16 @@ import ToggleContextProvider from './context/ToggleContext';
 import './styles/index.css';
 import './styles/components.css';
 import './styles/cards.css';
+import CardContextProvider from './context/CardContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <UserContextProvider>
       <ToggleContextProvider>
-        <App />
+        <CardContextProvider>
+          <App />
+        </CardContextProvider>
       </ToggleContextProvider>
     </UserContextProvider>
   </BrowserRouter>
