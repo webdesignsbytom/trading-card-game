@@ -2,13 +2,12 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 // Fetch
 import client from '../utils/client';
+import LoggedInUser from '../utils/LoggedInUser';
 // Context
 export const UserContext = React.createContext();
 
 const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState({
-    id: '0c5f415c-6f57-4c1c-ab0d-8dc70f85e12c',
-  });
+  const [user, setUser] = useState({});
 
   const [token, setToken] = useState(
     localStorage.getItem(process.env.REACT_APP_USER_TOKEN) || ''
@@ -18,39 +17,40 @@ const UserContextProvider = ({ children }) => {
 
   console.log('usercontext', user);
 
-  useEffect(() => {
-    client
-      .get(`/users/user/id/${user.id}`)
-      .then((res) => {
-        setUser(res.data.data.user);
-      })
-      .catch((err) => {
-        console.error('Unable to retrieve user data', err);
-      });
-  }, []);
-
   // useEffect(() => {
-  //   const decodedUserData = LoggedInUser();
-
-  //   if (decodedUserData) {
-  //     const userId = decodedUserData.id;
-
-  //     client
-  //       .get(`/users/${userId}`)
-  //       .then((res) => {
-  //         setUser(res.data.data.user);
-  //       })
-  //       .catch((err) => {
-  //         console.error('Unable to retrieve user data', err);
-  //       });
-  //   }
-
-  //   const cookie = localStorage.getItem('CookiePolicy');
-
-  //   if (cookie) {
-  //     setToggleCookiePolicy(true);
-  //   }
+  //   client
+  //     .get(`/users/user/id/${user.id}`)
+  //     .then((res) => {
+  //       setUser(res.data.data.user);
+  //     })
+  //     .catch((err) => {
+  //       console.error('Unable to retrieve user data', err);
+  //     });
   // }, []);
+
+  useEffect(() => {
+    const decodedUserData = LoggedInUser();
+    console.log('AAAAAAAAAAAAAAAA');
+
+    if (decodedUserData) {
+      const userId = decodedUserData.id;
+      console.log('BBBBBBBBBBBBBbb', userId);
+      client
+        .get(`/users/user/id/${userId}`)
+        .then((res) => {
+          setUser(res.data.data.user);
+        })
+        .catch((err) => {
+          console.error('Unable to retrieve user data', err);
+        });
+    }
+
+    const cookie = localStorage.getItem('CookiePolicy');
+
+    if (cookie) {
+      setToggleCookiePolicy(true);
+    }
+  }, []);
 
   return (
     <UserContext.Provider

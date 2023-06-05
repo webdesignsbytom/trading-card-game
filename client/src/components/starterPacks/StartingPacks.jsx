@@ -14,11 +14,11 @@ function StartingPacks() {
     let data = { userId: user.id };
     
     client
-      .post(`/packs/create-starter-packs-for-user`, data, true)
+      .post(`/packs/create-starter-packs-for-user`, data)
       .then((res) => {
         console.log('res', res.data);
-        // setStarterPacks(res.data.data.packs);
-        // setUser(res.data.data.updatedUser);
+        setStarterPacks(res.data.data.packs);
+        setUser(res.data.data.updatedUser);
         setClaimedFreePacks(true);
       })
       .catch((err) => {
@@ -28,11 +28,11 @@ function StartingPacks() {
 
   console.log('starterPacks', starterPacks);
   return (
-    <div className='grid h-full bg-green-500'>
+    <div className='grid h-fit'>
       <section className='grid grid-rows-reg'>
-        <article className='text-center py-4'>
+        <article className='text-center py-4 text-xl font-semibold'>
           <h3>
-            Welcome <span className='font-semibold'>{user.username}</span> to
+            Welcome <span className='italic capitalize font-semibold'>{user.profile.username}</span> to
             the Con Cards trading card game!
           </h3>
           <p>
@@ -45,7 +45,7 @@ function StartingPacks() {
           {!claimedFreePacks && (
             <button
               onClick={claimStarterPacks}
-              className='outline outline-2 outline-black rounded p-2 bg-red-400'
+              className='outline outline-2 my-2 outline-black rounded p-2 bg-red-600 main__bg text-white font-semibold text-xl'
             >
               CLAIM 3 FREE PACKS
             </button>

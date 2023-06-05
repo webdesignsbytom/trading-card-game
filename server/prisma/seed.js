@@ -1245,6 +1245,20 @@ async function seed() {
       },
     },
   });
+
+  const firstInstance = await dbClient.cardInstance.create({
+    data: {
+      userId: devUser.id,
+      cardId: 1
+    }
+  })
+
+  const secondInstance = await dbClient.cardInstance.create({
+    data: {
+      userId: devUser.id,
+      cardId: 2
+    }
+  })
 }
 
 seed().catch(async (error) => {
