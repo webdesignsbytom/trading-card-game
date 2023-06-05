@@ -43,9 +43,9 @@ function ShopPage() {
         <Navbar />
         <main className='grid p-2 grid-rows-reg'>
           {/* Player data */}
-          <section className='flex justify-between items-center text-gray-50'>
+          <section className='flex justify-between items-center px-4 text-gray-50'>
             <div>
-              <span>Money: £1000</span>
+              <span>Money: £1000 💷</span>
             </div>
             <div className='grid justify-center items-center text-center'>
               <h1 className='text-center text-2xl font-bold'>
@@ -56,7 +56,7 @@ function ShopPage() {
               <h2>Everything is unfairly priced!</h2>
             </div>
             <div>
-              <span>Gems: 5</span>
+              <span>Gems: 5 💎</span>
             </div>
           </section>
 

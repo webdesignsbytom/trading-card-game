@@ -4,6 +4,9 @@ import UnopenedPackets from '../packets/UnopenedPackets';
 // Context
 import { ToggleContext } from '../../context/ToggleContext';
 import OpenedPacketDisplay from '../packets/OpenedPacketDisplay';
+// Images
+import CovidPack from '../../assets/img/packets/pack1.png';
+import ItemsImg from '../../assets/img/invintory/items.png';
 
 function InvintoryOptions() {
   const {
@@ -16,15 +19,19 @@ function InvintoryOptions() {
 
   if (!toggleUnopenedPacketsDisplay && !toggleOpeningPackDiplay) {
     return (
-      <section>
-        <div className='grid grid-cols-4'>
-          <div>
-            <span>Card Packs</span>
-            <div onClick={toggleOpenPackets}>PACKS IMAGE</div>
+      <section className='grid'>
+        <div className='grid grid-cols-4 mt-4'>
+          <div className='p-4 text-center'>
+            <span className='text-2xl font-semibold'>Card Packs</span>
+            <div className='cursor-pointer mt-4' onClick={toggleOpenPackets}>
+              <img src={CovidPack} alt='Covid pack' />
+            </div>
           </div>
-          <div>
-            <span>Items</span>
-            <div onClick={toggleOpenPackets}>ITEMS IMAGE</div>
+          <div className='p-4 text-center'>
+            <span className='text-2xl font-semibold'>Items</span>
+            <div className='cursor-pointer mt-4' onClick={toggleOpenPackets}>
+              <img src={ItemsImg} alt='Covid pack' />
+            </div>
           </div>
         </div>
       </section>

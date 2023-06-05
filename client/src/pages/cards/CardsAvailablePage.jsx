@@ -32,7 +32,7 @@ function CardsAvailablePage() {
             <section className='grid grid-rows-reg'>
               <div className='grid grid-cols-3 mb-4 outline outline-4 outline-black bg-blue-600 main__bg py-2 px-4'>
                 <div className='flex justify-start items-center'>
-                  <h3 className='text-xl font-semibold'>Total Cards: 250</h3>
+                  <h3 className='text-sm md:text-xl font-semibold'>Total Cards: {allCardsArray?.length}</h3>
                 </div>
                 <div className='grid items-center justify-center p-1'>
                   <input
@@ -48,7 +48,7 @@ function CardsAvailablePage() {
                     id='country'
                     name='country'
                     onChange={handleTypeChange}
-                    className='country__inputs p-2'
+                    className='country__inputs rounded px-2'
                     required
                   >
                     <option defaultValue='Number'>Number</option>
@@ -67,7 +67,7 @@ function CardsAvailablePage() {
                     <LoadingSpinner />
                   </div>
                 )}
-                <div className='grid grid-cols-3 lg:grid-cols-6 gap-1'>
+                <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-1 p-4 sm:p-0'>
                   {allCardsArray.map((card, index) => {
                     console.log('AAAAA', card);
                     return <Card key={index} cardData={card} />;

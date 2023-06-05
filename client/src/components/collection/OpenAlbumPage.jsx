@@ -7,6 +7,7 @@ import { CardContext } from '../../context/CardContext';
 // Icons
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 import { BsFillArrowRightSquareFill } from 'react-icons/bs';
+import LoadingSpinner from '../utils/LoadingSpinner';
 
 function OpenAlbumPage() {
   const { user } = useContext(UserContext);
@@ -19,9 +20,7 @@ function OpenAlbumPage() {
 
   useEffect(() => {}, []);
 
-  const nextPageCards = () => {};
-
-  const prevPageCards = () => {};
+  const handleTypeChange = () => {};
 
   return (
     <div className='bg-black main__bg h-full overflow-hidden grid'>
@@ -29,7 +28,7 @@ function OpenAlbumPage() {
         {/* Top bar - search bar */}
         <div className='flex justify-between px-1 items-center text-blue-500'>
           <div className='grid items-center justify-center'>
-            {currentIndex - 10 + 1} / {currentIndex}
+            <span>Total cards: {user?.cards.length}</span>
           </div>
           <div className='grid items-center justify-center p-1'>
             <input
@@ -40,14 +39,32 @@ function OpenAlbumPage() {
               placeholder='Search your collection...'
             />
           </div>
-          <div className='grid items-center justify-center'>
-            <span>Total cards: 500</span>
-          </div>
+          <section className='grid justify-end'>
+            <select
+              id='country'
+              name='country'
+              onChange={handleTypeChange}
+              className='country__inputs rounded px-2'
+              required
+            >
+              <option defaultValue='Number'>Number</option>
+              <option value='Rarity'>Rarity</option>
+              <option value='Name A-Z'>Name A-Z</option>
+              <option value='Pack Type'>Pack Type</option>
+              <option value='Card Type'>Card Type</option>
+            </select>
+          </section>
         </div>
 
         <div className='grid h-full overflow-hidden'>
           <div className='grid h-full overflow-scroll overflow-x-hidden pr-1'>
-            <div className='grid grid-cols-3 lg:grid-cols-5 gap-1 p-1'>
+            {userCardsArray.length <= 0 && (
+              <div className='grid w-full justify-center items-center text-white text-3xl text-center'>
+                <span>LOADING...</span>
+                <LoadingSpinner />
+              </div>
+            )}
+            <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-1 p-4 sm:p-1'>
               {userCardsArray.map((card, index) => {
                 console.log('AAAAA', card);
                 return <Card key={index} cardData={card} />;
