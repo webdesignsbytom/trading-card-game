@@ -44,7 +44,7 @@ function ShopPage() {
         <Navbar />
         <main className='grid p-2 grid-rows-reg'>
           {/* Player data */}
-          <section className='flex justify-between items-center px-4 text-gray-50'>
+          <section className='flex justify-between items-center px-4 mt-2 text-gray-50'>
             <div>
               <span>Money: £{user?.bank?.funds} 💷</span>
             </div>

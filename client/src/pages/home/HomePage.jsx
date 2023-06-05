@@ -44,6 +44,18 @@ function HomePage() {
                 </article>
               </section>
             )}
+            {!user.email && (
+              <section className='p-4 grid h-full items-center justify-center'>
+                <article className='outline outline-4 outline-black rounded text-center bg-white w-fit p-4 main__bg'>
+                  <h1 className='text-center text-2xl md:text-4xl lg:text-8xl font-extrabold'>
+                    <span className='text-blue-600'>
+                      CON <span className='text-red-600'>CARDS</span>
+                    </span>
+                  </h1>
+                  <h2 className='md:text-xl lg:text-2xl my-1 font-semibold'>The Tory Trading Card Game</h2>
+                </article>
+              </section>
+            )}
           </section>
         </main>
       </section>

@@ -81,7 +81,7 @@ function LoginPage() {
                     type='email'
                     name='email'
                     id='email'
-                    className='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-main-colour focus:border-main-colour block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-main-colour dark:focus:border-main-colour'
+                    className='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-600 dark:focus:border-blue-600'
                     placeholder='name@email.com'
                     onChange={handleChange}
                     required
@@ -99,7 +99,7 @@ function LoginPage() {
                     name='password'
                     id='password'
                     placeholder='••••••••'
-                    className='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-main-colour focus:border-main-colour block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-main-colour dark:focus:border-main-colour'
+                    className='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-600 dark:focus:border-blue-600'
                     required
                     onChange={handleChange}
                   />
@@ -108,7 +108,7 @@ function LoginPage() {
                   <div className='flex items-start'>
                     <div className='flex items-center h-5'>
                       <input
-                        className='form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-main-colour checked:border-main-colour focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer'
+                        className='form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer'
                         type='checkbox'
                         id='rememberMe'
                         name='rememberMe'
@@ -127,14 +127,14 @@ function LoginPage() {
                   </div>
                   <Link
                     to='/reset-password'
-                    className='text-sm font-medium text-main-colour hover:underline'
+                    className='text-sm font-medium text-blue-600 hover:underline'
                   >
                     Forgot password?
                   </Link>
                 </div>
                 <button
                   type='submit'
-                  className='w-full text-white bg-main-colour hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-main-colour dark:hover:bg-primary-700 dark:focus:ring-primary-800'
+                  className='w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'
                 >
                   Sign in
                 </button>
@@ -142,7 +142,7 @@ function LoginPage() {
                   Don’t have an account yet?{' '}
                   <Link
                     to='/sign-up'
-                    className='font-medium text-main-colour hover:underline'
+                    className='font-medium text-blue-600 hover:underline'
                   >
                     Sign up
                   </Link>

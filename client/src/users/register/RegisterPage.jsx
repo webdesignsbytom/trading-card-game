@@ -8,13 +8,13 @@ function RegisterPage() {
       <section className='bg-blue-500 grid h-full overflow-hidden grid-cols-reg'>
         <Navbar />
 
-        <main className='mb-12 lg:mb-0'>
-          <div className='block rounded-lg shadow-lg bg-white px-6 py-12 md:px-12'>
-            <div className='flex text-center w-full justify-center mb-4'>
+        <main className='grid bg-white main__bg h-full items-center justify-center '>
+          <section className='bg-white rounded p-4 shadow'>
+            <article className='text-center my-2 '>
               <h1 className='text-3xl font-semibold'>Sign Up Now</h1>
-            </div>
+            </article>
             <RegisterForm />
-          </div>
+          </section>
         </main>
       </section>
     </div>
