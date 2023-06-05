@@ -38,37 +38,47 @@ function ShopPage() {
   };
 
   return (
-    <div className='bg-red-100 h-screen grid'>
+    <div className='bg-black main__bg h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
-        <main className='grid bg-red-400 p-4 grid-rows-reg'>
+        <main className='grid p-2 grid-rows-reg'>
           {/* Player data */}
-          <section className='flex justify-between'>
+          <section className='flex justify-between items-center text-gray-50'>
             <div>
               <span>Money: £1000</span>
             </div>
+            <div className='grid justify-center items-center text-center'>
+              <h1 className='text-center text-2xl font-bold'>
+                <span className='text-blue-600'>
+                  CON <span className='text-red-600'>CARDS</span> STORE
+                </span>
+              </h1>
+              <h2>Everything is unfairly priced!</h2>
+            </div>
             <div>
-              <span>Unopened: {user?.unopenedPacks?.length}</span>
+              <span>Gems: 5</span>
             </div>
           </section>
 
           {/* Shop main */}
-          <section className='grid bg-green-200 justify-center items-center'>
-            {togglePackPurchasing ? (
-              <div>
-                <PackSelector buyPacketsOfCards={buyPacketsOfCards} />
-              </div>
-            ) : (
-              <div>
-                <button
-                  onClick={openPackPurchasing}
-                  className='rounded outline outline-2 outline-black p-4'
-                >
-                  Buy Packs
-                </button>
-              </div>
-            )}
-          </section>
+          <div className='pt-4 grid '>
+            <section className='grid bg-white main__bg justify-center items-center rounded pt-4'>
+              {togglePackPurchasing ? (
+                <div className=' grid'>
+                  <PackSelector buyPacketsOfCards={buyPacketsOfCards} />
+                </div>
+              ) : (
+                <div>
+                  <button
+                    onClick={openPackPurchasing}
+                    className='bg-red-700 main__bg text-xl font-semibold text-white rounded outline outline-2 outline-black p-4'
+                  >
+                    Buy Packs
+                  </button>
+                </div>
+              )}
+            </section>
+          </div>
         </main>
       </section>
     </div>
