@@ -10,6 +10,7 @@ export const findAllUsers = () =>
       cards: true,
       packs: true,
       bank: true,
+      loginRecord: true,
     },
   });
 
@@ -21,6 +22,7 @@ export const findUserByEmail = (email) =>
       cards: true,
       packs: true,
       bank: true,
+      loginRecord: true,
     },
   });
 
@@ -39,6 +41,7 @@ export const findUserById = (userId) =>
       cards: true,
       packs: true,
       bank: true,
+      loginRecord: true,
     },
   });
 
@@ -52,6 +55,7 @@ export const findUsersByRole = (role) =>
       cards: true,
       packs: true,
       bank: true,
+      loginRecord: true,
     },
   });
 
@@ -122,6 +126,7 @@ export const setStarterCardsToClaimed = (userId) =>
       cards: true,
       packs: true,
       bank: true,
+      loginRecord: true,
     },
   });
 

@@ -26,6 +26,7 @@ model User {
   cards                 CardInstance[]
   packs                 Pack[]
   bank                  Bank?
+  loginRecord           LoginRecord?
   lastLoggedIn          DateTime          @updatedAt
   isVerified            Boolean           @default(false)
   agreedToTerms         Boolean           @default(false)
@@ -62,6 +63,17 @@ model Bank {
   user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
+}
+
+model LoginRecord {
+  id                          String    @id @default(uuid())
+  startingDateTime            DateTime  @default(now())
+  lastDateTimeCollectedReward DateTime  @default(now())
+  daysInARow                  Int       @default(1)
+  userId                      String?   @unique
+  user                        User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt                   DateTime  @default(now())
+  updatedAt                   DateTime? @updatedAt
 }
 
 model SocialMediaLink {
