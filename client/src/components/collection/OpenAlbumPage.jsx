@@ -10,31 +10,22 @@ import { BsFillArrowRightSquareFill } from 'react-icons/bs';
 
 function OpenAlbumPage() {
   const { user } = useContext(UserContext);
-  const { userCardsArray, setUserCardsArray } = useContext(CardContext)
+  const { userCardsArray, setUserCardsArray } = useContext(CardContext);
 
   const [openPageCards, setOpenPageCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(10);
 
   console.log('openPageCards', openPageCards);
-  
-  useEffect(() => {
-  }, []);
 
-  const nextPageCards = () => {
+  useEffect(() => {}, []);
 
-  };
+  const nextPageCards = () => {};
 
-  const prevPageCards = () => {
-
-  };
+  const prevPageCards = () => {};
 
   return (
-    <div className='bg-green-400 grid grid-cols-a1a'>
-      <div onClick={prevPageCards} className='grid items-center px-2'>
-        <BsFillArrowLeftSquareFill size={25} />
-      </div>
-
-      <section className='grid grid-rows-reg px-2 gap-4'>
+    <div className='bg-black main__bg h-full overflow-hidden grid'>
+      <section className='grid grid-rows-reg h-full px-2 gap-4 overflow-hidden'>
         {/* Top bar - search bar */}
         <div className='flex justify-between px-1 items-center text-blue-500'>
           <div className='grid items-center justify-center'>
@@ -54,48 +45,17 @@ function OpenAlbumPage() {
           </div>
         </div>
 
-        <div className='grid h-full grid-rows-2 gap-4 py-4'>
-          <section className='grid grid-cols-5 gap-4'>
-            <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={userCardsArray[0]} />
-            </article>
-            <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={userCardsArray[1]} />
-            </article>
-            <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={userCardsArray[2]} />
-            </article>
-            <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={userCardsArray[3]} />
-            </article>
-            <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={userCardsArray[4]} />
-            </article>
-          </section>
-
-          <section className='grid grid-cols-5 gap-4'>
-            <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={userCardsArray[5]} />
-            </article>
-            <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={userCardsArray[6]} />
-            </article>
-            <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={userCardsArray[7]} />
-            </article>
-            <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={userCardsArray[8]} />
-            </article>
-            <article className='grid h-full hover:scale-110 duration-500 cursor-pointer'>
-              <Card cardData={userCardsArray[9]} />
-            </article>
-          </section>
+        <div className='grid h-full overflow-hidden'>
+          <div className='grid h-full overflow-scroll overflow-x-hidden pr-1'>
+            <div className='grid grid-cols-3 lg:grid-cols-5 gap-1 p-1'>
+              {userCardsArray.map((card, index) => {
+                console.log('AAAAA', card);
+                return <Card key={index} cardData={card} />;
+              })}
+            </div>
+          </div>
         </div>
       </section>
-
-      <div onClick={nextPageCards} className='grid items-center px-2'>
-        <BsFillArrowRightSquareFill size={25} />
-      </div>
     </div>
   );
 }

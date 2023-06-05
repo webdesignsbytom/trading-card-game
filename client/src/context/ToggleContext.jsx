@@ -30,7 +30,7 @@ const ToggleContextProvider = ({ children }) => {
     const data = { packId: pack.id, userId: user.id };
 
     client
-      .post('/users/user/packs/open-pack', data, true)
+      .patch('/users/user/packs/open-pack', data, true)
       .then((res) => {
         console.log('res', res.data);
         setReturnedOpenPack(res.data.data.cards);
