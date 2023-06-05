@@ -5,7 +5,7 @@ import {
 } from '../utils/createPackets.js';
 import { myEmitterErrors } from '../event/errorEvents.js';
 import { NotFoundEvent, ServerErrorEvent } from '../event/utils/errorUtils.js';
-import { sendDataResponse, sendMessageResponse } from '../utils/responses.js';
+import { EVENT_MESSAGES, sendDataResponse, sendMessageResponse } from '../utils/responses.js';
 import { starterPackNames } from '../utils/constants.js';
 import {
   findUserById,
@@ -13,6 +13,7 @@ import {
   updateUserCardArray,
 } from '../domain/users.js';
 
+// Get pack by ID
 export const getPackById = async (req, res) => {
   const id = req.params.id;
 
@@ -31,13 +32,34 @@ export const getPackById = async (req, res) => {
   }
 };
 
+// Create a new pack with no user
 export const createNewpack = async (req, res) => {
   const { packType } = req.body;
 
   try {
     const createdPack = await createSinglePacksOfCards(packType);
+    if (!createdPack) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.createPackTypeFail
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
 
-    return sendDataResponse(res, 201, { pack: createdPack });
+    const foundPack = await findPackById(createdPack.newPack.id);
+    if (!foundPack) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundPack
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    return sendDataResponse(res, 201, { pack: foundPack, cards: createdPack.cards });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(
@@ -50,6 +72,7 @@ export const createNewpack = async (req, res) => {
   }
 };
 
+// Return new pack of any type with user id
 export const createPacksAndAddToUser = async (req, res) => {
   const { packType, userId } = req.body;
 
@@ -64,11 +87,21 @@ export const createPacksAndAddToUser = async (req, res) => {
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
-
     const createdPack = await createSinglePacksOfCardsForUser(packType, userId);
-    console.log('Created Pack', createdPack);
 
-    return sendDataResponse(res, 201, { pack: createdPack });
+    const foundPack = await findPackById(createdPack.newPack.id);
+    if (!foundPack) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundPack
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    return sendDataResponse(res, 201, { pack: foundPack, cards: createdPack.cards });
+
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(
@@ -81,6 +114,7 @@ export const createPacksAndAddToUser = async (req, res) => {
   }
 };
 
+// Create starter packs for new players
 export const createStarterPacksForUser = async (req, res) => {
   const { userId } = req.body;
 
@@ -97,29 +131,38 @@ export const createStarterPacksForUser = async (req, res) => {
     }
 
     const starterPacks = [];
+    const cardsInPackArray = [];
 
     const createdPack1 = await createSinglePacksOfCardsForUser(
       starterPackNames[0],
       userId
     );
-    starterPacks.push(createdPack1);
+    starterPacks.push(createdPack1.cardInstanceArray);
+    cardsInPackArray.push(createdPack1.cards)
+
     const createdPack2 = await createSinglePacksOfCardsForUser(
       starterPackNames[1],
       userId
     );
-    starterPacks.push(createdPack2);
+    starterPacks.push(createdPack2.cardInstanceArray);
+    cardsInPackArray.push(createdPack2.cards)
+
     const createdPack3 = await createSinglePacksOfCardsForUser(
       starterPackNames[2],
       userId
     );
-    starterPacks.push(createdPack3);
+    starterPacks.push(createdPack3.cardInstanceArray);
+    cardsInPackArray.push(createdPack3.cards)
 
+    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
     const updatedUser = await setStarterCardsToClaimed(userId);
 
     return sendDataResponse(res, 201, {
       packs: starterPacks,
+      cards: cardsInPackArray,
       updatedUser: updatedUser,
     });
+
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Create start packs`);
@@ -129,6 +172,7 @@ export const createStarterPacksForUser = async (req, res) => {
   }
 };
 
+///////////////////// ?
 export const openPackAndAddToUser = async (req, res) => {
   console.log('openPackAndAddToUser');
   const { packId, userId } = req.body;

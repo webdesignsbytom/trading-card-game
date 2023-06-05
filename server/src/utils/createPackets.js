@@ -1,41 +1,44 @@
-import { findAllCardsFromPack } from '../domain/cards.js';
+import { createNewInstanceForPack } from '../domain/cards.js';
 import {
-  addCardsToEmptyPack,
   createBlankPackOfCards,
   createBlankPackOfCardsForUser,
 } from '../domain/packs.js';
-import { myEmitterErrors } from '../event/errorEvents.js';
-import { NotFoundEvent } from '../event/utils/errorUtils.js';
 import { createCardsForPack } from './createCards.js';
-import { EVENT_MESSAGES, sendMessageResponse } from './responses.js';
-import {
-  createHolographicCardForPack,
-  selectCommonCard,
-  selectMegaRareCard,
-  selectRareCard,
-  selectUltimateRarityCard,
-  selectUncommonCard,
-} from './selectCard.js';
 
+
+// Create One Pack Of card of any type
 export async function createSinglePacksOfCards(packType) {
+
   const newPack = await createBlankPackOfCards(packType);
 
   const cards = await createCardsForPack(packType, newPack.id);
-  var myJsonString = JSON.stringify(cards);
 
-  const fullPack = await addCardsToEmptyPack(myJsonString, newPack.id);
+  const cardInstanceArray = []
+  // create instances
+  for (let index = 0; index < cards.length; index++) {
+    const card = cards[index];
+    const cardInstance = await createNewInstanceForPack(newPack.id, card.id)
+    cardInstanceArray.push(cardInstance)
+  }
 
-  return fullPack;
+  return {cards, cardInstanceArray, newPack};
 }
 
+// Buy pack of cards and id to user
 export async function createSinglePacksOfCardsForUser(packType, userId) {
 
   const newPack = await createBlankPackOfCardsForUser(packType, userId);
+
   const cards = await createCardsForPack(packType, newPack.id);
-  var myJsonString = JSON.stringify(cards);
 
-  const fullPack = await addCardsToEmptyPack(myJsonString, newPack.id);
+  const cardInstanceArray = []
+  // create instances
+  for (let index = 0; index < cards.length; index++) {
+    const card = cards[index];
+    const cardInstance = await createNewInstanceForPack(newPack.id, card.id)
+    cardInstanceArray.push(cardInstance)
+  }
 
-  return fullPack;
+  return {cards, cardInstanceArray, newPack};
 }
 

@@ -5,6 +5,9 @@ export const createBlankPackOfCards = (packType) =>
     data: {
       packType: packType,
     },
+    include: {
+      cards: true,
+    },
   });
 
 export const createBlankPackOfCardsForUser = (packType, userId) =>
@@ -13,6 +16,9 @@ export const createBlankPackOfCardsForUser = (packType, userId) =>
       packType: packType,
       userId: userId,
     },
+    include: {
+      cards: true,
+    },
   });
 
 export const findPackById = (id) =>
@@ -20,15 +26,8 @@ export const findPackById = (id) =>
     where: {
       id: id,
     },
-  });
-
-export const addCardsToEmptyPack = (myJsonString, packId) =>
-  dbClient.pack.update({
-    where: {
-      id: packId,
-    },
-    data: {
-      cards: myJsonString,
+    include: {
+      cards: true,
     },
   });
 

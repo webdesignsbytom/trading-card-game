@@ -1,4 +1,7 @@
-import { findAllCardsFromPack } from '../domain/cards.js';
+import {
+  findAllCardsAvailableToBuy,
+  findAllCardsFromPack,
+} from '../domain/cards.js';
 import { myEmitterErrors } from '../event/errorEvents.js';
 import { NotFoundEvent } from '../event/utils/errorUtils.js';
 import { NumCardsInPack } from './constants.js';
@@ -12,6 +15,112 @@ import {
   selectUncommonCard,
 } from './selectCard.js';
 
+
+// Create one random card
+export async function createSingleCardsForUser(packType, packId) {
+  console.log('createingleCardsForUser');
+
+  // Return all cards
+  const allCardsAvailable = await findAllCardsAvailableToBuy();
+
+  const commonCards = allCardsAvailable.filter(
+    (card) => card.rarity === 'COMMON'
+  );
+  const uncommonCards = allCardsAvailable.filter(
+    (card) => card.rarity === 'UNCOMMON'
+  );
+  const rareCards = allCardsAvailable.filter((card) => card.rarity === 'RARE');
+  const megaRareCards = allCardsAvailable.filter(
+    (card) => card.rarity === 'MEGARARE'
+  );
+  const ultimateCards = allCardsAvailable.filter(
+    (card) => card.rarity === 'ULTIMATE'
+  );
+
+  let rarityNum = Math.floor(Math.random() * 200) + 1;
+  // Pick one card
+  if (rarityNum < 90) {
+    console.log('COMMON');
+    const newCard = await selectCommonCard(commonCards, packId);
+
+    if (!newCard) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.createCardsFail
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+    return newCard;
+  }
+
+  if (rarityNum < 151 && rarityNum >= 90) {
+    console.log('UNCOMMON');
+    const newCard = await selectUncommonCard(uncommonCards, packId);
+
+    if (!newCard) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.createCardsFail
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+    return newCard;
+  }
+
+  if (rarityNum < 181 && rarityNum >= 151) {
+    console.log('Rare');
+    const newCard = await selectRareCard(rareCards, packId);
+
+    if (!newCard) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.createCardsFail
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+    return newCard;
+  }
+
+  if (rarityNum < 198 && rarityNum >= 181) {
+    console.log('Mega Rare');
+    const newCard = await selectMegaRareCard(megaRareCards, packId);
+
+    if (!newCard) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.createCardsFail
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+    return newCard;
+  }
+
+  if (rarityNum < 201 && rarityNum >= 198) {
+    console.log('Ultimate');
+    const newCard = await selectUltimateRarityCard(ultimateCards, packId);
+
+    if (!newCard) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.createCardsFail
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+    return newCard;
+  }
+}
+
+// created cards from pack
 export async function createCardsForPack(packType, packId) {
   // Create pack
   let numCards = NumCardsInPack;
@@ -145,7 +254,6 @@ export async function createCardsForPack(packType, packId) {
     }
   }
 
-  console.log('END OF WHILE');
   // End of while
   if (!packArray) {
     const notFound = new NotFoundEvent(
@@ -157,6 +265,5 @@ export async function createCardsForPack(packType, packId) {
     return sendMessageResponse(res, notFound.code, notFound.message);
   }
 
-  console.log('END');
   return packArray;
 }

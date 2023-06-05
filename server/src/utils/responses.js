@@ -64,6 +64,7 @@ export const EVENT_MESSAGES = {
   markCardsViewedFailed: `Failed to mark cards as viewed`,
   // PackTypes
   packTypesTag: `PackType database`,
+  notFoundPack: `Failed to find pack`,
   notFoundPackType: `Failed to find packType/s`,
   userPackTypesNotFound: `Failed to find user packTypes`,
   createPackTypeFail: `Failed to create packType`,

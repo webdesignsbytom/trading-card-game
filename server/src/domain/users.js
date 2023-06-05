@@ -7,6 +7,8 @@ export const findAllUsers = () =>
     },
     include: {
       profile: true,
+      cards: true,
+      packs: true,
     },
   });
 
@@ -15,6 +17,7 @@ export const findUserByEmail = (email) =>
     where: { email: email },
     include: {
       profile: true,
+      cards: true,
       packs: true,
     },
   });
@@ -26,6 +29,7 @@ export const findUserById = (userId) =>
     },
     include: {
       profile: true,
+      cards: true,
       packs: true,
     },
   });
@@ -37,6 +41,7 @@ export const findUsersByRole = (role) =>
     },
     include: {
       profile: true,
+      cards: true,
       packs: true,
     },
   });
@@ -103,7 +108,12 @@ export const setStarterCardsToClaimed = (userId) =>
     },
     data: {
       collectedStartedPacks: true
-    }
+    },
+    include: {
+      profile: true,
+      cards: true,
+      packs: true,
+    },
   });
 
 export const updateUserCardArray = (userId, newCardArray) =>
