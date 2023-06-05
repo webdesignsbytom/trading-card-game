@@ -171,7 +171,7 @@ model Card {
   edition          String           @default("") @db.VarChar(28) // first second third fouth
   rarity           Rarity           @default(COMMON)
   holographic      Boolean          @default(false) // holo card option available
-  packType         PackType // election, brexit, covid
+  packType         PackType 
   cardType         CardType
   image            String           @default("image") @db.VarChar(5000)
   backgroundColour BackgroundColour @default(WHITE)

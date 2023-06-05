@@ -96,7 +96,21 @@ export const getUserById = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    console.log('found', foundUser);
+    let toParse = foundUser.cards
+    console.log('YYYYYYYYYYYYYYYY', toParse);
+
+    let twox = toParse.pop()
+
+    console.log('ZZZZZZZZZZZZZZZZZZZ', twox);
+
+    // const editedText = toParse.slice(0, -1)
+    // let newStr = editedText.substring(1);
+    // console.log('NEW TRING', newStr);
+    
+    // let cards = JSON.parse(foundUser.cards[0]);
+    // console.log('CARD: ', cards);
+    // // foundUser.cards = cards;
+
     delete foundUser.password;
     delete foundUser.agreedToTerms;
 
