@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 // Components
 import Navbar from '../../components/nav/Navbar';
-// Context
-import { UserContext } from '../../context/UserContext';
 import RegisterForm from '../../components/forms/RegisterForm';
 import StartingPacks from '../../components/starterPacks/StartingPacks';
+// Context
+import { UserContext } from '../../context/UserContext';
 
 function HomePage() {
   const { user } = useContext(UserContext);

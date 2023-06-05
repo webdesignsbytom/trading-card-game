@@ -12,7 +12,7 @@ function ShopPage() {
   const [togglePackPurchasing, setTogglePackPurchasing] = useState(false);
   const [purchaseRequest, setPurchaseRequest] = useState({
     numPacks: 2,
-    userId: '83ec7407-5ad3-4c56-8c62-0b3fb03c7f22',
+    userId: 'd31932ab-9f32-4461-9cfa-66cbdb02986e',
     packType: 'BREXIT',
   });
 
@@ -26,11 +26,6 @@ function ShopPage() {
       .post('/con-cards/buyPacketsOfCards', purchaseRequest, false)
       .then((res) => {
         console.log('res', res.data);
-        console.log('res', res.data.data.packs);
-        setUser({
-          ...user,
-          unopenedPacks: [...user.unopenedPacks, ...res.data.data.packs],
-        });
       })
 
       .catch((err) => {
