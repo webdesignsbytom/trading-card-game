@@ -1,6 +1,7 @@
 # Trading Card Game
 
 Sticker book and card collecting game - pokemon style
+Live Link [https://super-granita-525ba2.netlify.app/](https://super-granita-525ba2.netlify.app/)
 
 ## Table of contents
 
