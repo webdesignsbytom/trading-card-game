@@ -25,6 +25,7 @@ model User {
   verifications         UserVerification?
   cards                 CardInstance[]
   packs                 Pack[]
+  userFunds             UserFunds?
   lastLoggedIn          DateTime          @updatedAt
   isVerified            Boolean           @default(false)
   agreedToTerms         Boolean           @default(false)
@@ -51,6 +52,15 @@ model Profile {
   isPrivate     Boolean           @default(false)
   createdAt     DateTime          @default(now())
   updatedAt     DateTime?         @updatedAt
+}
+
+model UserFunds {
+  id        String    @id @default(uuid())
+  bank      Decimal   @default(1000)
+  userId    String?   @unique
+  user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
 
 model SocialMediaLink {
@@ -156,7 +166,7 @@ model CardInstance {
   id        String    @id @default(uuid()) // pack id
   userId    String?
   user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  cardId    Int       
+  cardId    Int
   card      Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
   packId    String?
   pack      Pack?     @relation(fields: [packId], references: [id])
@@ -171,7 +181,7 @@ model Card {
   edition          String           @default("") @db.VarChar(28) // first second third fouth
   rarity           Rarity           @default(COMMON)
   holographic      Boolean          @default(false) // holo card option available
-  packType         PackType 
+  packType         PackType
   cardType         CardType
   image            String           @default("image") @db.VarChar(5000)
   backgroundColour BackgroundColour @default(WHITE)

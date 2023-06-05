@@ -4,9 +4,7 @@ import Card from '../card/Card';
 // Context
 import { UserContext } from '../../context/UserContext';
 import { CardContext } from '../../context/CardContext';
-// Icons
-import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
-import { BsFillArrowRightSquareFill } from 'react-icons/bs';
+
 import LoadingSpinner from '../utils/LoadingSpinner';
 
 function OpenAlbumPage() {
