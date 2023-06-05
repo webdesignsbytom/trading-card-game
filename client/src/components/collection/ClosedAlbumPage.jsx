@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 
 function ClosedAlbumPage({ openAlbum }) {
+  
   const { user } = useContext(UserContext)
 
   return (

@@ -15,8 +15,6 @@ function OpenAlbumPage() {
   console.log('openPageCards', openPageCards);
   
   useEffect(() => {
-    const newCardsList = JSON.parse(user.cards)
-    console.log('newcardslist', newCardsList);
   }, []);
 
   const nextPageCards = () => {
