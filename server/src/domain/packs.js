@@ -1,5 +1,15 @@
 import dbClient from '../utils/dbClient.js';
 
+export const findAllPacks = () =>
+  dbClient.pack.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+    include: {
+      cards: true,
+    },
+  });
+  
 export const createBlankPackOfCards = (packType) =>
   dbClient.pack.create({
     data: {

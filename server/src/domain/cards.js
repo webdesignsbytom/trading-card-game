@@ -111,3 +111,13 @@ export const createNewInstanceForPack = (packId, cardId) =>
       cardId: cardId,
     },
   });
+
+export const setCardFromPackToUser = (instanceId, userId) =>
+  dbClient.cardInstance.update({
+    where: {
+      id: instanceId,
+    },
+    data: {
+      userId: userId,
+    },
+  });

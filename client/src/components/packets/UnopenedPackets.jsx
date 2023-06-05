@@ -12,14 +12,45 @@ function UnopenedPackets() {
   useEffect(() => {
     let packs = user.packs;
     console.log('packs', packs);
+    setUnopenedPacks(packs)
   }, []);
+
+  const nextPacks = () => {
+    let current = packIndex
+    let newArray = []
+
+    let one = current[0] + 3
+    let two = current[1] + 3
+    let three = current[2] + 3
+
+    newArray.push(one, two, three)
+    setPackIndex(newArray)
+
+  }
+
+  const prevPacks = () => {
+    let current = packIndex
+    let newArray = []
+
+    if (current[0] === 0) {
+      return
+    }
+
+    let one = current[0] - 3
+    let two = current[1] - 3
+    let three = current[2] - 3
+
+    newArray.push(one, two, three)
+    setPackIndex(newArray)
+
+  }
 
   console.log('unopenedPacks', unopenedPacks);
 
   return (
     <div className='grid grid-rows-a1a py-6'>
       <div className='flex text-center justify-center'>
-        <h4>Unopened Packets</h4>
+        <h4 className='text-2xl font-semibold'>Unopened Packets</h4>
       </div>
 
       <section className='w-full grid grid-cols-3 items-center justify-center gap-4 my-4'>
@@ -35,10 +66,10 @@ function UnopenedPackets() {
       </section>
 
       <section className='grid gap-5 mt-6 grid-cols-2'>
-        <button className='outline outline-2 outline-black rounded p-2'>
+        <button onClick={prevPacks} className='outline nav__bg bg-red-500 text-xl font-semibold font-poppins hover:bg-red-600 active:scale-105 outline-2 outline-black rounded p-2'>
           Back
         </button>
-        <button className='outline outline-2 outline-black rounded p-2'>
+        <button onClick={nextPacks} className='outline nav__bg bg-red-500 text-xl font-semibold font-poppins hover:bg-red-600 active:scale-105 outline-2 outline-black rounded p-2'>
           Next
         </button>
       </section>

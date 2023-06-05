@@ -1,4 +1,4 @@
-import { deletePackbyIdWhenOpened, findPackById } from '../domain/packs.js';
+import { deletePackbyIdWhenOpened, findAllPacks, findPackById } from '../domain/packs.js';
 import {
   createSinglePacksOfCards,
   createSinglePacksOfCardsForUser,
@@ -12,6 +12,33 @@ import {
   setStarterCardsToClaimed,
   updateUserCardArray,
 } from '../domain/users.js';
+
+// Get all packs of cards
+export const getAllPacks = async (req, res) => {
+  console.log('getAllPacks');
+  try {
+    const foundPacks = await findAllPacks();
+
+    if (!foundPacks) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    // myEmitterUsers.emit('get-all-users', req.user);
+    return sendDataResponse(res, 200, { packs: foundPacks });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get all users`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
 
 // Get pack by ID
 export const getPackById = async (req, res) => {
@@ -183,7 +210,7 @@ export const openPackAndAddToUser = async (req, res) => {
       const notFound = new NotFoundEvent(
         req.user,
         EVENT_MESSAGES.notFound,
-        EVENT_MESSAGES.userNotFound
+        EVENT_MESSAGES.notFoundPack
       );
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
@@ -219,6 +246,34 @@ export const openPackAndAddToUser = async (req, res) => {
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Create start packs`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+export const deletePackById = async (req, res) => {
+  console.log('getAllPacks');
+  const packId = req.params.packId;
+  console.log('packId', packId);
+  try {
+    const foundPacks = await findAllPacks();
+
+    if (!foundPacks) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    // myEmitterUsers.emit('get-all-users', req.user);
+    return sendDataResponse(res, 200, { packs: foundPacks });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get all users`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;

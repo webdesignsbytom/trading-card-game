@@ -40,7 +40,8 @@ import {
 } from '../event/utils/errorUtils.js';
 // Time
 import { v4 as uuid } from 'uuid';
-import { findCardById } from '../domain/cards.js';
+import { findCardById, setCardFromPackToUser } from '../domain/cards.js';
+import { deletePackbyIdWhenOpened, findPackById } from '../domain/packs.js';
 // Password hash
 const hashRate = 8;
 
@@ -97,17 +98,17 @@ export const getUserById = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    let toParse = foundUser.cards
+    let toParse = foundUser.cards;
     console.log('YYYYYYYYYYYYYYYY', toParse);
 
-    let twox = toParse.pop()
+    let twox = toParse.pop();
 
     console.log('ZZZZZZZZZZZZZZZZZZZ', twox);
 
     // const editedText = toParse.slice(0, -1)
     // let newStr = editedText.substring(1);
     // console.log('NEW TRING', newStr);
-    
+
     // let cards = JSON.parse(foundUser.cards[0]);
     // console.log('CARD: ', cards);
     // // foundUser.cards = cards;
@@ -162,13 +163,7 @@ export const getUserByEmail = async (req, res) => {
 
 export const registerNewUser = async (req, res) => {
   console.log('create new user');
-  const {
-    email,
-    password,
-    username,
-    country,
-    agreedToTerms,
-  } = req.body;
+  const { email, password, username, country, agreedToTerms } = req.body;
   const lowerCaseEmail = email.toLowerCase();
   const lowerCaseUsername = username.toLowerCase();
 
@@ -195,7 +190,7 @@ export const registerNewUser = async (req, res) => {
       hashedPassword,
       lowerCaseUsername,
       country,
-      agreedToTerms,
+      agreedToTerms
     );
 
     if (!createdUser) {
@@ -236,7 +231,6 @@ export const registerNewUser = async (req, res) => {
   }
 };
 
-
 export const getAllCardsForUser = async (req, res) => {
   console.log('getAllCardsForUser');
   const userId = req.params.id;
@@ -254,10 +248,10 @@ export const getAllCardsForUser = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    const cardsToFindArray = foundUser.cards
+    const cardsToFindArray = foundUser.cards;
     console.log('cardsToFindArray', cardsToFindArray);
 
-    const userCardArray = []
+    const userCardArray = [];
 
     for (let index = 0; index < cardsToFindArray.length; index++) {
       const card = cardsToFindArray[index];
@@ -268,6 +262,58 @@ export const getAllCardsForUser = async (req, res) => {
 
     // myEmitterUsers.emit('get-user-by-id', req.user);
     return sendDataResponse(res, 200, { cards: userCardArray });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+export const openPackAndAddToUser = async (req, res) => {
+  console.log('openPackAndAddToUser');
+  const { packId, userId } = req.body;
+  console.log('ID', userId, packId);
+
+  try {
+    const foundUser = await findUserById(userId);
+    if (!foundUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    const foundPack = await findPackById(packId);
+    if (!foundPack) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundPack
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    let newCardsArray = [];
+
+    for (let index = 0; index < foundPack.cards.length; index++) {
+      const card = foundPack.cards[index];
+      console.log('card', card);
+      const newInstance = await setCardFromPackToUser(card.id, userId)
+      console.log('newInstance', newInstance);
+      const newCard = await findCardById(card.cardId);
+      console.log('AQE', newCard);
+      newCardsArray.push(newCard);
+    }
+
+    const deletedPack = await deletePackbyIdWhenOpened(packId);
+    console.log('deletedPack', deletedPack);
+    return sendDataResponse(res, 200, { cards: newCardsArray, deletedPack: deletedPack });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
