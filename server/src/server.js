@@ -10,6 +10,7 @@ import authRouter from './routes/auth.js';
 import cardsRouter from './routes/cards.js';
 import userRouter from './routes/users.js';
 import packRouter from './routes/packs.js';
+import bankRouter from './routes/bank.js';
 // Env
 import { HTTP_URL, PORT } from './utils/config.js';
 
@@ -35,6 +36,7 @@ app.use('/', authRouter);
 app.use('/con-cards', cardsRouter);
 app.use('/users', userRouter);
 app.use('/packs', packRouter);
+app.use('/bank', bankRouter);
 
 // Server interface page
 app.get('/', (req, res) => {

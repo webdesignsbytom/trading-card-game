@@ -17,6 +17,7 @@ import {
   deleteUserById,
   findUsersByRole,
   createNewsletterMembershipForNewMember,
+  findUserByUsername,
 } from '../domain/users.js';
 import { createAccessToken } from '../utils/tokens.js';
 import {
@@ -42,6 +43,7 @@ import {
 import { v4 as uuid } from 'uuid';
 import { findCardById, setCardFromPackToUser } from '../domain/cards.js';
 import { deletePackbyIdWhenOpened, findPackById } from '../domain/packs.js';
+import { createBankForUser } from '../domain/bank.js';
 // Password hash
 const hashRate = 8;
 
@@ -168,7 +170,7 @@ export const registerNewUser = async (req, res) => {
   const lowerCaseUsername = username.toLowerCase();
 
   try {
-    if (!lowerCaseEmail || !password) {
+    if (!lowerCaseEmail || !password || !username) {
       //
       const missingField = new MissingFieldEvent(
         null,
@@ -179,8 +181,13 @@ export const registerNewUser = async (req, res) => {
     }
 
     const foundUser = await findUserByEmail(lowerCaseEmail);
+    const foundUsername = await findUserByUsername(username)
+
     if (foundUser) {
       return sendDataResponse(res, 400, { email: EVENT_MESSAGES.emailInUse });
+    }
+    if (foundUsername) {
+      return sendDataResponse(res, 400, { username: EVENT_MESSAGES.usernameInUse });
     }
 
     const hashedPassword = await bcrypt.hash(password, hashRate);
@@ -202,12 +209,10 @@ export const registerNewUser = async (req, res) => {
       return sendMessageResponse(res, notCreated.code, notCreated.message);
     }
 
-    console.log('created user', createdUser);
+    const createdBank = await createBankForUser(createdUser.id)
 
     delete createdUser.password;
     delete createdUser.updatedAt;
-
-    myEmitterUsers.emit('register', createdUser);
 
     // const uniqueString = uuid() + createdUser.id;
     // const hashedString = await bcrypt.hash(uniqueString, hashRate);

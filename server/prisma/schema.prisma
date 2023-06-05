@@ -25,7 +25,7 @@ model User {
   verifications         UserVerification?
   cards                 CardInstance[]
   packs                 Pack[]
-  userFunds             UserFunds?
+  bank                  Bank?
   lastLoggedIn          DateTime          @updatedAt
   isVerified            Boolean           @default(false)
   agreedToTerms         Boolean           @default(false)
@@ -54,9 +54,10 @@ model Profile {
   updatedAt     DateTime?         @updatedAt
 }
 
-model UserFunds {
+model Bank {
   id        String    @id @default(uuid())
-  bank      Decimal   @default(1000)
+  funds     Decimal   @default(1000)
+  gems      Int       @default(25)
   userId    String?   @unique
   user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime  @default(now())

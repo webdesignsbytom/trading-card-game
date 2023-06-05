@@ -80,6 +80,7 @@ export const EVENT_MESSAGES = {
   userTag: `User databased`,
   userNotFound: `Failed to find user/s`,
   emailInUse: `Email already in use`,
+  usernameInUse: `Username already in use`,
   emailNotFound: `Email not found in database`,
   createUserFail: `Failed to create new user`,
   passwordMatchError: `Password match error for reset Password - New passwords do not match`,

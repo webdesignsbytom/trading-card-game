@@ -11,9 +11,9 @@ function ShopPage() {
 
   const [togglePackPurchasing, setTogglePackPurchasing] = useState(false);
   const [purchaseRequest, setPurchaseRequest] = useState({
-    numPacks: 1,
-    userId: user.id,
     packType: 'BREXIT',
+    userId: user.id,
+    cost: 10
   });
 
   const buyPacketsOfCards = (event) => {
@@ -23,9 +23,10 @@ function ShopPage() {
     console.log('Buy Single Pack');
 
     client
-      .post('/packs/create-packs-for-user', purchaseRequest, false)
+      .post('/packs/buy-pack-for-user', purchaseRequest)
       .then((res) => {
         console.log('res', res.data);
+        setUser(res.data.data.updatedUser)
       })
 
       .catch((err) => {
@@ -45,7 +46,7 @@ function ShopPage() {
           {/* Player data */}
           <section className='flex justify-between items-center px-4 text-gray-50'>
             <div>
-              <span>Money: £1000 💷</span>
+              <span>Money: £{user?.bank?.funds} 💷</span>
             </div>
             <div className='grid justify-center items-center text-center'>
               <h1 className='text-center text-2xl font-bold'>
@@ -56,7 +57,7 @@ function ShopPage() {
               <h2>Everything is unfairly priced!</h2>
             </div>
             <div>
-              <span>Gems: 5 💎</span>
+              <span>Gems: {user?.bank?.gems} 💎</span>
             </div>
           </section>
 

@@ -32,7 +32,9 @@ function Navbar() {
   return (
     <nav className='nav__bg bg-red-500 border-4 border-black border-solid grid grid-cols-a1a lg:grid-cols-none lg:grid-rows-reg'>
       <section className='grid lg:hidden items-center justify-center pl-4'>
-        <img className='w-10 h-10' src={LogoImage} alt='Logo' />
+        <Link to='/'>
+          <img className='w-10 h-10' src={LogoImage} alt='Logo' />
+        </Link>
       </section>
 
       <section className='text-center p-2'>

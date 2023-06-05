@@ -9,7 +9,7 @@ export const findAllUsers = () =>
       profile: true,
       cards: true,
       packs: true,
-      userFunds: true,
+      bank: true,
     },
   });
 
@@ -20,8 +20,13 @@ export const findUserByEmail = (email) =>
       profile: true,
       cards: true,
       packs: true,
-      userFunds: true,
+      bank: true,
     },
+  });
+
+export const findUserByUsername = (username) =>
+  dbClient.profile.findUnique({
+    where: { username: username },
   });
 
 export const findUserById = (userId) =>
@@ -33,7 +38,7 @@ export const findUserById = (userId) =>
       profile: true,
       cards: true,
       packs: true,
-      userFunds: true,
+      bank: true,
     },
   });
 
@@ -46,7 +51,7 @@ export const findUsersByRole = (role) =>
       profile: true,
       cards: true,
       packs: true,
-      userFunds: true,
+      bank: true,
     },
   });
 
@@ -104,20 +109,19 @@ export const deleteUserById = (userId) =>
     },
   });
 
-
 export const setStarterCardsToClaimed = (userId) =>
   dbClient.user.update({
     where: {
       id: userId,
     },
     data: {
-      collectedStartedPacks: true
+      collectedStartedPacks: true,
     },
     include: {
       profile: true,
       cards: true,
       packs: true,
-      userFunds: true,
+      bank: true,
     },
   });
 
@@ -127,7 +131,6 @@ export const updateUserCardArray = (userId, newCardArray) =>
       id: userId,
     },
     data: {
-      cards: newCardArray
-    }
+      cards: newCardArray,
+    },
   });
-

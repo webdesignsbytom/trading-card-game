@@ -29,6 +29,22 @@ async function seed() {
     },
   });
 
+  const devBank = await dbClient.bank.create({
+    data: {
+      userId: devUser.id,
+      funds: 1000000,
+      gems: 1000
+    }
+  })
+
+  const testUserBank = await dbClient.bank.create({
+    data: {
+      userId: testUser.id,
+      funds: 1000000.67,
+      gems: 1000
+    }
+  })
+
   // EVENTS
   const eventOne = await dbClient.event.create({
     data: {
