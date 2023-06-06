@@ -6,7 +6,8 @@ import {
   getUserByEmail,
   deleteUser,
   getAllCardsForUser,
-  openPackAndAddToUser
+  openPackAndAddToUser,
+  collectDailyReward
 } from '../controllers/users.js';
 import {
   validateAuthentication,
@@ -18,6 +19,7 @@ const router = Router();
 router.get('/all-users', getAllUsers);
 router.post('/register', registerNewUser);
 router.patch('/user/packs/open-pack', openPackAndAddToUser);
+router.patch('/user/rewards/collect', collectDailyReward);
 router.get('/user/id/:id', getUserById);
 router.get('/user/id/:id/all-cards', getAllCardsForUser);
 router.get('/user/email/:email', getUserByEmail);

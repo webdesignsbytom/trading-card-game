@@ -328,6 +328,16 @@ export const openPackAndAddToUser = async (req, res) => {
   }
 };
 
+
+export const collectDailyReward = async (req, res) => {
+  console.log('xx collectDailyReward');
+
+};
+
+export const onetwothree = async (req, res) => {
+  console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasssssss');
+}
+
 // export const verifyUser = async (req, res) => {
 //   console.log('Verifying user');
 //   const { userId, uniqueString } = req.params;

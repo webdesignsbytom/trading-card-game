@@ -17,22 +17,11 @@ const UserContextProvider = ({ children }) => {
 
   console.log('usercontext', user);
 
-  // useEffect(() => {
-  //   client
-  //     .get(`/users/user/id/${user.id}`)
-  //     .then((res) => {
-  //       setUser(res.data.data.user);
-  //     })
-  //     .catch((err) => {
-  //       console.error('Unable to retrieve user data', err);
-  //     });
-  // }, []);
-
   useEffect(() => {
     const decodedUserData = LoggedInUser();
     console.log('AAAAAAAAAAAAAAAA');
 
-    if (decodedUserData) {
+    if (decodedUserData.id) {
       const userId = decodedUserData.id;
       console.log('BBBBBBBBBBBBBbb', userId);
       client

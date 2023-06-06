@@ -8,6 +8,7 @@ import RewardCalenderSquare from '../../components/calander/RewardCalenderSquare
 
 function RewardsPage() {
   const { user } = useContext(UserContext);
+  
   return (
     <div className='h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>

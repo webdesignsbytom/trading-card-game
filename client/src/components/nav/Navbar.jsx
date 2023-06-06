@@ -54,15 +54,26 @@ function Navbar() {
           <img className='w-16 h-16' src={LogoImage} alt='Logo' />
         </section>
 
-        <section className='text-center mt-2 hidden lg:grid '>
+        <section className='text-center mt-2 hidden lg:grid gap-4'>
           {user?.packs?.length > 0 && (
-            <div className='outline bg-blue-500 outline-black outline-2 rounded animate-pulse'>
+            <div className='outline bg-blue-500 main__bg outline-black outline-2 rounded animate-pulse'>
               <button
                 className='font-semibold py-1'
                 onClick={goToUnopenedPacks}
               >
-                <div>{user.packs.length} Unopened Packs</div>
+                <div>
+                  <span>{user.packs.length} Unopened Packs</span>
+                </div>
               </button>
+            </div>
+          )}
+          {user?.loginRecord?.collectedReward === false && (
+            <div className='outline bg-blue-700 main__bg outline-black outline-2 rounded animate-pulse'>
+              <Link to='/rewards'>
+                <div className='font-semibold py-1'>
+                  <span>Daily Reward Available</span>
+                </div>
+              </Link>
             </div>
           )}
         </section>
