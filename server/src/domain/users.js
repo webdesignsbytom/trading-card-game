@@ -45,6 +45,26 @@ export const findUserById = (userId) =>
     },
   });
 
+export const findUserLoginRecord = (userId) =>
+  dbClient.loginRecord.findUnique({
+    where: {
+      userId: userId,
+    }
+  });
+
+export const updateUserLoginRecordToCollectedReward = (recordId) =>
+  dbClient.loginRecord.update({
+    where: {
+      id: recordId,
+    },
+    data: {
+      collectedReward: true,
+      daysInARow: {
+        increment: 1
+      }
+    }
+  });
+
 export const findUsersByRole = (role) =>
   dbClient.user.findMany({
     where: {

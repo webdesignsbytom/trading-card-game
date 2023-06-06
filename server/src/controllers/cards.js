@@ -164,3 +164,32 @@ export const buySingleRandomCard = async (req, res) => {
     throw err;
   }
 };
+
+export const freeSingleRandomCard = async (userId) => {
+  console.log('buySingleRandomCard');
+
+  try {
+    let cardFound = await createSingleCardsForUser();
+
+    let newInstance = await createNewInstanceForCard(cardFound.id, userId);
+
+    if (!newInstance) {
+      const notFound = new NotFoundEvent(
+        'free card',
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundCardType
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    return { newInstance, cardFound }
+    
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent('freecard', `Create single card`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse('Free card', serverError.code, serverError.message);
+    throw err;
+  }
+};

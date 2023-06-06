@@ -1,31 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 // Context
 import { UserContext } from '../../context/UserContext';
 import client from '../../utils/client';
 
 function RewardCalenderSquare({ day }) {
   const { user, setUser } = useContext(UserContext);
+  const [rewardData, setRewardData] = useState({});
 
+  console.log('rewardData', rewardData);
   const openDailyReward = (day) => {
     console.log('openDailyReward');
     let rewardData = { userId: user.id };
 
     client
-      .patch('/user/rewards/collect', rewardData, true)
+      .patch('/users/user/rewards/collect', rewardData)
       .then((res) => {
-    //     console.log('res', res.data);
-    //     console.log('res.data.data.token', res.data.data.token);
-    //     localStorage.setItem(
-    //       process.env.REACT_APP_USER_TOKEN,
-    //       res.data.data.token
-    //     );
-    //     setUser(res.data.data.updatedUser);
+        console.log('res', res.data);
+        setRewardData(res.data.data.rewardCard);
+        setUser(res.data.data.updatedUser);
       })
 
       .catch((err) => {
         console.error('Unable to login', err);
       });
-  }
+  };
 
   if (user?.loginRecord?.daysInARow >= day.id) {
     return (
@@ -33,8 +31,11 @@ function RewardCalenderSquare({ day }) {
         {day.id}
         {user?.loginRecord?.collectedReward === false &&
         user?.loginRecord.daysInARow === day.id ? (
-          <div onClick={() => openDailyReward(day)} className='absolute cursor-pointer top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-           <span className='animate-pulse'>🎁</span>
+          <div
+            onClick={() => openDailyReward(day)}
+            className='absolute cursor-pointer top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'
+          >
+            <span className='animate-pulse'>🎁</span>
           </div>
         ) : (
           <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>

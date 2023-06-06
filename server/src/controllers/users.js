@@ -18,6 +18,8 @@ import {
   findUsersByRole,
   createNewsletterMembershipForNewMember,
   findUserByUsername,
+  findUserLoginRecord,
+  updateUserLoginRecordToCollectedReward,
 } from '../domain/users.js';
 import { createAccessToken } from '../utils/tokens.js';
 import {
@@ -44,6 +46,7 @@ import { v4 as uuid } from 'uuid';
 import { findCardById, setCardFromPackToUser } from '../domain/cards.js';
 import { deletePackbyIdWhenOpened, findPackById } from '../domain/packs.js';
 import { createBankForUser } from '../domain/bank.js';
+import { freeSingleRandomCard } from './cards.js';
 // Password hash
 const hashRate = 8;
 
@@ -181,13 +184,15 @@ export const registerNewUser = async (req, res) => {
     }
 
     const foundUser = await findUserByEmail(lowerCaseEmail);
-    const foundUsername = await findUserByUsername(username)
+    const foundUsername = await findUserByUsername(username);
 
     if (foundUser) {
       return sendDataResponse(res, 400, { email: EVENT_MESSAGES.emailInUse });
     }
     if (foundUsername) {
-      return sendDataResponse(res, 400, { username: EVENT_MESSAGES.usernameInUse });
+      return sendDataResponse(res, 400, {
+        username: EVENT_MESSAGES.usernameInUse,
+      });
     }
 
     const hashedPassword = await bcrypt.hash(password, hashRate);
@@ -209,7 +214,7 @@ export const registerNewUser = async (req, res) => {
       return sendMessageResponse(res, notCreated.code, notCreated.message);
     }
 
-    const createdBank = await createBankForUser(createdUser.id)
+    const createdBank = await createBankForUser(createdUser.id);
 
     delete createdUser.password;
     delete createdUser.updatedAt;
@@ -309,7 +314,7 @@ export const openPackAndAddToUser = async (req, res) => {
     for (let index = 0; index < foundPack.cards.length; index++) {
       const card = foundPack.cards[index];
       console.log('card', card);
-      const newInstance = await setCardFromPackToUser(card.id, userId)
+      const newInstance = await setCardFromPackToUser(card.id, userId);
       console.log('newInstance', newInstance);
       const newCard = await findCardById(card.cardId);
       console.log('AQE', newCard);
@@ -318,7 +323,10 @@ export const openPackAndAddToUser = async (req, res) => {
 
     const deletedPack = await deletePackbyIdWhenOpened(packId);
     console.log('deletedPack', deletedPack);
-    return sendDataResponse(res, 200, { cards: newCardsArray, deletedPack: deletedPack });
+    return sendDataResponse(res, 200, {
+      cards: newCardsArray,
+      deletedPack: deletedPack,
+    });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
@@ -328,15 +336,53 @@ export const openPackAndAddToUser = async (req, res) => {
   }
 };
 
-
 export const collectDailyReward = async (req, res) => {
   console.log('xx collectDailyReward');
+  const { userId } = req.body;
 
+  try {
+    const foundRecord = await findUserLoginRecord(userId);
+    if (!foundRecord) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    const updatedRecord = await updateUserLoginRecordToCollectedReward(
+      foundRecord.id
+    );
+
+    const freeReward = await freeSingleRandomCard(userId);
+
+    const updatedUser = await findUserById(userId);
+    if (!updatedUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+    
+    return sendDataResponse(res, 200, {
+      rewardInstance: freeReward.newInstance,
+      rewardCard: freeReward.cardFound,
+      updatedUser: updatedUser,
+    });
+
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
 };
-
-export const onetwothree = async (req, res) => {
-  console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasssssss');
-}
 
 // export const verifyUser = async (req, res) => {
 //   console.log('Verifying user');
