@@ -10,7 +10,7 @@ function CardTradeSelector({ handleChange }) {
         id='tradeCard'
         name='tradeCard'
         onChange={handleChange}
-        className=''
+        className='p-1 rounded'
         required
       >
         <option defaultValue='-'>---</option>

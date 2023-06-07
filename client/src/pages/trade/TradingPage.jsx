@@ -13,6 +13,7 @@ function TradingPage() {
   const [searchQuery, setSearchQuery] = useState({ username: '' });
   const [notFoundUser, setNotFoundUser] = useState(false);
   const [tradingPartner, setTradingPartner] = useState({});
+  const [displayCard, setDisplayCard] = useState({});
   const [userCardToTrade, setUserCardToTrade] = useState(false);
 
   console.log('tradingPartner', tradingPartner);
@@ -56,7 +57,8 @@ function TradingPage() {
       .get(`/con-cards/card/get-by-id/${value}`)
       .then((res) => {
         console.log(res.data.data.card);
-        setUserCardToTrade(res.data.data.card);
+        setUserCardToTrade(res.data.data.cardInstance);
+        setDisplayCard(res.data.data.card);
       })
       .catch((err) => {
         console.error('Unable to find card', err);
@@ -80,7 +82,7 @@ function TradingPage() {
             <section className='bg-red-400 grid grid-rows-a1a main__bg outline outline-4 outline-black rounded-xl p-2'>
               {/* image and search */}
               <div className='grid grid-cols-aa'>
-                <div className='top-4 left-4 w-full'>
+                <div className='top-4 left-4 w-1/2'>
                   <img
                     className='rounded-xl object-cover'
                     src={user?.profile?.profileImage}
@@ -128,9 +130,9 @@ function TradingPage() {
               </div>
 
               {/* select card to trade */}
-              <section className='grid grid-cols-2x h-fit'>
-                <div>
-                  <section>
+              <section className='grid'>
+                <div className='grid gap-2 mt-4 mb-2'>
+                  <section className='bg-white main__bg py-1 px-2 h-fit rounded w-fit'>
                     <div>
                       <h5>Select a card to trade</h5>
                     </div>
@@ -138,12 +140,10 @@ function TradingPage() {
                       <CardTradeSelector handleChange={handleChangeCard} />
                     </div>
                   </section>
-                  <section>data</section>
+                  <section className='grid w-min h-fit px-2'>
+                    <Card cardData={displayCard} />
+                  </section>
                 </div>
-
-                <section className='grid w-2/3 ml-10 -mt-8'>
-                  <Card cardData={userCardToTrade} />
-                </section>
               </section>
             </section>
 

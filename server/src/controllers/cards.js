@@ -11,6 +11,8 @@ import {
   findAllCards,
   findAllCardsFromPack,
   findCardById,
+  findCardByName,
+  findCardInstanceById,
   findCardsByCardType,
 } from '../domain/cards.js';
 import { findUserById } from '../domain/users.js';
@@ -46,14 +48,14 @@ export const getAllCards = async (req, res) => {
 // Get card by id
 export const getCardById = async (req, res) => {
   console.log('getCardById');
-  const { cardId } = req.body
-  console.log('cardId');
+  const { cardInstanceId } = req.params
+  console.log('cardId', cardInstanceId);
 
   try {
-    const foundCard = await findCardById(cardId);
-    console.log('found card', foundCard);
+    const foundCardInstance = await findCardInstanceById(cardInstanceId);
+    console.log('found card', foundCardInstance);
 
-    if (!foundCard) {
+    if (!foundCardInstance) {
       const notFound = new NotFoundEvent(
         req.user,
         EVENT_MESSAGES.notFound,
@@ -63,7 +65,10 @@ export const getCardById = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    return sendDataResponse(res, 200, { card: foundCard });
+    const foundCard = await findCardByName(foundCardInstance.name)
+    console.log('found card', foundCard);
+
+    return sendDataResponse(res, 200, { cardInstance: foundCardInstance, card: foundCard });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Get all cards`);

@@ -14,7 +14,7 @@ const router = Router();
 router.get('/all-cards', getAllCards);
 router.get('/all-card-instances', getAllCardInstances);
 router.get('/pack/:packType', getAllCardsFromPackType);
-router.get('/card/get-by-id/:cardId', getCardById);
+router.get('/card/get-by-id/:cardInstanceId', getCardById);
 router.get('/type/:cardType', getAllCardsByType);
 router.post('/free-single-card', freeSingleRandomCard);
 router.post('/buy-single-card', buySingleRandomCard);
