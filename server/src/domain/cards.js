@@ -19,6 +19,13 @@ export const findAllCardInstances = () =>
     },
   });
 
+export const findCardInstanceById = (id) =>
+  dbClient.cardInstance.findFirst({
+    where: {
+      id: id
+    }
+  });
+
 export const findCardById = (id) =>
   dbClient.card.findFirst({
     where: {
@@ -128,3 +135,4 @@ export const setCardFromPackToUser = (instanceId, userId) =>
       userId: userId,
     },
   });
+

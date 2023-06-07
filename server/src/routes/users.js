@@ -7,6 +7,7 @@ import {
   deleteUser,
   getAllCardsForUser,
   openPackAndAddToUser,
+  getUserByUsername,
   collectDailyReward
 } from '../controllers/users.js';
 import {
@@ -23,6 +24,7 @@ router.patch('/user/rewards/collect', collectDailyReward);
 router.get('/user/id/:id', getUserById);
 router.get('/user/id/:id/all-cards', getAllCardsForUser);
 router.get('/user/email/:email', getUserByEmail);
+router.get('/user/username/:username', getUserByUsername);
 router.delete('/delete/:id', deleteUser);
 
 export default router;
