@@ -8,7 +8,7 @@ import PolicyCard from './PolicyCard';
 function Card({ cardData }) {
   console.log('cardData', cardData);
 
-  if (!cardData) {
+  if (!cardData.id) {
     return <EmptyCardSlot />;
   }
   if (cardData.cardType === 'MEMBER') {

@@ -10,50 +10,50 @@ function MemberCard({ cardData, viewCardData }) {
 
   useEffect(() => {
     if (!cardData.holographic)
-    switch (cardData.backgroundColour) {
-      case 'BLACK':
-        return setBgColour('bg-black');
-      case 'RED':
-        return setBgColour('bg-red-400');
-      case 'PURPLE':
-        return setBgColour('bg-purple-400');
-      case 'BLUE':
-        return setBgColour('bg-blue-400');
-      case 'YELLOW':
-        return setBgColour('bg-yellow-400');
-      case 'GREEN':
-        return setBgColour('bg-green-400');
-      default:
-        return setBgColour('bg-white');
-    } else if (cardData.rarity === 'RAREHOLO') {
-      setHoloCard(true)
-      setBgColour("bg-slate-700")
+      switch (cardData.backgroundColour) {
+        case 'BLACK':
+          return setBgColour('bg-black');
+        case 'RED':
+          return setBgColour('bg-red-400');
+        case 'PURPLE':
+          return setBgColour('bg-purple-400');
+        case 'BLUE':
+          return setBgColour('bg-blue-400');
+        case 'YELLOW':
+          return setBgColour('bg-yellow-400');
+        case 'GREEN':
+          return setBgColour('bg-green-400');
+        default:
+          return setBgColour('bg-white');
+      }
+    else if (cardData.rarity === 'RAREHOLO') {
+      setHoloCard(true);
+      setBgColour('bg-slate-700');
     } else if (cardData.rarity === 'MEGARAREHOLO') {
-      setRareHoloCard(true)
-      setBgColour("bg-slate-700")
+      setRareHoloCard(true);
+      setBgColour('bg-slate-500');
     }
-
   }, []);
 
   return (
     <section
       onClick={() => toggleCardData(cardData)}
-      className={`${holoCard} ${rareholoCard} outline outline-1 grid grid-rows-a1a outline-white h-full text-white rounded px-2 py-[1px] ${bgColour} card__bg`}
+      className={`${holoCard} ${rareholoCard} cursor-pointer outline outline-4 grid grid-rows-a1a outline-blue-800 h-full text-white rounded px-2 py-[1px] ${bgColour} card__bg`}
     >
-      <div className='flex justify-between items-center text-sm'>
-        <h2 className='text-white capitalize '>
+      <div className='flex justify-between items-center text-sm my-1'>
+        <h2 className='text-white text-sm capitalize'>
           {cardData.memberCard.memberName}
         </h2>
-        <h5>Health: {cardData.memberCard.health}</h5>
+        <h5 className='text-xs'>HP: <span className='font-semibold'>{cardData.memberCard.health}</span></h5>
       </div>
 
       <section className='grid grid-rows-2 h-full'>
-        <div className='mb-1 h-full'>
-          <img src={cardData.image} alt='card' />
+        <div className='mb-1 h-full outline outline-1 outline-black bg-white'>
+          <img className='h-full' src={cardData.image} alt='card' />
         </div>
 
         <section className='grid grid-rows-reg'>
-          <div className='flex justify-between text-sm outline outline-1 outline-black mt-1 px-[2px]'>
+          <div className='flex justify-between text-sm outline outline-1 outline-black py-1 mt-1 px-[2px]'>
             <p className='text-white capitalize'>{cardData.cardType}</p>
             <div className='flex'>
               <p className='text-white'>
@@ -71,13 +71,14 @@ function MemberCard({ cardData, viewCardData }) {
           </div>
 
           <div className='py-1 px-[2px]'>
-            <h3 className='text-white text-sm flex justify-between'>
-              <span>Attack:</span> <span>{cardData.memberCard.attack}</span>
-            </h3>
-            <h4 className='text-white text-xs'>
-              <span className='text-sm'>Stat:</span>{' '}
-              <span className='text-ss'>{cardData.memberCard.cardStat}</span>
+            <h4 className='text-white text-xs leading-3 mb-1'>
+              <span className='text-xs lg:text-base'>Attack:</span>{' '}
+              <span className='text-ss leading-3 lg:text-xs'>{cardData.memberCard.attack}</span>
             </h4>
+            <h5 className='text-white text-xs leading-3'>
+              <span className='text-xs lg:text-base'>Stat:</span>{' '}
+              <span className='text-ss leading-3 lg:text-xs'>{cardData.memberCard.cardStat}</span>
+            </h5>
           </div>
         </section>
       </section>

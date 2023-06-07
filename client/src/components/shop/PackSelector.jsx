@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 // Images
 import CovidPack from '../../assets/img/packets/pack1.png';
 import BrexitPack from '../../assets/img/packets/pack2.png';
 import ElectionPack from '../../assets/img/packets/pack3.png';
+import LoadingSpinner from '../utils/LoadingSpinner';
 
-function PackSelector({ buyPacketsOfCards }) {
+function PackSelector({
+  buyPacketsOfCards,
+  costOfStandardPack,
+  purchasingCovidPack,
+  purchasingElectionPack,
+  purchasingBrexitPack,
+}) {
   return (
     <section className='grid grid-cols-3 gap-2'>
       <article className='grid items-center justify-center'>
@@ -17,13 +24,21 @@ function PackSelector({ buyPacketsOfCards }) {
             onClick={buyPacketsOfCards}
             className='rounded bg-red-600 main__bg outline outline-2 outline-black p-4'
           >
-            Buy Brexit Packs
+            {purchasingBrexitPack ? (
+              <div className='grid w-full justify-center items-center text-white text-3xl text-center'>
+                <span>LOADING...</span>
+                <LoadingSpinner width={'w-8'} height={'w-8'} />
+              </div>
+            ) : (
+              <span>Buy Brexit Packs</span>
+            )}
           </button>
         </div>
         <div className='text-center'>
-          <span className='text-xl'>Price: £10</span>
+          <span className='text-xl'>Price: £{costOfStandardPack}</span>
         </div>
       </article>
+
       <article className='grid items-center justify-center'>
         <div>
           <img src={CovidPack} alt='Covid pack' />
@@ -34,13 +49,21 @@ function PackSelector({ buyPacketsOfCards }) {
             onClick={buyPacketsOfCards}
             className='rounded bg-red-600 main__bg outline outline-2 outline-black p-4'
           >
-            Buy Covid Packs
+            {purchasingCovidPack ? (
+              <div className='grid w-full justify-center items-center text-white text-3xl text-center'>
+                <span>LOADING...</span>
+                <LoadingSpinner width={'w-8'} height={'w-8'} />
+              </div>
+            ) : (
+              <span>Buy Covid Packs</span>
+            )}
           </button>
         </div>
         <div className='text-center'>
           <span className='text-xl'>Price: £10</span>
         </div>
       </article>
+
       <article className='grid items-center justify-center'>
         <div className='grid items-center justify-center'>
           <img src={ElectionPack} alt='Election pack' />
@@ -51,7 +74,14 @@ function PackSelector({ buyPacketsOfCards }) {
             onClick={buyPacketsOfCards}
             className='rounded bg-red-600 main__bg outline outline-2 outline-black p-4'
           >
-            Buy Election Packs
+            {purchasingElectionPack ? (
+              <div className='grid w-full justify-center items-center text-white text-3xl text-center'>
+                <span>LOADING...</span>
+                <LoadingSpinner width={'w-8'} height={'w-8'} />
+              </div>
+            ) : (
+              <span>Buy Election Packs</span>
+            )}
           </button>
         </div>
         <div className='text-center'>

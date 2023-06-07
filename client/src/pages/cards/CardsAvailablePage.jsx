@@ -67,9 +67,8 @@ function CardsAvailablePage() {
                     <LoadingSpinner />
                   </div>
                 )}
-                <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-1 p-4 sm:p-0'>
+                <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-y-4 gap-x-3 p-4 sm:p-0'>
                   {allCardsArray.map((card, index) => {
-                    console.log('AAAAA', card);
                     return <Card key={index} cardData={card} />;
                   })}
                 </div>

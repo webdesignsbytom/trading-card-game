@@ -62,9 +62,8 @@ function OpenAlbumPage() {
                 <LoadingSpinner />
               </div>
             )}
-            <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-1 p-4 sm:p-1'>
+            <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 lg:grid-rows-2 gap-y-4 gap-x-3 p-4 sm:p-1'>
               {userCardsArray.map((card, index) => {
-                console.log('AAAAA', card);
                 return <Card key={index} cardData={card} />;
               })}
             </div>

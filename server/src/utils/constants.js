@@ -1,3 +1,3 @@
-export const NumCardsInPack = 6
+export const NumCardsInPack = 12
 
 export const starterPackNames = ['COVID', 'ELECTION', 'BREXIT']

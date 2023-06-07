@@ -21,7 +21,7 @@ const UserContextProvider = ({ children }) => {
     const decodedUserData = LoggedInUser();
     console.log('AAAAAAAAAAAAAAAA');
 
-    if (decodedUserData.id) {
+    if (decodedUserData !== null) {
       const userId = decodedUserData.id;
       console.log('BBBBBBBBBBBBBbb', userId);
       client

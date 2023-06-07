@@ -4,6 +4,7 @@ import { useState } from 'react';
 import client from '../utils/client';
 // Context
 import { UserContext } from './UserContext';
+import { useNavigate } from 'react-router-dom';
 
 export const ToggleContext = React.createContext();
 
@@ -17,16 +18,19 @@ const ToggleContextProvider = ({ children }) => {
   const [toggleUnopenedPacketsDisplay, setToggleUnopenedPacketDisplay] =
     useState(false);
   const [toggleOpeningPackDiplay, setToggleOpeningPackDiplay] = useState(false);
-  console.log('AAAAA', selectedPack);
+  let navigate = useNavigate();
+
+  const homePage = () => {
+    navigate('/', { replace: true });
+  };
+
   const toggleOpenPackets = () => {
     console.log('togtoggleOpenPacketsgle');
     setToggleUnopenedPacketDisplay(!toggleUnopenedPacketsDisplay);
   };
 
   const toggleOpeningNewPack = (pack) => {
-    console.log('togtoggleOpenPacketsgle', pack);
     setSelectedPack(pack);
-    console.log('SSSSSSSSSSSS');
     const data = { packId: pack.id, userId: user.id };
 
     client
@@ -47,9 +51,9 @@ const ToggleContextProvider = ({ children }) => {
   };
 
   const toggleCardData = (card) => {
-    console.log('toggleCardData');
     setViewCard(!viewCard);
     setSelectedCard(card);
+    navigate(`/card-overview/${card.id}`, { state: card });
   };
 
   console.log('selectedCard', selectedCard);

@@ -8,28 +8,47 @@ import PackSelector from '../../components/shop/PackSelector';
 
 function ShopPage() {
   const { user, setUser } = useContext(UserContext);
-
   const [togglePackPurchasing, setTogglePackPurchasing] = useState(false);
-  const [purchaseRequest, setPurchaseRequest] = useState({
-    packType: 'BREXIT',
-    userId: user.id,
-    cost: 10
-  });
+  const [costOfStandardPack] = useState(10);
+  const [purchasingCovidPack, setPurchasingCovidPack] = useState(false);
+  const [purchasingElectionPack, setPurchasingElectionPack] = useState(false);
+  const [purchasingBrexitPack, setPurchasingBrexitPack] = useState(false);
 
   const buyPacketsOfCards = (event) => {
     const { id } = event.target;
     console.log('id', id);
+    let packTypeUpper = id.toUpperCase();
 
-    console.log('Buy Single Pack');
+    let purchaseRequest = {
+      packType: packTypeUpper,
+      userId: user.id,
+      cost: costOfStandardPack,
+    };
+
+    if (id === 'brexit') {
+      setPurchasingBrexitPack(true);
+    }
+    if (id === 'covid') {
+      setPurchasingCovidPack(true);
+    }
+    if (id === 'election') {
+      setPurchasingElectionPack(true);
+    }
 
     client
       .post('/packs/buy-pack-for-user', purchaseRequest)
       .then((res) => {
         console.log('res', res.data);
-        setUser(res.data.data.updatedUser)
+        setUser(res.data.data.updatedUser);
+        setPurchasingElectionPack(false);
+        setPurchasingBrexitPack(false);
+        setPurchasingCovidPack(false);
       })
 
       .catch((err) => {
+        setPurchasingElectionPack(false);
+        setPurchasingBrexitPack(false);
+        setPurchasingCovidPack(false);
         console.error('Unable to buy packs', err);
       });
   };
@@ -66,7 +85,13 @@ function ShopPage() {
             <section className='grid bg-white main__bg justify-center items-center rounded pt-4'>
               {togglePackPurchasing ? (
                 <div className=' grid'>
-                  <PackSelector buyPacketsOfCards={buyPacketsOfCards} />
+                  <PackSelector
+                    buyPacketsOfCards={buyPacketsOfCards}
+                    costOfStandardPack={costOfStandardPack}
+                    purchasingCovidPack={purchasingCovidPack}
+                    purchasingElectionPack={purchasingElectionPack}
+                    purchasingBrexitPack={purchasingBrexitPack}
+                  />
                 </div>
               ) : (
                 <div>
