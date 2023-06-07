@@ -80,6 +80,8 @@ model LoginRecord {
 
 model TradeRecord {
   id             String       @id @default(uuid())
+  creatorAgreed  Boolean      @default(false)
+  recieverAgreed Boolean      @default(false)
   creatorCard    CardInstance @relation("creatorCard", fields: [creatorCardId], references: [id], onDelete: Cascade)
   creatorCardId  String
   recieverCard   CardInstance @relation("recieverCard", fields: [recieverCardId], references: [id], onDelete: Cascade)

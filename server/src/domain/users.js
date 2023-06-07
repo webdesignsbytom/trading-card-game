@@ -11,6 +11,8 @@ export const findAllUsers = () =>
       packs: true,
       bank: true,
       loginRecord: true,
+      createdTrades: true,
+      receivedTrades: true,
     },
   });
 
@@ -23,12 +25,18 @@ export const findUserByEmail = (email) =>
       packs: true,
       bank: true,
       loginRecord: true,
+      createdTrades: true,
+      receivedTrades: true,
     },
   });
 
 export const findUserByUsername = (username) =>
   dbClient.profile.findUnique({
     where: { username: username },
+    include: {
+      createdTrades: true,
+      receivedTrades: true,
+    },
   });
 
 export const findUserById = (userId) =>
@@ -42,6 +50,8 @@ export const findUserById = (userId) =>
       packs: true,
       bank: true,
       loginRecord: true,
+      createdTrades: true,
+      receivedTrades: true,
     },
   });
 
@@ -49,7 +59,7 @@ export const findUserLoginRecord = (userId) =>
   dbClient.loginRecord.findUnique({
     where: {
       userId: userId,
-    }
+    },
   });
 
 export const updateUserLoginRecordToCollectedReward = (recordId) =>
@@ -60,9 +70,9 @@ export const updateUserLoginRecordToCollectedReward = (recordId) =>
     data: {
       collectedReward: true,
       daysInARow: {
-        increment: 1
-      }
-    }
+        increment: 1,
+      },
+    },
   });
 
 export const resetUserLoginRecord = (recordId, newLoginTime) =>
@@ -74,10 +84,13 @@ export const resetUserLoginRecord = (recordId, newLoginTime) =>
       collectedReward: true,
       daysInARow: 1,
       lastLoginDateTime: newLoginTime,
-    }
+    },
   });
 
-export const updateUserLoginRecordToRewardAvailable = (recordId, newLoginTime) =>
+export const updateUserLoginRecordToRewardAvailable = (
+  recordId,
+  newLoginTime
+) =>
   dbClient.loginRecord.update({
     where: {
       id: recordId,
@@ -85,7 +98,7 @@ export const updateUserLoginRecordToRewardAvailable = (recordId, newLoginTime) =
     data: {
       lastLoginDateTime: newLoginTime,
       collectedReward: false,
-    }
+    },
   });
 
 export const findUsersByRole = (role) =>
@@ -99,6 +112,8 @@ export const findUsersByRole = (role) =>
       packs: true,
       bank: true,
       loginRecord: true,
+      createdTrades: true,
+      receivedTrades: true,
     },
   });
 
@@ -170,6 +185,8 @@ export const setStarterCardsToClaimed = (userId) =>
       packs: true,
       bank: true,
       loginRecord: true,
+      createdTrades: true,
+      receivedTrades: true,
     },
   });
 

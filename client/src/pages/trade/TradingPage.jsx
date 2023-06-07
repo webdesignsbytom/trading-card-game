@@ -8,6 +8,7 @@ import { UserContext } from '../../context/UserContext';
 import client from '../../utils/client';
 import CardTradeSelector from '../../utils/CardTradeSelector';
 import CreateTradeComponent from '../../components/trade/CreateTradeComponent';
+import OpenRequestsListComponent from '../../components/trade/OpenRequestsListComponent';
 
 function TradingPage() {
   const { user } = useContext(UserContext);
@@ -16,6 +17,8 @@ function TradingPage() {
   const [tradingPartner, setTradingPartner] = useState({});
   const [displayCard, setDisplayCard] = useState({});
   const [userCardToTrade, setUserCardToTrade] = useState(false);
+  const [openTradeComponentSelected, setOpenTradeComponentSelected] =
+    useState(false);
 
   console.log('tradingPartner', tradingPartner);
   console.log('userCardToTrade', userCardToTrade);
@@ -66,6 +69,14 @@ function TradingPage() {
       });
   };
 
+  const toggleOpenTrades = () => {
+    setOpenTradeComponentSelected(true);
+  }
+  
+  const toggleOpenTradesToClosed = () => {
+    setOpenTradeComponentSelected(false);
+  }
+
   return (
     <div className='bg-black main__bg h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
@@ -80,12 +91,12 @@ function TradingPage() {
             <section className='grid h-full'>
               <div className='bg-red-500 nav__bg outline outline-4 outline-black rounded p-2 grid justify-end grid-flow-col gap-4'>
                 <div className=''>
-                  <button className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-2 px-4 rounded-xl outline outline-2 outline-black'>
+                  <button onClick={toggleOpenTrades} className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-2 px-4 rounded-xl outline outline-2 outline-black'>
                     Open Trades
                   </button>
                 </div>
                 <div>
-                  <button className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-2 px-4 rounded-xl outline outline-2 outline-black'>
+                  <button onClick={toggleOpenTradesToClosed} className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-2 px-4 rounded-xl outline outline-2 outline-black'>
                     Create Trade
                   </button>
                 </div>
@@ -95,15 +106,18 @@ function TradingPage() {
 
           <div className='grid'>
             <section className='grid grid-rows-1 grid-cols-2x px-4 mb-4 gap-4'>
-              <CreateTradeComponent
-                handleChange={handleChange}
-                tradingPartner={tradingPartner}
-                selectUserForTrade={selectUserForTrade}
-                handleChangeCard={handleChangeCard}
-                notFoundUser={notFoundUser}
-                searchForUser={searchForUser}
-                displayCard={displayCard}
-              />
+              {!openTradeComponentSelected && (
+                <CreateTradeComponent
+                  handleChange={handleChange}
+                  tradingPartner={tradingPartner}
+                  selectUserForTrade={selectUserForTrade}
+                  handleChangeCard={handleChangeCard}
+                  notFoundUser={notFoundUser}
+                  searchForUser={searchForUser}
+                  displayCard={displayCard}
+                />
+              )}
+              {openTradeComponentSelected && <OpenRequestsListComponent />}
             </section>
           </div>
         </main>
