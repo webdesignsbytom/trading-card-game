@@ -31,7 +31,7 @@ function MemberCard({ cardData, viewCardData }) {
       setBgColour('bg-slate-700');
     } else if (cardData.rarity === 'MEGARAREHOLO') {
       setRareHoloCard(true);
-      setBgColour('bg-slate-700');
+      setBgColour('bg-slate-500');
     }
   }, []);
 
