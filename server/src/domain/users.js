@@ -65,6 +65,29 @@ export const updateUserLoginRecordToCollectedReward = (recordId) =>
     }
   });
 
+export const resetUserLoginRecord = (recordId, newLoginTime) =>
+  dbClient.loginRecord.update({
+    where: {
+      id: recordId,
+    },
+    data: {
+      collectedReward: true,
+      daysInARow: 1,
+      lastLoginDateTime: newLoginTime,
+    }
+  });
+
+export const updateUserLoginRecordToRewardAvailable = (recordId, newLoginTime) =>
+  dbClient.loginRecord.update({
+    where: {
+      id: recordId,
+    },
+    data: {
+      lastLoginDateTime: newLoginTime,
+      collectedReward: false,
+    }
+  });
+
 export const findUsersByRole = (role) =>
   dbClient.user.findMany({
     where: {

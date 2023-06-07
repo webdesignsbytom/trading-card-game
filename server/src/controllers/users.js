@@ -368,10 +368,12 @@ export const collectDailyReward = async (req, res) => {
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
+
+    let rewardType = 'card'
     
     return sendDataResponse(res, 200, {
-      rewardInstance: freeReward.newInstance,
-      rewardCard: freeReward.cardFound,
+      reward: freeReward.cardFound,
+      rewardType: rewardType,
       updatedUser: updatedUser,
     });
 
