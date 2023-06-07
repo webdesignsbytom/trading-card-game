@@ -1,15 +1,22 @@
 import React, { useContext, useState } from 'react';
 // Components
 import Navbar from '../../components/nav/Navbar';
+import Card from '../../components/card/Card';
 // Context
 import { UserContext } from '../../context/UserContext';
 // API
 import client from '../../utils/client';
+import CardTradeSelector from '../../utils/CardTradeSelector';
 
 function TradingPage() {
   const { user } = useContext(UserContext);
   const [searchQuery, setSearchQuery] = useState({ username: '' });
-  console.log('searchQuery', searchQuery);
+  const [notFoundUser, setNotFoundUser] = useState(false);
+  const [tradingPartner, setTradingPartner] = useState({});
+  const [userCardToTrade, setUserCardToTrade] = useState(false);
+
+  console.log('tradingPartner', tradingPartner);
+  console.log('userCardToTrade', userCardToTrade);
   const handleChange = (event) => {
     const { value } = event.target;
 
@@ -18,14 +25,41 @@ function TradingPage() {
       username: value,
     });
   };
+
+  const selectUserForTrade = (event) => {
+    // send trade request
+  };
+
   const searchForUser = () => {
+    setNotFoundUser(false);
+
     client
       .get(`/users/user/username/${searchQuery.username}`)
       .then((res) => {
         console.log(res.data.data.user);
+        setTradingPartner(res.data.data.user);
       })
       .catch((err) => {
-        console.error('Unable to retrieve all cards', err);
+        console.error('Unable to find User', err);
+        if (err.response.statusText === 'Not Found') {
+          setNotFoundUser(true);
+        }
+      });
+  };
+
+  const handleChangeCard = (event) => {
+    console.log('change');
+    const { value } = event.target;
+    console.log('value', value);
+
+    client
+      .get(`/con-cards/card/get-by-id/${value}`)
+      .then((res) => {
+        console.log(res.data.data.card);
+        setUserCardToTrade(res.data.data.card);
+      })
+      .catch((err) => {
+        console.error('Unable to find card', err);
       });
   };
 
@@ -34,7 +68,7 @@ function TradingPage() {
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
         <main className='grid h-full grid-rows-reg'>
-          <section className='p-4 '>
+          <section className='p-4 grid h-fit'>
             <article>
               <div className='bg-red-500 nav__bg outline outline-4 outline-black rounded p-2'>
                 <h1 className='text-3xl font-bold text-center'>Trading</h1>
@@ -42,20 +76,20 @@ function TradingPage() {
             </article>
           </section>
 
-          <section className='grid grid-cols-2x px-4 mb-4 gap-4'>
-            <section className='bg-red-400 main__bg outline outline-4 outline-black rounded-xl p-2'>
+          <section className='grid grid-rows-1 grid-cols-2x px-4 mb-4 gap-4'>
+            <section className='bg-red-400 grid grid-rows-a1a main__bg outline outline-4 outline-black rounded-xl p-2'>
               {/* image and search */}
               <div className='grid grid-cols-aa'>
                 <div className='top-4 left-4 w-full'>
                   <img
                     className='rounded-xl object-cover'
-                    src={user.profile.profileImage}
+                    src={user?.profile?.profileImage}
                     alt='User profile'
                   />
                 </div>
 
                 <section className='grid items-center justify-center gap-4 w-full'>
-                  <div className='grid  h-fit'>
+                  <div className='grid h-fit'>
                     <div className='text-center flex-wrap'>
                       <p>Enter the user name of </p>
                       <p className='-mt-2'>who you wish to trade with</p>
@@ -71,6 +105,15 @@ function TradingPage() {
                         required
                       />
                     </div>
+                    {notFoundUser && (
+                      <section className='px-4 my-2'>
+                        <div className='text-center bg-white nav__bg outline outline-4 outline-black rounded p-2'>
+                          <p className='text-red-600 font-semibold text-xl'>
+                            User Not Found!
+                          </p>
+                        </div>
+                      </section>
+                    )}
                     <div className='grid items-center justify-center p-1'>
                       <button
                         onClick={searchForUser}
@@ -83,9 +126,53 @@ function TradingPage() {
                   </div>
                 </section>
               </div>
+
+              {/* select card to trade */}
+              <section className='grid grid-cols-2x h-fit'>
+                <div>
+                  <section>
+                    <div>
+                      <h5>Select a card to trade</h5>
+                    </div>
+                    <div>
+                      <CardTradeSelector handleChange={handleChangeCard} />
+                    </div>
+                  </section>
+                  <section>data</section>
+                </div>
+
+                <section className='grid w-2/3 ml-10 -mt-8'>
+                  <Card cardData={userCardToTrade} />
+                </section>
+              </section>
             </section>
+
             <section className='bg-red-400 main__bg outline outline-4 outline-black rounded-xl p-2'>
-              b
+              {tradingPartner?.id && (
+                <section>
+                  <div>
+                    <img
+                      className='rounded-xl object-cover'
+                      src={tradingPartner.profileImage}
+                      alt='Trade partner profile'
+                    />
+                  </div>
+                  <div className='text-center'>
+                    <h4 className='text-xl font-semibold'>
+                      {tradingPartner?.username}
+                    </h4>
+                  </div>
+                  <div className='grid items-center justify-center p-1'>
+                    <button
+                      onClick={selectUserForTrade}
+                      className='outline outline-2 outline-black bg-blue-600 main__bg py-2 px-4 my-2 rounded-xl'
+                      type='submit'
+                    >
+                      <span className='text-xl font-semibold'>Select User</span>
+                    </button>
+                  </div>
+                </section>
+              )}
             </section>
           </section>
         </main>

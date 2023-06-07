@@ -110,19 +110,21 @@ export const findAllCardsAvailableToBuy = () =>
     }
   });
 
-export const createNewInstanceForCard = (cardId, userId) =>
+export const createNewInstanceForCard = (cardId, userId, cardName) =>
   dbClient.cardInstance.create({
     data: {
       userId: userId,
       cardId: cardId,
+      name: cardName
     },
   });
 
-export const createNewInstanceForPack = (packId, cardId) =>
+export const createNewInstanceForPack = (packId, cardId, cardName) =>
   dbClient.cardInstance.create({
     data: {
       packId: packId,
       cardId: cardId,
+      name: cardName
     },
   });
 

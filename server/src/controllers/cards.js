@@ -10,6 +10,7 @@ import {
   findAllCardInstances,
   findAllCards,
   findAllCardsFromPack,
+  findCardById,
   findCardsByCardType,
 } from '../domain/cards.js';
 import { findUserById } from '../domain/users.js';
@@ -33,6 +34,36 @@ export const getAllCards = async (req, res) => {
     }
 
     return sendDataResponse(res, 200, { cards: foundCards });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get all cards`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+// Get card by id
+export const getCardById = async (req, res) => {
+  console.log('getCardById');
+  const { cardId } = req.body
+  console.log('cardId');
+
+  try {
+    const foundCard = await findCardById(cardId);
+    console.log('found card', foundCard);
+
+    if (!foundCard) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundCards
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    return sendDataResponse(res, 200, { card: foundCard });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Get all cards`);
@@ -142,7 +173,7 @@ export const buySingleRandomCard = async (req, res) => {
     let cardFound = await createSingleCardsForUser();
     console.log('AAWW cardFound', cardFound);
 
-    let newInstance = await createNewInstanceForCard(cardFound.id, userId);
+    let newInstance = await createNewInstanceForCard(cardFound.id, userId, cardFound.cardName);
 
     if (!newInstance) {
       const notFound = new NotFoundEvent(
@@ -171,7 +202,7 @@ export const freeSingleRandomCard = async (userId) => {
   try {
     let cardFound = await createSingleCardsForUser();
 
-    let newInstance = await createNewInstanceForCard(cardFound.id, userId);
+    let newInstance = await createNewInstanceForCard(cardFound.id, userId, cardFound.cardName);
 
     if (!newInstance) {
       const notFound = new NotFoundEvent(
