@@ -9,7 +9,7 @@ function CardOverview() {
 
   return (
     <div className='grid grid-cols-2'>
-      <section>
+      <section className='grid grid-cols-1 grid-rows-1'>
         <Card cardData={selectedCard} />
       </section>
       <section>Data</section>

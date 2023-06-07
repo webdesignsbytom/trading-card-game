@@ -10,6 +10,7 @@ import OpenPacksPage from './pages/packs/OpenPacksPage';
 import CardsAvailablePage from './pages/cards/CardsAvailablePage';
 import InvintoryPage from './pages/invintory/InvintoryPage';
 import RewardsPage from './pages/rewards/RewardsPage';
+import CardOverviewPage from './pages/cards/CardOverviewPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path='/shop' element={<ShopPage />} />
       <Route path='/open-packs' element={<OpenPacksPage />} />
       <Route path='/cards' element={<CardsAvailablePage />} />
+      <Route path='/card-overview/:id' element={<CardOverviewPage />} />
       <Route path='/invintory' element={<InvintoryPage />} />
       <Route path='/rewards' element={<RewardsPage />} />
       <Route path='*' element={<Error404 />} />

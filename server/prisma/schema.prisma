@@ -145,6 +145,12 @@ enum CardType {
   PARTY
 }
 
+enum PowerUp {
+  ATTACK
+  HEALTH 
+  DEFENCE
+}
+
 enum Rarity {
   COMMON
   UNCOMMON
@@ -202,7 +208,7 @@ model Card {
   partyCard        PartyCard?
   policyCard       PolicyCard?
   availability     Boolean          @default(true)
-  CardInstance     CardInstance[]
+  cardInstance     CardInstance[]
   createdAt        DateTime         @default(now())
   updatedAt        DateTime?        @updatedAt
 }
@@ -222,6 +228,7 @@ model MemberCard {
 model PartyCard {
   id        Int       @id @default(autoincrement()) // pack id
   name      String    @default("") @db.VarChar(250) // name of conservative memer
+  powerUp   PowerUp   @default(ATTACK)
   cardStat  String    @default("") @db.VarChar(500) // whats written on the card
   effect    String    @default("") @db.VarChar(200)
   cardId    Int       @unique

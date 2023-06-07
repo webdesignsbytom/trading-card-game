@@ -133,11 +133,13 @@ function Navbar() {
                 </li>
               </>
             )}
-            <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
-              <Link className='w-full' to='/album'>
-                Album
-              </Link>
-            </li>
+            {user.email && (
+              <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
+                <Link className='w-full' to='/album'>
+                  Album
+                </Link>
+              </li>
+            )}
             <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
               <Link className='w-full' to='/cards'>
                 Cards List
@@ -196,11 +198,13 @@ function Navbar() {
                   </li>
                 </>
               )}
-              <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
-                <Link className='w-full' to='/album'>
-                  Album
-                </Link>
-              </li>
+              {user.email && (
+                <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
+                  <Link className='w-full' to='/album'>
+                    Album
+                  </Link>
+                </li>
+              )}
               <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
                 <Link className='w-full' to='/cards'>
                   Cards List

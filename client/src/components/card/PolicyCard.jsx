@@ -37,21 +37,21 @@ function PolicyCard({ cardData }) {
   return (
     <section
     onClick={() => toggleCardData(cardData)}
-    className={`outline outline-1 grid grid-rows-a1a outline-white h-full text-white rounded px-2 py-[1px] ${bgColour} card__bg`}
+    className={`outline outline-4 grid grid-rows-a1a outline-purple-800 h-full text-white rounded px-2 py-[1px] ${bgColour} card__bg`}
 
     >
-      <div className='flex justify-between items-center text-sm'>
-        <h2 className='text-white capitalize '>{cardData.policyCard.name}</h2>
-        <h5>Health: {cardData.policyCard.health}</h5>
+      <div className='flex justify-between items-center text-sm my-1'>
+        <h2 className='text-white capitalize'>{cardData.policyCard.name}</h2>
       </div>
+      
 
       <section className='grid grid-rows-2 h-full'>
-        <div className='mb-1 h-full'>
+        <div className='mb-1 h-full outline outline-1 outline-black bg-white'>
           <img className='h-full' src={cardData.image} alt='card' />
         </div>
 
         <section className='grid grid-rows-reg'>
-          <div className='flex justify-between text-sm outline outline-1 outline-black mt-1 px-[2px]'>
+          <div className='flex justify-between text-sm outline outline-1 outline-black py-1 mt-1 px-[2px]'>
             <p className='text-white capitalize'>{cardData.cardType}</p>
             <div className='flex'>
               <p className='text-white'>
@@ -69,20 +69,20 @@ function PolicyCard({ cardData }) {
           </div>
 
           <div className='py-1 px-[2px]'>
-            <h3 className='text-white text-sm flex justify-between'>
-              <span>Attack:</span> <span>{cardData.policyCard.effect}</span>
-            </h3>
-            <h4 className='text-white text-xs'>
-              <span className='text-sm'>Stat:</span>{' '}
-              <span className='text-ss'>{cardData.policyCard.cardStat}</span>
+            <h4 className='text-white text-xs leading-3 mb-1'>
+              <span className='text-xs lg:text-base'>Stat:</span>{' '}
+              <span className='text-ss leading-3 lg:text-xs'>{cardData.policyCard.cardStat}</span>
             </h4>
+            <h5 className='text-white text-xs leading-3'>
+              <span className='text-xs lg:text-base'>Effect:</span>{' '}
+              <span className='text-ss leading-3 lg:text-xs'>{cardData.policyCard.effect}</span>
+            </h5>
           </div>
         </section>
       </section>
-      {/* <p className='text-white'>{cardData.holographic}</p> */}
       <div className='flex justify-between text-ss'>
         <p className='text-white'>{cardData.rarity}</p>
-        <p className='text-white'>{cardData.id}</p>
+        <p className='text-white'>#{cardData.id}</p>
       </div>
     </section>
   );

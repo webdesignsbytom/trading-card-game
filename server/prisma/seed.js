@@ -33,29 +33,29 @@ async function seed() {
     data: {
       userId: devUser.id,
       funds: 1000000,
-      gems: 1000
-    }
-  })
+      gems: 1000,
+    },
+  });
 
   const testUserBank = await dbClient.bank.create({
     data: {
       userId: testUser.id,
       funds: 1000000.67,
-      gems: 1000
-    }
-  })
+      gems: 1000,
+    },
+  });
 
   const devLoginRecord = await dbClient.loginRecord.create({
     data: {
       userId: devUser.id,
-    }
-  })
+    },
+  });
 
   const userLoginRecord = await dbClient.loginRecord.create({
     data: {
       userId: testUser.id,
-    }
-  })
+    },
+  });
 
   // EVENTS
   const eventOne = await dbClient.event.create({
@@ -240,6 +240,7 @@ async function seed() {
       backgroundColour: 'WHITE',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Voted to send ban protest`,
           effect: `Plus 50 damage`,
         },
@@ -260,6 +261,7 @@ async function seed() {
       backgroundColour: 'BLUE',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Voted to send ban protest`,
           effect: `Plus 50 damage`,
         },
@@ -280,6 +282,7 @@ async function seed() {
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Voted to send ban protest`,
           effect: `Plus 50 damage`,
         },
@@ -300,6 +303,7 @@ async function seed() {
       backgroundColour: 'YELLOW',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Voted to send ban protest`,
           effect: `Plus 50 damage`,
         },
@@ -320,6 +324,7 @@ async function seed() {
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Voted to send ban protest`,
           effect: `Plus 50 damage`,
         },
@@ -340,6 +345,7 @@ async function seed() {
       backgroundColour: 'BLACK',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Voted to send ban protest`,
           effect: `Plus 50 damage`,
         },
@@ -361,6 +367,7 @@ async function seed() {
       backgroundColour: 'BLACK',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Old people ride bus to stay warm`,
           effect: `Skip 2 turns`,
         },
@@ -381,6 +388,7 @@ async function seed() {
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Old people ride bus to stay warm`,
           effect: `Lose any attack`,
         },
@@ -401,6 +409,7 @@ async function seed() {
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Old people ride bus to stay warm`,
           effect: `Lose any attack`,
         },
@@ -421,6 +430,7 @@ async function seed() {
       backgroundColour: 'RED',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Old people ride bus to stay warm`,
           effect: `Lose any attack`,
         },
@@ -441,6 +451,7 @@ async function seed() {
       backgroundColour: 'GREEN',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Old people ride bus to stay warm`,
           effect: `Lose any attack`,
         },
@@ -461,6 +472,7 @@ async function seed() {
       backgroundColour: 'RED',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Old people ride bus to stay warm`,
           effect: `Lose any attack`,
         },
@@ -482,6 +494,7 @@ async function seed() {
       backgroundColour: 'RED',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `So rare`,
           effect: `Skip 2 turns`,
         },
@@ -633,6 +646,7 @@ async function seed() {
       backgroundColour: 'WHITE',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Voted to send ban protest`,
           effect: `Plus 50 damage`,
         },
@@ -653,6 +667,7 @@ async function seed() {
       backgroundColour: 'BLUE',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Voted to send ban protest`,
           effect: `Plus 50 damage`,
         },
@@ -673,6 +688,7 @@ async function seed() {
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Voted to send ban protest`,
           effect: `Plus 50 damage`,
         },
@@ -693,6 +709,7 @@ async function seed() {
       backgroundColour: 'YELLOW',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Voted to send ban protest`,
           effect: `Plus 50 damage`,
         },
@@ -713,6 +730,7 @@ async function seed() {
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Voted to send ban protest`,
           effect: `Plus 50 damage`,
         },
@@ -733,6 +751,7 @@ async function seed() {
       backgroundColour: 'BLACK',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Voted to send ban protest`,
           effect: `Plus 50 damage`,
         },
@@ -754,6 +773,7 @@ async function seed() {
       backgroundColour: 'BLACK',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Old people ride bus to stay warm`,
           effect: `Lose any attack`,
         },
@@ -774,6 +794,7 @@ async function seed() {
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Old people ride bus to stay warm`,
           effect: `Lose any attack`,
         },
@@ -794,6 +815,7 @@ async function seed() {
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Old people ride bus to stay warm`,
           effect: `Lose any attack`,
         },
@@ -814,6 +836,7 @@ async function seed() {
       backgroundColour: 'RED',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Old people ride bus to stay warm`,
           effect: `Lose any attack`,
         },
@@ -834,6 +857,7 @@ async function seed() {
       backgroundColour: 'GREEN',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Old people ride bus to stay warm`,
           effect: `Lose any attack`,
         },
@@ -854,6 +878,7 @@ async function seed() {
       backgroundColour: 'RED',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Old people ride bus to stay warm`,
           effect: `Lose any attack`,
         },
@@ -874,6 +899,7 @@ async function seed() {
       backgroundColour: 'RED',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `So rare`,
           effect: `Skip 2 turns`,
         },
@@ -1025,6 +1051,7 @@ async function seed() {
       backgroundColour: 'WHITE',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
           effect: `Plus 100 damage to all regular people`,
         },
@@ -1045,6 +1072,7 @@ async function seed() {
       backgroundColour: 'BLUE',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
           effect: `Plus 50 damage`,
         },
@@ -1065,6 +1093,7 @@ async function seed() {
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
           effect: `Plus 50 damage`,
         },
@@ -1085,6 +1114,7 @@ async function seed() {
       backgroundColour: 'YELLOW',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
           effect: `Plus 50 damage`,
         },
@@ -1105,6 +1135,7 @@ async function seed() {
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
           effect: `Plus 50 damage`,
         },
@@ -1125,6 +1156,7 @@ async function seed() {
       backgroundColour: 'BLACK',
       partyCard: {
         create: {
+          name: 'Party Card Name',
           cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
           effect: `Plus 50 damage`,
         },
@@ -1146,6 +1178,7 @@ async function seed() {
       backgroundColour: 'BLACK',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Allow billions in fraud`,
           effect: `Skip 2 turns`,
         },
@@ -1166,6 +1199,7 @@ async function seed() {
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Allow billions in fraud`,
           effect: `Skip 2 turns`,
         },
@@ -1186,6 +1220,7 @@ async function seed() {
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Allow billions in fraud`,
           effect: `Skip 2 turns`,
         },
@@ -1206,6 +1241,7 @@ async function seed() {
       backgroundColour: 'RED',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Allow billions in fraud`,
           effect: `Skip 2 turns`,
         },
@@ -1226,6 +1262,7 @@ async function seed() {
       backgroundColour: 'GREEN',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Allow billions in fraud`,
           effect: `Skip 2 turns`,
         },
@@ -1246,6 +1283,7 @@ async function seed() {
       backgroundColour: 'RED',
       policyCard: {
         create: {
+          name: 'Policy Card name',
           cardStat: `Allow billions in fraud`,
           effect: `Skip 2 turns`,
         },
@@ -1267,6 +1305,1225 @@ async function seed() {
       backgroundColour: 'RED',
       policyCard: {
         create: {
+          name: 'Policy Card name', 
+          cardStat: `So rare`,
+          effect: `Skip 2 turns`,
+        },
+      },
+    },
+  });
+
+  /////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+  //SEOCND ROUND 
+
+  // COMMON Brexit Member
+  const commBrexitMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/100-2023', // t = test
+      cardName: 'Common Brexit Member card test 2',
+      edition: 'First',
+      rarity: 'COMMON',
+      holographic: false,
+      packType: 'BREXIT',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/055.png',
+      backgroundColour: 'BLUE',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+  // UNCOMMON Brexit Member
+  const uncommBrexitMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/101-2023', // t = test
+      cardName: 'Uncommon Brexit Member card test 2',
+      edition: 'First',
+      rarity: 'UNCOMMON',
+      holographic: false,
+      packType: 'BREXIT',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/056.png',
+      backgroundColour: 'GREEN',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+  // RARE Brexit Member
+  const rareBrexitMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/102-2023', // t = test
+      cardName: 'Rare Brexit Member card test 2',
+      edition: 'First',
+      rarity: 'RARE',
+      holographic: false,
+      packType: 'BREXIT',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/057.png',
+      backgroundColour: 'GREEN',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+  // RAREHOLO Brexit Member
+  const rareHoloBrexitMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/103-2023', // t = test
+      cardName: 'Rare holo Brexit Member card test 2',
+      edition: 'First',
+      rarity: 'RAREHOLO',
+      holographic: true,
+      packType: 'BREXIT',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/058.png',
+      backgroundColour: 'GREEN',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+  // MEGARARE Brexit Member
+  const megaRareBrexitMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/104-2023', // t = test
+      cardName: 'Mega rare Brexit Member card test 2',
+      edition: 'First',
+      rarity: 'MEGARARE',
+      holographic: false,
+      packType: 'BREXIT',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/059.png',
+      backgroundColour: 'GREEN',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+  // MEGARAREHOLO Brexit Member
+  const megaRareHoloBrexitMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/105-2023', // t = test
+      cardName: 'Mega rare holo Brexit Member card test 2',
+      edition: 'First',
+      rarity: 'MEGARAREHOLO',
+      holographic: true,
+      packType: 'BREXIT',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/060.png',
+      backgroundColour: 'RED',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+
+  // COMMON Brexit Party
+  const commBrexitParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/200-2023', // t = test
+      cardName: 'Common Brexit Party card test 2',
+      edition: 'First',
+      rarity: 'COMMON',
+      holographic: false,
+      packType: 'BREXIT',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/061.png',
+      backgroundColour: 'WHITE',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Voted to send ban protest`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+  // UNCOMMON Brexit Party
+  const uncommBrexitParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/201-2023', // t = test
+      cardName: 'Uncommon Brexit Party card test 2',
+      edition: 'First',
+      rarity: 'UNCOMMON',
+      holographic: false,
+      packType: 'BREXIT',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/062.png',
+      backgroundColour: 'BLUE',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Voted to send ban protest`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+  // RARE Brexit Party
+  const rareBrexitParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/202-2023', // t = test
+      cardName: 'Rare Brexit Party card test 2',
+      edition: 'First',
+      rarity: 'RARE',
+      holographic: false,
+      packType: 'BREXIT',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/063.png',
+      backgroundColour: 'PURPLE',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Voted to send ban protest`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+  // RAREHOLO Brexit Party
+  const rareHoloBrexitParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/203-2023', // t = test
+      cardName: 'Rare holo Brexit Party card test 2',
+      edition: 'First',
+      rarity: 'RAREHOLO',
+      holographic: true,
+      packType: 'BREXIT',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/064.png',
+      backgroundColour: 'YELLOW',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Voted to send ban protest`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+  // MEGARARE Brexit Party
+  const megaRareBrexitParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/204-2023', // t = test
+      cardName: 'Mega rare Brexit Party card test 2',
+      edition: 'First',
+      rarity: 'RARE',
+      holographic: false,
+      packType: 'BREXIT',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/065.png',
+      backgroundColour: 'PURPLE',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Voted to send ban protest`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+  // MEGARAREHOLO Brexit Party
+  const megaRareHoloBrexitParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/205-2023', // t = test
+      cardName: 'Mega rare holo Brexit Party card test 2',
+      edition: 'First',
+      rarity: 'MEGARAREHOLO',
+      holographic: true,
+      packType: 'BREXIT',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/066.png',
+      backgroundColour: 'BLACK',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Voted to send ban protest`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+
+  // COMMON Brexit Policy
+  const commBrexitPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/300-2023', // t = test
+      cardName: 'Common Brexit Policy card test 2',
+      edition: 'First',
+      rarity: 'COMMON',
+      holographic: false,
+      packType: 'BREXIT',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/067.png',
+      backgroundColour: 'BLACK',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Old people ride bus to stay warm`,
+          effect: `Skip 2 turns`,
+        },
+      },
+    },
+  });
+  // UNCOMMON Brexit Policy
+  const uncommBrexitPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/301-2023', // t = test
+      cardName: 'Uncommon Brexit Policy card test 2',
+      edition: 'First',
+      rarity: 'UNCOMMON',
+      holographic: false,
+      packType: 'BREXIT',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/068.png',
+      backgroundColour: 'BLUE',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Old people ride bus to stay warm`,
+          effect: `Lose any attack`,
+        },
+      },
+    },
+  });
+  // RARE Brexit Policy
+  const rareBrexitPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/302-2023', // t = test
+      cardName: 'Rare Brexit Policy card test 2',
+      edition: 'First',
+      rarity: 'RARE',
+      holographic: false,
+      packType: 'BREXIT',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/069.png',
+      backgroundColour: 'BLUE',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Old people ride bus to stay warm`,
+          effect: `Lose any attack`,
+        },
+      },
+    },
+  });
+  // RAREHOLO Brexit Policy
+  const rareHoloBrexitPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/303-2023', // t = test
+      cardName: 'Rare holo Brexit Policy card test 2',
+      edition: 'First',
+      rarity: 'RAREHOLO',
+      holographic: true,
+      packType: 'BREXIT',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/070.png',
+      backgroundColour: 'RED',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Old people ride bus to stay warm`,
+          effect: `Lose any attack`,
+        },
+      },
+    },
+  });
+  // MEGARARE Brexit Policy
+  const megaRareBrexitPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/304-2023', // t = test
+      cardName: 'Mega rare Brexit Policy card test 2',
+      edition: 'First',
+      rarity: 'RARE',
+      holographic: false,
+      packType: 'BREXIT',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/071.png',
+      backgroundColour: 'GREEN',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Old people ride bus to stay warm`,
+          effect: `Lose any attack`,
+        },
+      },
+    },
+  });
+  // MEGARAREHOLO Brexit Policy
+  const megaRareHoloBrexitPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/305-2023', // t = test
+      cardName: 'Mega rare holo Brexit Policy card test 2',
+      edition: 'First',
+      rarity: 'MEGARAREHOLO',
+      holographic: true,
+      packType: 'BREXIT',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/072.png',
+      backgroundColour: 'RED',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Old people ride bus to stay warm`,
+          effect: `Lose any attack`,
+        },
+      },
+    },
+  });
+
+  // ULTIMATE Brexit Policy
+  const ultimateBrexitPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/306-2023', // t = test
+      cardName: 'Ultimate Brexit Policy card test 2',
+      edition: 'First',
+      rarity: 'ULTIMATE',
+      holographic: true,
+      packType: 'BREXIT',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/152.png',
+      backgroundColour: 'RED',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `So rare`,
+          effect: `Skip 2 turns`,
+        },
+      },
+    },
+  });
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+
+  // COMMON Election Member
+  const commElectionMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/400-2023', // t = test
+      cardName: 'Common Election Member card test 2',
+      edition: 'First',
+      rarity: 'COMMON',
+      holographic: false,
+      packType: 'ELECTION',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/073.png',
+      backgroundColour: 'BLUE',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+  // UNCOMMON Election Member
+  const uncommElectionMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/401-2023', // t = test
+      cardName: 'Uncommon Election Member card test 2',
+      edition: 'First',
+      rarity: 'UNCOMMON',
+      holographic: false,
+      packType: 'ELECTION',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/074.png',
+      backgroundColour: 'GREEN',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+  // RARE Election Member
+  const rareElectionMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/402-2023', // t = test
+      cardName: 'Rare Election Member card test 2',
+      edition: 'First',
+      rarity: 'RARE',
+      holographic: false,
+      packType: 'ELECTION',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/075.png',
+      backgroundColour: 'GREEN',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+  // RAREHOLO Election Member
+  const rareHoloElectionMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/403-2023', // t = test
+      cardName: 'Rare holo Election Member card test 2',
+      edition: 'First',
+      rarity: 'RAREHOLO',
+      holographic: true,
+      packType: 'ELECTION',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/076.png',
+      backgroundColour: 'GREEN',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+  // MEGARARE Election Member
+  const megaRareElectionMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/404-2023', // t = test
+      cardName: 'Mega rare Election Member card test 2',
+      edition: 'First',
+      rarity: 'MEGARARE',
+      holographic: false,
+      packType: 'ELECTION',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/077.png',
+      backgroundColour: 'GREEN',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+  // MEGARAREHOLO Election Member
+  const megaRareHoloElectionMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/405-2023', // t = test
+      cardName: 'Mega rare holo Election Member card test 2',
+      edition: 'First',
+      rarity: 'MEGARAREHOLO',
+      holographic: true,
+      packType: 'ELECTION',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/078.png',
+      backgroundColour: 'RED',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+
+  // COMMON Election Party
+  const commElectionParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/500-2023', // t = test
+      cardName: 'Common Election Party card test 2',
+      edition: 'First',
+      rarity: 'COMMON',
+      holographic: false,
+      packType: 'ELECTION',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/079.png',
+      backgroundColour: 'WHITE',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Voted to send ban protest`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+  // UNCOMMON Election Party
+  const uncommElectionParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/501-2023', // t = test
+      cardName: 'Uncommon Election Party card test 2',
+      edition: 'First',
+      rarity: 'UNCOMMON',
+      holographic: false,
+      packType: 'ELECTION',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/080.png',
+      backgroundColour: 'BLUE',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Voted to send ban protest`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+  // RARE Election Party
+  const rareElectionParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/502-2023', // t = test
+      cardName: 'Rare Election Party card test 2',
+      edition: 'First',
+      rarity: 'RARE',
+      holographic: false,
+      packType: 'ELECTION',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/081.png',
+      backgroundColour: 'PURPLE',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Voted to send ban protest`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+  // RAREHOLO Election Party
+  const rareHoloElectionParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/503-2023', // t = test
+      cardName: 'Rare holo Election Party card test 2',
+      edition: 'First',
+      rarity: 'RAREHOLO',
+      holographic: true,
+      packType: 'ELECTION',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/082.png',
+      backgroundColour: 'YELLOW',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Voted to send ban protest`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+  // MEGARARE Election Party
+  const megaRareElectionParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/504-2023', // t = test
+      cardName: 'Mega rare Election Party card test 2',
+      edition: 'First',
+      rarity: 'RARE',
+      holographic: false,
+      packType: 'ELECTION',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/083.png',
+      backgroundColour: 'PURPLE',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Voted to send ban protest`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+  // MEGARAREHOLO Election Party
+  const megaRareHoloElectionParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/505-2023', // t = test
+      cardName: 'Mega rare holo Election Party card test 2',
+      edition: 'First',
+      rarity: 'MEGARAREHOLO',
+      holographic: true,
+      packType: 'ELECTION',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/084.png',
+      backgroundColour: 'BLACK',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Voted to send ban protest`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+
+  // COMMON Election Policy
+  const commElectionPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/600-2023', // t = test
+      cardName: 'Common Election Policy card test 2',
+      edition: 'First',
+      rarity: 'COMMON',
+      holographic: false,
+      packType: 'ELECTION',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/085.png',
+      backgroundColour: 'BLACK',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Old people ride bus to stay warm`,
+          effect: `Lose any attack`,
+        },
+      },
+    },
+  });
+  // UNCOMMON Election Policy
+  const uncommElectionPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/601-2023', // t = test
+      cardName: 'Uncommon Election Policy card test 2',
+      edition: 'First',
+      rarity: 'UNCOMMON',
+      holographic: false,
+      packType: 'ELECTION',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/086.png',
+      backgroundColour: 'BLUE',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Old people ride bus to stay warm`,
+          effect: `Lose any attack`,
+        },
+      },
+    },
+  });
+  // RARE Election Policy
+  const rareElectionPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/602-2023', // t = test
+      cardName: 'Rare Election Policy card test 2',
+      edition: 'First',
+      rarity: 'RARE',
+      holographic: false,
+      packType: 'ELECTION',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/087.png',
+      backgroundColour: 'BLUE',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Old people ride bus to stay warm`,
+          effect: `Lose any attack`,
+        },
+      },
+    },
+  });
+  // RAREHOLO Election Policy
+  const rareHoloElectionPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/603-2023', // t = test
+      cardName: 'Rare holo Election Policy card test 2',
+      edition: 'First',
+      rarity: 'RAREHOLO',
+      holographic: true,
+      packType: 'ELECTION',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/088.png',
+      backgroundColour: 'RED',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Old people ride bus to stay warm`,
+          effect: `Lose any attack`,
+        },
+      },
+    },
+  });
+  // MEGARARE Election Policy
+  const megaRareElectionPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/604-2023', // t = test
+      cardName: 'Mega rare Election Policy card test 2',
+      edition: 'First',
+      rarity: 'RARE',
+      holographic: false,
+      packType: 'ELECTION',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/089.png',
+      backgroundColour: 'GREEN',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Old people ride bus to stay warm`,
+          effect: `Lose any attack`,
+        },
+      },
+    },
+  });
+  // MEGARAREHOLO Election Policy
+  const megaRareHoloElectionPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/605-2023', // t = test
+      cardName: 'Mega rare holo Election Policy card test 2',
+      edition: 'First',
+      rarity: 'MEGARAREHOLO',
+      holographic: true,
+      packType: 'ELECTION',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/090.png',
+      backgroundColour: 'RED',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Old people ride bus to stay warm`,
+          effect: `Lose any attack`,
+        },
+      },
+    },
+  });
+  // ULTIMATE Election Policy
+  const ultimateElectionPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/606-2023', // t = test
+      cardName: 'Ultimate Election Policy card test 2',
+      edition: 'First',
+      rarity: 'ULTIMATE',
+      holographic: true,
+      packType: 'ELECTION',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/154.png',
+      backgroundColour: 'RED',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `So rare`,
+          effect: `Skip 2 turns`,
+        },
+      },
+    },
+  });
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+
+  // COMMON Covid Member
+  const commCovidMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/700-2023', // t = test
+      cardName: 'Common Covid Member card test 2',
+      edition: 'First',
+      rarity: 'COMMON',
+      holographic: false,
+      packType: 'COVID',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/091.png',
+      backgroundColour: 'BLUE',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+  // UNCOMMON Covid Member
+  const uncommCovidMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/701-2023', // t = test
+      cardName: 'Uncommon Covid Member card test 2',
+      edition: 'First',
+      rarity: 'UNCOMMON',
+      holographic: false,
+      packType: 'COVID',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/092.png',
+      backgroundColour: 'GREEN',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+  // RARE Covid Member
+  const rareCovidMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/702-2023', // t = test
+      cardName: 'Rare Covid Member card test 2',
+      edition: 'First',
+      rarity: 'RARE',
+      holographic: false,
+      packType: 'COVID',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/093.png',
+      backgroundColour: 'GREEN',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+  // RAREHOLO Covid Member
+  const rareHoloCovidMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/703-2023', // t = test
+      cardName: 'Rare holo Covid Member card test 2',
+      edition: 'First',
+      rarity: 'RAREHOLO',
+      holographic: true,
+      packType: 'COVID',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/094.png',
+      backgroundColour: 'GREEN',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+  // MEGARARE Covid Member
+  const megaRareCovidMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/704-2023', // t = test
+      cardName: 'Mega rare Covid Member card test 2',
+      edition: 'First',
+      rarity: 'MEGARARE',
+      holographic: false,
+      packType: 'COVID',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/095.png',
+      backgroundColour: 'GREEN',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+  // MEGARAREHOLO Covid Member
+  const megaRareHoloCovidMember2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/705-2023', // t = test
+      cardName: 'Mega rare holo Covid Member card test 2',
+      edition: 'First',
+      rarity: 'MEGARAREHOLO',
+      holographic: true,
+      packType: 'COVID',
+      cardType: 'MEMBER',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/096.png',
+      backgroundColour: 'RED',
+      memberCard: {
+        create: {
+          health: 100,
+          attack: 20,
+          cardStat: `This mp has never done much`,
+        },
+      },
+    },
+  });
+
+  // COMMON Covid Party
+  const commCovidParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/800-2023', // t = test
+      cardName: 'Common Covid Party card test 2',
+      edition: 'First',
+      rarity: 'COMMON',
+      holographic: false,
+      packType: 'COVID',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/097.png',
+      backgroundColour: 'WHITE',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
+          effect: `Plus 100 damage to all regular people`,
+        },
+      },
+    },
+  });
+  // UNCOMMON Covid Party
+  const uncommCovidParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/801-2023', // t = test
+      cardName: 'Uncommon Covid Party card test 2',
+      edition: 'First',
+      rarity: 'UNCOMMON',
+      holographic: false,
+      packType: 'COVID',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/098.png',
+      backgroundColour: 'BLUE',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+  // RARE Covid Party
+  const rareCovidParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/802-2023', // t = test
+      cardName: 'Rare Covid Party card test 2',
+      edition: 'First',
+      rarity: 'RARE',
+      holographic: false,
+      packType: 'COVID',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/099.png',
+      backgroundColour: 'PURPLE',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+  // RAREHOLO Covid Party
+  const rareHoloCovidParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/803-2023', // t = test
+      cardName: 'Rare holo Covid Party card test 2',
+      edition: 'First',
+      rarity: 'RAREHOLO',
+      holographic: true,
+      packType: 'COVID',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/100.png',
+      backgroundColour: 'YELLOW',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+  // MEGARARE Covid Party
+  const megaRareCovidParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/804-2023', // t = test
+      cardName: 'Mega rare Covid Party card test 2',
+      edition: 'First',
+      rarity: 'RARE',
+      holographic: false,
+      packType: 'COVID',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/101.png',
+      backgroundColour: 'PURPLE',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+  // MEGARAREHOLO Covid Party
+  const megaRareHoloCovidParty2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/805-2023', // t = test
+      cardName: 'Mega rare holo Covid Party card test 2',
+      edition: 'First',
+      rarity: 'MEGARAREHOLO',
+      holographic: true,
+      packType: 'COVID',
+      cardType: 'PARTY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/102.png',
+      backgroundColour: 'BLACK',
+      partyCard: {
+        create: {
+          name: 'Party Card Name',
+          cardStat: `Let the fuel price rise 50p while companies make 4x profit on oil`,
+          effect: `Plus 50 damage`,
+        },
+      },
+    },
+  });
+
+  // COMMON Covid Policy
+  const commCovidPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/900-2023', // t = test
+      cardName: 'Common Covid Policy card test 2',
+      edition: 'First',
+      rarity: 'COMMON',
+      holographic: false,
+      packType: 'COVID',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/103.png',
+      backgroundColour: 'BLACK',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Allow billions in fraud`,
+          effect: `Skip 2 turns`,
+        },
+      },
+    },
+  });
+  // UNCOMMON Covid Policy
+  const uncommCovidPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/901-2023', // t = test
+      cardName: 'Uncommon Covid Policy card test 2',
+      edition: 'First',
+      rarity: 'UNCOMMON',
+      holographic: false,
+      packType: 'COVID',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/104.png',
+      backgroundColour: 'BLUE',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Allow billions in fraud`,
+          effect: `Skip 2 turns`,
+        },
+      },
+    },
+  });
+  // RARE Covid Policy
+  const rareCovidPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/902-2023', // t = test
+      cardName: 'Rare Covid Policy card test 2',
+      edition: 'First',
+      rarity: 'RARE',
+      holographic: false,
+      packType: 'COVID',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/105.png',
+      backgroundColour: 'BLUE',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Allow billions in fraud`,
+          effect: `Skip 2 turns`,
+        },
+      },
+    },
+  });
+  // RAREHOLO Covid Policy
+  const rareHoloCovidPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/903-2023', // t = test
+      cardName: 'Rare holo Covid Policy card test 2',
+      edition: 'First',
+      rarity: 'RAREHOLO',
+      holographic: true,
+      packType: 'COVID',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/106.png',
+      backgroundColour: 'RED',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Allow billions in fraud`,
+          effect: `Skip 2 turns`,
+        },
+      },
+    },
+  });
+  // MEGARARE Covid Policy
+  const megaRareCovidPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/904-2023', // t = test
+      cardName: 'Mega rare Covid Policy card test 2',
+      edition: 'First',
+      rarity: 'RARE',
+      holographic: false,
+      packType: 'COVID',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/107.png',
+      backgroundColour: 'GREEN',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Allow billions in fraud`,
+          effect: `Skip 2 turns`,
+        },
+      },
+    },
+  });
+  // MEGARAREHOLO Covid Policy
+  const megaRareHoloCovidPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/905-2023', // t = test
+      cardName: 'Mega rare holo Covid Policy card test 2',
+      edition: 'First',
+      rarity: 'MEGARAREHOLO',
+      holographic: true,
+      packType: 'COVID',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/108.png',
+      backgroundColour: 'RED',
+      policyCard: {
+        create: {
+          name: 'Policy Card name',
+          cardStat: `Allow billions in fraud`,
+          effect: `Skip 2 turns`,
+        },
+      },
+    },
+  });
+
+  // ULTIMATE Covid Policy
+  const ultimateCovidPolicy2 = await dbClient.card.create({
+    data: {
+      serialNumber: 't24/906-2023', // t = test
+      cardName: 'Ultimate Covid Policy card test 2',
+      edition: 'First',
+      rarity: 'ULTIMATE',
+      holographic: true,
+      packType: 'COVID',
+      cardType: 'POLICY',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/155.png',
+      backgroundColour: 'RED',
+      policyCard: {
+        create: {
+          name: 'Policy Card name', 
           cardStat: `So rare`,
           effect: `Skip 2 turns`,
         },
@@ -1277,16 +2534,16 @@ async function seed() {
   const firstInstance = await dbClient.cardInstance.create({
     data: {
       userId: devUser.id,
-      cardId: 1
-    }
-  })
+      cardId: 1,
+    },
+  });
 
   const secondInstance = await dbClient.cardInstance.create({
     data: {
       userId: devUser.id,
-      cardId: 2
-    }
-  })
+      cardId: 2,
+    },
+  });
 }
 
 seed().catch(async (error) => {
