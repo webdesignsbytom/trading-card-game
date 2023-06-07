@@ -10,6 +10,7 @@ export const findAllUsers = () =>
       cards: true,
       packs: true,
       bank: true,
+      loginRecord: true,
     },
   });
 
@@ -21,6 +22,7 @@ export const findUserByEmail = (email) =>
       cards: true,
       packs: true,
       bank: true,
+      loginRecord: true,
     },
   });
 
@@ -39,7 +41,51 @@ export const findUserById = (userId) =>
       cards: true,
       packs: true,
       bank: true,
+      loginRecord: true,
     },
+  });
+
+export const findUserLoginRecord = (userId) =>
+  dbClient.loginRecord.findUnique({
+    where: {
+      userId: userId,
+    }
+  });
+
+export const updateUserLoginRecordToCollectedReward = (recordId) =>
+  dbClient.loginRecord.update({
+    where: {
+      id: recordId,
+    },
+    data: {
+      collectedReward: true,
+      daysInARow: {
+        increment: 1
+      }
+    }
+  });
+
+export const resetUserLoginRecord = (recordId, newLoginTime) =>
+  dbClient.loginRecord.update({
+    where: {
+      id: recordId,
+    },
+    data: {
+      collectedReward: true,
+      daysInARow: 1,
+      lastLoginDateTime: newLoginTime,
+    }
+  });
+
+export const updateUserLoginRecordToRewardAvailable = (recordId, newLoginTime) =>
+  dbClient.loginRecord.update({
+    where: {
+      id: recordId,
+    },
+    data: {
+      lastLoginDateTime: newLoginTime,
+      collectedReward: false,
+    }
   });
 
 export const findUsersByRole = (role) =>
@@ -52,6 +98,7 @@ export const findUsersByRole = (role) =>
       cards: true,
       packs: true,
       bank: true,
+      loginRecord: true,
     },
   });
 
@@ -122,6 +169,7 @@ export const setStarterCardsToClaimed = (userId) =>
       cards: true,
       packs: true,
       bank: true,
+      loginRecord: true,
     },
   });
 

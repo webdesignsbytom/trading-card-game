@@ -45,6 +45,18 @@ async function seed() {
     }
   })
 
+  const devLoginRecord = await dbClient.loginRecord.create({
+    data: {
+      userId: devUser.id,
+    }
+  })
+
+  const userLoginRecord = await dbClient.loginRecord.create({
+    data: {
+      userId: testUser.id,
+    }
+  })
+
   // EVENTS
   const eventOne = await dbClient.event.create({
     data: {
