@@ -77,6 +77,9 @@ function TradingPage() {
     setOpenTradeComponentSelected(false);
   }
 
+  const goToUpdatedTrade = () => {
+  }
+
   return (
     <div className='bg-black main__bg h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
@@ -90,6 +93,11 @@ function TradingPage() {
             </article>
             <section className='grid h-full'>
               <div className='bg-red-500 nav__bg outline outline-4 outline-black rounded p-2 grid justify-end grid-flow-col gap-4'>
+                <div className=''>
+                  <button onClick={goToUpdatedTrade} className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-2 px-4 rounded-xl outline outline-2 outline-black'>
+                    Trade Update
+                  </button>
+                </div>
                 <div className=''>
                   <button onClick={toggleOpenTrades} className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-2 px-4 rounded-xl outline outline-2 outline-black'>
                     Open Trades

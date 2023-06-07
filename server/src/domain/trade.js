@@ -1,12 +1,13 @@
 import dbClient from '../utils/dbClient.js';
 
-export const createTradeRecordRequest = (createdById, creatorCardId, receivedById, recieverCardId) =>
+export const createTradeRecordRequest = (createdById, creatorCardInstanceId, receivedById, creatorCardId, creatorCardName) =>
   dbClient.tradeRecord.create({
     data: {
       createdById: createdById,
-      creatorCardId: creatorCardId,
+      creatorCardInstanceId: creatorCardInstanceId,
       receivedById: receivedById,
-      recieverCardId: recieverCardId
+      creatorCardId: creatorCardId,
+      creatorCardName: creatorCardName
     },
   });
 
@@ -17,5 +18,18 @@ export const createTradeRecordRequest = (createdById, creatorCardId, receivedByI
     },
     data: {
       userId: userId,
+    },
+  });
+
+  export const findTradeById = (tradeId) =>
+  dbClient.tradeRecord.findFirst({
+    where: {
+      id: tradeId,
+    },
+  });
+  export const deleteTradeById = (tradeId) =>
+  dbClient.tradeRecord.delete({
+    where: {
+      id: tradeId,
     },
   });

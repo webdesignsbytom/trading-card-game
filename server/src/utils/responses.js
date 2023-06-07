@@ -76,6 +76,12 @@ export const EVENT_MESSAGES = {
   userReviewsNotFound: `Failed to find user reviews`,
   createReviewFail: `Failed to create review`,
   markReviewViewedFailed: `Failed to mark review as viewed`,
+  // Trades
+  tradesTag: `Trade database`,
+  notFoundTrade: `Failed to find trade/s`,
+  userTradesNotFound: `Failed to find user trades`,
+  createTradeFail: `Failed to create trade`,
+  markTradeViewedFailed: `Failed to mark trade as viewed`,
   // Users
   userTag: `User databased`,
   userNotFound: `Failed to find user/s`,

@@ -2584,6 +2584,17 @@ async function seed() {
       cardId: 3,
     },
   });
+
+  const openTrade = await dbClient.tradeRecord.create({
+    data: {
+      createdById: devUser.id,
+      creatorCardInstanceId: firstInstance.id,
+      receivedById: testUser.id,
+      creatorCardId: 1,
+      creatorUsername: 'deve',
+      recieverUsername: 'xtombrock'
+    },
+  });
 }
 
 seed().catch(async (error) => {
