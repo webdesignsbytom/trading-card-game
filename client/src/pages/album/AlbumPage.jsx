@@ -10,15 +10,13 @@ import { ToggleContext } from '../../context/ToggleContext';
 
 function AlbumPage() {
   const { user } = useContext(UserContext);
-  const { toggleCardData, viewCard } = useContext(ToggleContext);
+  const { viewCard } = useContext(ToggleContext);
 
   const [albumOpen, setAlbumOpen] = useState(false);
 
   const [usersCardCollectionArray, setUsersCardCollectionArray] = useState(
     user.cards
   );
-
-  console.log('user', user);
 
   const openAlbum = () => {
     setAlbumOpen(!albumOpen);

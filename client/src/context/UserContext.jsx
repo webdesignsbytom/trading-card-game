@@ -19,11 +19,9 @@ const UserContextProvider = ({ children }) => {
 
   useEffect(() => {
     const decodedUserData = LoggedInUser();
-    console.log('AAAAAAAAAAAAAAAA');
 
     if (decodedUserData !== null) {
       const userId = decodedUserData.id;
-      console.log('BBBBBBBBBBBBBbb', userId);
       client
         .get(`/users/user/id/${userId}`)
         .then((res) => {
