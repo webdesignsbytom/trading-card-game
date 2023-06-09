@@ -16,6 +16,18 @@ async function seed() {
     },
   });
 
+  const testUser2 = await dbClient.user.create({
+    data: {
+      email: `testuser@example.com`,
+      password,
+      profile: {
+        create: {
+          username: `testy`,
+        },
+      },
+    },
+  });
+
   const devUser = await dbClient.user.create({
     data: {
       email: 'dev@dev.com',
@@ -2542,6 +2554,45 @@ async function seed() {
     data: {
       userId: devUser.id,
       cardId: 2,
+    },
+  });
+
+  const thirdInstance = await dbClient.cardInstance.create({
+    data: {
+      userId: devUser.id,
+      cardId: 3,
+    },
+  });
+
+  const firstInstance2 = await dbClient.cardInstance.create({
+    data: {
+      userId: testUser2.id,
+      cardId: 1,
+    },
+  });
+
+  const secondInstance2 = await dbClient.cardInstance.create({
+    data: {
+      userId: testUser2.id,
+      cardId: 2,
+    },
+  });
+
+  const thirdInstance2 = await dbClient.cardInstance.create({
+    data: {
+      userId: testUser2.id,
+      cardId: 3,
+    },
+  });
+
+  const openTrade = await dbClient.tradeRecord.create({
+    data: {
+      createdById: devUser.id,
+      creatorCardInstanceId: firstInstance.id,
+      receivedById: testUser.id,
+      creatorCardId: 1,
+      creatorUsername: 'deve',
+      recieverUsername: 'xtombrock'
     },
   });
 }

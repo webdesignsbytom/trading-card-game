@@ -10,6 +10,9 @@ import {
   findAllCardInstances,
   findAllCards,
   findAllCardsFromPack,
+  findCardById,
+  findCardByName,
+  findCardInstanceById,
   findCardsByCardType,
 } from '../domain/cards.js';
 import { findUserById } from '../domain/users.js';
@@ -33,6 +36,39 @@ export const getAllCards = async (req, res) => {
     }
 
     return sendDataResponse(res, 200, { cards: foundCards });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get all cards`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+// Get card by id
+export const getCardById = async (req, res) => {
+  console.log('getCardById');
+  const { cardInstanceId } = req.params
+  console.log('cardId', cardInstanceId);
+
+  try {
+    const foundCardInstance = await findCardInstanceById(cardInstanceId);
+    console.log('found card', foundCardInstance);
+
+    if (!foundCardInstance) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundCards
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    const foundCard = await findCardByName(foundCardInstance.name)
+    console.log('found card', foundCard);
+
+    return sendDataResponse(res, 200, { cardInstance: foundCardInstance, card: foundCard });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Get all cards`);
@@ -142,7 +178,7 @@ export const buySingleRandomCard = async (req, res) => {
     let cardFound = await createSingleCardsForUser();
     console.log('AAWW cardFound', cardFound);
 
-    let newInstance = await createNewInstanceForCard(cardFound.id, userId);
+    let newInstance = await createNewInstanceForCard(cardFound.id, userId, cardFound.cardName);
 
     if (!newInstance) {
       const notFound = new NotFoundEvent(
@@ -171,7 +207,7 @@ export const freeSingleRandomCard = async (userId) => {
   try {
     let cardFound = await createSingleCardsForUser();
 
-    let newInstance = await createNewInstanceForCard(cardFound.id, userId);
+    let newInstance = await createNewInstanceForCard(cardFound.id, userId, cardFound.cardName);
 
     if (!newInstance) {
       const notFound = new NotFoundEvent(

@@ -19,10 +19,29 @@ export const findAllCardInstances = () =>
     },
   });
 
+export const findCardInstanceById = (id) =>
+  dbClient.cardInstance.findFirst({
+    where: {
+      id: id
+    }
+  });
+
 export const findCardById = (id) =>
   dbClient.card.findFirst({
     where: {
       id: id,
+    },
+    include: {
+      memberCard: true,
+      partyCard: true,
+      policyCard: true,
+    },
+  });
+
+export const findCardByName = (cardName) =>
+  dbClient.card.findFirst({
+    where: {
+      cardName: cardName,
     },
     include: {
       memberCard: true,
@@ -103,19 +122,21 @@ export const findAllCardsAvailableToBuy = () =>
     }
   });
 
-export const createNewInstanceForCard = (cardId, userId) =>
+export const createNewInstanceForCard = (cardId, userId, cardName) =>
   dbClient.cardInstance.create({
     data: {
       userId: userId,
       cardId: cardId,
+      name: cardName
     },
   });
 
-export const createNewInstanceForPack = (packId, cardId) =>
+export const createNewInstanceForPack = (packId, cardId, cardName) =>
   dbClient.cardInstance.create({
     data: {
       packId: packId,
       cardId: cardId,
+      name: cardName
     },
   });
 
@@ -128,3 +149,4 @@ export const setCardFromPackToUser = (instanceId, userId) =>
       userId: userId,
     },
   });
+

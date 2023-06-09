@@ -29,6 +29,8 @@ export const findUserByEmail = (email) =>
 export const findUserByUsername = (username) =>
   dbClient.profile.findUnique({
     where: { username: username },
+    include: {
+    },
   });
 
 export const findUserById = (userId) =>
@@ -49,7 +51,7 @@ export const findUserLoginRecord = (userId) =>
   dbClient.loginRecord.findUnique({
     where: {
       userId: userId,
-    }
+    },
   });
 
 export const updateUserLoginRecordToCollectedReward = (recordId) =>
@@ -60,9 +62,9 @@ export const updateUserLoginRecordToCollectedReward = (recordId) =>
     data: {
       collectedReward: true,
       daysInARow: {
-        increment: 1
-      }
-    }
+        increment: 1,
+      },
+    },
   });
 
 export const resetUserLoginRecord = (recordId, newLoginTime) =>
@@ -74,10 +76,13 @@ export const resetUserLoginRecord = (recordId, newLoginTime) =>
       collectedReward: true,
       daysInARow: 1,
       lastLoginDateTime: newLoginTime,
-    }
+    },
   });
 
-export const updateUserLoginRecordToRewardAvailable = (recordId, newLoginTime) =>
+export const updateUserLoginRecordToRewardAvailable = (
+  recordId,
+  newLoginTime
+) =>
   dbClient.loginRecord.update({
     where: {
       id: recordId,
@@ -85,7 +90,7 @@ export const updateUserLoginRecordToRewardAvailable = (recordId, newLoginTime) =
     data: {
       lastLoginDateTime: newLoginTime,
       collectedReward: false,
-    }
+    },
   });
 
 export const findUsersByRole = (role) =>

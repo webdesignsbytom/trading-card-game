@@ -32,6 +32,8 @@ model User {
   agreedToTerms         Boolean           @default(false)
   collectedStartedPacks Boolean           @default(false)
   isActive              Boolean           @default(true)
+  createdTrades         TradeRecord[]     @relation("createdTrades")
+  receivedTrades        TradeRecord[]     @relation("receivedTrades")
   createdEvents         Event[]           @relation("createdEvents")
   receivedEvents        Event[]           @relation("receivedEvents")
   createdAt             DateTime          @default(now())
@@ -74,6 +76,28 @@ model LoginRecord {
   user              User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt         DateTime  @default(now())
   updatedAt         DateTime? @updatedAt
+}
+
+model TradeRecord {
+  id                     String        @id @default(uuid())
+  creatorAgreed          Boolean       @default(false)
+  recieverAgreed         Boolean       @default(false)
+  creatorUsername        String        @default("username")
+  creatorCardInstance    CardInstance  @relation("creatorCardIntance", fields: [creatorCardInstanceId], references: [id], onDelete: Cascade)
+  creatorCardId          Int
+  creatorCardInstanceId  String        @default("creatorCard")
+  creatorCardName        String        @default("Name")
+  recieverUsername       String        @default("reciever uername")
+  recieverCardInstance   CardInstance? @relation("recieverCardInstance", fields: [recieverCardInstanceId], references: [id], onDelete: Cascade)
+  revieverCardId         Int?
+  recieverCardInstanceId String?
+  recieverCardName       String?
+  createdTrades          User?         @relation("createdTrades", fields: [createdById], references: [id], onDelete: Cascade)
+  createdById            String?
+  receivedTrades         User?         @relation("receivedTrades", fields: [receivedById], references: [id], onDelete: Cascade)
+  receivedById           String?
+  createdAt              DateTime      @default(now())
+  updatedAt              DateTime?     @updatedAt
 }
 
 model SocialMediaLink {
@@ -147,7 +171,7 @@ enum CardType {
 
 enum PowerUp {
   ATTACK
-  HEALTH 
+  HEALTH
   DEFENCE
 }
 
@@ -182,15 +206,18 @@ model Pack {
 }
 
 model CardInstance {
-  id        String    @id @default(uuid()) // pack id
-  userId    String?
-  user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  cardId    Int
-  card      Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
-  packId    String?
-  pack      Pack?     @relation(fields: [packId], references: [id])
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
+  id                   String        @id @default(uuid()) // pack id
+  name                 String        @default("Name")
+  userId               String?
+  user                 User?         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cardId               Int
+  card                 Card          @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  packId               String?
+  pack                 Pack?         @relation(fields: [packId], references: [id])
+  creatorCardInstance  TradeRecord[] @relation("creatorCardIntance")
+  recieverCardInstance TradeRecord[] @relation("recieverCardInstance")
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime?     @updatedAt
 }
 
 model Card {

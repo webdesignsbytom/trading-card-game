@@ -63,7 +63,6 @@ module.exports = {
         reg: 'auto 1fr',
         rev: '1fr auto',
         even: '1fr 1fr 1fr',
-        one: '1fr',
         xo: '1fr 0.6fr',
         a1a: 'auto 1fr auto',
         '1a1': '1fr 0.4fr 1fr',

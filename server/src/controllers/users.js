@@ -166,6 +166,40 @@ export const getUserByEmail = async (req, res) => {
   }
 };
 
+export const getUserByUsername = async (req, res) => {
+  console.log('getUserByUsername');
+  const { username } = req.params;
+  console.log('xxx', username);
+
+  const lowerCaseUsername = username.toLowerCase();
+  try {
+    const foundUser = await findUserByUsername(lowerCaseUsername);
+
+    if (!foundUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    console.log('found', foundUser);
+    delete foundUser.password;
+    delete foundUser.agreedToTerms;
+
+    myEmitterUsers.emit('get-user-by-username', req.user);
+    return sendDataResponse(res, 200, { user: foundUser });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get user by username`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
 export const registerNewUser = async (req, res) => {
   console.log('create new user');
   const { email, password, username, country, agreedToTerms } = req.body;

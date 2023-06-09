@@ -4,14 +4,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 // API
 import client from '../../utils/client';
+// Components
 import Navbar from '../../components/nav/Navbar';
+import LoadingSpinner from '../../components/utils/LoadingSpinner';
 
 function LoginPage() {
   const { setUser } = useContext(UserContext);
+  const [loginInProgress, setLoginInProgress] = useState(false);
   const [loginFormData, setLoginFormData] = useState({
     email: '',
     password: '',
-    keepMeLoggedIn: false
+    keepMeLoggedIn: false,
   });
 
   let navigate = useNavigate();
@@ -22,18 +25,17 @@ function LoginPage() {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    console.log('login');
-    console.log('data', loginFormData);
 
+    setLoginInProgress(true)
     client
       .post('/login', loginFormData, false)
       .then((res) => {
-        console.log('res', res.data);
-        console.log('res.data.data.token', res.data.data.token);
+
         localStorage.setItem(
           process.env.REACT_APP_USER_TOKEN,
           res.data.data.token
         );
+        setLoginInProgress(false)
         setUser(res.data.data.existingUser);
       })
       .then(() => homePage())
@@ -55,8 +57,8 @@ function LoginPage() {
   const handleCheckedKeepMeLoggedIn = (event) => {
     setLoginFormData({
       ...loginFormData,
-      keepMeLoggedIn: true
-    })
+      keepMeLoggedIn: true,
+    });
   };
 
   return (
@@ -136,7 +138,15 @@ function LoginPage() {
                   type='submit'
                   className='w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'
                 >
-                  Sign in
+                  {loginInProgress ? (
+                    <div className='grid w-full justify-center items-center text-white text-3xl text-center'>
+                      <LoadingSpinner width={'w-6'} height={'w-6'} />
+                    </div>
+                  ) : (
+                    <div>
+                      <span>Sign in</span>
+                    </div>
+                  )}
                 </button>
                 <p className='font-light text-gray-500 dark:text-gray-400'>
                   Don’t have an account yet?{' '}
