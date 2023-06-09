@@ -30,7 +30,7 @@ function Navbar() {
   };
 
   return (
-    <nav className='nav__bg bg-red-500 border-4 border-black border-solid grid grid-cols-a1a lg:grid-cols-none lg:grid-rows-reg'>
+    <nav className='nav__bg h-full bg-red-500 border-4 border-black border-solid grid grid-cols-a1a lg:grid-cols-none lg:grid-rows-reg'>
       <section className='grid lg:hidden items-center justify-center pl-4'>
         <Link to='/'>
           <img className='w-10 h-10' src={LogoImage} alt='Logo' />
@@ -146,6 +146,13 @@ function Navbar() {
                   </Link>
                 </li>
               </>
+            )}
+            {(user.role === 'ADMIN' || user.role === 'DEVELOPER') && (
+              <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
+                <Link className='w-full' to='/admin'>
+                  Admin
+                </Link>
+              </li>
             )}
             <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
               <Link className='w-full' to='/cards'>

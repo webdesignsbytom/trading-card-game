@@ -12,6 +12,7 @@ import InvintoryPage from './pages/invintory/InvintoryPage';
 import RewardsPage from './pages/rewards/RewardsPage';
 import CardOverviewPage from './pages/cards/CardOverviewPage';
 import TradingPage from './pages/trade/TradingPage';
+import AdminPage from './pages/admin/AdminPage';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Route path='/invintory' element={<InvintoryPage />} />
       <Route path='/trade' element={<TradingPage />} />
       <Route path='/rewards' element={<RewardsPage />} />
+      <Route path='/admin' element={<AdminPage />} />
       <Route path='*' element={<Error404 />} />
 
     </Routes>
