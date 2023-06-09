@@ -54,10 +54,10 @@ function UserOverviewAdminComponent() {
   }
 
   return (
-    <section className='grid h-full overflow-hidden grid-rows-reg px-2 pb-2'>
+    <section className='grid h-full overflow-hidden grid-rows-reg lg:px-2 pb-2'>
       <section className='grid grid-flow-col h-fit'>
         <div className='grid justify-start items-center'>
-          <h2 className='text-2xl font-semibold p-2'>Users Overview</h2>
+          <h2 className='text-sm lg:text-2xl font-semibold p-2'>Users Overview</h2>
         </div>
         <div className='grid justify-end items-center'>
           <div className='grid relative items-center justify-center p-1'>
@@ -79,7 +79,7 @@ function UserOverviewAdminComponent() {
             return (
               <div
                 key={index}
-                className='grid grid-cols-2 border-b-2 w-full h-fit bg-gray-50 border-black border-solid py-1 px-2'
+                className='grid grid-cols-2 border-b-2 w-full items-center bg-gray-50 border-black border-solid px-1 lg:px-2 text-xs lg:text-base'
               >
                 <div className='grid grid-cols-2'>
                   <span>{user.profile.username}</span>

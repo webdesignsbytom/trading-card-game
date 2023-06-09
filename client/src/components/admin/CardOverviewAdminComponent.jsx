@@ -5,7 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 function CardOverviewAdminComponent() {
   const [allCardsArray, setAllCardsArray] = useState([]);
-  
+  const [cardNotFound, setCardNotFound] = useState(false);
+  const [cardsFound, setCardsFound] = useState([]);
+  const [searchQuery, setSearchQuery] = useState({ cardName: '' });
+
   let navigate = useNavigate();
   
   console.log('allCardsArray', allCardsArray);
@@ -25,14 +28,29 @@ function CardOverviewAdminComponent() {
     navigate('/admin/card-edit', { state: card });
   };
 
+  const searchForCard = () => {
+    setCardNotFound(false);
+
+    client
+      .get(`/con-cards/${searchQuery.cardName}`)
+      .then((res) => {
+        setCardsFound(res.data.data.cards);
+      })
+      .catch((err) => {
+        console.error('Unable to find User', err);
+        if (err.response.statusText === 'Not Found') {
+          setCardNotFound(true);
+        }
+      });
+  };
   return (
     <section className='grid h-full overflow-hidden grid-rows-reg px-2 pb-2'>
       <section className='grid grid-flow-col h-fit'>
         <div className='grid justify-start items-center'>
-          <h2 className='text-2xl font-semibold p-2'>Card Overview</h2>
+          <h2 className='text-sm lg:text-2xl font-semibold p-2'>Card Overview</h2>
         </div>
         <div className='grid justify-end items-center'>
-          <div className='grid items-center justify-center p-1'>
+          <div className='grid relative items-center justify-center p-1'>
             <input
               className='rounded px-1'
               type='text'
@@ -40,6 +58,7 @@ function CardOverviewAdminComponent() {
               id='searchAlbum'
               placeholder='Search all cards...'
             />
+            <div onClick={searchForCard} className='absolute h-fit w-fit rounded active:scale-95 hover:bg-blue-700 bg-blue-400 px-2 right-0'>?</div>
           </div>
         </div>
       </section>
@@ -50,12 +69,12 @@ function CardOverviewAdminComponent() {
               <div
                 key={index}
                 onClick={() => openCardEditing(card)}
-                className='grid grid-cols-rev items-center border-b-2 border-solid border-black px-2'
+                className='grid cursor-pointer active:scale-95 text-xs lg:text-base grid-cols-rev items-center border-b-2 border-solid border-black px-2'
               >
                 <div>
                   <span>{card.cardName}</span>
                 </div>
-                <div className='grid grid-flow-col gap-4 justify-end'>
+                <div className='grid grid-flow-col gap-1 lg:gap-4 justify-end'>
                   <div>{card.edition}</div>
                   <div>{card.rarity}</div>
                   <div>{JSON.stringify(card.holographic)}</div>

@@ -214,7 +214,11 @@ function Navbar() {
                 </div>
               )}
               {user?.loginRecord?.collectedReward === false && (
-                <button id='/rewards' onClick={navigateToPage} className='w-full outline text-center bg-blue-600 main__bg outline-black outline-2 rounded animate-pulse mt-2'>
+                <button
+                  id='/rewards'
+                  onClick={navigateToPage}
+                  className='w-full outline text-center bg-blue-600 main__bg outline-black outline-2 rounded animate-pulse mt-2'
+                >
                   <div className='font-semibold py-1'>
                     <span>Daily Reward Available</span>
                   </div>
@@ -269,6 +273,19 @@ function Navbar() {
                     </button>
                   </li>
                 </>
+              )}
+              {(user.role === 'ADMIN' || user.role === 'DEVELOPER') && (
+                <li
+                  className={
+                    activeNav === '/admin'
+                      ? 'w-full nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                      : 'w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                  }
+                >
+                  <button onClick={navigateToPage} id='/admin'>
+                    Admin
+                  </button>
+                </li>
               )}
               {user.email && (
                 <>

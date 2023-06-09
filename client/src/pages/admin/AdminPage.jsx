@@ -70,7 +70,7 @@ function AdminPage() {
                     onClick={openEventOverview}
                     className='outline outline-2 outline-black bg-blue-500 hover:bg-blue-700 active:scale-95 p-2 text-white rounded-xl'
                   >
-                    Event
+                    EVENTS
                   </button>
                 </div>
               </div>
