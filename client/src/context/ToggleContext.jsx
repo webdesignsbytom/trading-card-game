@@ -18,6 +18,8 @@ const ToggleContextProvider = ({ children }) => {
   const [toggleUnopenedPacketsDisplay, setToggleUnopenedPacketDisplay] =
     useState(false);
   const [toggleOpeningPackDiplay, setToggleOpeningPackDiplay] = useState(false);
+  const [activeNav, setActiveNav] = useState('/');
+
   let navigate = useNavigate();
 
   const toggleOpenPackets = () => {
@@ -60,12 +62,14 @@ const ToggleContextProvider = ({ children }) => {
         toggleCardData,
         toggleOpenPackets,
         toggleOpeningNewPack,
+        activeNav,
         viewCard,
         selectedCard,
         toggleUnopenedPacketsDisplay,
         toggleOpeningPackDiplay,
         selectedPack,
         returnedOpenPack,
+        setActiveNav,
       }}
     >
       {children}

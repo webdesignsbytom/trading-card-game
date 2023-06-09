@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // Context
 import { UserContext } from '../../context/UserContext';
+import { ToggleContext } from '../../context/ToggleContext';
 // API
 import client from '../../utils/client';
 // Components
@@ -10,6 +11,8 @@ import LoadingSpinner from '../../components/utils/LoadingSpinner';
 
 function LoginPage() {
   const { setUser } = useContext(UserContext);
+  const { setActiveNav } = useContext(ToggleContext)
+
   const [loginInProgress, setLoginInProgress] = useState(false);
   const [loginFormData, setLoginFormData] = useState({
     email: '',
@@ -18,6 +21,10 @@ function LoginPage() {
   });
 
   let navigate = useNavigate();
+
+  useEffect(() => {
+    setActiveNav('/login')
+  }, [])
 
   const homePage = () => {
     navigate('/', { replace: true });

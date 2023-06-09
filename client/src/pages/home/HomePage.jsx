@@ -1,14 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 // Components
 import Navbar from '../../components/nav/Navbar';
-import RegisterForm from '../../components/forms/RegisterForm';
 import StartingPacks from '../../components/starterPacks/StartingPacks';
 // Context
 import { UserContext } from '../../context/UserContext';
+import { ToggleContext } from '../../context/ToggleContext';
 
 function HomePage() {
   const { user } = useContext(UserContext);
+  const { setActiveNav } = useContext(ToggleContext)
 
+  useEffect(() => {
+    setActiveNav('/')
+  }, [])
+  
   return (
     <div className='bg-blue-600 main__bg h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>

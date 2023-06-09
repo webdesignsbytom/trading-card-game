@@ -78,6 +78,36 @@ export const getCardById = async (req, res) => {
   }
 };
 
+// search cards by name
+export const searchForCardsByName = async (req, res) => {
+  console.log('searchForCardsByName');
+  const { cardName } = req.params
+  console.log('cardId', cardName);
+
+  try {
+    const foundCards = await findCardBySearchQuery(cardName)
+    console.log('found card', foundCards);
+
+    if (!foundCards) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundCards
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    return sendDataResponse(res, 200, { cards: foundCards });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get all cards`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
 // Get all cards isntances from all packs
 export const getAllCardInstances = async (req, res) => {
   console.log('getAllCardInstances');

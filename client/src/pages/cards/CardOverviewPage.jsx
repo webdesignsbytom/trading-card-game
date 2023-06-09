@@ -10,6 +10,7 @@ function CardOverviewPage() {
   console.log('location', location.state);
   const cardData = location.state;
 
+
   return (
     <div className='bg-black main__bg h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>

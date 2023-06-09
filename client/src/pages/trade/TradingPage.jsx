@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 // Components
 import Navbar from '../../components/nav/Navbar';
 import CreateTradeComponent from '../../components/trade/CreateTradeComponent';
@@ -9,12 +9,13 @@ import { UserContext } from '../../context/UserContext';
 import { TradingContext } from '../../context/TradingContext';
 // API
 import client from '../../utils/client';
+import { ToggleContext } from '../../context/ToggleContext';
 
 function TradingPage() {
   const { user } = useContext(UserContext);
-  const {
-    tradeItemOpen,
-  } = useContext(TradingContext);
+  const { setActiveNav } = useContext(ToggleContext);
+  const { tradeItemOpen } = useContext(TradingContext);
+
   const [searchQuery, setSearchQuery] = useState({ username: '' });
   const [notFoundUser, setNotFoundUser] = useState(false);
   const [tradingPartner, setTradingPartner] = useState({});
@@ -23,6 +24,9 @@ function TradingPage() {
   const [openTradeComponentSelected, setOpenTradeComponentSelected] =
     useState(false);
 
+  useEffect(() => {
+    setActiveNav('/trading');
+  }, []);
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -84,18 +88,18 @@ function TradingPage() {
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
         <main className='grid h-full grid-rows-reg'>
-          <section className='p-4 grid grid-cols-2 h-fit gap-6'>
+          <section className='p-2 lg:p-4 grid lg:grid-cols-2 h-fit gap-2 lg:gap-6'>
             <article className='grid h-full'>
               <div className='bg-red-500 nav__bg outline outline-4 outline-black rounded p-2'>
                 <h1 className='text-3xl font-bold text-center'>Trading</h1>
               </div>
             </article>
             <section className='grid h-full'>
-              <div className='bg-red-500 nav__bg outline outline-4 outline-black rounded p-2 grid justify-end grid-flow-col gap-4'>
+              <div className='bg-red-500 w-full nav__bg outline outline-4 outline-black rounded p-2 grid lg:justify-end grid-flow-col gap-2 lg:gap-4'>
                 <div className=''>
                   <button
                     onClick={goToUpdatedTrade}
-                    className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-2 px-4 rounded-xl outline outline-2 outline-black'
+                    className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-1 px-1 w-full lg:py-2 lg:px-4 rounded-xl outline outline-2 outline-black'
                   >
                     Trade Update
                   </button>
@@ -103,7 +107,7 @@ function TradingPage() {
                 <div className=''>
                   <button
                     onClick={toggleOpenTrades}
-                    className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-2 px-4 rounded-xl outline outline-2 outline-black'
+                    className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-1 px-1 w-full lg:py-2 lg:px-4 rounded-xl outline outline-2 outline-black'
                   >
                     Open Trades
                   </button>
@@ -111,7 +115,7 @@ function TradingPage() {
                 <div>
                   <button
                     onClick={toggleOpenCreateTrade}
-                    className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-2 px-4 rounded-xl outline outline-2 outline-black'
+                    className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-1 px-1 w-full lg:py-2 lg:px-4 rounded-xl outline outline-2 outline-black'
                   >
                     Create Trade
                   </button>

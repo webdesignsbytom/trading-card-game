@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 // Components
 import Navbar from '../../components/nav/Navbar';
 // Context
@@ -7,24 +7,30 @@ import { calenderDataArray } from '../../utils/CalenderData';
 // Components
 import Card from '../../components/card/Card';
 import RewardCalenderSquare from '../../components/calander/RewardCalenderSquare';
+import { ToggleContext } from '../../context/ToggleContext';
 
 function RewardsPage() {
   const { user } = useContext(UserContext);
-
+  const { setActiveNav } = useContext(ToggleContext)
   const [rewardData, setRewardData] = useState({});
   const [rewardDataType, setRewardDataType] = useState('');
   const [rewardAvailable, setRewardAvailable] = useState(false);
   console.log('rewardDataType', rewardDataType);
   console.log('rewardData', rewardData);
 
+  useEffect(() => {
+    setActiveNav('/rewards')
+  }, [])
+  
   const collectReward = () => {
     setRewardAvailable(false);
   };
+
   return (
     <div className='h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
-        <main className='bg-white relative main__bg p-4 grid grid-rows-reg'>
+        <main className='bg-white main__bg p-4 grid grid-rows-reg'>
           <section>
             <article className='text-center'>
               <h1 className='text-6xl font-bold'>REWARDS</h1>

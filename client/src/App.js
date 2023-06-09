@@ -18,6 +18,7 @@ import UserOverviewPage from './pages/admin/UserOverviewPage';
 import EventOverviewPage from './pages/admin/EventsOverviewPage';
 
 function App() {
+  console.log('AAAAAAAA new page');
   return (
     <Routes>
       <Route path='/' index element={<HomePage />} />
@@ -29,7 +30,7 @@ function App() {
       <Route path='/cards' element={<CardsAvailablePage />} />
       <Route path='/card-overview/:id' element={<CardOverviewPage />} />
       <Route path='/invintory' element={<InvintoryPage />} />
-      <Route path='/trade' element={<TradingPage />} />
+      <Route path='/trading' element={<TradingPage />} />
       <Route path='/rewards' element={<RewardsPage />} />
       <Route path='/admin' element={<AdminPage />} />
       <Route path='/admin/card-edit' element={<CardEditPage />} />
