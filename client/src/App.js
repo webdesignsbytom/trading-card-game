@@ -13,7 +13,9 @@ import RewardsPage from './pages/rewards/RewardsPage';
 import CardOverviewPage from './pages/cards/CardOverviewPage';
 import TradingPage from './pages/trade/TradingPage';
 import AdminPage from './pages/admin/AdminPage';
-import CardEditPage from './pages/album/CardEditPage';
+import CardEditPage from './pages/admin/CardEditPage';
+import UserOverviewPage from './pages/admin/UserOverviewPage';
+import EventOverviewPage from './pages/admin/EventsOverviewPage';
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
       <Route path='/rewards' element={<RewardsPage />} />
       <Route path='/admin' element={<AdminPage />} />
       <Route path='/admin/card-edit' element={<CardEditPage />} />
+      <Route path='/admin/user-overview' element={<UserOverviewPage />} />
+      <Route path='/admin/event-overview' element={<EventOverviewPage />} />
       <Route path='*' element={<Error404 />} />
 
     </Routes>

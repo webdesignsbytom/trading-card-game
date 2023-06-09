@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Navbar from '../../components/nav/Navbar';
 import UserOverviewAdminComponent from '../../components/admin/UserOverviewAdminComponent';
 import CardOverviewAdminComponent from '../../components/admin/CardOverviewAdminComponent';
-import ErrorOverviewAdminComponent from '../../components/admin/ErrorOverviewAdminComponent';
+import ErrorOverviewAdminComponent from '../../components/admin/EventOverviewAdminComponent';
 
 function AdminPage() {
     const [userComponentSelected, setUserComponentSelected] = useState(false)
@@ -16,7 +16,7 @@ function AdminPage() {
         setUserComponentSelected(true)
     }
 
-    const openErrorsOverview = () => {
+    const openEventOverview = () => {
         setCardComponentSelected(false)
         setUserComponentSelected(false)
         setErrorComponentSelected(true)
@@ -47,7 +47,7 @@ function AdminPage() {
                   <button onClick={openCardsOverview} className='outline outline-2 outline-black bg-blue-500 hover:bg-blue-700 active:scale-95 p-2 text-white rounded-xl'>CARDS</button>
                 </div>
                 <div>
-                  <button onClick={openErrorsOverview} className='outline outline-2 outline-black bg-blue-500 hover:bg-blue-700 active:scale-95 p-2 text-white rounded-xl'>ERRORS</button>
+                  <button onClick={openEventOverview} className='outline outline-2 outline-black bg-blue-500 hover:bg-blue-700 active:scale-95 p-2 text-white rounded-xl'>Event</button>
                 </div>
               </div>
             </section>
