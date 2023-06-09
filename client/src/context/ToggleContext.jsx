@@ -20,12 +20,7 @@ const ToggleContextProvider = ({ children }) => {
   const [toggleOpeningPackDiplay, setToggleOpeningPackDiplay] = useState(false);
   let navigate = useNavigate();
 
-  const homePage = () => {
-    navigate('/', { replace: true });
-  };
-
   const toggleOpenPackets = () => {
-    console.log('togtoggleOpenPacketsgle');
     setToggleUnopenedPacketDisplay(!toggleUnopenedPacketsDisplay);
   };
 
@@ -70,7 +65,7 @@ const ToggleContextProvider = ({ children }) => {
         toggleUnopenedPacketsDisplay,
         toggleOpeningPackDiplay,
         selectedPack,
-        returnedOpenPack
+        returnedOpenPack,
       }}
     >
       {children}

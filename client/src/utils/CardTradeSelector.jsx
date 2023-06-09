@@ -4,13 +4,14 @@ import { UserContext } from '../context/UserContext';
 
 function CardTradeSelector({ handleChange }) {
     const { user } = useContext(UserContext)
+
   return (
     <>
       <select
         id='tradeCard'
         name='tradeCard'
         onChange={handleChange}
-        className='p-1 rounded'
+        className='p-1 rounded w-full'
         required
       >
         <option defaultValue='-'>---</option>

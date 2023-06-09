@@ -11,8 +11,6 @@ export const findAllUsers = () =>
       packs: true,
       bank: true,
       loginRecord: true,
-      createdTrades: true,
-      receivedTrades: true,
     },
   });
 
@@ -25,8 +23,6 @@ export const findUserByEmail = (email) =>
       packs: true,
       bank: true,
       loginRecord: true,
-      createdTrades: true,
-      receivedTrades: true,
     },
   });
 
@@ -34,8 +30,6 @@ export const findUserByUsername = (username) =>
   dbClient.profile.findUnique({
     where: { username: username },
     include: {
-      createdTrades: true,
-      receivedTrades: true,
     },
   });
 
@@ -50,8 +44,6 @@ export const findUserById = (userId) =>
       packs: true,
       bank: true,
       loginRecord: true,
-      createdTrades: true,
-      receivedTrades: true,
     },
   });
 
@@ -112,8 +104,6 @@ export const findUsersByRole = (role) =>
       packs: true,
       bank: true,
       loginRecord: true,
-      createdTrades: true,
-      receivedTrades: true,
     },
   });
 
@@ -185,8 +175,6 @@ export const setStarterCardsToClaimed = (userId) =>
       packs: true,
       bank: true,
       loginRecord: true,
-      createdTrades: true,
-      receivedTrades: true,
     },
   });
 

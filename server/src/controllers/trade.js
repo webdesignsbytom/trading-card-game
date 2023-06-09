@@ -15,8 +15,37 @@ import {
   deleteTradeById,
   findTradeById,
   tradeCardInstance,
+  findAllUserTradeRecords
 } from '../domain/trade.js';
 
+export const getAllUserTrades = async (req, res) => {
+  console.log('getAllUserTrades');
+  const userId = req.params.userId;
+  console.log('xxx', userId);
+
+  try {
+    const foundTrades = await findAllUserTradeRecords(userId);
+    if (!foundTrades) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundTrade
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    console.log('trades', foundTrades);
+
+    return sendDataResponse(res, 200, { trades: foundTrades });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
 // add a bank account
 export const createTradeCardWithUser = async (req, res) => {
   console.log('createTradeCardWithUser');
@@ -68,6 +97,8 @@ export const createTradeCardWithUser = async (req, res) => {
     throw err;
   }
 };
+
+
 // delete trade
 export const deleteOpenTrade = async (req, res) => {
   console.log('deleteOpenTrade');

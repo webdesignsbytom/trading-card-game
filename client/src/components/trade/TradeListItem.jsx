@@ -1,48 +1,52 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // Api
 import client from '../../utils/client';
+import { useNavigate } from 'react-router-dom';
 // Context
+import { TradingContext } from '../../context/TradingContext';
 
 function TradeListItem({ trade }) {
+  const { openTradeItem, closeTradeItem, tradeItemOpen } =
+    useContext(TradingContext);
+
+  console.log('ppppppp', trade);
+
   const deleteTrade = (trade) => {
     client
       .delete(`/trade/delete-trade/${trade.id}`)
       .then((res) => {
-        console.log(res.data.data.deletedTrade);
+        console.log('Deleted', res.data.data.deletedTrade);
       })
       .catch((err) => {
         console.error('Unable to delete trade', err);
       });
   };
 
-  const openTrade = (trade) => {}
-
   return (
-    <li className='grid grid-flow-col h-full p-1'>
-      <section className='grid grid-flow-col gap-2 items-center justify-center'>
-        <div>{trade.recieverUsername}</div>
-        <div className='grid items-center justify-center text-2xl'>
-          <span>↔</span>
-        </div>
-        <div>{trade.creatorCardName}</div>
-        <div>{trade.recieverCardName}</div>
-      </section>
-      <section className='w-fit grid gap-1 px-2 grid-flow-col'>
-        <div>
-          <button onClick={openTrade} className='py-1 px-2 outline outline-1 outline-black bg-blue-600 rounded-xl hover:bg-blue-800 active:scale-95'>
-            GoTo
-          </button>
-        </div>
-        <div>
-          <button
-            onClick={() => deleteTrade(trade)}
-            className='py-1 px-2 outline outline-1 outline-black bg-red-600 rounded-xl hover:bg-red-800 active:scale-95'
-          >
-            Delete
-          </button>
-        </div>
-      </section>
-    </li>
+    <tr className='w-full'>
+      <td className='w-44'>{trade.recieverUsername}</td>
+      <td className='w-44'>{trade.creatorCardName}</td>
+      <td className='px-4'>
+        <span>↔</span>
+      </td>
+      <td className='w-44'>{trade.recieverCardName}</td>
+      <td className=''>
+        <button
+          onClick={() => openTradeItem(trade)}
+          className='text-sm px-2 outline outline-1 outline-black bg-blue-600 rounded-xl hover:bg-blue-800 active:scale-95'
+        >
+          GoTo
+        </button>
+      </td>
+      <td className=''>
+        <button
+          onClick={() => deleteTrade(trade)}
+          className='text-sm px-2 outline outline-1 outline-black bg-red-600 rounded-xl hover:bg-red-800 active:scale-95'
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
   );
 }
 

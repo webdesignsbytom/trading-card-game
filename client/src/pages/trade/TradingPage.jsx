@@ -9,9 +9,18 @@ import client from '../../utils/client';
 import CardTradeSelector from '../../utils/CardTradeSelector';
 import CreateTradeComponent from '../../components/trade/CreateTradeComponent';
 import OpenRequestsListComponent from '../../components/trade/OpenRequestsListComponent';
+import { TradingContext } from '../../context/TradingContext';
+import OpenTradeComponent from '../../components/trade/OpenTradeComponent';
 
 function TradingPage() {
   const { user } = useContext(UserContext);
+  const {
+    openTradeItem,
+    closeTradeItem,
+    tradeItemOpen,
+    gridColSettings,
+    setGridColSettings,
+  } = useContext(TradingContext);
   const [searchQuery, setSearchQuery] = useState({ username: '' });
   const [notFoundUser, setNotFoundUser] = useState(false);
   const [tradingPartner, setTradingPartner] = useState({});
@@ -70,15 +79,16 @@ function TradingPage() {
   };
 
   const toggleOpenTrades = () => {
+    setGridColSettings('grid-cols-1');
     setOpenTradeComponentSelected(true);
-  }
-  
-  const toggleOpenTradesToClosed = () => {
-    setOpenTradeComponentSelected(false);
-  }
+  };
 
-  const goToUpdatedTrade = () => {
-  }
+  const toggleOpenCreateTrade = () => {
+    setOpenTradeComponentSelected(false);
+    setGridColSettings('grid-cols-2x gap-4');
+  };
+
+  const goToUpdatedTrade = () => {};
 
   return (
     <div className='bg-black main__bg h-screen grid'>
@@ -94,17 +104,26 @@ function TradingPage() {
             <section className='grid h-full'>
               <div className='bg-red-500 nav__bg outline outline-4 outline-black rounded p-2 grid justify-end grid-flow-col gap-4'>
                 <div className=''>
-                  <button onClick={goToUpdatedTrade} className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-2 px-4 rounded-xl outline outline-2 outline-black'>
+                  <button
+                    onClick={goToUpdatedTrade}
+                    className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-2 px-4 rounded-xl outline outline-2 outline-black'
+                  >
                     Trade Update
                   </button>
                 </div>
                 <div className=''>
-                  <button onClick={toggleOpenTrades} className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-2 px-4 rounded-xl outline outline-2 outline-black'>
+                  <button
+                    onClick={toggleOpenTrades}
+                    className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-2 px-4 rounded-xl outline outline-2 outline-black'
+                  >
                     Open Trades
                   </button>
                 </div>
                 <div>
-                  <button onClick={toggleOpenTradesToClosed} className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-2 px-4 rounded-xl outline outline-2 outline-black'>
+                  <button
+                    onClick={toggleOpenCreateTrade}
+                    className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-2 px-4 rounded-xl outline outline-2 outline-black'
+                  >
                     Create Trade
                   </button>
                 </div>
@@ -113,8 +132,8 @@ function TradingPage() {
           </section>
 
           <div className='grid'>
-            <section className='grid grid-rows-1 grid-cols-2x px-4 mb-4 gap-4'>
-              {!openTradeComponentSelected && (
+            <section className={`grid w-full`}>
+              {!openTradeComponentSelected && !tradeItemOpen && (
                 <CreateTradeComponent
                   handleChange={handleChange}
                   tradingPartner={tradingPartner}
@@ -125,7 +144,10 @@ function TradingPage() {
                   displayCard={displayCard}
                 />
               )}
-              {openTradeComponentSelected && <OpenRequestsListComponent />}
+              {openTradeComponentSelected && !tradeItemOpen && (
+                <OpenRequestsListComponent />
+              )}
+              {tradeItemOpen && <OpenTradeComponent />}
             </section>
           </div>
         </main>

@@ -11,24 +11,29 @@ function CreateTradeComponent({
   handleChangeCard,
   notFoundUser,
   searchForUser,
-  displayCard
+  displayCard,
 }) {
   const { user } = useContext(UserContext);
 
   return (
-    <>
+    <section className={`grid grid-cols-2x gap-4 grid-rows-1 px-4 mb-4 max-h-full overflow-hidden`}>
       <section className='bg-red-400 grid grid-rows-a1a main__bg outline outline-4 outline-black rounded-xl p-2'>
         {/* image and search */}
-        <div className='grid grid-cols-aa'>
-          <div className='top-4 left-4 w-1/2'>
+        <div className='grid grid-cols-reg'>
+          <div className='top-4 left-4'>
             <img
-              className='rounded-xl object-cover'
+              className='rounded-xl w-1/2 h-full object-cover'
               src={user?.profile?.profileImage}
               alt='User profile'
             />
           </div>
 
-          <section className='grid items-center justify-center gap-4 w-full'>
+          <section className='grid items-center justify-center gap-4 w-full p-1'>
+            <section className='mb-2'>
+              <div className='text-center'>
+                <h2 className='text-xl font-semibold'>Create New Trade</h2>
+              </div>
+            </section>
             <div className='grid h-fit'>
               <div className='text-center flex-wrap'>
                 <p>Enter the user name of </p>
@@ -68,7 +73,7 @@ function CreateTradeComponent({
         </div>
 
         {/* select card to trade */}
-        <section className='grid'>
+        <section className='grid bg-white'>
           <div className='grid gap-2 mt-4 mb-2'>
             <section className='bg-white main__bg py-1 px-2 h-fit rounded w-fit'>
               <div>
@@ -112,7 +117,7 @@ function CreateTradeComponent({
           </section>
         )}
       </section>
-    </>
+    </section>
   );
 }
 
