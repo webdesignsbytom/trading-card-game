@@ -12,8 +12,13 @@ import InvintoryPage from './pages/invintory/InvintoryPage';
 import RewardsPage from './pages/rewards/RewardsPage';
 import CardOverviewPage from './pages/cards/CardOverviewPage';
 import TradingPage from './pages/trade/TradingPage';
+import AdminPage from './pages/admin/AdminPage';
+import CardEditPage from './pages/admin/CardEditPage';
+import UserOverviewPage from './pages/admin/UserOverviewPage';
+import EventOverviewPage from './pages/admin/EventsOverviewPage';
 
 function App() {
+  console.log('AAAAAAAA new page');
   return (
     <Routes>
       <Route path='/' index element={<HomePage />} />
@@ -25,8 +30,12 @@ function App() {
       <Route path='/cards' element={<CardsAvailablePage />} />
       <Route path='/card-overview/:id' element={<CardOverviewPage />} />
       <Route path='/invintory' element={<InvintoryPage />} />
-      <Route path='/trade' element={<TradingPage />} />
+      <Route path='/trading' element={<TradingPage />} />
       <Route path='/rewards' element={<RewardsPage />} />
+      <Route path='/admin' element={<AdminPage />} />
+      <Route path='/admin/card-edit' element={<CardEditPage />} />
+      <Route path='/admin/user-overview' element={<UserOverviewPage />} />
+      <Route path='/admin/event-overview' element={<EventOverviewPage />} />
       <Route path='*' element={<Error404 />} />
 
     </Routes>

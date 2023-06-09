@@ -3,17 +3,24 @@ import React, { useContext, useEffect, useState } from 'react';
 import client from '../../utils/client';
 // Context
 import { UserContext } from '../../context/UserContext';
+import { ToggleContext } from '../../context/ToggleContext';
+// Components
 import Navbar from '../../components/nav/Navbar';
 import PackSelector from '../../components/shop/PackSelector';
 
 function ShopPage() {
   const { user, setUser } = useContext(UserContext);
+  const { setActiveNav } = useContext(ToggleContext)
   const [togglePackPurchasing, setTogglePackPurchasing] = useState(false);
   const [costOfStandardPack] = useState(10);
   const [purchasingCovidPack, setPurchasingCovidPack] = useState(false);
   const [purchasingElectionPack, setPurchasingElectionPack] = useState(false);
   const [purchasingBrexitPack, setPurchasingBrexitPack] = useState(false);
 
+  useEffect(() => {
+    setActiveNav('/shop')
+  }, [])
+  
   const buyPacketsOfCards = (event) => {
     const { id } = event.target;
     console.log('id', id);
@@ -63,7 +70,8 @@ function ShopPage() {
         <Navbar />
         <main className='grid p-2 grid-rows-reg'>
           {/* Player data */}
-          <section className='flex justify-between items-center px-4 mt-2 text-gray-50'>
+          {/* Monitor size */}
+          <section className='hidden lg:flex justify-between items-center px-4 mt-2 text-gray-50'>
             <div>
               <span>Money: £{user?.bank?.funds} 💷</span>
             </div>
@@ -77,6 +85,25 @@ function ShopPage() {
             </div>
             <div>
               <span>Gems: {user?.bank?.gems} 💎</span>
+            </div>
+          </section>
+          {/* PHONE SIXE */}
+          <section className='grid lg:hidden justify-center items-center px-4 text-gray-50'>
+            <div className='grid justify-center items-center text-center w-full'>
+              <h1 className='text-center text-2xl font-bold'>
+                <span className='text-blue-600'>
+                  CON <span className='text-red-600'>CARDS</span> STORE
+                </span>
+              </h1>
+              <h2>Everything is unfairly priced!</h2>
+            </div>
+            <div className='flex justify-between w-full gap-6 mt-2'>
+              <div>
+                <span>Money: £{user?.bank?.funds} 💷</span>
+              </div>
+              <div>
+                <span>Gems: {user?.bank?.gems} 💎</span>
+              </div>
             </div>
           </section>
 

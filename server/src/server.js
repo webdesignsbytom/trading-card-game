@@ -11,6 +11,7 @@ import cardsRouter from './routes/cards.js';
 import userRouter from './routes/users.js';
 import packRouter from './routes/packs.js';
 import tradeRouter from './routes/trade.js';
+import eventRouter from './routes/events.js';
 // Env
 import { HTTP_URL, PORT } from './utils/config.js';
 
@@ -36,7 +37,8 @@ app.use('/', authRouter);
 app.use('/con-cards', cardsRouter);
 app.use('/users', userRouter);
 app.use('/packs', packRouter);
-app.use('/trade', tradeRouter);
+app.use('/trades', tradeRouter);
+app.use('/events', eventRouter);
 
 // Server interface page
 app.get('/', (req, res) => {

@@ -700,14 +700,18 @@ export const deleteUser = async (req, res) => {
     }
 
     await deleteUserById(userId);
-    myEmitterUsers.emit('deleted-user', req.user);
+
+    const updatedUserArray = await findAllUsers()
+    
     return sendDataResponse(res, 200, {
-      user: foundUser,
+      deletedUser: foundUser,
+      updatedUserArray: updatedUserArray,
       message: `User ${foundUser.email} deleted`,
     });
+
   } catch (err) {
     //
-    const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
+    const serverError = new ServerErrorEvent(req.user, `delete user by ID`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;

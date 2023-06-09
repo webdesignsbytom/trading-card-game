@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 // Components
 import ClosedAlbumPage from '../../components/collection/ClosedAlbumPage';
 import OpenAlbumPage from '../../components/collection/OpenAlbumPage';
@@ -10,9 +10,14 @@ import { ToggleContext } from '../../context/ToggleContext';
 
 function AlbumPage() {
   const { user } = useContext(UserContext);
-  const { viewCard } = useContext(ToggleContext);
+  const { viewCard, setActiveNav } = useContext(ToggleContext);
 
   const [albumOpen, setAlbumOpen] = useState(false);
+  
+  useEffect(() => {
+    setActiveNav('/album')
+  }, [])
+  
 
   const [usersCardCollectionArray, setUsersCardCollectionArray] = useState(
     user.cards
