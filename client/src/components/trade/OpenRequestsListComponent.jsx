@@ -13,7 +13,6 @@ function OpenRequestsListComponent() {
       client
         .get(`/trade/user-trades/${user.id}`)
         .then((res) => {
-          console.log('res.data.data.trades', res.data.data.trades);
           setUserOpenTradesArray(res.data.data.trades);
         })
         .catch((err) => {
@@ -59,7 +58,6 @@ function OpenRequestsListComponent() {
               </thead>
               <tbody>
                 {userOpenTradesArray?.map((trade, index) => {
-                  console.log('EEE TRADE: ', trade);
                   return <TradeListItem trade={trade} key={index} />;
                 })}
               </tbody>

@@ -1,25 +1,19 @@
 import React, { useContext, useState } from 'react';
 // Components
 import Navbar from '../../components/nav/Navbar';
-import Card from '../../components/card/Card';
-// Context
-import { UserContext } from '../../context/UserContext';
-// API
-import client from '../../utils/client';
-import CardTradeSelector from '../../utils/CardTradeSelector';
 import CreateTradeComponent from '../../components/trade/CreateTradeComponent';
 import OpenRequestsListComponent from '../../components/trade/OpenRequestsListComponent';
-import { TradingContext } from '../../context/TradingContext';
 import OpenTradeComponent from '../../components/trade/OpenTradeComponent';
+// Context
+import { UserContext } from '../../context/UserContext';
+import { TradingContext } from '../../context/TradingContext';
+// API
+import client from '../../utils/client';
 
 function TradingPage() {
   const { user } = useContext(UserContext);
   const {
-    openTradeItem,
-    closeTradeItem,
     tradeItemOpen,
-    gridColSettings,
-    setGridColSettings,
   } = useContext(TradingContext);
   const [searchQuery, setSearchQuery] = useState({ username: '' });
   const [notFoundUser, setNotFoundUser] = useState(false);
@@ -29,8 +23,7 @@ function TradingPage() {
   const [openTradeComponentSelected, setOpenTradeComponentSelected] =
     useState(false);
 
-  console.log('tradingPartner', tradingPartner);
-  console.log('userCardToTrade', userCardToTrade);
+
   const handleChange = (event) => {
     const { value } = event.target;
 
@@ -50,7 +43,6 @@ function TradingPage() {
     client
       .get(`/users/user/username/${searchQuery.username}`)
       .then((res) => {
-        console.log(res.data.data.user);
         setTradingPartner(res.data.data.user);
       })
       .catch((err) => {
@@ -69,7 +61,6 @@ function TradingPage() {
     client
       .get(`/con-cards/card/get-by-id/${value}`)
       .then((res) => {
-        console.log(res.data.data.card);
         setUserCardToTrade(res.data.data.cardInstance);
         setDisplayCard(res.data.data.card);
       })
@@ -79,13 +70,11 @@ function TradingPage() {
   };
 
   const toggleOpenTrades = () => {
-    setGridColSettings('grid-cols-1');
     setOpenTradeComponentSelected(true);
   };
 
   const toggleOpenCreateTrade = () => {
     setOpenTradeComponentSelected(false);
-    setGridColSettings('grid-cols-2x gap-4');
   };
 
   const goToUpdatedTrade = () => {};
