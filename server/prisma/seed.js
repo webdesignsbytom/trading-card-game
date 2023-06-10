@@ -2806,6 +2806,18 @@ async function seed() {
       cardId: 3,
     },
   });
+  const thirdInstance4 = await dbClient.cardInstance.create({
+    data: {
+      userId: devUser.id,
+      cardId: 4,
+    },
+  });
+  const thirdInstance3 = await dbClient.cardInstance.create({
+    data: {
+      userId: devUser.id,
+      cardId: 5,
+    },
+  });
 
   const firstInstance2 = await dbClient.cardInstance.create({
     data: {

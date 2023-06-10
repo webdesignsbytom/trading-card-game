@@ -61,11 +61,8 @@ function Navbar() {
             </p>
           </div>
         </div>
-        <section className='hidden my-4 lg:grid items-center justify-center'>
-          <img className='w-16 h-16' src={LogoImage} alt='Logo' />
-        </section>
 
-        <section className='text-center mt-2 hidden lg:grid gap-4'>
+        <section className='text-center mt-4 hidden lg:grid gap-2'>
           {user?.packs?.length > 0 && (
             <div
               onClick={goToUnopenedPacks}
@@ -119,25 +116,49 @@ function Navbar() {
       {/* Navigation */}
       <section className='hidden lg:grid grid-rows-rev'>
         <div className='grid items-center'>
-          <ul className='text-center gridh-fit w-full text-xl'>
-            <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
+          <ul className='text-center grid bg-black h-fit w-full text-xl'>
+            <li
+              className={
+                activeNav === '/'
+                  ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                  : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+              }
+            >
               <Link className='w-full' to='/'>
                 Home
               </Link>
             </li>
-            <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
+            <li
+              className={
+                activeNav === '/shop'
+                  ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                  : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+              }
+            >
               <Link className='w-full' to='/shop'>
                 Shop
               </Link>
             </li>
             {!user.email && (
               <>
-                <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
+                <li
+                  className={
+                    activeNav === '/login'
+                      ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                      : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                  }
+                >
                   <Link className='w-full' to='/Login'>
                     Login
                   </Link>
                 </li>
-                <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
+                <li
+                  className={
+                    activeNav === '/sign-up'
+                      ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                      : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                  }
+                >
                   <Link className='w-full' to='/sign-up'>
                     Sign Up
                   </Link>
@@ -146,12 +167,24 @@ function Navbar() {
             )}
             {user.email && (
               <>
-                <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
+                <li
+                  className={
+                    activeNav === '/album'
+                      ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                      : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                  }
+                >
                   <Link className='w-full' to='/album'>
                     Album
                   </Link>
                 </li>
-                <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
+                <li
+                  className={
+                    activeNav === '/trading'
+                      ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                      : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                  }
+                >
                   <Link className='w-full' to='/trading'>
                     Trade
                   </Link>
@@ -159,23 +192,58 @@ function Navbar() {
               </>
             )}
             {(user.role === 'ADMIN' || user.role === 'DEVELOPER') && (
-              <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
+              <li
+                className={
+                  activeNav === '/admin'
+                    ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                    : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                }
+              >
                 <Link className='w-full' to='/admin'>
                   Admin
                 </Link>
               </li>
             )}
-            <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
+            <li
+              className={
+                activeNav === '/cards'
+                  ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                  : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+              }
+            >
               <Link className='w-full' to='/cards'>
                 Cards List
               </Link>
             </li>
-            <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
+            <li
+              className={
+                activeNav === '/battles'
+                  ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                  : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+              }
+            >
+              <Link className='w-full' to='/battles'>
+                Battles
+              </Link>
+            </li>
+            <li
+              className={
+                activeNav === '/invintory'
+                  ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                  : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+              }
+            >
               <Link className='w-full' to='/invintory'>
                 Invintory
               </Link>
             </li>
-            <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
+            <li
+              className={
+                activeNav === '/rewards'
+                  ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                  : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+              }
+            >
               <Link className='w-full' to='/rewards'>
                 Rewards
               </Link>
@@ -320,6 +388,17 @@ function Navbar() {
               >
                 <button onClick={navigateToPage} id='/cards'>
                   Cards List
+                </button>
+              </li>
+              <li
+                className={
+                  activeNav === '/battles'
+                    ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                    : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                }
+              >
+                <button onClick={navigateToPage} id='/cards'>
+                  Battles
                 </button>
               </li>
               <li

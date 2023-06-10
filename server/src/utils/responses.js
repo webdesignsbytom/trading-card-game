@@ -12,9 +12,17 @@ const STATUS_MESSAGES = {
 export const EVENT_MESSAGES = {
   badRequest: `Bad Request`,
   notFound: `Not Found`,
+  notFoundOpponent: `Not Found battle opponent`,
   missingUserIdentifier: `Missing User identifier`,
   missingFields: `Missing fields in request`,
   alreadyClaimed: `Already Claimed`,
+  // Battles
+  battleTag: `Battle database`,
+  battleNotFound: `Failed to find battle/s`,
+  userBattlesNotFound: `Failed to find user battles`,
+  createBattleFail: `Failed to create battle`,
+  markBattleViewedFailed: `Failed to mark battle as viewed`,
+  oppenentNotFound: `Failed to find opponent user`,
   // Complaints
   complaintTag: `Complaint database`,
   complaintNotFound: `Failed to find complaint/s`,
@@ -30,33 +38,6 @@ export const EVENT_MESSAGES = {
   eventNotFound: `Failed to find event`,
   createEventFail: `Failed to create event`,
   eventNotDeleted: `Failed to delete event`,
-  // Lottery
-  lotteryTag: `Lottery database`,
-  lotteryNotFound: `Failed to find lottery`,
-  createLotteryFail: `Failed to create lottery`,
-  dateInUse: `Draw already taking place on this day`,
-  dateNotInUse: `Draw not place on this day`,
-  createDrawFail: `Failed to create draw`,
-  createTicketFail: `Failed to create ticket`,
-  // Messages
-  messageTag: `Message database`,
-  messageNotFound: `Failed to find message/s`,
-  userMessagesNotFound: `Failed to find user messages`,
-  createMessageFail: `Failed to create message`,
-  markMessageViewedFailed: `Failed to mark message as viewed`,
-  // Newsletters
-  newsletterTag: `Newsletter database`,
-  newsletterIdNotFound: `Failed find newsletter/s`,
-  userNewslettersNotFound: `Failed to find user newsletters`,
-  createNewsletterFail: `Failed to create newsletter`,
-  newsletterSignupFail: `Failed to sign up to newsletter mailing list`,
-  markNewsletterViewedFailed: `Failed to mark newsletter as viewed`,
-  // Notifications
-  notificationTag: `Notification database`,
-  notificationIdNotFound: `Failed find notification/s`,
-  userNotificationsNotFound: `Failed to find user notifications`,
-  createNotificationFail: `Failed to create notification`,
-  markNotificationViewedFailed: `Failed to mark notification as viewed`,
   // Cards
   cardsTag: `Cards database`,
   notFoundCards: `Failed to find cards/s`,
@@ -65,6 +46,15 @@ export const EVENT_MESSAGES = {
   notFoundCardType: `Cant find card type`,
   createCardsFail: `Failed to create cards`,
   markCardsViewedFailed: `Failed to mark cards as viewed`,
+  // Decks
+  decksTag: `Decks database`,
+  notFoundDecks: `Failed to find decks/s`,
+  notFoundInstances: `Failed to find decks/s`,
+  userDecksNotFound: `Failed to find user decks`,
+  notFoundDeckType: `Cant find deck type`,
+  createDecksFail: `Failed to create decks`,
+  markDecksViewedFailed: `Failed to mark decks as viewed`,
+  deckNotDeleted: `Deck not deleted`,
   // Packs
   packTypesTag: `PackType database`,
   notFoundPack: `Failed to find pack`,

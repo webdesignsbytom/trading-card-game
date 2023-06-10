@@ -18,6 +18,10 @@ import UserOverviewPage from './pages/admin/UserOverviewPage';
 import EventOverviewPage from './pages/admin/EventsOverviewPage';
 import CardsInPackPage from './pages/packs/CardsInPackPage';
 import UnopenedPacketsPage from './pages/packs/UnopenedPacketsPage';
+import BattlesOverviewPage from './pages/battles/BattlesOverviewPage';
+import OpenBattleActivePage from './pages/battles/OpenBattleActivePage';
+import BattleRulesPage from './pages/battles/BattleRulesPage';
+import DecksOverviewPage from './pages/decks/DecksOverviewPage';
 
 function App() {
   return (
@@ -35,6 +39,10 @@ function App() {
       <Route path='/invintory' element={<InvintoryPage />} />
       <Route path='/trading' element={<TradingPage />} />
       <Route path='/rewards' element={<RewardsPage />} />
+      <Route path='/battles' element={<BattlesOverviewPage />} />
+      <Route path='/battle/open-battle' element={<OpenBattleActivePage />} />
+      <Route path='/battles/rules' element={<BattleRulesPage />} />
+      <Route path='/user/decks' element={<DecksOverviewPage />} />
       <Route path='/admin' element={<AdminPage />} />
       <Route path='/admin/card-edit' element={<CardEditPage />} />
       <Route path='/admin/user-overview' element={<UserOverviewPage />} />
