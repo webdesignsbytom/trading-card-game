@@ -26,11 +26,11 @@ export async function createSinglePacksOfCards(packType) {
 
 // Buy pack of cards and id to user
 export async function createSinglePacksOfCardsForUser(packType, userId) {
-
+  console.log('11111', packType, userId);
   const newPack = await createBlankPackOfCardsForUser(packType, userId);
-
+  console.log('2222 NEW PACK', newPack);
   const cards = await createCardsForPack(packType, newPack.id);
-
+  console.log('3333 CARDS', cards);
   const cardInstanceArray = []
   // create instances
   for (let index = 0; index < cards.length; index++) {
@@ -39,6 +39,7 @@ export async function createSinglePacksOfCardsForUser(packType, userId) {
     cardInstanceArray.push(cardInstance)
   }
 
+  console.log('CARD INSTANCE ARRAY', cardInstanceArray);
   return {cards, cardInstanceArray, newPack};
 }
 
