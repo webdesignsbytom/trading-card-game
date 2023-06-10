@@ -50,23 +50,50 @@ function BattleFightComponent() {
               </div>
             </section>
 
-            <section className='grid grid-cols-6 gap-1'>
-              {playerCardsInHand.map((card, index) => {
-                return (
-                  <div
-                    key={index}
-                    onClick={() => setCardInPlay(card)}
-                    className='grid cursor-pointer hover:scale-110 active:scale-95 bg-blue-500 main__bg outline outline-2 outline-black p-[1px] rounded'
-                  >
-                    <span>{card.id}</span>
-                  </div>
-                );
-              })}
-            </section>
+            {playerCardsInHand.length <= 12 && (
+              <section className='grid grid-cols-6 gap-1'>
+                {playerCardsInHand.map((card, index) => {
+                  return (
+                    <div
+                      key={index}
+                      onClick={() => setCardInPlay(card)}
+                      className='grid cursor-pointer hover:scale-110 active:scale-95 bg-blue-500 main__bg outline outline-2 outline-black p-[1px] rounded'
+                    >
+                      <span>{card.id}</span>
+                    </div>
+                  );
+                })}
+              </section>
+            )}
+
+            {playerCardsInHand.length > 12 && (
+              <section className='grid grid-cols-9 gap-1'>
+                {playerCardsInHand.map((card, index) => {
+                  return (
+                    <div
+                      key={index}
+                      onClick={() => setCardInPlay(card)}
+                      className='grid cursor-pointer hover:scale-110 active:scale-95 bg-blue-500 main__bg outline outline-2 outline-black p-[1px] rounded'
+                    >
+                      <span>{card.id}</span>
+                    </div>
+                  );
+                })}
+              </section>
+            )}
+            <section className='grid'>End turn</section>
           </div>
         </section>
-        <section className='grid bg-red-500 main__bg outline outline-2 outline-black p-1 rounded-xl'>
-          <article>{currentBattle.playerTwoUserName}</article>
+        <section className='grid grid-rows-reg bg-red-500 main__bg outline outline-2 outline-black p-1 rounded-xl'>
+          <article>
+            <span>{currentBattle.playerTwoUserName}</span>
+          </article>
+          <section className='grid grid-rows-2'>
+            <div className='grid bg-blue-500 main__bg outline outline-2 outline-black p-[1px] rounded'>
+              <span>{enemyCardInPlay.id}</span>
+            </div>
+            <div>player stats</div>
+          </section>
         </section>
       </section>
     </section>
