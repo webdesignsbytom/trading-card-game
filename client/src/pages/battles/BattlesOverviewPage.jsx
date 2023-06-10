@@ -18,7 +18,7 @@ function BattlesOverviewPage() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    setActiveNav('/battle')
+    setActiveNav('/battles')
   }, [])
 
   console.log('openBattleRequests', openBattleRequests);

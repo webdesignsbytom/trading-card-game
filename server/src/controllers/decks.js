@@ -72,11 +72,9 @@ export const getDeckById = async (req, res) => {
 export const getAllDisplayCardsFromDeck = async (req, res) => {
   console.log('getAllDisplayCardsFromDeck');
   const { deckId } = req.params
-  console.log('deckId', deckId);
 
   try {
     const foundDeck = await findDeckById(deckId);
-    console.log('found deck', foundDeck);
 
     if (!foundDeck) {
       const notFound = new NotFoundEvent(
@@ -99,7 +97,7 @@ export const getAllDisplayCardsFromDeck = async (req, res) => {
     return sendDataResponse(res, 200, { deck: cardsArray });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get deck by id `);
+    const serverError = new ServerErrorEvent(req.user, `Get cards from deck`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -110,7 +108,6 @@ export const getAllDisplayCardsFromDeck = async (req, res) => {
 export const getAllDecksByUserId = async (req, res) => {
   console.log('getAllDecksByUserId');
   const { userId } = req.params;
-  console.log('userId', userId);
 
   try {
     const foundDecks = await findAllUserDecks(userId);
@@ -128,7 +125,7 @@ export const getAllDecksByUserId = async (req, res) => {
     return sendDataResponse(res, 200, { decks: foundDecks });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get deck by id`);
+    const serverError = new ServerErrorEvent(req.user, `Get deck by user id`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -157,7 +154,7 @@ export const createDeck = async (req, res) => {
     return sendDataResponse(res, 200, { deck: createdDeck });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Create deck`);
+    const serverError = new ServerErrorEvent(req.user, `Create new deck`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -167,8 +164,8 @@ export const createDeck = async (req, res) => {
 // addCardsToDeck
 export const addCardsToDeck = async (req, res) => {
   console.log('addCardsToDeck');
-  const { deckId, deckName, userId, cardInstancesArray } = req.body;
-  console.log('deckId, deckName, userId, cardInstancesArray', deckId, userId, cardInstancesArray);
+  const { deckId, userId, cardInstancesArray } = req.body;
+  console.log('deckId, userId, cardInstancesArray', deckId, userId, cardInstancesArray);
 
   try {
     const foundUser = await findUserById(userId);
@@ -183,7 +180,6 @@ export const addCardsToDeck = async (req, res) => {
     }
 
     const foundDeck = await findDeckById(deckId);
-    console.log('found deck', foundDeck);
 
     if (!foundDeck) {
       const notFound = new NotFoundEvent(
@@ -199,16 +195,14 @@ export const addCardsToDeck = async (req, res) => {
 
     for (let index = 0; index < cardInstancesArray.length; index++) {
       const instance = cardInstancesArray[index];
-      console.log('instance', instance.id);
       const addedToDeck = await addCardInstanceToDeck(instance.id, deckId)
-      console.log('added to deck', addedToDeck);
       newDeck.push(addedToDeck);
     }
 
     return sendDataResponse(res, 200, { deck: newDeck });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Create deck`);
+    const serverError = new ServerErrorEvent(req.user, `Add card instances to deck`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -219,11 +213,9 @@ export const addCardsToDeck = async (req, res) => {
 export const deleteDeck = async (req, res) => {
   console.log('deleteDeck');
   const deckId = req.params.deckId;
-  console.log('deckId', deckId);
 
   try {
     const foundDeck = await findDeckById(deckId);
-    console.log('foundDeck card', foundDeck);
 
     if (!foundDeck) {
       const notFound = new NotFoundEvent(
