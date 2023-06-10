@@ -21,6 +21,7 @@ import {
 import { starterPackNames } from '../utils/constants.js';
 import {
   findUserById,
+  findUserByIdBasic,
   setStarterCardsToClaimed,
   updateUserCardArray,
 } from '../domain/users.js';
@@ -220,9 +221,9 @@ export const buyPackAndAddToUser = async (req, res) => {
 // Create starter packs for new players
 export const createStarterPacksForUser = async (req, res) => {
   const { userId } = req.body;
-  console.log('USERID', userId);
+  
   try {
-    const foundUser = await findUserById(userId);
+    const foundUser = await findUserByIdBasic(userId);
     if (!foundUser) {
       const notFound = new NotFoundEvent(
         req.user,
@@ -232,10 +233,8 @@ export const createStarterPacksForUser = async (req, res) => {
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
-    console.log('FOUNDUSER', foundUser);
 
     if (foundUser.collectedStartedPacks) {
-      console.log('FOUND ALREADY COLLECTED');
       const alreadyClaimed = new ConfictEvent(
         req.user,
         EVENT_MESSAGES.alreadyClaimed,
@@ -250,9 +249,7 @@ export const createStarterPacksForUser = async (req, res) => {
     }
 
     const starterPacks = [];
-    console.log('STARTINGPACKS', starterPacks);
     const cardsInPackArray = [];
-    console.log('CARDSINPACKARRAY', cardsInPackArray);
 
     const createdPack1 = await createSinglePacksOfCardsForUser(
       starterPackNames[0],
@@ -260,7 +257,6 @@ export const createStarterPacksForUser = async (req, res) => {
     );
     starterPacks.push(createdPack1.cardInstanceArray);
     cardsInPackArray.push(createdPack1.cards);
-    console.log('PACK1', createdPack1);
 
     const createdPack2 = await createSinglePacksOfCardsForUser(
       starterPackNames[1],
@@ -268,7 +264,6 @@ export const createStarterPacksForUser = async (req, res) => {
     );
     starterPacks.push(createdPack2.cardInstanceArray);
     cardsInPackArray.push(createdPack2.cards);
-    console.log('PACK2', createdPack2);
 
     const createdPack3 = await createSinglePacksOfCardsForUser(
       starterPackNames[2],
@@ -276,14 +271,10 @@ export const createStarterPacksForUser = async (req, res) => {
     );
     starterPacks.push(createdPack3.cardInstanceArray);
     cardsInPackArray.push(createdPack3.cards);
-    console.log('PACK3', createdPack3);
 
     const updatedUser = await setStarterCardsToClaimed(userId);
-    console.log('UPDATED', updatedUser);
 
     return sendDataResponse(res, 201, {
-      packs: starterPacks,
-      cards: cardsInPackArray,
       updatedUser: updatedUser,
     });
   } catch (err) {
