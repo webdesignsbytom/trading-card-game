@@ -6,8 +6,6 @@ import PartyCard from './PartyCard';
 import PolicyCard from './PolicyCard';
 
 function Card({ cardData }) {
-  console.log('cardData', cardData);
-
   if (!cardData.id) {
     return <EmptyCardSlot />;
   }

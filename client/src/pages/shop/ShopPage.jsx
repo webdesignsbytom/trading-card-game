@@ -21,24 +21,22 @@ function ShopPage() {
     setActiveNav('/shop')
   }, [])
   
-  const buyPacketsOfCards = (event) => {
-    const { id } = event.target;
-    console.log('id', id);
-    let packTypeUpper = id.toUpperCase();
+  const buyPacketsOfCards = (name) => {
+    console.log('id tt', name);
 
     let purchaseRequest = {
-      packType: packTypeUpper,
+      packType: name,
       userId: user.id,
       cost: costOfStandardPack,
     };
 
-    if (id === 'brexit') {
+    if (name === 'BREXIT') {
       setPurchasingBrexitPack(true);
     }
-    if (id === 'covid') {
+    if (name === 'COVID') {
       setPurchasingCovidPack(true);
     }
-    if (id === 'election') {
+    if (name === 'ELECTION') {
       setPurchasingElectionPack(true);
     }
 

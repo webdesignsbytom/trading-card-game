@@ -16,9 +16,10 @@ import AdminPage from './pages/admin/AdminPage';
 import CardEditPage from './pages/admin/CardEditPage';
 import UserOverviewPage from './pages/admin/UserOverviewPage';
 import EventOverviewPage from './pages/admin/EventsOverviewPage';
+import CardsInPackPage from './pages/packs/CardsInPackPage';
+import UnopenedPacketsPage from './pages/packs/UnopenedPacketsPage';
 
 function App() {
-  console.log('AAAAAAAA new page');
   return (
     <Routes>
       <Route path='/' index element={<HomePage />} />
@@ -27,6 +28,8 @@ function App() {
       <Route path='/sign-up' element={<RegisterPage />} />
       <Route path='/shop' element={<ShopPage />} />
       <Route path='/open-packs' element={<OpenPacksPage />} />
+      <Route path='/pack/opened' element={<CardsInPackPage />} />
+      <Route path='/packs/unopened' element={<UnopenedPacketsPage />} />
       <Route path='/cards' element={<CardsAvailablePage />} />
       <Route path='/card-overview/:id' element={<CardOverviewPage />} />
       <Route path='/invintory' element={<InvintoryPage />} />

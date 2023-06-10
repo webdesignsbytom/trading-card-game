@@ -4,8 +4,9 @@ import Card from '../card/Card';
 // Context
 import { UserContext } from '../../context/UserContext';
 import { CardContext } from '../../context/CardContext';
-
+// Utils
 import LoadingSpinner from '../utils/LoadingSpinner';
+import client from '../../utils/client';
 
 function OpenAlbumPage() {
   const { user } = useContext(UserContext);
@@ -14,11 +15,42 @@ function OpenAlbumPage() {
   const [openPageCards, setOpenPageCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(10);
 
+  const [searchQuery, setSearchQuery] = useState({ cardName: '' });
+  const [cardNotFound, setCardNotFound] = useState(false);
+  const [foundCards, setFoundCards] = useState([]);
+
   console.log('openPageCards', openPageCards);
 
   useEffect(() => {}, []);
 
   const handleTypeChange = () => {};
+
+  const handleSearchChange = (event) => {
+    const { value } = event.target;
+
+    setSearchQuery({
+      ...setSearchQuery,
+      username: value,
+    });
+  };
+
+  const searchForUser = () => {
+    console.log('xxx');
+    setCardNotFound(false);
+
+    client
+      .get(`/con-cards/card/search-cards-by-name`, searchQuery.cardName)
+      .then((res) => {
+        console.log('res', res.data.data);
+        setFoundCards(res.data.data.cards);
+      })
+      .catch((err) => {
+        console.error('Unable to find card', err);
+        if (err.response.statusText === 'Not Found') {
+          setCardNotFound(true);
+        }
+      });
+  };
 
   return (
     <div className='bg-black main__bg h-full overflow-hidden grid'>

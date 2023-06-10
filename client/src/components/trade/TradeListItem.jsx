@@ -13,7 +13,7 @@ function TradeListItem({ trade }) {
 
   const deleteTrade = (trade) => {
     client
-      .delete(`/trade/delete-trade/${trade.id}`)
+      .delete(`/trades/delete-trade/${trade.id}`)
       .then((res) => {
         console.log('Deleted', res.data.data.deletedTrade);
       })

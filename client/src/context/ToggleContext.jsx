@@ -15,16 +15,11 @@ const ToggleContextProvider = ({ children }) => {
   const [selectedCard, setSelectedCard] = useState({});
   const [selectedPack, setSelectedPack] = useState({});
   const [returnedOpenPack, setReturnedOpenPack] = useState([]);
-  const [toggleUnopenedPacketsDisplay, setToggleUnopenedPacketDisplay] =
-    useState(false);
   const [toggleOpeningPackDiplay, setToggleOpeningPackDiplay] = useState(false);
   const [activeNav, setActiveNav] = useState('/');
 
   let navigate = useNavigate();
 
-  const toggleOpenPackets = () => {
-    setToggleUnopenedPacketDisplay(!toggleUnopenedPacketsDisplay);
-  };
 
   const toggleOpeningNewPack = (pack) => {
     setSelectedPack(pack);
@@ -60,12 +55,10 @@ const ToggleContextProvider = ({ children }) => {
         toggleNavigation,
         toggleNavbar,
         toggleCardData,
-        toggleOpenPackets,
         toggleOpeningNewPack,
         activeNav,
         viewCard,
         selectedCard,
-        toggleUnopenedPacketsDisplay,
         toggleOpeningPackDiplay,
         selectedPack,
         returnedOpenPack,

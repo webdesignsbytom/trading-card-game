@@ -23,7 +23,7 @@ const UserContextProvider = ({ children }) => {
     if (decodedUserData !== null) {
       const userId = decodedUserData.id;
       client
-        .get(`/users/user/id/${userId}`)
+        .get(`/users/user/userId/${userId}`)
         .then((res) => {
           setUser(res.data.data.user);
         })

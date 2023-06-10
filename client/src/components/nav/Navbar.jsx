@@ -9,7 +9,6 @@ import LogoImage from '../../assets/img/cute-user.png';
 function Navbar() {
   const { user, setUser } = useContext(UserContext);
   const {
-    toggleOpenPackets,
     toggleNavbar,
     toggleNavigation,
     activeNav,
@@ -19,9 +18,8 @@ function Navbar() {
   let navigate = useNavigate();
 
   const goToUnopenedPacks = () => {
-    toggleOpenPackets();
     toggleNavbar();
-    navigate('/invintory', { replace: true });
+    navigate('/packs/unopened', { replace: true });
   };
 
   const navigateToPage = (event) => {
@@ -198,7 +196,7 @@ function Navbar() {
       </section>
 
       {toggleNavigation && (
-        <nav className='absolute w-full left-0 top-24 py-2 px-4'>
+        <nav className='absolute lg:hidden w-full left-0 top-24 py-2 px-4'>
           <div className='bg-black nav__bg p-2 outline outline-4 outline-red-500 rounded'>
             <section className='mb-2 text-white'>
               {user?.packs?.length > 0 && (

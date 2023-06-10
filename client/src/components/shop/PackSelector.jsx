@@ -21,7 +21,7 @@ function PackSelector({
         <div className='grid items-center justify-center my-4'>
           <button
             id='brexit'
-            onClick={buyPacketsOfCards}
+            onClick={() => buyPacketsOfCards('BREXIT')}
             className='rounded bg-red-600 hover:bg-red-500 active:scale-95 text-white font-semibold main__bg outline outline-2 outline-black p-2'
           >
             {purchasingBrexitPack ? (
@@ -46,7 +46,7 @@ function PackSelector({
         <div className='grid items-center justify-center my-4'>
           <button
             id='covid'
-            onClick={buyPacketsOfCards}
+            onClick={() => buyPacketsOfCards('COVID')}
             className='rounded bg-red-600 hover:bg-red-500 active:scale-95 text-white font-semibold main__bg outline outline-2 outline-black p-2'
           >
             {purchasingCovidPack ? (
@@ -71,7 +71,7 @@ function PackSelector({
         <div className='grid items-center justify-center my-4'>
           <button
             id='election'
-            onClick={buyPacketsOfCards}
+            onClick={() => buyPacketsOfCards('ELECTION')}
             className='rounded bg-red-600 hover:bg-red-500 active:scale-95 text-white font-semibold main__bg outline outline-2 outline-black p-2'
           >
             {purchasingElectionPack ? (

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 // context
 import { ToggleContext } from '../../context/ToggleContext';
 import { UserContext } from '../../context/UserContext';
@@ -8,6 +8,7 @@ import client from '../../utils/client';
 import CovidPack from '../../assets/img/packets/pack1.png';
 import BrexitPack from '../../assets/img/packets/pack2.png';
 import ElectionPack from '../../assets/img/packets/pack3.png';
+import { useNavigate } from 'react-router-dom';
 
 function OpenablePacket({ pack }) {
   console.log('PPSPSWD', pack);
@@ -15,10 +16,14 @@ function OpenablePacket({ pack }) {
   const { toggleOpeningNewPack } = useContext(ToggleContext);
   const { user } = useContext(UserContext);
 
+  let navigate = useNavigate();
+
   const openPack = (pack) => {
+    navigate('/pack/opened', { state: pack });
     toggleOpeningNewPack(pack);
     console.log('OPEN XXX');
   };
+
 
   if (pack) {
     return (

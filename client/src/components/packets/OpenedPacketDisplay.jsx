@@ -5,9 +5,14 @@ import { ToggleContext } from '../../context/ToggleContext';
 import MemberCard from '../card/MemberCard';
 import PolicyCard from '../card/PolicyCard';
 import PartyCard from '../card/PartyCard';
+import { useLocation } from 'react-router-dom';
 
 function OpenedPacketDisplay() {
   const { returnedOpenPack } = useContext(ToggleContext);
+
+  const location = useLocation();
+  // const packData = location.state;
+
   console.log('XXXX ', returnedOpenPack);
   return (
     <div>

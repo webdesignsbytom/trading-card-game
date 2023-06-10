@@ -13,11 +13,10 @@ function AlbumPage() {
   const { viewCard, setActiveNav } = useContext(ToggleContext);
 
   const [albumOpen, setAlbumOpen] = useState(false);
-  
+
   useEffect(() => {
-    setActiveNav('/album')
-  }, [])
-  
+    setActiveNav('/album');
+  }, []);
 
   const [usersCardCollectionArray, setUsersCardCollectionArray] = useState(
     user.cards

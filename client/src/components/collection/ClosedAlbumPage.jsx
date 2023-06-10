@@ -13,7 +13,7 @@ function ClosedAlbumPage({ openAlbum }) {
   useEffect(() => {
     console.log('LOADING');
     client
-    .get(`/users/user/id/${user.id}/all-cards`)
+    .get(`/users/user/userId/${user.id}/all-cards`)
     .then((res) => {
       console.log('res', res.data);
       setUserCardsArray(res.data.data.cards);

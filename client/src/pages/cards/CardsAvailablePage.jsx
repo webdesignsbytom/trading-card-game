@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 // Components
 import Navbar from '../../components/nav/Navbar';
-import client from '../../utils/client';
 import Card from '../../components/card/Card';
-import LoadingSpinner from '../../components/utils/LoadingSpinner';
+// Context
 import { ToggleContext } from '../../context/ToggleContext';
+// Utils
+import client from '../../utils/client';
+import LoadingSpinner from '../../components/utils/LoadingSpinner';
 
 function CardsAvailablePage() {
   const { setActiveNav } = useContext(ToggleContext);
@@ -13,8 +15,6 @@ function CardsAvailablePage() {
   const [searchQuery, setSearchQuery] = useState({ cardName: '' });
   const [cardNotFound, setCardNotFound] = useState(false);
   const [foundCards, setFoundCards] = useState([]);
-
-  console.log('allCardsArray', allCardsArray);
 
   useEffect(() => {
     setActiveNav('/cards');
@@ -41,11 +41,13 @@ function CardsAvailablePage() {
   };
 
   const searchForUser = () => {
+    console.log('xxx');
     setCardNotFound(false);
 
     client
-      .get(`/con-cards/card/search-cards-by-name/${searchQuery.cardName}`)
+      .get(`/con-cards/card/search-cards-by-name`, searchQuery.cardName)
       .then((res) => {
+        console.log('res', res.data.data);
         setFoundCards(res.data.data.cards);
       })
       .catch((err) => {
@@ -69,14 +71,21 @@ function CardsAvailablePage() {
                     Total Cards: {allCardsArray?.length}
                   </h3>
                 </div>
-                <div className='grid items-center justify-center p-1'>
+                <div className='grid relative items-center justify-center p-1'>
                   <input
                     className='rounded px-1 py-1'
                     type='text'
                     name='searchAlbum'
                     id='searchAlbum'
-                    placeholder='Search your collection...'
+                    onChange={handleSearchChange}
+                    placeholder='Search the collection...'
                   />
+                  <div
+                    onClick={searchForUser}
+                    className='absolute h-fit mr-6 w-fit rounded active:scale-95 hover:bg-blue-700 bg-blue-400 px-2 right-0'
+                  >
+                    ?
+                  </div>
                 </div>
                 <section className='grid justify-end'>
                   <select
@@ -111,7 +120,12 @@ function CardsAvailablePage() {
                       onChange={handleSearchChange}
                       placeholder='Search the collection...'
                     />
-                    <div onClick={searchForUser} className='absolute h-fit w-fit rounded active:scale-95 hover:bg-blue-700 bg-blue-400 px-2 right-0'>?</div>
+                    <div
+                      onClick={searchForUser}
+                      className='absolute h-fit w-fit rounded active:scale-95 hover:bg-blue-700 bg-blue-400 px-2 right-0'
+                    >
+                      ?
+                    </div>
                   </div>
                   <section className='grid justify-end py-1'>
                     <select

@@ -11,7 +11,7 @@ function OpenRequestsListComponent() {
   useEffect(() => {
     if (user.id) {
       client
-        .get(`/trade/user-trades/${user.id}`)
+        .get(`/trades/user-trades/${user.id}`)
         .then((res) => {
           setUserOpenTradesArray(res.data.data.trades);
         })

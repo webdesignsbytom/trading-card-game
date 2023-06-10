@@ -22,7 +22,7 @@ function StartingPacks() {
         setClaimedFreePacks(true);
       })
       .catch((err) => {
-        console.error('Unable to retrieve user data', err);
+        console.error('Unable to claim starter packs', err);
       });
   };
 
