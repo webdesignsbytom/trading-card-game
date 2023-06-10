@@ -7,8 +7,9 @@ import {
   NotFoundEvent,
   ServerErrorEvent,
 } from '../event/utils/errorUtils.js';
-import { createNewDeck, deleteDeckById, findAllDecks, findAllUserDecks, findDeckById, updateNewDeck } from '../domain/decks.js';
+import { addCardInstanceToDeck, createNewDeck, deleteDeckById, findAllDecks, findAllUserDecks, findDeckById, updateNewDeck } from '../domain/decks.js';
 import { findUserById } from '../domain/users.js';
+import { findCardById } from '../domain/cards.js';
 
 export const getAllDecks = async (req, res) => {
   console.log('get all decks');
@@ -58,6 +59,44 @@ export const getDeckById = async (req, res) => {
     }
 
     return sendDataResponse(res, 200, { deck: foundDeck });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get deck by id `);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+// Get getAllDisplayCardsFromDeck
+export const getAllDisplayCardsFromDeck = async (req, res) => {
+  console.log('getAllDisplayCardsFromDeck');
+  const { deckId } = req.params
+  console.log('deckId', deckId);
+
+  try {
+    const foundDeck = await findDeckById(deckId);
+    console.log('found deck', foundDeck);
+
+    if (!foundDeck) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundDecks
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    const cardsArray = []
+    for (let index = 0; index < foundDeck.cards.length; index++) {
+      const card = foundDeck.cards[index];
+      console.log('card RRRRRRR', card);
+      const foundCard = await findCardById(card.cardId)
+      cardsArray.push(foundCard);
+    }
+
+    return sendDataResponse(res, 200, { deck: cardsArray });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Get deck by id `);
@@ -125,11 +164,11 @@ export const createDeck = async (req, res) => {
   }
 };
 
-// updateAndAddCardsToDeck
-export const updateAndAddCardsToDeck = async (req, res) => {
-  console.log('updateAndAddCardsToDeck');
-  const { deckId, deckName, userId, cardsArray } = req.body;
-  console.log('deckId, deckName, userId, cardsArray', deckId, deckName, userId, cardsArray);
+// addCardsToDeck
+export const addCardsToDeck = async (req, res) => {
+  console.log('addCardsToDeck');
+  const { deckId, deckName, userId, cardInstancesArray } = req.body;
+  console.log('deckId, deckName, userId, cardInstancesArray', deckId, userId, cardInstancesArray);
 
   try {
     const foundUser = await findUserById(userId);
@@ -142,6 +181,7 @@ export const updateAndAddCardsToDeck = async (req, res) => {
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
+
     const foundDeck = await findDeckById(deckId);
     console.log('found deck', foundDeck);
 
@@ -155,9 +195,17 @@ export const updateAndAddCardsToDeck = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    const updatedDeck = await updateNewDeck(deckId, deckName, cardsArray)
+    let newDeck = []
 
-    return sendDataResponse(res, 200, { deck: updatedDeck });
+    for (let index = 0; index < cardInstancesArray.length; index++) {
+      const instance = cardInstancesArray[index];
+      console.log('instance', instance.id);
+      const addedToDeck = await addCardInstanceToDeck(instance.id, deckId)
+      console.log('added to deck', addedToDeck);
+      newDeck.push(addedToDeck);
+    }
+
+    return sendDataResponse(res, 200, { deck: newDeck });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Create deck`);

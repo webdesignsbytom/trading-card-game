@@ -13,8 +13,8 @@ export const findDeckById = (deckId) =>
       id: deckId,
     },
     include: {
-      cards: true
-    }
+      cards: true,
+    },
   });
 
 export const updateNewDeck = (deckId, deckName, cardsArray) =>
@@ -23,12 +23,13 @@ export const updateNewDeck = (deckId, deckName, cardsArray) =>
       id: deckId,
     },
     data: {
-      deckName: deckName,
-      cards: cardsArray
+      cards: {
+
+      }
     },
     include: {
-      cards: true
-    }
+      cards: true,
+    },
   });
 
 export const findAllUserDecks = (userId) =>
@@ -37,10 +38,10 @@ export const findAllUserDecks = (userId) =>
       userId: userId,
     },
     include: {
-      cards: true
-    }
+      cards: true,
+    },
   });
-  
+
 export const createNewDeck = (deckName, userId) =>
   dbClient.deck.create({
     data: {
@@ -48,8 +49,8 @@ export const createNewDeck = (deckName, userId) =>
       userId: userId,
     },
     include: {
-      cards: true
-    }
+      cards: true,
+    },
   });
 
 export const deleteDeckById = (deckId) =>
@@ -58,3 +59,14 @@ export const deleteDeckById = (deckId) =>
       id: deckId,
     },
   });
+
+export const addCardInstanceToDeck = (instanceId, deckId) =>
+  dbClient.cardInstance.update({
+    where: {
+      id: instanceId,
+    },
+    data: {
+      deckId: deckId
+    }
+  });
+

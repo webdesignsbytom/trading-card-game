@@ -5,7 +5,8 @@ import {
   createDeck,
   deleteDeck,
   getAllDecksByUserId,
-  updateAndAddCardsToDeck
+  addCardsToDeck,
+  getAllDisplayCardsFromDeck
 } from '../controllers/decks.js';
 import {
   validateAuthentication,
@@ -16,7 +17,8 @@ const router = Router();
 
 router.get('/all-decks', getAllDecks);
 router.get('/deck/:deckId', getDeckById);
-router.patch('/deck/update-deck', updateAndAddCardsToDeck);
+router.get('/deck/:deckId/all-cards', getAllDisplayCardsFromDeck);
+router.patch('/deck/update-deck', addCardsToDeck);
 router.get('/deck/user-decks/:userId', getAllDecksByUserId);
 router.post('/deck/create-deck', createDeck);
 router.delete('/delete-deck-by-id/:deckId', deleteDeck);
