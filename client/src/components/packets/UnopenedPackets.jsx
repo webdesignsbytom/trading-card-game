@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import OpenablePacket from './OpenablePacket';
 // Context
 import { UserContext } from '../../context/UserContext';
+import client from '../../utils/client';
 
 function UnopenedPackets() {
   const { user } = useContext(UserContext);
@@ -10,9 +11,14 @@ function UnopenedPackets() {
   const [packIndex, setPackIndex] = useState([0, 1, 2]);
 
   useEffect(() => {
-    let packs = user.packs;
-    console.log('packs', packs);
-    setUnopenedPacks(packs)
+    client
+      .get(`/users/user/packs/${user.id}/all-packs`)
+      .then((res) => {
+        setUnopenedPacks(res.data.data.packs);
+      })
+      .catch((err) => {
+        console.error('Unable to retrieve all packs', err);
+      });
   }, []);
 
   const nextPacks = () => {

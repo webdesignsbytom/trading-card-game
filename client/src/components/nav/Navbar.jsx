@@ -8,12 +8,8 @@ import LogoImage from '../../assets/img/cute-user.png';
 
 function Navbar() {
   const { user, setUser } = useContext(UserContext);
-  const {
-    toggleNavbar,
-    toggleNavigation,
-    activeNav,
-    setActiveNav,
-  } = useContext(ToggleContext);
+  const { toggleNavbar, toggleNavigation, activeNav, setActiveNav } =
+    useContext(ToggleContext);
 
   let navigate = useNavigate();
 
@@ -44,7 +40,11 @@ function Navbar() {
     <nav className='nav__bg h-full relative z-30 bg-red-500 lg:border-4 border-black border-b-4 border-solid grid grid-cols-a1a lg:grid-cols-none lg:grid-rows-reg'>
       <section className='grid lg:hidden items-center justify-center pl-4'>
         <Link className='no__highlights' to='/'>
-          <img className='w-10 no__highlights h-10' src={LogoImage} alt='Logo' />
+          <img
+            className='w-10 no__highlights h-10'
+            src={LogoImage}
+            alt='Logo'
+          />
         </Link>
       </section>
 
@@ -67,11 +67,11 @@ function Navbar() {
 
         <section className='text-center mt-2 hidden lg:grid gap-4'>
           {user?.packs?.length > 0 && (
-            <div className='outline bg-blue-500 main__bg outline-black outline-2 rounded animate-pulse'>
-              <button
-                className='font-semibold py-1'
-                onClick={goToUnopenedPacks}
-              >
+            <div
+              onClick={goToUnopenedPacks}
+              className='outline bg-blue-500 main__bg outline-black outline-2 rounded animate-pulse'
+            >
+              <button className='font-semibold py-1'>
                 <div>
                   <span>{user.packs.length} Unopened Packs</span>
                 </div>
@@ -79,13 +79,13 @@ function Navbar() {
             </div>
           )}
           {user?.loginRecord?.collectedReward === false && (
-            <div className='outline bg-blue-700 main__bg outline-black outline-2 rounded animate-pulse'>
-              <Link to='/rewards'>
+            <Link to='/rewards'>
+              <div className='outline bg-blue-700 main__bg outline-black outline-2 rounded animate-pulse'>
                 <div className='font-semibold py-1'>
                   <span>Daily Reward Available</span>
                 </div>
-              </Link>
-            </div>
+              </div>
+            </Link>
           )}
         </section>
       </section>

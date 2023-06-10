@@ -170,14 +170,7 @@ export const setStarterCardsToClaimed = (userId) =>
     },
     data: {
       collectedStartedPacks: true,
-    },
-    include: {
-      profile: true,
-      cards: true,
-      packs: true,
-      bank: true,
-      loginRecord: true,
-    },
+    }
   });
 
 export const updateUserCardArray = (userId, newCardArray) =>
