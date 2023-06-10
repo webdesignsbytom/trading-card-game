@@ -12,6 +12,7 @@ import userRouter from './routes/users.js';
 import packRouter from './routes/packs.js';
 import tradeRouter from './routes/trade.js';
 import eventRouter from './routes/events.js';
+import battleRouter from './routes/battles.js';
 // Env
 import { HTTP_URL, PORT } from './utils/config.js';
 
@@ -39,6 +40,7 @@ app.use('/users', userRouter);
 app.use('/packs', packRouter);
 app.use('/trades', tradeRouter);
 app.use('/events', eventRouter);
+app.use('/battles', battleRouter);
 
 // Server interface page
 app.get('/', (req, res) => {

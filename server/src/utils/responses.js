@@ -12,9 +12,17 @@ const STATUS_MESSAGES = {
 export const EVENT_MESSAGES = {
   badRequest: `Bad Request`,
   notFound: `Not Found`,
+  notFoundOpponent: `Not Found battle opponent`,
   missingUserIdentifier: `Missing User identifier`,
   missingFields: `Missing fields in request`,
   alreadyClaimed: `Already Claimed`,
+  // Battles
+  battleTag: `Battle database`,
+  battleNotFound: `Failed to find battle/s`,
+  userBattlesNotFound: `Failed to find user battles`,
+  createBattleFail: `Failed to create battle`,
+  markBattleViewedFailed: `Failed to mark battle as viewed`,
+  oppenentNotFound: `Failed to find opponent user`,
   // Complaints
   complaintTag: `Complaint database`,
   complaintNotFound: `Failed to find complaint/s`,

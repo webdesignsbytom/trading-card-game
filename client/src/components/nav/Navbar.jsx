@@ -171,6 +171,11 @@ function Navbar() {
               </Link>
             </li>
             <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
+              <Link className='w-full' to='/battles'>
+                Battles
+              </Link>
+            </li>
+            <li className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'>
               <Link className='w-full' to='/invintory'>
                 Invintory
               </Link>
@@ -320,6 +325,17 @@ function Navbar() {
               >
                 <button onClick={navigateToPage} id='/cards'>
                   Cards List
+                </button>
+              </li>
+              <li
+                className={
+                  activeNav === '/battles'
+                    ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                    : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                }
+              >
+                <button onClick={navigateToPage} id='/cards'>
+                  Battles
                 </button>
               </li>
               <li

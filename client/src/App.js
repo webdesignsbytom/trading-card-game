@@ -18,6 +18,7 @@ import UserOverviewPage from './pages/admin/UserOverviewPage';
 import EventOverviewPage from './pages/admin/EventsOverviewPage';
 import CardsInPackPage from './pages/packs/CardsInPackPage';
 import UnopenedPacketsPage from './pages/packs/UnopenedPacketsPage';
+import BattlesOverviewPage from './pages/battles/BattlesOverviewPage';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
       <Route path='/invintory' element={<InvintoryPage />} />
       <Route path='/trading' element={<TradingPage />} />
       <Route path='/rewards' element={<RewardsPage />} />
+      <Route path='/battles' element={<BattlesOverviewPage />} />
       <Route path='/admin' element={<AdminPage />} />
       <Route path='/admin/card-edit' element={<CardEditPage />} />
       <Route path='/admin/user-overview' element={<UserOverviewPage />} />
