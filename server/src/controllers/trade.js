@@ -15,9 +15,38 @@ import {
   deleteTradeById,
   findTradeById,
   tradeCardInstance,
-  findAllUserTradeRecords
+  findAllUserTradeRecords,
+  findAllTrades,
 } from '../domain/trade.js';
 
+// get all trade records
+export const getAllTrades = async (req, res) => {
+  console.log('getAllTrades');
+  try {
+    const foundTrades = await findAllTrades();
+
+    if (!foundTrades) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    // myEmitterUsers.emit('get-all-users', req.user);
+    return sendDataResponse(res, 200, { trades: foundTrades });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get all users`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+// get all user trades
 export const getAllUserTrades = async (req, res) => {
   console.log('getAllUserTrades');
   const userId = req.params.userId;
@@ -72,7 +101,7 @@ export const createTradeCardWithUser = async (req, res) => {
       createdById,
       creatorCardInstanceId,
       receivedById,
-      foundCreatorInstanceCard.id,
+      foundCreatorInstanceCard.cardId,
       foundCreatorInstanceCard.name
     );
 
@@ -98,7 +127,6 @@ export const createTradeCardWithUser = async (req, res) => {
   }
 };
 
-
 // delete trade
 export const deleteOpenTrade = async (req, res) => {
   console.log('deleteOpenTrade');
@@ -121,7 +149,7 @@ export const deleteOpenTrade = async (req, res) => {
     }
 
     const deletedTrade = await deleteTradeById(tradeId);
-    
+
     return sendDataResponse(res, 201, { deletedTrade: deletedTrade });
   } catch (err) {
     // Error

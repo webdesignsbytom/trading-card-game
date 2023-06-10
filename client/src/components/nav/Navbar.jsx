@@ -45,8 +45,8 @@ function Navbar() {
   return (
     <nav className='nav__bg h-full relative z-30 bg-red-500 lg:border-4 border-black border-b-4 border-solid grid grid-cols-a1a lg:grid-cols-none lg:grid-rows-reg'>
       <section className='grid lg:hidden items-center justify-center pl-4'>
-        <Link to='/'>
-          <img className='w-10 h-10' src={LogoImage} alt='Logo' />
+        <Link className='no__highlights' to='/'>
+          <img className='w-10 no__highlights h-10' src={LogoImage} alt='Logo' />
         </Link>
       </section>
 
@@ -204,7 +204,7 @@ function Navbar() {
               {user?.packs?.length > 0 && (
                 <div
                   onClick={goToUnopenedPacks}
-                  className='outline text-center bg-blue-500 main__bg outline-black outline-2 rounded animate-pulse'
+                  className='no__highlights outline text-center bg-blue-500 main__bg outline-black outline-2 rounded animate-pulse'
                 >
                   <button className='font-semibold py-1'>
                     <div>
@@ -217,7 +217,7 @@ function Navbar() {
                 <button
                   id='/rewards'
                   onClick={navigateToPage}
-                  className='w-full outline text-center bg-blue-600 main__bg outline-black outline-2 rounded animate-pulse mt-2'
+                  className='no__highlights w-full outline text-center bg-blue-600 main__bg outline-black outline-2 rounded animate-pulse mt-2'
                 >
                   <div className='font-semibold py-1'>
                     <span>Daily Reward Available</span>
@@ -229,8 +229,8 @@ function Navbar() {
               <li
                 className={
                   activeNav === '/'
-                    ? 'w-full nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
-                    : 'w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                    ? 'w-ful no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                    : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
                 }
               >
                 <button onClick={navigateToPage} id='/'>
@@ -240,8 +240,8 @@ function Navbar() {
               <li
                 className={
                   activeNav === '/shop'
-                    ? 'w-full nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
-                    : 'w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                    ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                    : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
                 }
               >
                 <button onClick={navigateToPage} id='/shop'>
@@ -253,8 +253,8 @@ function Navbar() {
                   <li
                     className={
                       activeNav === '/login'
-                        ? 'w-full nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
-                        : 'w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                        ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                        : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
                     }
                   >
                     <button onClick={navigateToPage} id='/login'>
@@ -264,8 +264,8 @@ function Navbar() {
                   <li
                     className={
                       activeNav === '/sign-up'
-                        ? 'w-full nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
-                        : 'w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                        ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                        : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
                     }
                   >
                     <button onClick={navigateToPage} id='/sign-up'>
@@ -278,8 +278,8 @@ function Navbar() {
                 <li
                   className={
                     activeNav === '/admin'
-                      ? 'w-full nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
-                      : 'w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                      ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                      : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
                   }
                 >
                   <button onClick={navigateToPage} id='/admin'>
@@ -292,8 +292,8 @@ function Navbar() {
                   <li
                     className={
                       activeNav === '/album'
-                        ? 'w-full nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
-                        : 'w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                        ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                        : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
                     }
                   >
                     <button onClick={navigateToPage} id='/album'>
@@ -303,8 +303,8 @@ function Navbar() {
                   <li
                     className={
                       activeNav === '/trade'
-                        ? 'w-full nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
-                        : 'w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                        ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                        : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
                     }
                   >
                     <button onClick={navigateToPage} id='/trading'>
@@ -316,8 +316,8 @@ function Navbar() {
               <li
                 className={
                   activeNav === '/cards'
-                    ? 'w-full nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
-                    : 'w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                    ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                    : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
                 }
               >
                 <button onClick={navigateToPage} id='/cards'>
@@ -327,8 +327,8 @@ function Navbar() {
               <li
                 className={
                   activeNav === '/invintory'
-                    ? 'w-full nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
-                    : 'w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                    ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                    : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
                 }
               >
                 <button onClick={navigateToPage} id='/invintory'>
@@ -338,8 +338,8 @@ function Navbar() {
               <li
                 className={
                   activeNav === '/rewards'
-                    ? 'w-full nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
-                    : 'w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                    ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
+                    : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
                 }
               >
                 <button onClick={navigateToPage} id='/rewards'>
@@ -348,7 +348,7 @@ function Navbar() {
               </li>
               {user.email && (
                 <button
-                  className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+                  className='w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
                   onClick={logoutUser}
                 >
                   Logout

@@ -27,10 +27,12 @@ export const findUserByEmail = (email) =>
   });
 
 export const findUserByUsername = (username) =>
-  dbClient.profile.findUnique({
-    where: { username: username },
-    include: {
-    },
+  dbClient.user.findFirst({
+    where: { 
+      profile: {
+        username: username 
+      },
+    }, 
   });
 
 export const findUserById = (userId) =>

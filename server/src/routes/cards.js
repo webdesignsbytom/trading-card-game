@@ -6,6 +6,7 @@ import {
   buySingleRandomCard,
   freeSingleRandomCard,
   getAllCardInstances,
+  getCardInstanceById,
   getCardById,
   searchForCardsByName
 } from '../controllers/cards.js';
@@ -15,8 +16,9 @@ const router = Router();
 router.get('/all-cards', getAllCards);
 router.get('/all-card-instances', getAllCardInstances);
 router.get('/pack/:packType', getAllCardsFromPackType);
-router.get('/card/get-by-id/:cardInstanceId', getCardById);
-router.get('/card/search-cards-by-name/:cardName', searchForCardsByName);
+router.get('/card/get-by-id/:cardId', getCardById);
+router.get('/card/cardInstance/get-by-id/:cardInstanceId', getCardInstanceById);
+router.get('/card/search-cards-by-name', searchForCardsByName);
 router.get('/type/:cardType', getAllCardsByType);
 router.post('/free-single-card', freeSingleRandomCard);
 router.post('/buy-single-card', buySingleRandomCard);

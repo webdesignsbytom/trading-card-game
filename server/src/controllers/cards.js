@@ -12,6 +12,7 @@ import {
   findAllCardsFromPack,
   findCardById,
   findCardByName,
+  findCardBySearchQuery,
   findCardInstanceById,
   findCardsByCardType,
 } from '../domain/cards.js';
@@ -20,7 +21,7 @@ import { createSingleCardsForUser } from '../utils/createCards.js';
 
 // Get all cards from all packs
 export const getAllCards = async (req, res) => {
-  console.log('getAllUsers');
+  console.log('getAllCards');
   try {
     const foundCards = await findAllCards();
     console.log('found cards', foundCards);
@@ -47,6 +48,35 @@ export const getAllCards = async (req, res) => {
 
 // Get card by id
 export const getCardById = async (req, res) => {
+  const cardId = Number(req.params.cardId)
+  console.log('cardId', cardId);
+
+  try {
+    const foundCard = await findCardById(cardId);
+
+    if (!foundCard) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundCards
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+
+    return sendDataResponse(res, 200, { card: foundCard });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Find card by id`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+// Get card instance by id
+export const getCardInstanceById = async (req, res) => {
   console.log('getCardById');
   const { cardInstanceId } = req.params
   console.log('cardId', cardInstanceId);
@@ -71,7 +101,7 @@ export const getCardById = async (req, res) => {
     return sendDataResponse(res, 200, { cardInstance: foundCardInstance, card: foundCard });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get all cards`);
+    const serverError = new ServerErrorEvent(req.user, `Find card instance by id`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -81,7 +111,7 @@ export const getCardById = async (req, res) => {
 // search cards by name
 export const searchForCardsByName = async (req, res) => {
   console.log('searchForCardsByName');
-  const { cardName } = req.params
+  const { cardName } = req.body
   console.log('cardId', cardName);
 
   try {
@@ -98,10 +128,10 @@ export const searchForCardsByName = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    return sendDataResponse(res, 200, { cards: foundCards });
+    return sendDataResponse(res, 200, { results: foundCards.length, cards: foundCards });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get all cards`);
+    const serverError = new ServerErrorEvent(req.user, `Search for card by name`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;

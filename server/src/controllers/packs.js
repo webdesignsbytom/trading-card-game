@@ -8,7 +8,7 @@ import {
   createSinglePacksOfCardsForUser,
 } from '../utils/createPackets.js';
 import { myEmitterErrors } from '../event/errorEvents.js';
-import { NotFoundEvent, ServerErrorEvent } from '../event/utils/errorUtils.js';
+import { ConfictEvent, NotFoundEvent, ServerErrorEvent } from '../event/utils/errorUtils.js';
 import {
   EVENT_MESSAGES,
   sendDataResponse,
@@ -32,7 +32,7 @@ export const getAllPacks = async (req, res) => {
       const notFound = new NotFoundEvent(
         req.user,
         EVENT_MESSAGES.notFound,
-        EVENT_MESSAGES.userNotFound
+        EVENT_MESSAGES.notFoundPack
       );
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
@@ -42,7 +42,7 @@ export const getAllPacks = async (req, res) => {
     return sendDataResponse(res, 200, { packs: foundPacks });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get all users`);
+    const serverError = new ServerErrorEvent(req.user, `Get all packs`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -51,12 +51,19 @@ export const getAllPacks = async (req, res) => {
 
 // Get pack by ID
 export const getPackById = async (req, res) => {
-  const id = req.params.id;
+  const packId = req.params.packId;
 
   try {
-    const foundPack = await findPackById(id);
-    let cards = JSON.parse(foundPack.cards);
-    foundPack.cards = cards;
+    const foundPack = await findPackById(packId);
+    if (!foundPack) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundPack
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
 
     return sendDataResponse(res, 201, { pack: foundPack });
   } catch (err) {
@@ -222,6 +229,16 @@ export const createStarterPacksForUser = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
+    if (foundUser.collectedStartedPacks) {
+      const alreadyClaimed = new ConfictEvent(
+        req.user,
+        EVENT_MESSAGES.alreadyClaimed,
+        EVENT_MESSAGES.startPacksAlreadyClaimed
+      );
+      myEmitterErrors.emit('error', alreadyClaimed);
+      return sendMessageResponse(res, alreadyClaimed.code, alreadyClaimed.message);
+    }
+
     const starterPacks = [];
     const cardsInPackArray = [];
 
@@ -246,7 +263,6 @@ export const createStarterPacksForUser = async (req, res) => {
     starterPacks.push(createdPack3.cardInstanceArray);
     cardsInPackArray.push(createdPack3.cards);
 
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
     const updatedUser = await setStarterCardsToClaimed(userId);
 
     return sendDataResponse(res, 201, {
@@ -256,7 +272,7 @@ export const createStarterPacksForUser = async (req, res) => {
     });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Create start packs`);
+    const serverError = new ServerErrorEvent(req.user, `Create starter packs`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;

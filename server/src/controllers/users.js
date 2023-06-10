@@ -43,8 +43,8 @@ import {
 } from '../event/utils/errorUtils.js';
 // Time
 import { v4 as uuid } from 'uuid';
-import { findCardById, setCardFromPackToUser } from '../domain/cards.js';
-import { deletePackbyIdWhenOpened, findPackById } from '../domain/packs.js';
+import { findAllUserCardInstances, findCardById, setCardFromPackToUser } from '../domain/cards.js';
+import { deletePackbyIdWhenOpened, findAllPacksForUser, findPackById } from '../domain/packs.js';
 import { createBankForUser } from '../domain/bank.js';
 import { freeSingleRandomCard } from './cards.js';
 // Password hash
@@ -103,25 +103,10 @@ export const getUserById = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    let toParse = foundUser.cards;
-    console.log('YYYYYYYYYYYYYYYY', toParse);
-
-    let twox = toParse.pop();
-
-    console.log('ZZZZZZZZZZZZZZZZZZZ', twox);
-
-    // const editedText = toParse.slice(0, -1)
-    // let newStr = editedText.substring(1);
-    // console.log('NEW TRING', newStr);
-
-    // let cards = JSON.parse(foundUser.cards[0]);
-    // console.log('CARD: ', cards);
-    // // foundUser.cards = cards;
-
     delete foundUser.password;
     delete foundUser.agreedToTerms;
 
-    myEmitterUsers.emit('get-user-by-id', req.user);
+    // myEmitterUsers.emit('get-user-by-id', req.user);
     return sendDataResponse(res, 200, { user: foundUser });
   } catch (err) {
     // Error
@@ -169,7 +154,6 @@ export const getUserByEmail = async (req, res) => {
 export const getUserByUsername = async (req, res) => {
   console.log('getUserByUsername');
   const { username } = req.params;
-  console.log('xxx', username);
 
   const lowerCaseUsername = username.toLowerCase();
   try {
@@ -185,11 +169,10 @@ export const getUserByUsername = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    console.log('found', foundUser);
     delete foundUser.password;
     delete foundUser.agreedToTerms;
 
-    myEmitterUsers.emit('get-user-by-username', req.user);
+    // myEmitterUsers.emit('get-user-by-username', req.user);
     return sendDataResponse(res, 200, { user: foundUser });
   } catch (err) {
     // Error
@@ -315,13 +298,78 @@ export const getAllCardsForUser = async (req, res) => {
   }
 };
 
-export const openPackAndAddToUser = async (req, res) => {
-  console.log('openPackAndAddToUser');
-  const { packId, userId } = req.body;
-  console.log('ID', userId, packId);
+// get all packs for user
+export const getAllPacksForUser = async (req, res) => {
+  console.log('getAllCardsForUser');
+  const userId = req.params.userId;
+  console.log('xxx', userId);
 
   try {
     const foundUser = await findUserById(userId);
+    if (!foundUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    const foundPacks = await findAllPacksForUser(userId)
+    console.log('found', foundPacks);
+
+    // myEmitterUsers.emit('get-user-by-id', req.user);
+    return sendDataResponse(res, 200, { packs: foundPacks });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get all packs for user`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+// get all user card instances
+export const getAllUserCardInstances = async (req, res) => {
+  console.log('getAllUserCardInstances');
+  const userId = req.params.userId;
+  console.log('xxx', userId);
+
+  try {
+    const foundUser = await findUserById(userId);
+    if (!foundUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    const foundInstances = await findAllUserCardInstances(userId)
+    console.log('found instances', foundInstances);
+
+    // myEmitterUsers.emit('get-user-by-id', req.user);
+    return sendDataResponse(res, 200, { cardInstances: foundInstances });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+export const openPackAndAddToUser = async (req, res) => {
+  console.log('openPackAndAddToUser');
+  const { packId, userId } = req.body;
+  console.log('pack', packId, userId);
+  try {
+
+    const foundUser = await findUserById(userId);
+    console.log('foundUser', foundUser);
     if (!foundUser) {
       const notFound = new NotFoundEvent(
         req.user,

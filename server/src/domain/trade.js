@@ -27,12 +27,20 @@ export const tradeCardInstance = (cardInstanceId, userId) =>
     },
   });
 
+export const findAllTrades = (tradeId) =>
+  dbClient.tradeRecord.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+
 export const findTradeById = (tradeId) =>
   dbClient.tradeRecord.findFirst({
     where: {
       id: tradeId,
     },
   });
+
 export const deleteTradeById = (tradeId) =>
   dbClient.tradeRecord.delete({
     where: {
@@ -47,8 +55,8 @@ export const findAllUserTradeRecords = (userId) =>
         {
           createdById: userId,
         },
-        { 
-          receivedById: userId 
+        {
+          receivedById: userId,
         },
       ],
     },

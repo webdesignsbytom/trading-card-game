@@ -45,6 +45,36 @@ export const getAllEvents = async (req, res) => {
   }
 };
 
+// Get event by id
+export const getEventById = async (req, res) => {
+  console.log('getEventById');
+  const { eventId } = req.params
+  console.log('eventId', eventId);
+
+  try {
+    const foundEvent = await findEventById(eventId);
+    console.log('found event', foundEvent);
+
+    if (!foundEvent) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundEvents
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    return sendDataResponse(res, 200, { event: foundEvent });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get all events`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
 // delete event
 export const deleteEvent = async (req, res) => {
   console.log('deleteOpenEvent');

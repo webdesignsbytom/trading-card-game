@@ -14,6 +14,7 @@ export const EVENT_MESSAGES = {
   notFound: `Not Found`,
   missingUserIdentifier: `Missing User identifier`,
   missingFields: `Missing fields in request`,
+  alreadyClaimed: `Already Claimed`,
   // Complaints
   complaintTag: `Complaint database`,
   complaintNotFound: `Failed to find complaint/s`,
@@ -71,6 +72,7 @@ export const EVENT_MESSAGES = {
   userPackTypesNotFound: `Failed to find user packTypes`,
   createPackTypeFail: `Failed to create packType`,
   markPackTypeViewedFailed: `Failed to mark packType as viewed`,
+  startPacksAlreadyClaimed: `User has already claimed starter packs`,
   // Reviews
   reviewsTag: `Review database`,
   notFoundReview: `Failed to find review/s`,

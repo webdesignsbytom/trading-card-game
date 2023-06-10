@@ -9,6 +9,19 @@ export const findAllPacks = () =>
       cards: true,
     },
   });
+
+export const findAllPacksForUser = (userId) =>
+  dbClient.pack.findMany({
+    where: {
+      userId: userId
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    include: {
+      cards: true,
+    },
+  });
   
 export const createBlankPackOfCards = (packType) =>
   dbClient.pack.create({

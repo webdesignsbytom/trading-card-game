@@ -22,8 +22,8 @@ export const findAllCardInstances = () =>
 export const findCardInstanceById = (id) =>
   dbClient.cardInstance.findFirst({
     where: {
-      id: id
-    }
+      id: id,
+    },
   });
 
 export const findCardById = (id) =>
@@ -38,10 +38,31 @@ export const findCardById = (id) =>
     },
   });
 
+export const findAllUserCardInstances = (userId) =>
+  dbClient.cardInstance.findMany({
+    where: {
+      userId: userId,
+    },
+  });
+
 export const findCardByName = (cardName) =>
   dbClient.card.findFirst({
     where: {
       cardName: cardName,
+    },
+    include: {
+      memberCard: true,
+      partyCard: true,
+      policyCard: true,
+    },
+  });
+
+export const findCardBySearchQuery = (cardName) =>
+  dbClient.card.findMany({
+    where: {
+      cardName: {
+        startsWith: cardName,
+      },
     },
     include: {
       memberCard: true,
@@ -119,7 +140,7 @@ export const findAllCardsAvailableToBuy = () =>
       memberCard: true,
       partyCard: true,
       policyCard: true,
-    }
+    },
   });
 
 export const createNewInstanceForCard = (cardId, userId, cardName) =>
@@ -127,7 +148,7 @@ export const createNewInstanceForCard = (cardId, userId, cardName) =>
     data: {
       userId: userId,
       cardId: cardId,
-      name: cardName
+      name: cardName,
     },
   });
 
@@ -136,7 +157,7 @@ export const createNewInstanceForPack = (packId, cardId, cardName) =>
     data: {
       packId: packId,
       cardId: cardId,
-      name: cardName
+      name: cardName,
     },
   });
 
@@ -149,4 +170,3 @@ export const setCardFromPackToUser = (instanceId, userId) =>
       userId: userId,
     },
   });
-
