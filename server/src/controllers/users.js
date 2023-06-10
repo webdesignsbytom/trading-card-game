@@ -89,7 +89,7 @@ export const getAllUsers = async (req, res) => {
 
 export const getUserById = async (req, res) => {
   console.log('getUserById');
-  const userId = req.params.id;
+  const userId = req.params.userId;
   console.log('xxx');
   try {
     const foundUser = await findUserById(userId);
@@ -260,7 +260,7 @@ export const registerNewUser = async (req, res) => {
 
 export const getAllCardsForUser = async (req, res) => {
   console.log('getAllCardsForUser');
-  const userId = req.params.id;
+  const userId = req.params.userId;
   console.log('xxx', userId);
 
   try {
@@ -733,7 +733,7 @@ export const collectDailyReward = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   console.log('deleteUser');
-  const userId = req.params.id;
+  const userId = req.params.userId;
 
   try {
     const foundUser = await findUserById(userId);
