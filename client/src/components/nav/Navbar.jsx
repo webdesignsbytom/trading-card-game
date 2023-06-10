@@ -61,11 +61,8 @@ function Navbar() {
             </p>
           </div>
         </div>
-        <section className='hidden my-4 lg:grid items-center justify-center'>
-          <img className='w-16 h-16' src={LogoImage} alt='Logo' />
-        </section>
 
-        <section className='text-center mt-2 hidden lg:grid gap-4'>
+        <section className='text-center mt-4 hidden lg:grid gap-2'>
           {user?.packs?.length > 0 && (
             <div
               onClick={goToUnopenedPacks}

@@ -14,6 +14,20 @@ export const findBattleById = (battleId) =>
     },
   });
 
+export const findAllUserBattles = (userId) =>
+  dbClient.battle.findMany({
+    where: {
+      OR: [
+        {
+          createdById: userId,
+        },
+        {
+          receivedById: userId,
+        },
+      ],
+    },
+  });
+
 export const updateBattleConfirmOpponent = (battleId) =>
   dbClient.battle.update({
     where: {

@@ -16,6 +16,7 @@ import {
   createNewBattle,
   deleteBattleById,
   findAllBattles,
+  findAllUserBattles,
   findBattleById,
   updateBattleConfirmOpponent,
 } from '../domain/battles.js';
@@ -61,13 +62,42 @@ export const getBattleById = async (req, res) => {
       const notFound = new NotFoundEvent(
         req.user,
         EVENT_MESSAGES.notFound,
-        EVENT_MESSAGES.notFoundEvents
+        EVENT_MESSAGES.battleNotFound
       );
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
     return sendDataResponse(res, 200, { battle: foundBattle });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get battle by id`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+// Get getAllBattlesByUserId
+export const getAllBattlesByUserId = async (req, res) => {
+  console.log('getAllBattlesByUserId');
+  const { userId } = req.params;
+  console.log('userId', userId);
+
+  try {
+    const foundBattles = await findAllUserBattles(userId);
+
+    if (!foundBattles) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.battleNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    return sendDataResponse(res, 200, { battles: foundBattles });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Get battle by id`);
