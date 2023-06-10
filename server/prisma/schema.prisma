@@ -25,6 +25,7 @@ model User {
   verifications         UserVerification?
   cards                 CardInstance[]
   packs                 Pack[]
+  deck                  Deck[]
   bank                  Bank?
   loginRecord           LoginRecord?
   lastLoggedIn          DateTime          @updatedAt
@@ -36,6 +37,8 @@ model User {
   receivedTrades        TradeRecord[]     @relation("receivedTrades")
   createdEvents         Event[]           @relation("createdEvents")
   receivedEvents        Event[]           @relation("receivedEvents")
+  createdBattles        Battle[]          @relation("createdBattles")
+  receivedBattles       Battle[]          @relation("receivedBattles")
   createdAt             DateTime          @default(now())
   updatedAt             DateTime?         @updatedAt
 }
@@ -55,6 +58,34 @@ model Profile {
   isPrivate     Boolean           @default(false)
   createdAt     DateTime          @default(now())
   updatedAt     DateTime?         @updatedAt
+}
+
+model Battle {
+  id                 String    @id @default(uuid())
+  playerOneUserName  String
+  playerTwoUserName  String
+  playerOneDeck      String[]
+  playerTwoDeck      String[]
+  playerOneConfirmed Boolean   @default(true)
+  playerTwoConfirmed Boolean   @default(false)
+  createdBy          User      @relation("createdBattles", fields: [createdById], references: [id], onDelete: Cascade)
+  createdById        String
+  receivedBy         User?     @relation("receivedBattles", fields: [receivedById], references: [id], onDelete: Cascade)
+  receivedById       String?
+  inProgress         Boolean   @default(true)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime? @updatedAt
+}
+
+model Deck {
+  id            String         @id @default(uuid())
+  deckName      String         @default("Deck Name x")
+  cards         CardInstance[]
+  maxNumOfCards Int            @default(72)
+  User          User?          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime?      @updatedAt
 }
 
 model Bank {
@@ -195,6 +226,20 @@ enum BackgroundColour {
   GREEN
 }
 
+enum PartyEffectType {
+  HEALTH
+  STRENGTH
+  DEFENCE
+  HEAL
+}
+
+enum PolicyEffectType {
+  SKIP
+  DISCARD
+  RETRIEVE
+  SHUFFLE
+}
+
 model Pack {
   id        String         @id @default(uuid()) // pack id
   packType  String
@@ -216,20 +261,22 @@ model CardInstance {
   pack                 Pack?         @relation(fields: [packId], references: [id])
   creatorCardInstance  TradeRecord[] @relation("creatorCardIntance")
   recieverCardInstance TradeRecord[] @relation("recieverCardInstance")
+  deck                 Deck?         @relation(fields: [deckId], references: [id])
+  deckId               String?
   createdAt            DateTime      @default(now())
   updatedAt            DateTime?     @updatedAt
 }
 
 model Card {
-  id           Int      @id @default(autoincrement()) // pack id
-  serialNumber String   @unique @default("") @db.VarChar(28) // number from all cards
-  cardName     String   @unique @db.VarChar(48) // name of the card
-  edition      String   @default("") @db.VarChar(28) // first second third fouth
-  rarity       Rarity   @default(COMMON)
-  holographic  Boolean  @default(false) // holo card option available
-  packType     PackType
-  cardType     CardType
-  editable     Boolean  @default(true) // holo card option available
+  id               Int              @id @default(autoincrement()) // pack id
+  serialNumber     String           @unique @default("") @db.VarChar(28) // number from all cards
+  cardName         String           @unique @db.VarChar(48) // name of the card
+  edition          String           @default("") @db.VarChar(28) // first second third fouth
+  rarity           Rarity           @default(COMMON)
+  holographic      Boolean          @default(false) // holo card option available
+  packType         PackType
+  cardType         CardType
+  editable         Boolean          @default(true) // holo card option available
   image            String           @default("image") @db.VarChar(5000)
   backgroundColour BackgroundColour @default(WHITE)
   memberCard       MemberCard?
@@ -254,24 +301,28 @@ model MemberCard {
 }
 
 model PartyCard {
-  id        Int       @id @default(autoincrement()) // pack id
-  name      String    @default("") @db.VarChar(250) // name of conservative memer
-  powerUp   PowerUp   @default(ATTACK)
-  cardStat  String    @default("") @db.VarChar(500) // whats written on the card
-  effect    String    @default("") @db.VarChar(200)
-  cardId    Int       @unique
-  card      Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
+  id             Int             @id @default(autoincrement()) // pack id
+  name           String          @default("") @db.VarChar(250) // name of conservative memer
+  powerUp        PowerUp         @default(ATTACK)
+  cardStat       String          @default("") @db.VarChar(500) // whats written on the card
+  effectType     PartyEffectType @default(HEALTH)
+  statMultiplier Int             @default(10)
+  effect         String          @default("") @db.VarChar(200)
+  cardId         Int             @unique
+  card           Card            @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime?       @updatedAt
 }
 
 model PolicyCard {
-  id        Int       @id @default(autoincrement()) // pack id
-  name      String    @default("") @db.VarChar(250) // name of conservative memer
-  cardStat  String    @default("") @db.VarChar(500) // whats written on the card
-  effect    String    @default("") @db.VarChar(200)
-  cardId    Int       @unique
-  card      Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
+  id               Int              @id @default(autoincrement()) // pack id
+  name             String           @default("") @db.VarChar(250) // name of conservative memer
+  cardStat         String           @default("") @db.VarChar(500) // whats written on the card
+  effect           String           @default("") @db.VarChar(200)
+  policyEffectType PolicyEffectType @default(SHUFFLE)
+  statMultiplier   Int              @default(10)
+  cardId           Int              @unique
+  card             Card             @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime?        @updatedAt
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // Images
 import CovidPack from '../../assets/img/packets/pack1.png';
 import BrexitPack from '../../assets/img/packets/pack2.png';
-import ElectionPack from '../../assets/img/packets/pack4.png';
+import ElectionPack from '../../assets/img/packets/pack3.png';
 import LoadingSpinner from '../utils/LoadingSpinner';
 
 function PackSelector({
