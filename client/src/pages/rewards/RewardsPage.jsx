@@ -34,11 +34,22 @@ function RewardsPage() {
           <section>
             <article className='text-center'>
               <h1 className='text-6xl font-bold'>REWARDS</h1>
-              <h2>Login daily to collect fantastic rewards!</h2>
+              <h2 className='text-xl mt-2 font-semibold'>Login daily to collect fantastic rewards!</h2>
             </article>
+
+
+            <div className='mt-20'>
+              <article className='grid justify-center text-xl font-semibold text-center gap-4'>
+                <span>Daily Reward: 1 Card</span>
+                <span>5x Days : 1 Pack</span>
+                <span>10x Days: 1 Mega Rare Holo Card</span>
+                <span>20x Days: 5 Packs</span>
+                <span>30x Days: 10 Packs 2 Ultimate Cards</span>
+              </article>
+            </div>
           </section>
 
-          <section className='grid justify-center items-center'>
+          <section className='grid justify-center items-center -mt-44'>
             <div className='grid grid-cols-7'>
               {calenderDataArray.map((day, index) => {
                 return (

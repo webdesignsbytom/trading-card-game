@@ -397,7 +397,7 @@ function Navbar() {
                     : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
                 }
               >
-                <button onClick={navigateToPage} id='/cards'>
+                <button onClick={navigateToPage} id='/battles'>
                   Battles
                 </button>
               </li>

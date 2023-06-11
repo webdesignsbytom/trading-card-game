@@ -6,12 +6,12 @@ import InvintoryOptions from '../../components/invintory/InvintoryOptions';
 import { ToggleContext } from '../../context/ToggleContext';
 
 function InvintoryPage() {
-  const { setActiveNav } = useContext(ToggleContext)
+  const { setActiveNav } = useContext(ToggleContext);
 
   useEffect(() => {
-    setActiveNav('/invintory')
-  }, [])
-  
+    setActiveNav('/invintory');
+  }, []);
+
   return (
     <div className='h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
@@ -23,9 +23,7 @@ function InvintoryPage() {
             </div>
           </article>
 
-          <section className='p-2 '>
-            <InvintoryOptions />
-          </section>
+          <InvintoryOptions />
         </main>
       </section>
     </div>

@@ -71,20 +71,22 @@ function CardsAvailablePage() {
                     Total Cards: {allCardsArray?.length}
                   </h3>
                 </div>
-                <div className='grid relative items-center justify-center p-1'>
-                  <input
-                    className='rounded px-1 py-1'
-                    type='text'
-                    name='searchCards'
-                    id='searchCards'
-                    onChange={handleSearchChange}
-                    placeholder='Search the collection...'
-                  />
-                  <div
-                    onClick={searchForCard}
-                    className='absolute h-fit mr-6 w-fit rounded active:scale-95 hover:bg-blue-700 bg-blue-400 px-2 right-0'
-                  >
-                    ?
+                <div className='grid items-center justify-center p-1 w-full'>
+                  <div className='grid relative h-fit w-full'>
+                    <input
+                      className='rounded px-1 py-1 w-full'
+                      type='text'
+                      name='searchCards'
+                      id='searchCards'
+                      onChange={handleSearchChange}
+                      placeholder='Search the collection...'
+                    />
+                    <div
+                      onClick={searchForCard}
+                      className='absolute h-full w-fit rounded active:scale-95 hover:bg-blue-700 bg-blue-400 px-4 right-0'
+                    >
+                      ?
+                    </div>
                   </div>
                 </div>
                 <section className='grid justify-end'>
@@ -156,7 +158,7 @@ function CardsAvailablePage() {
                   {foundCards.map((card, index) => {
                     return <Card key={index} cardData={card} />;
                   })}
-                  
+
                   {allCardsArray.map((card, index) => {
                     return <Card key={index} cardData={card} />;
                   })}
