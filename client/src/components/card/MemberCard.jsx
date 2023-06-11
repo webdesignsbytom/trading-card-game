@@ -49,7 +49,7 @@ function MemberCard({ cardData, viewCardData }) {
 
       <section className='grid grid-rows-2 h-full'>
         <div className='mb-1 h-full outline outline-1 outline-black bg-white'>
-          <img className='h-full' src={cardData.image} alt='card' />
+          <img className='h-full' src={cardData.imageUrl} alt='card' />
         </div>
 
         <section className='grid grid-rows-reg'>
@@ -62,7 +62,7 @@ function MemberCard({ cardData, viewCardData }) {
                 {cardData.packType === 'ELECTION' && <span>👑</span>}
               </p>
               <p className='text-white'>
-                {cardData.edition === 'First' && <span>1️⃣</span>}
+                {cardData.edition === 'first' && <span>1️⃣</span>}
                 {cardData.edition === 'Second' && <span>2️⃣</span>}
                 {cardData.edition === 'Third' && <span>1️3️⃣</span>}
                 {cardData.edition === 'Fourth' && <span>1️4️⃣</span>}

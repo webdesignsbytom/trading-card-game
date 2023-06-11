@@ -23,7 +23,7 @@ function CreateTradeComponent({
           <div className='top-4 left-4'>
             <img
               className='rounded-xl lg:w-1/2 h-full object-cover'
-              src={user?.profile?.profileImage}
+              src={user?.profile?.profileimageUrl}
               alt='User profile'
             />
           </div>
@@ -96,7 +96,7 @@ function CreateTradeComponent({
             <div>
               <img
                 className='rounded-xl object-cover'
-                src={tradingPartner.profileImage}
+                src={tradingPartner.profileimageUrl}
                 alt='Trade partner profile'
               />
             </div>

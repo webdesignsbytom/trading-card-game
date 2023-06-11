@@ -13,12 +13,12 @@ function OpenTradeComponent() {
   return (
     <section className={`grid grid-cols-2x gap-4 grid-rows-1 px-4 mb-4`}>
       <section className='bg-red-400 grid grid-rows-a1a main__bg outline outline-4 outline-black rounded-xl p-2'>
-        {/* image and search */}
+        {/* imageUrl and search */}
         <div className='grid grid-cols-aa'>
           <div className='top-4 left-4 w-1/2'>
             <img
               className='rounded-xl object-cover'
-              src={user?.profile?.profileImage}
+              src={user?.profile?.profileimageUrl}
               alt='User profile'
             />
           </div>
@@ -54,7 +54,7 @@ function OpenTradeComponent() {
           <div>
             <img
               className='rounded-xl object-cover'
-              src={tradingPartner.profileImage}
+              src={tradingPartner.profileimageUrl}
               alt='Trade partner profile'
             />
           </div>

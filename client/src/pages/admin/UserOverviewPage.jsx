@@ -149,7 +149,7 @@ function UserOverviewPage() {
                       <span className='font-semibold'>Image:</span>{' '}
                       <img
                         className='w-24 object-cover'
-                        src={userData.profile.profileImage}
+                        src={userData.profile.profileimageUrl}
                         alt='profile'
                       />
                     </span>

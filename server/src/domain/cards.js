@@ -163,7 +163,7 @@ export const createNewInstanceForPack = (packId, cardId, cardName) =>
 
 export const createManyNewInstanceForPack = (cardArray) =>
   dbClient.cardInstance.createMany({
-    data: cardArray
+    data: cardArray,
   });
 
 export const setCardFromPackToUser = (instanceId, userId) =>
@@ -173,5 +173,88 @@ export const setCardFromPackToUser = (instanceId, userId) =>
     },
     data: {
       userId: userId,
+    },
+  });
+
+export const createMemberCard = (
+  serialNumber,
+  cardName,
+  edition,
+  imageUrl,
+  memberName,
+  packType,
+  cardType,
+  health,
+  attack
+) =>
+  dbClient.card.create({
+    data: {
+      serialNumber: serialNumber,
+      cardName: cardName,
+      edition: edition,
+      imageUrl: imageUrl,
+      packType: packType,
+      cardType: cardType,
+      memberCard: {
+        create: {
+          memberName: memberName,
+          health: health,
+          attack: attack,
+        },
+      },
+    },
+  });
+
+export const createPolicyCard = (
+  serialNumber,
+  cardName,
+  edition,
+  imageUrl,
+  memberName,
+  packType,
+  cardType,
+  health,
+  attack
+) =>
+  dbClient.card.create({
+    data: {
+      serialNumber: serialNumber,
+      cardName: cardName,
+      edition: edition,
+      imageUrl: imageUrl,
+      packType: packType,
+      cardType: cardType,
+      policyCard: {
+        create: {
+
+        },
+      },
+    },
+  });
+
+export const createPartyCard = (
+  serialNumber,
+  cardName,
+  edition,
+  imageUrl,
+  memberName,
+  packType,
+  cardType,
+  health,
+  attack
+) =>
+  dbClient.card.create({
+    data: {
+      serialNumber: serialNumber,
+      cardName: cardName,
+      edition: edition,
+      imageUrl: imageUrl,
+      packType: packType,
+      cardType: cardType,
+      partyCard: {
+        create: {
+
+        },
+      },
     },
   });

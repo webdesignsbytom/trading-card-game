@@ -9,6 +9,7 @@ Live Link [https://keen-dragon-c34a9d.netlify.app/](https://keen-dragon-c34a9d.n
   - [Table of contents](#table-of-contents)
   - [Colours](#colours)
   - [Cards](#cards)
+    - [Serial numbers](#serial-numbers)
 
 ## Colours
 
@@ -52,3 +53,8 @@ There are 3 type of pack
 1. Election
 2. Brexit
 3. Covid
+### Serial numbers
+
+year yy - edition n - serial 0000
+23-1-0001
+ 

@@ -8,7 +8,10 @@ import {
   getAllCardInstances,
   getCardInstanceById,
   getCardById,
-  searchForCardsByName
+  createNewMemberCards,
+  searchForCardsByName,
+  createNewPolicyCards,
+  createNewPartyCards,
 } from '../controllers/cards.js';
 
 const router = Router();
@@ -19,6 +22,9 @@ router.get('/pack/:packType', getAllCardsFromPackType);
 router.get('/card/get-by-id/:cardId', getCardById);
 router.get('/card/cardInstance/get-by-id/:cardInstanceId', getCardInstanceById);
 router.post('/card/search-cards-by-name', searchForCardsByName);
+router.post('/card/create-new-member-cards', createNewMemberCards);
+router.post('/card/create-new-policy-cards', createNewPolicyCards);
+router.post('/card/create-new-party-cards', createNewPartyCards);
 router.get('/type/:cardType', getAllCardsByType);
 router.post('/free-single-card', freeSingleRandomCard);
 router.post('/buy-single-card', buySingleRandomCard);

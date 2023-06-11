@@ -359,12 +359,12 @@ async function seed() {
     data: {
       serialNumber: 't23/100-2023', // t = test
       cardName: 'Common Brexit Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png',
       backgroundColour: 'BLUE',
       memberCard: {
         create: {
@@ -380,12 +380,12 @@ async function seed() {
     data: {
       serialNumber: 't23/101-2023', // t = test
       cardName: 'Uncommon Brexit Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/002.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/002.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -401,12 +401,12 @@ async function seed() {
     data: {
       serialNumber: 't23/102-2023', // t = test
       cardName: 'Rare Brexit Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/003.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/003.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -422,12 +422,12 @@ async function seed() {
     data: {
       serialNumber: 't23/103-2023', // t = test
       cardName: 'Rare holo Brexit Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'BREXIT',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -443,12 +443,12 @@ async function seed() {
     data: {
       serialNumber: 't23/104-2023', // t = test
       cardName: 'Mega rare Brexit Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARARE',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/005.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/005.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -464,12 +464,12 @@ async function seed() {
     data: {
       serialNumber: 't23/105-2023', // t = test
       cardName: 'Mega rare holo Brexit Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'BREXIT',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/006.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/006.png',
       backgroundColour: 'RED',
       memberCard: {
         create: {
@@ -486,12 +486,12 @@ async function seed() {
     data: {
       serialNumber: 't23/200-2023', // t = test
       cardName: 'Common Brexit Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png',
       backgroundColour: 'WHITE',
       partyCard: {
         create: {
@@ -507,12 +507,12 @@ async function seed() {
     data: {
       serialNumber: 't23/201-2023', // t = test
       cardName: 'Uncommon Brexit Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/008.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/008.png',
       backgroundColour: 'BLUE',
       partyCard: {
         create: {
@@ -528,12 +528,12 @@ async function seed() {
     data: {
       serialNumber: 't23/202-2023', // t = test
       cardName: 'Rare Brexit Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/009.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/009.png',
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
@@ -549,12 +549,12 @@ async function seed() {
     data: {
       serialNumber: 't23/203-2023', // t = test
       cardName: 'Rare holo Brexit Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'BREXIT',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/010.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/010.png',
       backgroundColour: 'YELLOW',
       partyCard: {
         create: {
@@ -570,12 +570,12 @@ async function seed() {
     data: {
       serialNumber: 't23/204-2023', // t = test
       cardName: 'Mega rare Brexit Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/011.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/011.png',
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
@@ -591,12 +591,12 @@ async function seed() {
     data: {
       serialNumber: 't23/205-2023', // t = test
       cardName: 'Mega rare holo Brexit Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'BREXIT',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/012.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/012.png',
       backgroundColour: 'BLACK',
       partyCard: {
         create: {
@@ -613,12 +613,12 @@ async function seed() {
     data: {
       serialNumber: 't23/300-2023', // t = test
       cardName: 'Common Brexit Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/013.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/013.png',
       backgroundColour: 'BLACK',
       policyCard: {
         create: {
@@ -634,12 +634,12 @@ async function seed() {
     data: {
       serialNumber: 't23/301-2023', // t = test
       cardName: 'Uncommon Brexit Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/014.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/014.png',
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
@@ -655,12 +655,12 @@ async function seed() {
     data: {
       serialNumber: 't23/302-2023', // t = test
       cardName: 'Rare Brexit Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/015.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/015.png',
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
@@ -676,12 +676,12 @@ async function seed() {
     data: {
       serialNumber: 't23/303-2023', // t = test
       cardName: 'Rare holo Brexit Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'BREXIT',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/016.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/016.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -697,12 +697,12 @@ async function seed() {
     data: {
       serialNumber: 't23/304-2023', // t = test
       cardName: 'Mega rare Brexit Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/017.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/017.png',
       backgroundColour: 'GREEN',
       policyCard: {
         create: {
@@ -718,12 +718,12 @@ async function seed() {
     data: {
       serialNumber: 't23/305-2023', // t = test
       cardName: 'Mega rare holo Brexit Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'BREXIT',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/018.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/018.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -740,12 +740,12 @@ async function seed() {
     data: {
       serialNumber: 't23/306-2023', // t = test
       cardName: 'Ultimate Brexit Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'ULTIMATE',
       holographic: true,
       packType: 'BREXIT',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/149.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/149.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -765,12 +765,12 @@ async function seed() {
     data: {
       serialNumber: 't23/400-2023', // t = test
       cardName: 'Common Election Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/019.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/019.png',
       backgroundColour: 'BLUE',
       memberCard: {
         create: {
@@ -786,12 +786,12 @@ async function seed() {
     data: {
       serialNumber: 't23/401-2023', // t = test
       cardName: 'Uncommon Election Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/020.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/020.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -807,12 +807,12 @@ async function seed() {
     data: {
       serialNumber: 't23/402-2023', // t = test
       cardName: 'Rare Election Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/021.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/021.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -828,12 +828,12 @@ async function seed() {
     data: {
       serialNumber: 't23/403-2023', // t = test
       cardName: 'Rare holo Election Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'ELECTION',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/022.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/022.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -849,12 +849,12 @@ async function seed() {
     data: {
       serialNumber: 't23/404-2023', // t = test
       cardName: 'Mega rare Election Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARARE',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/023.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/023.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -870,12 +870,12 @@ async function seed() {
     data: {
       serialNumber: 't23/405-2023', // t = test
       cardName: 'Mega rare holo Election Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'ELECTION',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/024.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/024.png',
       backgroundColour: 'RED',
       memberCard: {
         create: {
@@ -892,12 +892,12 @@ async function seed() {
     data: {
       serialNumber: 't23/500-2023', // t = test
       cardName: 'Common Election Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png',
       backgroundColour: 'WHITE',
       partyCard: {
         create: {
@@ -913,12 +913,12 @@ async function seed() {
     data: {
       serialNumber: 't23/501-2023', // t = test
       cardName: 'Uncommon Election Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/026.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/026.png',
       backgroundColour: 'BLUE',
       partyCard: {
         create: {
@@ -934,12 +934,12 @@ async function seed() {
     data: {
       serialNumber: 't23/502-2023', // t = test
       cardName: 'Rare Election Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/027.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/027.png',
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
@@ -955,12 +955,12 @@ async function seed() {
     data: {
       serialNumber: 't23/503-2023', // t = test
       cardName: 'Rare holo Election Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'ELECTION',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/028.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/028.png',
       backgroundColour: 'YELLOW',
       partyCard: {
         create: {
@@ -976,12 +976,12 @@ async function seed() {
     data: {
       serialNumber: 't23/504-2023', // t = test
       cardName: 'Mega rare Election Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/029.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/029.png',
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
@@ -997,12 +997,12 @@ async function seed() {
     data: {
       serialNumber: 't23/505-2023', // t = test
       cardName: 'Mega rare holo Election Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'ELECTION',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/030.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/030.png',
       backgroundColour: 'BLACK',
       partyCard: {
         create: {
@@ -1019,12 +1019,12 @@ async function seed() {
     data: {
       serialNumber: 't23/600-2023', // t = test
       cardName: 'Common Election Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/031.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/031.png',
       backgroundColour: 'BLACK',
       policyCard: {
         create: {
@@ -1040,12 +1040,12 @@ async function seed() {
     data: {
       serialNumber: 't23/601-2023', // t = test
       cardName: 'Uncommon Election Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/032.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/032.png',
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
@@ -1061,12 +1061,12 @@ async function seed() {
     data: {
       serialNumber: 't23/602-2023', // t = test
       cardName: 'Rare Election Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/033.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/033.png',
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
@@ -1082,12 +1082,12 @@ async function seed() {
     data: {
       serialNumber: 't23/603-2023', // t = test
       cardName: 'Rare holo Election Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'ELECTION',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/034.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/034.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -1103,12 +1103,12 @@ async function seed() {
     data: {
       serialNumber: 't23/604-2023', // t = test
       cardName: 'Mega rare Election Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/035.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/035.png',
       backgroundColour: 'GREEN',
       policyCard: {
         create: {
@@ -1124,12 +1124,12 @@ async function seed() {
     data: {
       serialNumber: 't23/605-2023', // t = test
       cardName: 'Mega rare holo Election Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'ELECTION',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/036.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/036.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -1145,12 +1145,12 @@ async function seed() {
     data: {
       serialNumber: 't23/606-2023', // t = test
       cardName: 'Ultimate Election Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'ULTIMATE',
       holographic: true,
       packType: 'ELECTION',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -1170,12 +1170,12 @@ async function seed() {
     data: {
       serialNumber: 't23/700-2023', // t = test
       cardName: 'Common Covid Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'COVID',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/037.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/037.png',
       backgroundColour: 'BLUE',
       memberCard: {
         create: {
@@ -1191,12 +1191,12 @@ async function seed() {
     data: {
       serialNumber: 't23/701-2023', // t = test
       cardName: 'Uncommon Covid Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'COVID',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/038.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/038.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -1212,12 +1212,12 @@ async function seed() {
     data: {
       serialNumber: 't23/702-2023', // t = test
       cardName: 'Rare Covid Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'COVID',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/039.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/039.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -1233,12 +1233,12 @@ async function seed() {
     data: {
       serialNumber: 't23/703-2023', // t = test
       cardName: 'Rare holo Covid Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'COVID',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/040.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/040.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -1254,12 +1254,12 @@ async function seed() {
     data: {
       serialNumber: 't23/704-2023', // t = test
       cardName: 'Mega rare Covid Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARARE',
       holographic: false,
       packType: 'COVID',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/041.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/041.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -1275,12 +1275,12 @@ async function seed() {
     data: {
       serialNumber: 't23/705-2023', // t = test
       cardName: 'Mega rare holo Covid Member card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'COVID',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/042.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/042.png',
       backgroundColour: 'RED',
       memberCard: {
         create: {
@@ -1297,12 +1297,12 @@ async function seed() {
     data: {
       serialNumber: 't23/800-2023', // t = test
       cardName: 'Common Covid Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'COVID',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/043.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/043.png',
       backgroundColour: 'WHITE',
       partyCard: {
         create: {
@@ -1318,12 +1318,12 @@ async function seed() {
     data: {
       serialNumber: 't23/801-2023', // t = test
       cardName: 'Uncommon Covid Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'COVID',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/044.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/044.png',
       backgroundColour: 'BLUE',
       partyCard: {
         create: {
@@ -1339,12 +1339,12 @@ async function seed() {
     data: {
       serialNumber: 't23/802-2023', // t = test
       cardName: 'Rare Covid Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'COVID',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/045.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/045.png',
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
@@ -1360,12 +1360,12 @@ async function seed() {
     data: {
       serialNumber: 't23/803-2023', // t = test
       cardName: 'Rare holo Covid Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'COVID',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/046.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/046.png',
       backgroundColour: 'YELLOW',
       partyCard: {
         create: {
@@ -1381,12 +1381,12 @@ async function seed() {
     data: {
       serialNumber: 't23/804-2023', // t = test
       cardName: 'Mega rare Covid Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'COVID',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/047.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/047.png',
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
@@ -1402,12 +1402,12 @@ async function seed() {
     data: {
       serialNumber: 't23/805-2023', // t = test
       cardName: 'Mega rare holo Covid Party card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'COVID',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/048.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/048.png',
       backgroundColour: 'BLACK',
       partyCard: {
         create: {
@@ -1424,12 +1424,12 @@ async function seed() {
     data: {
       serialNumber: 't23/900-2023', // t = test
       cardName: 'Common Covid Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'COVID',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/049.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/049.png',
       backgroundColour: 'BLACK',
       policyCard: {
         create: {
@@ -1445,12 +1445,12 @@ async function seed() {
     data: {
       serialNumber: 't23/901-2023', // t = test
       cardName: 'Uncommon Covid Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'COVID',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/050.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/050.png',
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
@@ -1466,12 +1466,12 @@ async function seed() {
     data: {
       serialNumber: 't23/902-2023', // t = test
       cardName: 'Rare Covid Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'COVID',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/051.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/051.png',
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
@@ -1487,12 +1487,12 @@ async function seed() {
     data: {
       serialNumber: 't23/903-2023', // t = test
       cardName: 'Rare holo Covid Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'COVID',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/052.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/052.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -1508,12 +1508,12 @@ async function seed() {
     data: {
       serialNumber: 't23/904-2023', // t = test
       cardName: 'Mega rare Covid Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'COVID',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/053.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/053.png',
       backgroundColour: 'GREEN',
       policyCard: {
         create: {
@@ -1529,12 +1529,12 @@ async function seed() {
     data: {
       serialNumber: 't23/905-2023', // t = test
       cardName: 'Mega rare holo Covid Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'COVID',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/054.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/054.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -1551,12 +1551,12 @@ async function seed() {
     data: {
       serialNumber: 't23/906-2023', // t = test
       cardName: 'Ultimate Covid Policy card test 1',
-      edition: 'First',
+      edition: 'first',
       rarity: 'ULTIMATE',
       holographic: true,
       packType: 'COVID',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/151.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/151.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -1577,12 +1577,12 @@ async function seed() {
     data: {
       serialNumber: 't24/100-2023', // t = test
       cardName: 'Common Brexit Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/055.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/055.png',
       backgroundColour: 'BLUE',
       memberCard: {
         create: {
@@ -1598,12 +1598,12 @@ async function seed() {
     data: {
       serialNumber: 't24/101-2023', // t = test
       cardName: 'Uncommon Brexit Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/056.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/056.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -1619,12 +1619,12 @@ async function seed() {
     data: {
       serialNumber: 't24/102-2023', // t = test
       cardName: 'Rare Brexit Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/057.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/057.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -1640,12 +1640,12 @@ async function seed() {
     data: {
       serialNumber: 't24/103-2023', // t = test
       cardName: 'Rare holo Brexit Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'BREXIT',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/058.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/058.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -1661,12 +1661,12 @@ async function seed() {
     data: {
       serialNumber: 't24/104-2023', // t = test
       cardName: 'Mega rare Brexit Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARARE',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/059.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/059.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -1682,12 +1682,12 @@ async function seed() {
     data: {
       serialNumber: 't24/105-2023', // t = test
       cardName: 'Mega rare holo Brexit Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'BREXIT',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/060.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/060.png',
       backgroundColour: 'RED',
       memberCard: {
         create: {
@@ -1704,12 +1704,12 @@ async function seed() {
     data: {
       serialNumber: 't24/200-2023', // t = test
       cardName: 'Common Brexit Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/061.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/061.png',
       backgroundColour: 'WHITE',
       partyCard: {
         create: {
@@ -1725,12 +1725,12 @@ async function seed() {
     data: {
       serialNumber: 't24/201-2023', // t = test
       cardName: 'Uncommon Brexit Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/062.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/062.png',
       backgroundColour: 'BLUE',
       partyCard: {
         create: {
@@ -1746,12 +1746,12 @@ async function seed() {
     data: {
       serialNumber: 't24/202-2023', // t = test
       cardName: 'Rare Brexit Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/063.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/063.png',
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
@@ -1767,12 +1767,12 @@ async function seed() {
     data: {
       serialNumber: 't24/203-2023', // t = test
       cardName: 'Rare holo Brexit Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'BREXIT',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/064.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/064.png',
       backgroundColour: 'YELLOW',
       partyCard: {
         create: {
@@ -1788,12 +1788,12 @@ async function seed() {
     data: {
       serialNumber: 't24/204-2023', // t = test
       cardName: 'Mega rare Brexit Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/065.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/065.png',
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
@@ -1809,12 +1809,12 @@ async function seed() {
     data: {
       serialNumber: 't24/205-2023', // t = test
       cardName: 'Mega rare holo Brexit Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'BREXIT',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/066.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/066.png',
       backgroundColour: 'BLACK',
       partyCard: {
         create: {
@@ -1831,12 +1831,12 @@ async function seed() {
     data: {
       serialNumber: 't24/300-2023', // t = test
       cardName: 'Common Brexit Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/067.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/067.png',
       backgroundColour: 'BLACK',
       policyCard: {
         create: {
@@ -1852,12 +1852,12 @@ async function seed() {
     data: {
       serialNumber: 't24/301-2023', // t = test
       cardName: 'Uncommon Brexit Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/068.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/068.png',
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
@@ -1873,12 +1873,12 @@ async function seed() {
     data: {
       serialNumber: 't24/302-2023', // t = test
       cardName: 'Rare Brexit Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/069.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/069.png',
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
@@ -1894,12 +1894,12 @@ async function seed() {
     data: {
       serialNumber: 't24/303-2023', // t = test
       cardName: 'Rare holo Brexit Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'BREXIT',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/070.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/070.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -1915,12 +1915,12 @@ async function seed() {
     data: {
       serialNumber: 't24/304-2023', // t = test
       cardName: 'Mega rare Brexit Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'BREXIT',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/071.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/071.png',
       backgroundColour: 'GREEN',
       policyCard: {
         create: {
@@ -1936,12 +1936,12 @@ async function seed() {
     data: {
       serialNumber: 't24/305-2023', // t = test
       cardName: 'Mega rare holo Brexit Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'BREXIT',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/072.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/072.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -1958,12 +1958,12 @@ async function seed() {
     data: {
       serialNumber: 't24/306-2023', // t = test
       cardName: 'Ultimate Brexit Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'ULTIMATE',
       holographic: true,
       packType: 'BREXIT',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/152.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/152.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -1983,12 +1983,12 @@ async function seed() {
     data: {
       serialNumber: 't24/400-2023', // t = test
       cardName: 'Common Election Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/073.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/073.png',
       backgroundColour: 'BLUE',
       memberCard: {
         create: {
@@ -2004,12 +2004,12 @@ async function seed() {
     data: {
       serialNumber: 't24/401-2023', // t = test
       cardName: 'Uncommon Election Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/074.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/074.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -2025,12 +2025,12 @@ async function seed() {
     data: {
       serialNumber: 't24/402-2023', // t = test
       cardName: 'Rare Election Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/075.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/075.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -2046,12 +2046,12 @@ async function seed() {
     data: {
       serialNumber: 't24/403-2023', // t = test
       cardName: 'Rare holo Election Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'ELECTION',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/076.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/076.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -2067,12 +2067,12 @@ async function seed() {
     data: {
       serialNumber: 't24/404-2023', // t = test
       cardName: 'Mega rare Election Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARARE',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/077.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/077.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -2088,12 +2088,12 @@ async function seed() {
     data: {
       serialNumber: 't24/405-2023', // t = test
       cardName: 'Mega rare holo Election Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'ELECTION',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/078.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/078.png',
       backgroundColour: 'RED',
       memberCard: {
         create: {
@@ -2110,12 +2110,12 @@ async function seed() {
     data: {
       serialNumber: 't24/500-2023', // t = test
       cardName: 'Common Election Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/079.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/079.png',
       backgroundColour: 'WHITE',
       partyCard: {
         create: {
@@ -2131,12 +2131,12 @@ async function seed() {
     data: {
       serialNumber: 't24/501-2023', // t = test
       cardName: 'Uncommon Election Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/080.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/080.png',
       backgroundColour: 'BLUE',
       partyCard: {
         create: {
@@ -2152,12 +2152,12 @@ async function seed() {
     data: {
       serialNumber: 't24/502-2023', // t = test
       cardName: 'Rare Election Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/081.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/081.png',
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
@@ -2173,12 +2173,12 @@ async function seed() {
     data: {
       serialNumber: 't24/503-2023', // t = test
       cardName: 'Rare holo Election Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'ELECTION',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/082.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/082.png',
       backgroundColour: 'YELLOW',
       partyCard: {
         create: {
@@ -2194,12 +2194,12 @@ async function seed() {
     data: {
       serialNumber: 't24/504-2023', // t = test
       cardName: 'Mega rare Election Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/083.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/083.png',
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
@@ -2215,12 +2215,12 @@ async function seed() {
     data: {
       serialNumber: 't24/505-2023', // t = test
       cardName: 'Mega rare holo Election Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'ELECTION',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/084.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/084.png',
       backgroundColour: 'BLACK',
       partyCard: {
         create: {
@@ -2237,12 +2237,12 @@ async function seed() {
     data: {
       serialNumber: 't24/600-2023', // t = test
       cardName: 'Common Election Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/085.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/085.png',
       backgroundColour: 'BLACK',
       policyCard: {
         create: {
@@ -2258,12 +2258,12 @@ async function seed() {
     data: {
       serialNumber: 't24/601-2023', // t = test
       cardName: 'Uncommon Election Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/086.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/086.png',
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
@@ -2279,12 +2279,12 @@ async function seed() {
     data: {
       serialNumber: 't24/602-2023', // t = test
       cardName: 'Rare Election Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/087.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/087.png',
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
@@ -2300,12 +2300,12 @@ async function seed() {
     data: {
       serialNumber: 't24/603-2023', // t = test
       cardName: 'Rare holo Election Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'ELECTION',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/088.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/088.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -2321,12 +2321,12 @@ async function seed() {
     data: {
       serialNumber: 't24/604-2023', // t = test
       cardName: 'Mega rare Election Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'ELECTION',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/089.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/089.png',
       backgroundColour: 'GREEN',
       policyCard: {
         create: {
@@ -2342,12 +2342,12 @@ async function seed() {
     data: {
       serialNumber: 't24/605-2023', // t = test
       cardName: 'Mega rare holo Election Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'ELECTION',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/090.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/090.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -2363,12 +2363,12 @@ async function seed() {
     data: {
       serialNumber: 't24/606-2023', // t = test
       cardName: 'Ultimate Election Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'ULTIMATE',
       holographic: true,
       packType: 'ELECTION',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/154.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/154.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -2388,12 +2388,12 @@ async function seed() {
     data: {
       serialNumber: 't24/700-2023', // t = test
       cardName: 'Common Covid Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'COVID',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/091.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/091.png',
       backgroundColour: 'BLUE',
       memberCard: {
         create: {
@@ -2409,12 +2409,12 @@ async function seed() {
     data: {
       serialNumber: 't24/701-2023', // t = test
       cardName: 'Uncommon Covid Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'COVID',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/092.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/092.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -2430,12 +2430,12 @@ async function seed() {
     data: {
       serialNumber: 't24/702-2023', // t = test
       cardName: 'Rare Covid Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'COVID',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/093.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/093.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -2451,12 +2451,12 @@ async function seed() {
     data: {
       serialNumber: 't24/703-2023', // t = test
       cardName: 'Rare holo Covid Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'COVID',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/094.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/094.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -2472,12 +2472,12 @@ async function seed() {
     data: {
       serialNumber: 't24/704-2023', // t = test
       cardName: 'Mega rare Covid Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARARE',
       holographic: false,
       packType: 'COVID',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/095.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/095.png',
       backgroundColour: 'GREEN',
       memberCard: {
         create: {
@@ -2493,12 +2493,12 @@ async function seed() {
     data: {
       serialNumber: 't24/705-2023', // t = test
       cardName: 'Mega rare holo Covid Member card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'COVID',
       cardType: 'MEMBER',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/096.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/096.png',
       backgroundColour: 'RED',
       memberCard: {
         create: {
@@ -2515,12 +2515,12 @@ async function seed() {
     data: {
       serialNumber: 't24/800-2023', // t = test
       cardName: 'Common Covid Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'COVID',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/097.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/097.png',
       backgroundColour: 'WHITE',
       partyCard: {
         create: {
@@ -2536,12 +2536,12 @@ async function seed() {
     data: {
       serialNumber: 't24/801-2023', // t = test
       cardName: 'Uncommon Covid Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'COVID',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/098.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/098.png',
       backgroundColour: 'BLUE',
       partyCard: {
         create: {
@@ -2557,12 +2557,12 @@ async function seed() {
     data: {
       serialNumber: 't24/802-2023', // t = test
       cardName: 'Rare Covid Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'COVID',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/099.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/099.png',
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
@@ -2578,12 +2578,12 @@ async function seed() {
     data: {
       serialNumber: 't24/803-2023', // t = test
       cardName: 'Rare holo Covid Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'COVID',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/100.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/100.png',
       backgroundColour: 'YELLOW',
       partyCard: {
         create: {
@@ -2599,12 +2599,12 @@ async function seed() {
     data: {
       serialNumber: 't24/804-2023', // t = test
       cardName: 'Mega rare Covid Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'COVID',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/101.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/101.png',
       backgroundColour: 'PURPLE',
       partyCard: {
         create: {
@@ -2620,12 +2620,12 @@ async function seed() {
     data: {
       serialNumber: 't24/805-2023', // t = test
       cardName: 'Mega rare holo Covid Party card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'COVID',
       cardType: 'PARTY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/102.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/102.png',
       backgroundColour: 'BLACK',
       partyCard: {
         create: {
@@ -2642,12 +2642,12 @@ async function seed() {
     data: {
       serialNumber: 't24/900-2023', // t = test
       cardName: 'Common Covid Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'COMMON',
       holographic: false,
       packType: 'COVID',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/103.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/103.png',
       backgroundColour: 'BLACK',
       policyCard: {
         create: {
@@ -2663,12 +2663,12 @@ async function seed() {
     data: {
       serialNumber: 't24/901-2023', // t = test
       cardName: 'Uncommon Covid Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'UNCOMMON',
       holographic: false,
       packType: 'COVID',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/104.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/104.png',
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
@@ -2684,12 +2684,12 @@ async function seed() {
     data: {
       serialNumber: 't24/902-2023', // t = test
       cardName: 'Rare Covid Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'COVID',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/105.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/105.png',
       backgroundColour: 'BLUE',
       policyCard: {
         create: {
@@ -2705,12 +2705,12 @@ async function seed() {
     data: {
       serialNumber: 't24/903-2023', // t = test
       cardName: 'Rare holo Covid Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RAREHOLO',
       holographic: true,
       packType: 'COVID',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/106.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/106.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -2726,12 +2726,12 @@ async function seed() {
     data: {
       serialNumber: 't24/904-2023', // t = test
       cardName: 'Mega rare Covid Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'RARE',
       holographic: false,
       packType: 'COVID',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/107.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/107.png',
       backgroundColour: 'GREEN',
       policyCard: {
         create: {
@@ -2747,12 +2747,12 @@ async function seed() {
     data: {
       serialNumber: 't24/905-2023', // t = test
       cardName: 'Mega rare holo Covid Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'MEGARAREHOLO',
       holographic: true,
       packType: 'COVID',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/108.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/108.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {
@@ -2769,12 +2769,12 @@ async function seed() {
     data: {
       serialNumber: 't24/906-2023', // t = test
       cardName: 'Ultimate Covid Policy card test 2',
-      edition: 'First',
+      edition: 'first',
       rarity: 'ULTIMATE',
       holographic: true,
       packType: 'COVID',
       cardType: 'POLICY',
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/155.png',
+      imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/155.png',
       backgroundColour: 'RED',
       policyCard: {
         create: {

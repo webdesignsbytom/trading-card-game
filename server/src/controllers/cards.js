@@ -6,7 +6,10 @@ import {
 } from '../utils/responses.js';
 import { myEmitterErrors } from '../event/errorEvents.js';
 import {
+  createMemberCard,
   createNewInstanceForCard,
+  createPartyCard,
+  createPolicyCard,
   findAllCardInstances,
   findAllCards,
   findAllCardsFromPack,
@@ -48,7 +51,7 @@ export const getAllCards = async (req, res) => {
 
 // Get card by id
 export const getCardById = async (req, res) => {
-  const cardId = Number(req.params.cardId)
+  const cardId = Number(req.params.cardId);
   console.log('cardId', cardId);
 
   try {
@@ -64,7 +67,6 @@ export const getCardById = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-
     return sendDataResponse(res, 200, { card: foundCard });
   } catch (err) {
     // Error
@@ -78,7 +80,7 @@ export const getCardById = async (req, res) => {
 // Get card instance by id
 export const getCardInstanceById = async (req, res) => {
   console.log('getCardById');
-  const { cardInstanceId } = req.params
+  const { cardInstanceId } = req.params;
   console.log('cardId', cardInstanceId);
 
   try {
@@ -95,13 +97,19 @@ export const getCardInstanceById = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    const foundCard = await findCardByName(foundCardInstance.name)
+    const foundCard = await findCardByName(foundCardInstance.name);
     console.log('found card', foundCard);
 
-    return sendDataResponse(res, 200, { cardInstance: foundCardInstance, card: foundCard });
+    return sendDataResponse(res, 200, {
+      cardInstance: foundCardInstance,
+      card: foundCard,
+    });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Find card instance by id`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Find card instance by id`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -111,11 +119,11 @@ export const getCardInstanceById = async (req, res) => {
 // search cards by name
 export const searchForCardsByName = async (req, res) => {
   console.log('searchForCardsByName', req.body);
-  const { cardName } = req.body
+  const { cardName } = req.body;
   console.log('cardName', cardName);
 
   try {
-    const foundCards = await findCardBySearchQuery(cardName)
+    const foundCards = await findCardBySearchQuery(cardName);
     console.log('found card', foundCards[0]);
 
     if (!foundCards) {
@@ -128,10 +136,152 @@ export const searchForCardsByName = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    return sendDataResponse(res, 200, { results: foundCards.length, cards: foundCards });
+    return sendDataResponse(res, 200, {
+      results: foundCards.length,
+      cards: foundCards,
+    });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Search for card by name`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Search for card by name`
+    );
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+// MEMBER createNewCards
+export const createNewMemberCards = async (req, res) => {
+  console.log('createNewCards', req.body);
+  const { cardArray } = req.body;
+  console.log('cardArray', cardArray);
+
+  try {
+    const createdCards = [];
+
+    for (let index = 0; index < cardArray.length; index++) {
+      const card = cardArray[index];
+      const createdCard = await createMemberCard(
+        card.serialNumber,
+        card.cardName.toLowerCase(),
+        card.edition.toLowerCase(),
+        card.imageUrl,
+        card.memberName.toLowerCase(),
+        card.packType,
+        card.cardType,
+        card.health,
+        card.attack
+      );
+      createdCards.push(createdCard);
+    }
+
+    if (!createdCards) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.badRequest,
+        EVENT_MESSAGES.createCardsFail
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    return sendDataResponse(res, 200, { cards: createdCards });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Create new member cards failed`
+    );
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+// PARTY createNewPartyCards
+export const createNewPartyCards = async (req, res) => {
+  console.log('createNewCards', req.body);
+  const { cardArray } = req.body;
+  console.log('cardArray', cardArray);
+
+  try {
+    const createdCards = [];
+
+    for (let index = 0; index < cardArray.length; index++) {
+      const card = cardArray[index];
+      const createdCard = await createPartyCard(
+        card.serialNumber,
+        card.cardName.toLowerCase(),
+        card.edition.toLowerCase(),
+        card.imageUrl,
+        card.packType,
+        card.cardType,
+      );
+      createdCards.push(createdCard);
+    }
+
+    if (!createdCards) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.badRequest,
+        EVENT_MESSAGES.createCardsFail
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    return sendDataResponse(res, 200, { cards: createdCards });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Create new member cards failed`
+    );
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+// POLICY createNewPolicyCards
+export const createNewPolicyCards = async (req, res) => {
+  console.log('createNewCards', req.body);
+  const { cardArray } = req.body;
+  console.log('cardArray', cardArray);
+
+  try {
+    const createdCards = [];
+
+    for (let index = 0; index < cardArray.length; index++) {
+      const card = cardArray[index];
+      const createdCard = await createPolicyCard(
+        card.serialNumber,
+        card.cardName.toLowerCase(),
+        card.edition.toLowerCase(),
+        card.imageUrl,
+        card.packType,
+        card.cardType
+      );
+      createdCards.push(createdCard);
+    }
+
+    if (!createdCards) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.badRequest,
+        EVENT_MESSAGES.createCardsFail
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    return sendDataResponse(res, 200, { cards: createdCards });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Create new member cards failed`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -155,7 +305,10 @@ export const getAllCardInstances = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    return sendDataResponse(res, 200, { total: foundInstances.length, cards: foundInstances });
+    return sendDataResponse(res, 200, {
+      total: foundInstances.length,
+      cards: foundInstances,
+    });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Get all cards`);
@@ -238,7 +391,11 @@ export const buySingleRandomCard = async (req, res) => {
     let cardFound = await createSingleCardsForUser();
     console.log('AAWW cardFound', cardFound);
 
-    let newInstance = await createNewInstanceForCard(cardFound.id, userId, cardFound.cardName);
+    let newInstance = await createNewInstanceForCard(
+      cardFound.id,
+      userId,
+      cardFound.cardName
+    );
 
     if (!newInstance) {
       const notFound = new NotFoundEvent(
@@ -250,8 +407,10 @@ export const buySingleRandomCard = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    return sendDataResponse(res, 200, { card: cardFound, cardInstance: newInstance });
-    
+    return sendDataResponse(res, 200, {
+      card: cardFound,
+      cardInstance: newInstance,
+    });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Create single card`);
@@ -267,7 +426,11 @@ export const freeSingleRandomCard = async (userId) => {
   try {
     let cardFound = await createSingleCardsForUser();
 
-    let newInstance = await createNewInstanceForCard(cardFound.id, userId, cardFound.cardName);
+    let newInstance = await createNewInstanceForCard(
+      cardFound.id,
+      userId,
+      cardFound.cardName
+    );
 
     if (!newInstance) {
       const notFound = new NotFoundEvent(
@@ -279,8 +442,7 @@ export const freeSingleRandomCard = async (userId) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    return { newInstance, cardFound }
-    
+    return { newInstance, cardFound };
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent('freecard', `Create single card`);

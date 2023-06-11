@@ -54,7 +54,7 @@ model Profile {
   mediaAccounts SocialMediaLink[]
   firstName     String?           @default("") @db.VarChar(50)
   lastName      String?           @default("") @db.VarChar(50)
-  profileImage  String?           @default("https://www.pngfind.com/pngs/m/676-6764065_default-profile-picture-transparent-hd-png-download.png")
+  profileimageUrl  String?           @default("https://www.pngfind.com/pngs/m/676-6764065_default-profile-picture-transparent-hd-png-download.png")
   isPrivate     Boolean           @default(false)
   createdAt     DateTime          @default(now())
   updatedAt     DateTime?         @updatedAt
@@ -277,7 +277,7 @@ model Card {
   packType         PackType
   cardType         CardType
   editable         Boolean          @default(true) // holo card option available
-  image            String           @default("image") @db.VarChar(5000)
+  imageUrl            String           @default("imageUrl") @db.VarChar(5000)
   backgroundColour BackgroundColour @default(WHITE)
   memberCard       MemberCard?
   partyCard        PartyCard?
