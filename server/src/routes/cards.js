@@ -12,6 +12,7 @@ import {
   searchForCardsByName,
   createNewPolicyCards,
   createNewPartyCards,
+  updateCardDateById,
 } from '../controllers/cards.js';
 
 const router = Router();
@@ -28,5 +29,6 @@ router.post('/card/create-new-party-cards', createNewPartyCards);
 router.get('/type/:cardType', getAllCardsByType);
 router.post('/free-single-card', freeSingleRandomCard);
 router.post('/buy-single-card', buySingleRandomCard);
+router.patch('/update-card/:cardId', updateCardDateById);
 
 export default router;

@@ -1,8 +1,13 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 // Components
 import Navbar from '../../components/nav/Navbar';
+import EditCardComponent from '../../components/admin/EditCardComponent';
 
 function CardEditPage() {
+  const location = useLocation();
+  const cardData = location.state;
+
   return (
     <div className='bg-black main__bg h-screen grid overflow-hidden'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
@@ -34,7 +39,7 @@ function CardEditPage() {
             </section>
 
             {/* EDITING */}
-            <section>EDIT THis</section>
+            <EditCardComponent cardData={cardData} />
           </div>
         </main>
       </section>

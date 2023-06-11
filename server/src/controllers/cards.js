@@ -18,6 +18,7 @@ import {
   findCardBySearchQuery,
   findCardInstanceById,
   findCardsByCardType,
+  updateMemberCardById,
 } from '../domain/cards.js';
 import { findUserById } from '../domain/users.js';
 import { createSingleCardsForUser } from '../utils/createCards.js';
@@ -216,7 +217,7 @@ export const createNewPartyCards = async (req, res) => {
         card.edition.toLowerCase(),
         card.imageUrl,
         card.packType,
-        card.cardType,
+        card.cardType
       );
       createdCards.push(createdCard);
     }
@@ -411,6 +412,41 @@ export const buySingleRandomCard = async (req, res) => {
       card: cardFound,
       cardInstance: newInstance,
     });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Create single card`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+// Get one of any card currently available
+export const updateCardDateById = async (req, res) => {
+  console.log('updateCardDateById');
+  const { cardId } = req.params;
+  console.log('cardId', cardId);
+  const cardUpdateData = req.body;
+  console.log('cardUpdateData', cardUpdateData);
+
+  try {
+
+    const foundCard = await findCardById(Number(cardId))
+    console.log('foundCard', foundCard);
+    if (!foundCard) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundCards
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    const updatedCard = await updateMemberCardById(cardId, cardUpdateData.serialNumber, cardUpdateData.cardName, cardUpdateData.edition, cardUpdateData.rarity, cardUpdateData.holographic, cardUpdateData.editable, cardUpdateData.imageUrl, cardUpdateData.backgroundColour, cardUpdateData.availability, cardUpdateData.memberCard.memberName, cardUpdateData.memberCard.health, cardUpdateData.memberCard.attack, cardUpdateData.memberCard.cardStat)
+    console.log('updatedCard', updatedCard);
+  
+    // return sendDataResponse(res, 200, {});
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Create single card`);

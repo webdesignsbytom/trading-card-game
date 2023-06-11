@@ -204,6 +204,35 @@ export const createMemberCard = (
       },
     },
   });
+export const updateMemberCardById = (
+  cardId, serialNumber, cardName, edition, rarity, holographic, editable, imageUrl, backgroundColour, availability, memberName, health, attack, cardStat
+) =>
+  dbClient.card.update({
+    where: {
+      id: cardId
+    },
+    data: {
+      serialNumber: serialNumber,
+      cardName: cardName,
+      edition: edition,
+      rarity: rarity,
+      holographic: holographic,
+      editable: editable,
+      imageUrl: imageUrl,
+      backgroundColour: backgroundColour,
+      availability: availability,
+      packType: packType,
+      cardType: cardType,
+      memberCard: {
+        create: {
+          memberName: memberName,
+          health: health,
+          attack: attack,
+          cardStat: cardStat
+        },
+      },
+    },
+  });
 
 export const createPolicyCard = (
   serialNumber,
