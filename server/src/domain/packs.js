@@ -39,9 +39,6 @@ export const createBlankPackOfCardsForUser = (packType, userId) =>
       packType: packType,
       userId: userId,
     },
-    include: {
-      cards: true,
-    },
   });
 
 export const findPackById = (id) =>

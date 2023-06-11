@@ -141,7 +141,6 @@ export async function createCardsForPack(packType, packId) {
   );
 
   // Create required cards for pack.
-  console.log('packId', packId);
   // Create one holo card
   const holoCard = await createHolographicCardForPack(rareCards, megaRareCards);
   holoCard.packId = packId;
@@ -152,7 +151,6 @@ export async function createCardsForPack(packType, packId) {
     let rarityNum = Math.floor(Math.random() * 200) + 1;
 
     if (rarityNum < 90) {
-      console.log('COMMON');
       const newCard = await selectCommonCard(commonCards, packId);
 
       if (!newCard) {
@@ -173,7 +171,6 @@ export async function createCardsForPack(packType, packId) {
     }
 
     if (rarityNum < 151 && rarityNum >= 90) {
-      console.log('UNCOMMON');
       const newCard = await selectUncommonCard(uncommonCards, packId);
 
       if (!newCard) {
@@ -194,7 +191,6 @@ export async function createCardsForPack(packType, packId) {
     }
 
     if (rarityNum < 181 && rarityNum >= 151) {
-      console.log('Rare');
       const newCard = await selectRareCard(rareCards, packId);
 
       if (!newCard) {
@@ -214,7 +210,6 @@ export async function createCardsForPack(packType, packId) {
     }
 
     if (rarityNum < 198 && rarityNum >= 181) {
-      console.log('Mega Rare');
       const newCard = await selectMegaRareCard(megaRareCards, packId);
 
       if (!newCard) {
@@ -234,7 +229,6 @@ export async function createCardsForPack(packType, packId) {
     }
 
     if (rarityNum < 201 && rarityNum >= 198) {
-      console.log('Ultimate');
       const newCard = await selectUltimateRarityCard(ultimateCards, packId);
 
       if (!newCard) {
@@ -253,7 +247,6 @@ export async function createCardsForPack(packType, packId) {
       }
     }
   }
-
   // End of while
   if (!packArray) {
     const notFound = new NotFoundEvent(

@@ -8,7 +8,11 @@ import {
   createSinglePacksOfCardsForUser,
 } from '../utils/createPackets.js';
 import { myEmitterErrors } from '../event/errorEvents.js';
-import { ConfictEvent, NotFoundEvent, ServerErrorEvent } from '../event/utils/errorUtils.js';
+import {
+  ConfictEvent,
+  NotFoundEvent,
+  ServerErrorEvent,
+} from '../event/utils/errorUtils.js';
 import {
   EVENT_MESSAGES,
   sendDataResponse,
@@ -17,6 +21,7 @@ import {
 import { starterPackNames } from '../utils/constants.js';
 import {
   findUserById,
+  findUserByIdBasic,
   setStarterCardsToClaimed,
   updateUserCardArray,
 } from '../domain/users.js';
@@ -199,7 +204,7 @@ export const buyPackAndAddToUser = async (req, res) => {
     return sendDataResponse(res, 201, {
       pack: foundPack,
       cards: createdPack.cards,
-      updatedUser: updatedUser
+      updatedUser: updatedUser,
     });
   } catch (err) {
     // Error
@@ -216,9 +221,9 @@ export const buyPackAndAddToUser = async (req, res) => {
 // Create starter packs for new players
 export const createStarterPacksForUser = async (req, res) => {
   const { userId } = req.body;
-
+  
   try {
-    const foundUser = await findUserById(userId);
+    const foundUser = await findUserByIdBasic(userId);
     if (!foundUser) {
       const notFound = new NotFoundEvent(
         req.user,
@@ -236,7 +241,11 @@ export const createStarterPacksForUser = async (req, res) => {
         EVENT_MESSAGES.startPacksAlreadyClaimed
       );
       myEmitterErrors.emit('error', alreadyClaimed);
-      return sendMessageResponse(res, alreadyClaimed.code, alreadyClaimed.message);
+      return sendMessageResponse(
+        res,
+        alreadyClaimed.code,
+        alreadyClaimed.message
+      );
     }
 
     const starterPacks = [];
@@ -266,8 +275,6 @@ export const createStarterPacksForUser = async (req, res) => {
     const updatedUser = await setStarterCardsToClaimed(userId);
 
     return sendDataResponse(res, 201, {
-      packs: starterPacks,
-      cards: cardsInPackArray,
       updatedUser: updatedUser,
     });
   } catch (err) {

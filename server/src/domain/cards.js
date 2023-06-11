@@ -161,6 +161,11 @@ export const createNewInstanceForPack = (packId, cardId, cardName) =>
     },
   });
 
+export const createManyNewInstanceForPack = (cardArray) =>
+  dbClient.cardInstance.createMany({
+    data: cardArray
+  });
+
 export const setCardFromPackToUser = (instanceId, userId) =>
   dbClient.cardInstance.update({
     where: {

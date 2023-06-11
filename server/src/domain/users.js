@@ -49,6 +49,13 @@ export const findUserById = (userId) =>
     },
   });
 
+export const findUserByIdBasic = (userId) =>
+  dbClient.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
 export const findUserLoginRecord = (userId) =>
   dbClient.loginRecord.findUnique({
     where: {
