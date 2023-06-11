@@ -27,7 +27,7 @@ function PackSelector({
             {purchasingBrexitPack ? (
               <div className='grid w-full justify-center items-center text-white text-3xl text-center'>
                 <span>LOADING...</span>
-                <LoadingSpinner width={'w-8'} height={'w-8'} />
+                <LoadingSpinner width={'w-6'} height={'h-6'} />
               </div>
             ) : (
               <span>Buy Brexit Packs</span>
@@ -52,7 +52,7 @@ function PackSelector({
             {purchasingCovidPack ? (
               <div className='grid w-full justify-center items-center text-white text-3xl text-center'>
                 <span>LOADING...</span>
-                <LoadingSpinner width={'w-8'} height={'w-8'} />
+                <LoadingSpinner width={'w-6'} height={'h-6'} />
               </div>
             ) : (
               <span>Buy Covid Packs</span>
@@ -77,7 +77,7 @@ function PackSelector({
             {purchasingElectionPack ? (
               <div className='grid w-full justify-center items-center text-white text-3xl text-center'>
                 <span>LOADING...</span>
-                <LoadingSpinner width={'w-8'} height={'w-8'} />
+                <LoadingSpinner width={'w-6'} height={'h-6'} />
               </div>
             ) : (
               <span>Buy Election Packs</span>

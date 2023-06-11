@@ -1,27 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 // Context
 import { ToggleContext } from '../../context/ToggleContext';
 // Card components
 import MemberCard from '../card/MemberCard';
 import PolicyCard from '../card/PolicyCard';
 import PartyCard from '../card/PartyCard';
-import { useLocation } from 'react-router-dom';
 
 function OpenedPacketDisplay() {
-  const { returnedOpenPack } = useContext(ToggleContext);
+  const { returnedOpenPack, setActiveNav } = useContext(ToggleContext);
 
-  const location = useLocation();
-  // const packData = location.state;
+  useEffect(() => {
+    setActiveNav('/invintory')
+  }, [])
 
   console.log('XXXX ', returnedOpenPack);
   return (
-    <div>
-      <article>
-        <p>CHECK OUT YOUR CARDS</p>
+    <div className='grid h-full grid-rows-reg overflow-hidden'>
+      <article className='h-fit text-center'>
+        <h2 className='text-lg font-semibold leading-4 mt-1'>CHECK OUT YOUR NEW CARDS!</h2>
         <p>They have been automatically added to your album</p>
       </article>
 
-      <section className='grid grid-cols-6 grid-rows-2 gap-2 py-2'>
+      <section className='grid lg:grid-cols-6 lg:grid-rows-2 gap-3 py-2 px-2 h-full overflow-scroll lg:overflow-hidden'>
         {returnedOpenPack.map((card, index) => {
           if (card.cardType === 'MEMBER') {
             return <MemberCard cardData={card} key={index} />;
