@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 // Components
 import Navbar from '../../components/nav/Navbar';
@@ -6,7 +6,7 @@ import EditCardComponent from '../../components/admin/EditCardComponent';
 
 function CardEditPage() {
   const location = useLocation();
-  const cardData = location.state;
+  const [selectedCardData, setSelectedCardData] = useState(location.state);
 
   return (
     <div className='bg-black main__bg h-screen grid overflow-hidden'>
@@ -39,7 +39,7 @@ function CardEditPage() {
             </section>
 
             {/* EDITING */}
-            <EditCardComponent cardData={cardData} />
+            <EditCardComponent cardData={selectedCardData} setSelectedCardData={setSelectedCardData} />
           </div>
         </main>
       </section>

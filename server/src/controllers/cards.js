@@ -425,14 +425,10 @@ export const buySingleRandomCard = async (req, res) => {
 export const updateCardDateById = async (req, res) => {
   console.log('updateCardDateById');
   const { cardId } = req.params;
-  console.log('cardId', cardId);
   const cardUpdateData = req.body;
-  console.log('cardUpdateData', cardUpdateData);
 
   try {
-
-    const foundCard = await findCardById(Number(cardId))
-    console.log('foundCard', foundCard);
+    const foundCard = await findCardById(Number(cardId));
     if (!foundCard) {
       const notFound = new NotFoundEvent(
         req.user,
@@ -443,13 +439,27 @@ export const updateCardDateById = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    const updatedCard = await updateMemberCardById(cardId, cardUpdateData.serialNumber, cardUpdateData.cardName, cardUpdateData.edition, cardUpdateData.rarity, cardUpdateData.holographic, cardUpdateData.editable, cardUpdateData.imageUrl, cardUpdateData.backgroundColour, cardUpdateData.availability, cardUpdateData.memberCard.memberName, cardUpdateData.memberCard.health, cardUpdateData.memberCard.attack, cardUpdateData.memberCard.cardStat)
-    console.log('updatedCard', updatedCard);
-  
-    // return sendDataResponse(res, 200, {});
+    const updatedCard = await updateMemberCardById(
+      Number(cardId),
+      cardUpdateData.serialNumber,
+      cardUpdateData.cardName,
+      cardUpdateData.edition,
+      cardUpdateData.rarity,
+      Boolean(cardUpdateData.holographic),
+      Boolean(cardUpdateData.editable),
+      cardUpdateData.imageUrl,
+      cardUpdateData.backgroundColour,
+      Boolean(cardUpdateData.availability),
+      cardUpdateData.memberCard.memberName,
+      Number(cardUpdateData.memberCard.health),
+      Number(cardUpdateData.memberCard.attack),
+      cardUpdateData.memberCard.cardStat
+    );
+
+    return sendDataResponse(res, 200, { updatedCard: updatedCard });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Create single card`);
+    const serverError = new ServerErrorEvent(req.user, `Update card failed`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;

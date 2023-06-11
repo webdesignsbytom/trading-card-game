@@ -221,10 +221,8 @@ export const updateMemberCardById = (
       imageUrl: imageUrl,
       backgroundColour: backgroundColour,
       availability: availability,
-      packType: packType,
-      cardType: cardType,
       memberCard: {
-        create: {
+        update: {
           memberName: memberName,
           health: health,
           attack: attack,
@@ -232,6 +230,9 @@ export const updateMemberCardById = (
         },
       },
     },
+    include: {
+      memberCard: true
+    }
   });
 
 export const createPolicyCard = (
