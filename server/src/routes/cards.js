@@ -18,7 +18,7 @@ router.get('/all-card-instances', getAllCardInstances);
 router.get('/pack/:packType', getAllCardsFromPackType);
 router.get('/card/get-by-id/:cardId', getCardById);
 router.get('/card/cardInstance/get-by-id/:cardInstanceId', getCardInstanceById);
-router.get('/card/search-cards-by-name', searchForCardsByName);
+router.post('/card/search-cards-by-name', searchForCardsByName);
 router.get('/type/:cardType', getAllCardsByType);
 router.post('/free-single-card', freeSingleRandomCard);
 router.post('/buy-single-card', buySingleRandomCard);

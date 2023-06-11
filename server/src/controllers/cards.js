@@ -110,13 +110,13 @@ export const getCardInstanceById = async (req, res) => {
 
 // search cards by name
 export const searchForCardsByName = async (req, res) => {
-  console.log('searchForCardsByName');
+  console.log('searchForCardsByName', req.body);
   const { cardName } = req.body
-  console.log('cardId', cardName);
+  console.log('cardName', cardName);
 
   try {
     const foundCards = await findCardBySearchQuery(cardName)
-    console.log('found card', foundCards);
+    console.log('found card', foundCards[0]);
 
     if (!foundCards) {
       const notFound = new NotFoundEvent(

@@ -18,7 +18,7 @@ function CardsAvailablePage() {
 
   useEffect(() => {
     setActiveNav('/cards');
-
+    console.log('useEFFECT');
     client
       .get(`/con-cards/all-cards`)
       .then((res) => {
@@ -36,16 +36,16 @@ function CardsAvailablePage() {
 
     setSearchQuery({
       ...setSearchQuery,
-      username: value,
+      cardName: value,
     });
   };
 
-  const searchForUser = () => {
-    console.log('xxx');
+  const searchForCard = () => {
+    console.log('xxx', searchQuery);
     setCardNotFound(false);
 
     client
-      .get(`/con-cards/card/search-cards-by-name`, searchQuery.cardName)
+      .post(`/con-cards/card/search-cards-by-name`, searchQuery)
       .then((res) => {
         console.log('res', res.data.data);
         setFoundCards(res.data.data.cards);
@@ -75,13 +75,13 @@ function CardsAvailablePage() {
                   <input
                     className='rounded px-1 py-1'
                     type='text'
-                    name='searchAlbum'
-                    id='searchAlbum'
+                    name='searchCards'
+                    id='searchCards'
                     onChange={handleSearchChange}
                     placeholder='Search the collection...'
                   />
                   <div
-                    onClick={searchForUser}
+                    onClick={searchForCard}
                     className='absolute h-fit mr-6 w-fit rounded active:scale-95 hover:bg-blue-700 bg-blue-400 px-2 right-0'
                   >
                     ?
@@ -115,13 +115,13 @@ function CardsAvailablePage() {
                     <input
                       className='rounded px-1 py-1'
                       type='text'
-                      name='searchAlbum'
-                      id='searchAlbum'
+                      name='searchCards'
+                      id='searchCards'
                       onChange={handleSearchChange}
                       placeholder='Search the collection...'
                     />
                     <div
-                      onClick={searchForUser}
+                      onClick={searchForCard}
                       className='absolute h-fit w-fit rounded active:scale-95 hover:bg-blue-700 bg-blue-400 px-2 right-0'
                     >
                       ?
@@ -153,6 +153,10 @@ function CardsAvailablePage() {
                   </div>
                 )}
                 <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-y-4 gap-x-3 p-4 sm:p-0'>
+                  {foundCards.map((card, index) => {
+                    return <Card key={index} cardData={card} />;
+                  })}
+                  
                   {allCardsArray.map((card, index) => {
                     return <Card key={index} cardData={card} />;
                   })}
