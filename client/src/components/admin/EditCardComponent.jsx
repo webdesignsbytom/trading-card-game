@@ -1,9 +1,9 @@
 import React from 'react';
+// Components
 import Card from '../card/Card';
 import MemberCardEditComponent from '../card/MemberCardEditComponent';
 
 function EditCardComponent({ cardData, setSelectedCardData }) {
-  console.log('xxxx card data', cardData);
   return (
     <section className='grid h-full overflow-hidden p-1'>
       <section className='grid h-full gap-2 md:grid-cols-2 overflow-hidden p-2'>

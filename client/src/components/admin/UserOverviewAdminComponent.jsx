@@ -10,7 +10,6 @@ function UserOverviewAdminComponent() {
   const [foundUser, setFoundUser] = useState({});
   const [notFoundUser, setNotFoundUser] = useState(false);
 
-  console.log('foundUser', foundUser);
   let navigate = useNavigate();
 
   useEffect(() => {

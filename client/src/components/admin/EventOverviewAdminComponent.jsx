@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// Api
 import client from '../../utils/client';
 import { deleteEventApiRequest } from '../../api/DeleteRequests';
 

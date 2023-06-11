@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import client from '../../utils/client';
 import { useNavigate } from 'react-router-dom';
+// API
+import client from '../../utils/client';
 
 function CardOverviewAdminComponent() {
   const [allCardsArray, setAllCardsArray] = useState([]);
