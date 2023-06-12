@@ -14,6 +14,7 @@ function LoginPage() {
   const { setActiveNav } = useContext(ToggleContext)
 
   const [loginInProgress, setLoginInProgress] = useState(false);
+  const [loginError, setLoginError] = useState(false);
   const [loginFormData, setLoginFormData] = useState({
     email: '',
     password: '',
@@ -48,11 +49,13 @@ function LoginPage() {
       .then(() => homePage())
 
       .catch((err) => {
+        setLoginError(true)
         console.error('Unable to login', err);
       });
   };
 
   const handleChange = (event) => {
+    setLoginError(false);
     const { name, value } = event.target;
 
     setLoginFormData({
@@ -155,6 +158,11 @@ function LoginPage() {
                     </div>
                   )}
                 </button>
+                {loginError && (
+                  <div>
+                    <span className='text-red-700 font-semibold'>LOGIN FAILED</span>
+                  </div>
+                )}
                 <p className='font-light text-gray-500 dark:text-gray-400'>
                   Don’t have an account yet?{' '}
                   <Link
