@@ -11,6 +11,10 @@ function InvintoryOptions() {
     navigate('/packs/unopened');
   };
 
+  const toggleOpenItems = () => {
+    navigate('/invintory/items');
+  };
+
   return (
     <section className='grid'>
       <div className='grid grid-cols-2 lg:grid-cols-4 mt-4'>
@@ -22,7 +26,7 @@ function InvintoryOptions() {
         </div>
         <div className='p-4 text-center h-fit grid justify-center'>
           <span className='text-3xl mb-2 font-semibold'>Items</span>
-          <div className='cursor-pointer mt-4' onClick={toggleOpenPackets}>
+          <div className='cursor-pointer mt-4' onClick={toggleOpenItems}>
             <img src={ItemsImg} alt='Covid pack' />
           </div>
         </div>

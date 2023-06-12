@@ -9,6 +9,7 @@ import ShopPage from './pages/shop/ShopPage';
 import OpenPacksPage from './pages/packs/OpenPacksPage';
 import CardsAvailablePage from './pages/cards/CardsAvailablePage';
 import InvintoryPage from './pages/invintory/InvintoryPage';
+import InvintoryItemsPage from './pages/invintory/InvintoryItemsPage';
 import RewardsPage from './pages/rewards/RewardsPage';
 import CardOverviewPage from './pages/cards/CardOverviewPage';
 import TradingPage from './pages/trade/TradingPage';
@@ -39,6 +40,7 @@ function App() {
       <Route path='/cards' element={<CardsAvailablePage />} />
       <Route path='/card-overview/:id' element={<CardOverviewPage />} />
       <Route path='/invintory' element={<InvintoryPage />} />
+      <Route path='/invintory/items' element={<InvintoryItemsPage />} />
       <Route path='/trading' element={<TradingPage />} />
       <Route path='/rewards' element={<RewardsPage />} />
       <Route path='/battles' element={<BattlesOverviewPage />} />

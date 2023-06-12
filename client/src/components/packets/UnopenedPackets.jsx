@@ -65,7 +65,7 @@ function UnopenedPackets() {
         </div>
       </section>
 
-      <section className='w-full grid grid-cols-2 lg:grid-cols-3 items-center justify-center gap-4 my-4 px-2'>
+      <section className='w-full grid grid-cols-3 items-center justify-center gap-4 my-4 px-2'>
         {unopenedPacks[packIndex[0]] && (
           <OpenablePacket pack={unopenedPacks[packIndex[0]]} />
         )}

@@ -17,7 +17,7 @@ function CreateTradeComponent({
 
   return (
     <section
-      className={`grid lg:grid-cols-2x gap-4 grid-rows-1 px-4 mb-4 max-h-full overflow-hidden`}
+      className={`grid lg:grid-cols-2x gap-4 grid-rows-1 px-2 lg:px-4 mb-4 max-h-full overflow-hidden`}
     >
       <section className='bg-red-400 grid grid-rows-a1a main__bg outline outline-4 outline-black rounded-xl p-2'>
         {/* image and search */}

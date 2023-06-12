@@ -283,11 +283,9 @@ function Navbar() {
                 <button
                   id='/rewards'
                   onClick={navigateToPage}
-                  className='no__highlights w-full outline text-center bg-blue-600 main__bg outline-black outline-2 rounded animate-pulse mt-2'
+                  className='no__highlights w-full outline text-center bg-blue-600 main__bg outline-black outline-2 rounded animate-pulse mt-2 py-1'
                 >
-                  <div className='font-semibold py-1'>
-                    <span>Daily Reward Available</span>
-                  </div>
+                  Daily Reward Available
                 </button>
               )}
             </section>

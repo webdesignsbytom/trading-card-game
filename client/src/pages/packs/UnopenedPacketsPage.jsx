@@ -1,4 +1,5 @@
 import React from 'react';
+// Components
 import UnopenedPackets from '../../components/packets/UnopenedPackets';
 import Navbar from '../../components/nav/Navbar';
 
