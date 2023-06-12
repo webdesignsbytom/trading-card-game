@@ -3,7 +3,6 @@ import React from 'react';
 import client from '../../utils/client';
 
 function MemberCardEditComponent({ cardData, setSelectedCardData }) {
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     console.log('name', name);
@@ -45,7 +44,7 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
       <div>
         <h6>Member Card Edit</h6>
       </div>
-      <section className='text-sm grid gap-1'>
+      <section className='text-sm lg:text-base grid gap-1'>
         {/* card name */}
         <div>
           <div className='grid grid-flow-col justify-between'>
@@ -54,7 +53,7 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
               <span className='text-xs'>{cardData.cardName}</span>
             </div>
           </div>
-          <div className='grid grid-cols-rev w-full'>
+          <div className='grid w-full'>
             <input
               className='outline outline-1 outline-black px-1 w-full'
               type='text'
@@ -63,12 +62,6 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
               placeholder='Card Name'
               onChange={handleChange}
             />
-            <button
-              onClick={handleSubmitCardValues}
-              className='bg-blue-500 px-1 active:scale-95 outline outline-1 outline-black w-fit'
-            >
-              <span className='font-semibold'>Submit</span>
-            </button>
           </div>
         </div>
         {/* card Serial Number */}
@@ -79,7 +72,7 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
               <span className='text-xs'>{cardData.serialNumber}</span>
             </div>
           </div>
-          <div className='grid grid-cols-rev w-full'>
+          <div className='grid w-full'>
             <input
               className='outline outline-1 outline-black px-1 w-full'
               type='text'
@@ -88,14 +81,6 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
               onChange={handleChange}
               placeholder='Card Serial Number'
             />
-            <button
-              onClick={handleSubmitCardValues}
-              name='serialNumber'
-              id='serialNumber'
-              className='bg-blue-500 px-1 active:scale-95 outline outline-1 outline-black w-fit'
-            >
-              <span className='font-semibold'>Submit</span>
-            </button>
           </div>
         </div>
         {/* card edition */}
@@ -106,7 +91,7 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
               <span className='text-xs'>{cardData.edition}</span>
             </div>
           </div>
-          <div className='grid grid-cols-rev w-full'>
+          <div className='grid w-full'>
             <input
               className='outline outline-1 outline-black px-1 w-full'
               type='text'
@@ -115,12 +100,6 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
               onChange={handleChange}
               placeholder='Card edition'
             />
-            <button
-              onClick={handleSubmitCardValues}
-              className='bg-blue-500 px-1 active:scale-95 outline outline-1 outline-black w-fit'
-            >
-              <span className='font-semibold'>Submit</span>
-            </button>
           </div>
         </div>
         {/* card rarity */}
@@ -131,7 +110,7 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
               <span className='text-xs'>{cardData.rarity}</span>
             </div>
           </div>
-          <div className='grid grid-cols-rev w-full'>
+          <div className='grid w-full'>
             <input
               className='outline outline-1 outline-black px-1 w-full'
               type='text'
@@ -140,12 +119,6 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
               onChange={handleChange}
               placeholder='Card Rarity'
             />
-            <button
-              onClick={handleSubmitCardValues}
-              className='bg-blue-500 px-1 active:scale-95 outline outline-1 outline-black w-fit'
-            >
-              <span className='font-semibold'>Submit</span>
-            </button>
           </div>
         </div>
         {/* true flae */}
@@ -167,12 +140,8 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
                 onChange={handleChange}
                 className='p-1'
               >
-                <option defaultValue={JSON.stringify(cardData.holographic)}>
-                  {JSON.stringify(cardData.holographic)}
-                </option>
-                <option value={JSON.stringify(!cardData.holographic)}>
-                  {JSON.stringify(!cardData.holographic)}
-                </option>
+                <option defaultValue='true'>True</option>
+                <option value='false'>False</option>
               </select>
             </div>
           </div>
@@ -193,12 +162,8 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
                 onChange={handleChange}
                 className='p-1'
               >
-                <option defaultValue={JSON.stringify(cardData.editable)}>
-                  {JSON.stringify(cardData.editable)}
-                </option>
-                <option value={JSON.stringify(!cardData.editable)}>
-                  {JSON.stringify(!cardData.editable)}
-                </option>
+                <option defaultValue='true'>True</option>
+                <option value='false'>False</option>
               </select>
             </div>
           </div>
@@ -219,12 +184,8 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
                 onChange={handleChange}
                 className='p-1'
               >
-                <option defaultValue={JSON.stringify(cardData.availability)}>
-                  {JSON.stringify(cardData.availability)}
-                </option>
-                <option value={JSON.stringify(!cardData.availability)}>
-                  {JSON.stringify(!cardData.availability)}
-                </option>
+                <option defaultValue='true'>True</option>
+                <option value='false'>False</option>
               </select>
             </div>
           </div>
@@ -235,7 +196,7 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
           <div className='grid grid-flow-col justify-between'>
             <label htmlFor='cardName'>ImageUrl</label>
           </div>
-          <div className='grid grid-cols-rev w-full'>
+          <div className='grid w-full'>
             <input
               className='outline outline-1 outline-black px-1 w-full'
               type='text'
@@ -244,12 +205,6 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
               onChange={handleChange}
               placeholder='ImageUrl'
             />
-            <button
-              onClick={handleSubmitCardValues}
-              className='bg-blue-500 px-1 active:scale-95 outline outline-1 outline-black w-fit'
-            >
-              <span className='font-semibold'>Submit</span>
-            </button>
           </div>
         </div>
         {/* backgroundColour */}
@@ -260,7 +215,7 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
               <span className='text-xs'>{cardData.backgroundColour}</span>
             </div>
           </div>
-          <div className='grid grid-cols-rev w-full'>
+          <div className='grid w-full'>
             <input
               className='outline outline-1 outline-black px-1 w-full'
               type='text'
@@ -269,12 +224,6 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
               onChange={handleChange}
               placeholder='BackgroundColour'
             />
-            <button
-              onClick={handleSubmitCardValues}
-              className='bg-blue-500 px-1 active:scale-95 outline outline-1 outline-black w-fit'
-            >
-              <span className='font-semibold'>Submit</span>
-            </button>
           </div>
         </div>
 
@@ -286,7 +235,7 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
               <span className='text-xs'>{cardData.memberCard.memberName}</span>
             </div>
           </div>
-          <div className='grid grid-cols-rev w-full'>
+          <div className='grid w-full'>
             <input
               className='outline outline-1 outline-black px-1 w-full'
               type='text'
@@ -295,15 +244,9 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
               onChange={handleChange}
               placeholder='MemberName'
             />
-            <button
-              onClick={handleSubmitCardValues}
-              className='bg-blue-500 px-1 active:scale-95 outline outline-1 outline-black w-fit'
-            >
-              <span className='font-semibold'>Submit</span>
-            </button>
           </div>
         </div>
-        <section className='grid grid-flow-col'>
+        <section className='grid grid-flow-col gap-4'>
           {/* health */}
           <div>
             <div className='grid grid-flow-col justify-between'>
@@ -348,7 +291,7 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
           <div className='grid grid-flow-col justify-between'>
             <label htmlFor='cardName'>Card Stat</label>
           </div>
-          <div className='grid grid-cols-rev w-full'>
+          <div className='grid w-full'>
             <input
               className='outline outline-1 outline-black px-1 w-full'
               type='text'
@@ -357,20 +300,14 @@ function MemberCardEditComponent({ cardData, setSelectedCardData }) {
               onChange={handleChange}
               placeholder='CardStat'
             />
-            <button
-              onClick={handleSubmitCardValues}
-              className='bg-blue-500 px-1 active:scale-95 outline outline-1 outline-black w-fit'
-            >
-              <span className='font-semibold'>Submit</span>
-            </button>
           </div>
         </div>
-        <div>
+        <div className='grid items-center justify-center mt-4'>
           <button
             onClick={handleSubmitCardValues}
-            className='bg-blue-500 px-1 active:scale-95 outline outline-1 outline-black w-fit'
+            className='bg-blue-500 px-1 active:scale-95 hover:bg-blue-700 rounded-xl outline outline-1 outline-black w-fit'
           >
-            <span className='font-semibold'>Submit</span>
+            <span className='font-semibold text-xl px-2 py-1'>Submit</span>
           </button>
         </div>
       </section>

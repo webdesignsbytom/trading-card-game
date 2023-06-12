@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import client from '../../utils/client';
 
 function PolicyCardEditComponent({ cardData, setSelectedCardData }) {
@@ -165,12 +165,8 @@ function PolicyCardEditComponent({ cardData, setSelectedCardData }) {
                 onChange={handleChange}
                 className='p-1'
               >
-                <option defaultValue={JSON.stringify(cardData.holographic)}>
-                  {JSON.stringify(cardData.holographic)}
-                </option>
-                <option value={JSON.stringify(!cardData.holographic)}>
-                  {JSON.stringify(!cardData.holographic)}
-                </option>
+                <option defaultValue='true'>True</option>
+                <option value='false'>False</option>
               </select>
             </div>
           </div>
@@ -191,12 +187,8 @@ function PolicyCardEditComponent({ cardData, setSelectedCardData }) {
                 onChange={handleChange}
                 className='p-1'
               >
-                <option defaultValue={JSON.stringify(cardData.editable)}>
-                  {JSON.stringify(cardData.editable)}
-                </option>
-                <option value={JSON.stringify(!cardData.editable)}>
-                  {JSON.stringify(!cardData.editable)}
-                </option>
+                <option defaultValue='true'>True</option>
+                <option value='false'>False</option>
               </select>
             </div>
           </div>
@@ -217,12 +209,8 @@ function PolicyCardEditComponent({ cardData, setSelectedCardData }) {
                 onChange={handleChange}
                 className='p-1'
               >
-                <option defaultValue={JSON.stringify(cardData.availability)}>
-                  {JSON.stringify(cardData.availability)}
-                </option>
-                <option value={JSON.stringify(!cardData.availability)}>
-                  {JSON.stringify(!cardData.availability)}
-                </option>
+                <option defaultValue='true'>True</option>
+                <option value='false'>False</option>
               </select>
             </div>
           </div>
@@ -306,7 +294,9 @@ function PolicyCardEditComponent({ cardData, setSelectedCardData }) {
           <div className='grid grid-flow-col justify-between'>
             <label htmlFor='cardName'>Policy Effect Type</label>
             <div>
-              <span className='text-xs'>{cardData.policyCard.policyEffectType}</span>
+              <span className='text-xs'>
+                {cardData.policyCard.policyEffectType}
+              </span>
             </div>
           </div>
           <div className='grid w-full'>
@@ -376,12 +366,12 @@ function PolicyCardEditComponent({ cardData, setSelectedCardData }) {
             />
           </div>
         </div>
-        <div>
+        <div className='grid items-center justify-center mt-4'>
           <button
             onClick={handleSubmitCardValues}
-            className='bg-blue-500 px-1 active:scale-95 outline outline-1 outline-black w-fit'
+            className='bg-blue-500 px-1 active:scale-95 hover:bg-blue-700 rounded-xl outline outline-1 outline-black w-fit'
           >
-            <span className='font-semibold'>Submit</span>
+            <span className='font-semibold text-xl px-2 py-1'>Submit</span>
           </button>
         </div>
       </section>
@@ -389,4 +379,4 @@ function PolicyCardEditComponent({ cardData, setSelectedCardData }) {
   );
 }
 
-export default PolicyCardEditComponent
+export default PolicyCardEditComponent;
