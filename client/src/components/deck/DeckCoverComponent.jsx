@@ -2,7 +2,7 @@ import React from 'react';
 // images
 import BrexitPack from '../../assets/img/packets/pack2.png';
 
-function PacketFrontCover() {
+function DeckCoverComponent() {
   return (
     <div className='grid cursor-pointer'>
       <img src={BrexitPack} alt='Brexit pack' />
@@ -10,4 +10,4 @@ function PacketFrontCover() {
   );
 }
 
-export default PacketFrontCover;
+export default DeckCoverComponent;
