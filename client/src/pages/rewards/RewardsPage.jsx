@@ -11,7 +11,7 @@ import { ToggleContext } from '../../context/ToggleContext';
 
 function RewardsPage() {
   const { user } = useContext(UserContext);
-  const { setActiveNav } = useContext(ToggleContext)
+  const { setActiveNav } = useContext(ToggleContext);
   const [rewardData, setRewardData] = useState({});
   const [rewardDataType, setRewardDataType] = useState('');
   const [rewardAvailable, setRewardAvailable] = useState(false);
@@ -19,9 +19,9 @@ function RewardsPage() {
   console.log('rewardData', rewardData);
 
   useEffect(() => {
-    setActiveNav('/rewards')
-  }, [])
-  
+    setActiveNav('/rewards');
+  }, []);
+
   const collectReward = () => {
     setRewardAvailable(false);
   };
@@ -30,13 +30,14 @@ function RewardsPage() {
     <div className='h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
-        <main className='bg-white main__bg p-4 grid grid-rows-reg'>
-          <section>
+        <main className='bg-white relative main__bg p-4 grid grid-rows-reg overflow-hidden'>
+          <section className='grid grid-rows-reg'>
             <article className='text-center'>
               <h1 className='text-6xl font-bold'>REWARDS</h1>
-              <h2 className='text-xl mt-2 font-semibold'>Login daily to collect fantastic rewards!</h2>
+              <h2 className='text-xl mt-2 font-semibold'>
+                Login daily to collect fantastic rewards!
+              </h2>
             </article>
-
 
             <div className='mt-10 xl:mt-20'>
               <article className='grid justify-center text-xl font-semibold text-center gap-4'>
@@ -49,7 +50,7 @@ function RewardsPage() {
             </div>
           </section>
 
-          <section className='grid justify-center items-center xl:-mt-44'>
+          <section className='grid justify-center items-center xl:-mt-44 overflow-hidden'>
             <div className='grid grid-cols-7'>
               {calenderDataArray.map((day, index) => {
                 return (
@@ -67,24 +68,36 @@ function RewardsPage() {
 
           {/* Reward modal */}
           {rewardAvailable && (
-            <section className='grid bg-transparent h-full justify-center items-center w-full absolute'>
-              <div className='grid bg-red-600 main__bg outline outline-4 outline-black py-4 px-2'>
-                <h4>REWARD</h4>
-                <div className='h-24'>
-                  {rewardDataType === 'card' && <Card cardData={rewardData} />}
+            <section className='absolute grid overflow-hidden top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4'>
+              <div className='grid bg-red-600 main__bg outline outline-4 outline-black rounded-xl overflow-hidden'>
+                <div className='grid'>
+                  <div className='text-center'>
+                    <h2 className='text-xl font-semibold my-2'>REWARD</h2>
+                  </div>
+                  <div className='grid w-full mx-auto items-center justify-center p-2'>
+                    <div className='grid items-center justify-center mx-auto w-1/2'>
+                      {rewardDataType === 'card' && (
+                        <Card cardData={rewardData} />
+                      )}
+                    </div>
+                  </div>
+                  <div className='grid text-center items-center justify-center capitalize'>
+                    <p className='flex text-center'>
+                      <span>Reward:</span>
+                      <span className='capitalize'>{rewardDataType}</span>
+                      <span>{rewardDataType.cardName}</span>
+                    </p>
+                  </div>
                 </div>
-                <div className='text-center capitalize'>
-                  <p>{rewardDataType}</p>
-                </div>
-              </div>
 
-              <div>
-                <button
-                  className='outline outline-2 my-2 outline-black rounded p-2 bg-red-600 main__bg text-white font-semibold text-xl'
-                  onClick={collectReward}
-                >
-                  CLOSE
-                </button>
+                <div className='grid items-center justify-center mb-2'>
+                  <button
+                    className='outline outline-2 my-2 outline-black rounded p-2 bg-blue-700 hover:bg-blue-500 active:scale-95 main__bg text-white font-semibold text-xl'
+                    onClick={collectReward}
+                  >
+                    CLOSE
+                  </button>
+                </div>
               </div>
             </section>
           )}
