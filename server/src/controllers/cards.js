@@ -439,24 +439,27 @@ export const updateCardDateById = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    const updatedCard = await updateMemberCardById(
-      Number(cardId),
-      cardUpdateData.serialNumber,
-      cardUpdateData.cardName,
-      cardUpdateData.edition,
-      cardUpdateData.rarity,
-      Boolean(cardUpdateData.holographic),
-      Boolean(cardUpdateData.editable),
-      cardUpdateData.imageUrl,
-      cardUpdateData.backgroundColour,
-      Boolean(cardUpdateData.availability),
-      cardUpdateData.memberCard.memberName,
-      Number(cardUpdateData.memberCard.health),
-      Number(cardUpdateData.memberCard.attack),
-      cardUpdateData.memberCard.cardStat
-    );
+    if (cardUpdateData.cardType === 'MEMBER') {
+      const updatedCard = await updateMemberCardById(
+        Number(cardId),
+        cardUpdateData.serialNumber,
+        cardUpdateData.cardName,
+        cardUpdateData.edition,
+        cardUpdateData.rarity,
+        Boolean(cardUpdateData.holographic),
+        Boolean(cardUpdateData.editable),
+        cardUpdateData.imageUrl,
+        cardUpdateData.backgroundColour,
+        Boolean(cardUpdateData.availability),
+        cardUpdateData.memberCard.memberName,
+        Number(cardUpdateData.memberCard.health),
+        Number(cardUpdateData.memberCard.attack),
+        cardUpdateData.memberCard.cardStat
+      );
 
-    return sendDataResponse(res, 200, { updatedCard: updatedCard });
+      return sendDataResponse(res, 200, { updatedCard: updatedCard });
+    }
+    
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Update card failed`);

@@ -245,6 +245,7 @@ enum PolicyEffectType {
   DISCARD
   RETRIEVE
   SHUFFLE
+  DRAW
 }
 
 model Pack {
@@ -312,9 +313,8 @@ model PartyCard {
   name           String          @default("") @db.VarChar(250) // name of conservative memer
   powerUp        PowerUp         @default(ATTACK)
   cardStat       String          @default("") @db.VarChar(500) // whats written on the card
-  effectType     PartyEffectType @default(HEALTH)
-  statMultiplier Int             @default(10)
-  effect         String          @default("") @db.VarChar(200)
+  statMultiplier Int             @default(10) // attack + 10 
+  effect         String          @default("") @db.VarChar(200) // user reading data i.e Attack + 10
   cardId         Int             @unique
   card           Card            @relation(fields: [cardId], references: [id], onDelete: Cascade)
   createdAt      DateTime        @default(now())
@@ -324,10 +324,10 @@ model PartyCard {
 model PolicyCard {
   id               Int              @id @default(autoincrement()) // pack id
   name             String           @default("") @db.VarChar(250) // name of conservative memer
+  policyEffectType PolicyEffectType @default(SHUFFLE)
   cardStat         String           @default("") @db.VarChar(500) // whats written on the card
   effect           String           @default("") @db.VarChar(200)
-  policyEffectType PolicyEffectType @default(SHUFFLE)
-  statMultiplier   Int              @default(10)
+  statMultiplier   Int              @default(1) // shuffle 1 times // skip 2 turns
   cardId           Int              @unique
   card             Card             @relation(fields: [cardId], references: [id], onDelete: Cascade)
   createdAt        DateTime         @default(now())

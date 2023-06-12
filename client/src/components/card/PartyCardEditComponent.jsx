@@ -301,50 +301,64 @@ function PartyCardEditComponent({ cardData, setSelectedCardData }) {
             </button>
           </div>
         </div>
-        <section className='grid grid-flow-col'>
-          {/* powerUp */}
-          <div>
-            <div className='grid grid-flow-col justify-between'>
-              <label htmlFor='cardName'>PowerUp</label>
-              <div>
-                <span className='text-xs'>{cardData.partyCard.powerUp}</span>
-              </div>
-            </div>
-            <div className='grid w-full'>
-              <input
-                className='outline outline-1 outline-black px-1 w-full'
-                type='number'
-                name='powerUp'
-                id='powerUp'
-                onChange={handleChange}
-                placeholder='PowerUp'
-              />
+        {/* powerUp */}
+        <div>
+          <div className='grid grid-flow-col justify-between'>
+            <label htmlFor='cardName'>PowerUp</label>
+            <div>
+              <span className='text-xs'>{cardData.partyCard.powerUp}</span>
             </div>
           </div>
-          {/* effectType */}
-          <div>
-            <div className='grid grid-flow-col justify-between'>
-              <label htmlFor='cardName'>EffectType</label>
-              <div>
-                <span className='text-xs'>{cardData.partyCard.effectType}</span>
-              </div>
-            </div>
-            <div className='grid w-full'>
-              <input
-                className='outline outline-1 outline-black px-1 w-full'
-                type='number'
-                name='effectType'
-                id='effectType'
-                onChange={handleChange}
-                placeholder='EffectType'
-              />
+          <div className='grid w-full'>
+            <input
+              className='outline outline-1 outline-black px-1 w-full'
+              type='text'
+              name='powerUp'
+              id='powerUp'
+              onChange={handleChange}
+              placeholder='PowerUp'
+            />
+          </div>
+        </div>
+        {/* cardStat */}
+        <div>
+          <div className='grid grid-flow-col justify-between'>
+            <label htmlFor='cardName'>CardStat</label>
+            <div>
+              <span className='text-xs'>{cardData.partyCard.cardStat}</span>
             </div>
           </div>
-        </section>
+          <div className='grid w-full'>
+            <input
+              className='outline outline-1 outline-black px-1 w-full'
+              type='text'
+              name='cardStat'
+              id='cardStat'
+              onChange={handleChange}
+              placeholder='CardStat'
+            />
+          </div>
+        </div>
+        {/* effect */}
+        <div>
+          <div className='grid'>
+            <label htmlFor='cardName'>Effect</label>
+          </div>
+          <div className='grid w-full'>
+            <input
+              className='outline outline-1 outline-black px-1 w-full'
+              type='text'
+              name='effect'
+              id='effect'
+              onChange={handleChange}
+              placeholder='Effect'
+            />
+          </div>
+        </div>
         {/* statMultiplier */}
         <div>
           <div className='grid grid-flow-col justify-between'>
-            <label htmlFor='cardName'>StatMultiplier</label>
+            <label htmlFor='cardName'>Stat Multiplier</label>
             <div>
               <span className='text-xs'>
                 {cardData.partyCard.statMultiplier}
