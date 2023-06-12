@@ -14,13 +14,13 @@ function InvintoryOptions() {
   return (
     <section className='grid'>
       <div className='grid grid-cols-2 lg:grid-cols-4 mt-4 bg-red-400'>
-        <div className='p-4 text-center bg-yellow-300 h-fit grid justify-center'>
+        <div className='p-4 text-center h-full grid justify-center'>
           <span className='text-3xl mb-2 font-semibold'>Card Packs</span>
           <div className='cursor-pointer mt-4' onClick={toggleOpenPackets}>
             <img src={CovidPack} alt='Covid pack' />
           </div>
         </div>
-        <div className='p-4 text-center bg-yellow-300 h-fit grid justify-center'>
+        <div className='p-4 text-center h-full grid justify-center'>
           <span className='text-3xl mb-2 font-semibold'>Items</span>
           <div className='cursor-pointer mt-4' onClick={toggleOpenPackets}>
             <img src={ItemsImg} alt='Covid pack' />

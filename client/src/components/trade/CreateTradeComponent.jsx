@@ -16,13 +16,15 @@ function CreateTradeComponent({
   const { user } = useContext(UserContext);
 
   return (
-    <section className={`grid lg:grid-cols-2x gap-4 grid-rows-1 px-4 mb-4 max-h-full overflow-hidden`}>
+    <section
+      className={`grid lg:grid-cols-2x gap-4 grid-rows-1 px-4 mb-4 max-h-full overflow-hidden`}
+    >
       <section className='bg-red-400 grid grid-rows-a1a main__bg outline outline-4 outline-black rounded-xl p-2'>
         {/* image and search */}
         <div className='grid grid-cols-reg'>
           <div className='top-4 left-4'>
             <img
-              className='rounded-xl lg:w-1/2 h-full object-cover'
+              className='rounded-xl h-full object-cover'
               src={user?.profile?.profileimageUrl}
               alt='User profile'
             />
@@ -69,22 +71,25 @@ function CreateTradeComponent({
                 </button>
               </div>
             </div>
-          </section>
-        </div>
-
-        {/* select card to trade */}
-        <section className='grid bg-white'>
-          <div className='grid gap-2 mt-4 mb-2'>
-            <section className='bg-white main__bg py-1 px-2 h-fit rounded w-fit'>
-              <div>
+            <section>
+              <div className='text-center'>
                 <h5>Select a card to trade</h5>
               </div>
               <div>
                 <CardTradeSelector handleChange={handleChangeCard} />
               </div>
             </section>
-            <section className='grid w-min h-fit px-2'>
-              <Card cardData={displayCard} />
+          </section>
+        </div>
+
+        {/* select card to trade */}
+        <section className='grid'>
+          <div className='grid grid-cols-reg w-full'>
+            <section>
+              {displayCard.id && <Card cardData={displayCard} />}
+            </section>
+            <section>
+              <button>TRADE</button>
             </section>
           </div>
         </section>

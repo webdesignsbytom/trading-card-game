@@ -95,13 +95,13 @@ function TradingPage() {
               </div>
             </article>
             <section className='grid h-full'>
-              <div className='bg-red-500 w-full nav__bg outline outline-4 outline-black rounded p-2 grid lg:justify-end grid-flow-col gap-2 lg:gap-4'>
+              <div className='bg-red-500 font-semibold w-full nav__bg outline outline-4 outline-black rounded p-2 grid lg:justify-end grid-flow-col gap-2 lg:gap-4'>
                 <div className=''>
                   <button
                     onClick={goToUpdatedTrade}
                     className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-1 px-1 w-full lg:py-2 lg:px-4 rounded-xl outline outline-2 outline-black'
                   >
-                    Trade Update
+                    Updates
                   </button>
                 </div>
                 <div className=''>
@@ -117,7 +117,7 @@ function TradingPage() {
                     onClick={toggleOpenCreateTrade}
                     className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-1 px-1 w-full lg:py-2 lg:px-4 rounded-xl outline outline-2 outline-black'
                   >
-                    Create Trade
+                    Create
                   </button>
                 </div>
               </div>
