@@ -17,7 +17,7 @@ function InvintoryPage() {
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
         <main className='grid bg-blue-700 main__bg p-4 grid-rows-reg'>
-          <article>
+          <article className='mt-2'>
             <div className='bg-red-500 nav__bg outline outline-4 outline-black rounded p-2'>
               <h1 className='text-3xl font-bold text-center '>Invintory</h1>
             </div>

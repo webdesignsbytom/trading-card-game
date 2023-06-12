@@ -65,36 +65,36 @@ function CardsAvailablePage() {
         <section className='h-full overflow-hidden'>
           <main className='grid p-4 h-full overflow-y-scroll'>
             <section className='grid grid-rows-reg'>
-              <div className='hidden lg:grid grid-cols-3 mb-4 outline outline-4 outline-black bg-blue-600 main__bg py-2 px-4'>
+              <div className='hidden lg:grid grid-cols-3 mb-4 outline outline-4 outline-red-700 rounded bg-blue-600 main__bg py-2 px-4'>
                 <div className='flex justify-start items-center'>
                   <h3 className='text-sm md:text-xl font-semibold'>
                     Total Cards: {allCardsArray?.length}
                   </h3>
                 </div>
                 <div className='grid items-center justify-center p-1 w-full'>
-                  <div className='grid relative h-fit w-full'>
+                  <div className='grid grid-flow-col h-fit w-full'>
                     <input
                       className='rounded px-1 py-1 w-full'
                       type='text'
-                      name='searchCards'
-                      id='searchCards'
+                      name='cardName'
+                      id='cardName'
                       onChange={handleSearchChange}
                       placeholder='Search the collection...'
                     />
                     <div
                       onClick={searchForCard}
-                      className='absolute h-full w-fit rounded active:scale-95 hover:bg-blue-700 bg-blue-400 px-4 right-0'
+                      className='h-full w-fit rounded grid cursor-pointer items-center justify-center active:scale-95 hover:bg-blue-700 bg-blue-400 px-4 right-0'
                     >
                       ?
                     </div>
                   </div>
                 </div>
-                <section className='grid justify-end'>
+                <section className='grid justify-end items-center'>
                   <select
-                    id='country'
-                    name='country'
+                    id='displayValue'
+                    name='displayValue'
                     onChange={handleTypeChange}
-                    className='country__inputs rounded px-2'
+                    className='rounded p-1 h-fit'
                     required
                   >
                     <option defaultValue='Number'>Number</option>

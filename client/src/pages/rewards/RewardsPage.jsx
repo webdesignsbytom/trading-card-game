@@ -38,7 +38,7 @@ function RewardsPage() {
             </article>
 
 
-            <div className='mt-20'>
+            <div className='mt-10 xl:mt-20'>
               <article className='grid justify-center text-xl font-semibold text-center gap-4'>
                 <span>Daily Reward: 1 Card</span>
                 <span>5x Days : 1 Pack</span>
@@ -49,7 +49,7 @@ function RewardsPage() {
             </div>
           </section>
 
-          <section className='grid justify-center items-center -mt-44'>
+          <section className='grid justify-center items-center xl:-mt-44'>
             <div className='grid grid-cols-7'>
               {calenderDataArray.map((day, index) => {
                 return (

@@ -43,8 +43,6 @@ const ToggleContextProvider = ({ children }) => {
   };
 
   const toggleCardData = (card) => {
-    setViewCard(!viewCard);
-    setSelectedCard(card);
     navigate(`/card-overview/${card.id}`, { state: card });
   };
 

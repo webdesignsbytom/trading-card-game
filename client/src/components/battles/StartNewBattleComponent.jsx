@@ -31,7 +31,7 @@ function StartNewBattleComponent() {
   };
   return (
     <section className='grid p-4'>
-      <section className='grid grid-cols-2x'>
+      <section className='grid lg:grid-cols-2x'>
         <section>a</section>
         <section>
           <section className='grid items-center justify-center gap-4 w-full p-1'>

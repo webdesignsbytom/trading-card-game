@@ -63,7 +63,7 @@ function BattlesOverviewComponent({
       </section>
       <section className='grid grid-rows-reg bg-black main__bg outline outline-2 outline-red-700 rounded-lg'>
         <div className='grid items-center justify-center mt-2 mb-4'>
-          <article className='text-center mt-2 outline outline-2 outline-blue-700 bg-white main__bg rounded-lg w-fit px-2 py-1'>
+          <article className='text-center mt-2 outline outline-2 outline-blue-700 bg-red-500 main__bg rounded-lg w-fit px-2 py-1'>
             <h3 className='text-xl uppercase font-semibold'>Leader Board</h3>
             <h4>Top Battle Contenders!</h4>
             <h5>Earn cards and packs in battle</h5>

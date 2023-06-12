@@ -32,7 +32,7 @@ function RewardCalenderSquare({
 
   if (user?.loginRecord?.daysInARow > day.id) {
     return (
-      <div className='relative w-10 h-10 lg:w-20 lg:h-20 text-white bg-red-400 main__bg outline-1 outline-black outline px-1'>
+      <div className='relative w-10 h-10 lg:w-12 lg:h-12 xl:w-20 xl:h-20 text-whi2e bg-red-400 main__bg outline-1 outline-black outline px-1'>
         {day.id}
 
         <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:text-3xl'>
@@ -47,7 +47,7 @@ function RewardCalenderSquare({
     user?.loginRecord.daysInARow === day.id
   ) {
     return (
-      <div className='relative w-10 h-10 lg:w-20 lg:h-20 text-white bg-red-400 main__bg outline-1 outline-black outline px-1'>
+      <div className='relative w-10 h-10 lg:w-12 lg:h-12 xl:w-20 xl:h-20 text-whi2e bg-red-400 main__bg outline-1 outline-black outline px-1'>
         {day.id}
 
         <div
@@ -60,7 +60,7 @@ function RewardCalenderSquare({
     );
   } else {
     return (
-      <div className='w-10 h-10 lg:w-20 lg:h-20 lg:text-3xl bg-white outline-1 outline-black outline px-1'>
+      <div className='w-10 h-10 lg:w-12 lg:h-12 xl:w-20 xl:h-20 lg:text-2xl xl:text-3xl bg-white outline-1 outline-black outline px-1'>
         {day.id}
       </div>
     );
