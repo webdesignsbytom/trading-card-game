@@ -8,8 +8,8 @@ function CardTradeSelector({ handleChange }) {
   return (
     <>
       <select
-        id='tradeCard'
-        name='tradeCard'
+        id='id'
+        name='id'
         onChange={handleChange}
         className='p-1 rounded w-full'
         required
@@ -18,7 +18,7 @@ function CardTradeSelector({ handleChange }) {
 
         {user?.cards?.map((card, index) => {
             return (
-                <option key={index} value={card.id}>{card.name}</option>
+                <option key={index} value={card.cardId}>{card.name}</option>
             )
         })}
     </select>

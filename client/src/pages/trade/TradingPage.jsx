@@ -87,7 +87,7 @@ function TradingPage() {
     <div className='bg-black main__bg h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
-        <main className='grid h-full grid-rows-reg'>
+        <main className='grid h-full grid-rows-reg overflow-hidden'>
           <section className='p-2 lg:p-4 grid lg:grid-cols-2 h-fit gap-2 lg:gap-6'>
             <article className='grid h-full'>
               <div className='bg-red-500 nav__bg outline outline-4 outline-black rounded p-2'>
@@ -124,8 +124,8 @@ function TradingPage() {
             </section>
           </section>
 
-          <div className='grid'>
-            <section className={`grid w-full`}>
+          <div className='grid overflow-hidden'>
+            <section className='grid w-full overflow-hidden'>
               {!openTradeComponentSelected && !tradeItemOpen && (
                 <CreateTradeComponent
                   handleChange={handleChange}

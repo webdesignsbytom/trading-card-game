@@ -16,10 +16,8 @@ function CreateTradeComponent({
   const { user } = useContext(UserContext);
 
   return (
-    <section
-      className={`grid lg:grid-cols-2x gap-4 grid-rows-1 px-2 lg:px-4 mb-4 max-h-full overflow-hidden`}
-    >
-      <section className='bg-red-400 grid grid-rows-a1a main__bg outline outline-4 outline-black rounded-xl p-2'>
+    <section className='grid lg:grid-cols-2x gap-4 grid-rows-1 px-2 lg:px-4 mb-4 max-h-full overflow-hidden'>
+      <section className='bg-red-400 grid grid-rows-2 main__bg outline outline-4 outline-black rounded-xl p-2 overflow-hidden'>
         {/* image and search */}
         <div className='grid grid-cols-reg'>
           <div className='top-4 left-4'>
@@ -83,13 +81,18 @@ function CreateTradeComponent({
         </div>
 
         {/* select card to trade */}
-        <section className='grid'>
-          <div className='grid grid-cols-reg w-full'>
-            <section>
-              {displayCard.id && <Card cardData={displayCard} />}
+        <section className='grid overflow-hidden'>
+          <div className='grid grid-cols-reg gap-4 overflow-hidden my-1 py-2'>
+            <section className='grid px-2 mx-4'>
+              <div className='grid w-min'>
+                {displayCard.id && <Card cardData={displayCard} />}
+              </div>
             </section>
-            <section>
-              <button>TRADE</button>
+            <section className='grid w-full px-2 bg-yellow-400'>
+              <div className='grid items-center justify-center'>
+
+              <button className='bg-red-700 hover:bg-red-500 font-semibold active:scale-95 outline outline-2 outline-black rounded-xl p-2'>TRADE</button>
+              </div>
             </section>
           </div>
         </section>
