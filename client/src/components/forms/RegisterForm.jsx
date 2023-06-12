@@ -15,7 +15,7 @@ function RegisterForm() {
     country: '',
     termsChecked: true,
   });
-
+  const [registerError, setRegisterError] = useState(false)
   const [registrationFormData, setRegistrationFormData] = useState({
     active: false,
     success: false,
@@ -50,11 +50,13 @@ function RegisterForm() {
       })
 
       .catch((err) => {
+        setRegisterError(true)
         console.error('Unable to register new user', err);
       });
   };
 
   const handleChange = (event) => {
+    setRegisterError(false)
     const { name, value } = event.target;
 
     setRegisterFormData({
@@ -144,6 +146,12 @@ function RegisterForm() {
           {registrationFormData.success && <span>Success!</span>}
         </button>
       </div>
+
+      {registerError && (
+        <div className='text-center'>
+          <span className='text-red-700 font-semibold'>REGISTER FAILED</span>
+        </div>
+      )}
 
       <p className='font-light text-gray-500 dark:text-gray-400'>
         Already a member?{' '}

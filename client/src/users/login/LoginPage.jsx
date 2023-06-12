@@ -159,7 +159,7 @@ function LoginPage() {
                   )}
                 </button>
                 {loginError && (
-                  <div>
+                  <div className='text-center'>
                     <span className='text-red-700 font-semibold'>LOGIN FAILED</span>
                   </div>
                 )}
