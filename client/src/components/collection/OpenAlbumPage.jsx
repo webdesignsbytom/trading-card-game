@@ -34,7 +34,7 @@ function OpenAlbumPage() {
     });
   };
 
-  const searchForUser = () => {
+  const searchForCard = () => {
     console.log('xxx');
     setCardNotFound(false);
 
@@ -56,25 +56,35 @@ function OpenAlbumPage() {
     <div className='bg-black main__bg h-full overflow-hidden grid'>
       <section className='grid grid-rows-reg h-full px-2 gap-4 overflow-hidden'>
         {/* Top bar - search bar */}
-        <div className='flex justify-between px-1 items-center text-blue-500'>
+        <div className='grid lg:flex lg:justify-between px-1 items-center text-blue-500 w-full'>
           <div className='grid items-center justify-center'>
             <span>Total cards: {user?.cards.length}</span>
           </div>
-          <div className='grid items-center justify-center p-1'>
-            <input
-              className='rounded px-1'
-              type='text'
-              name='searchAlbum'
-              id='searchAlbum'
-              placeholder='Search your collection...'
-            />
+          <div className='grid p-1 w-full'>
+            <div className='grid relative h-fit w-full'>
+              <input
+                className='rounded px-1 py-1 w-full'
+                type='text'
+                name='searchCards'
+                id='searchCards'
+                onChange={handleSearchChange}
+                placeholder='Search your collection...'
+              />
+              <div
+                onClick={searchForCard}
+                className='absolute grid text-black items-center justify-center h-full w-fit rounded active:scale-95 hover:bg-blue-700 bg-blue-400 px-4 right-0'
+              >
+                ?
+              </div>
+            </div>
           </div>
-          <section className='grid justify-end'>
+
+          <section className='grid px-1 lg:justify-end'>
             <select
-              id='country'
-              name='country'
+              id='displayValue'
+              name='displayValue'
               onChange={handleTypeChange}
-              className='country__inputs rounded px-2'
+              className='rounded px-2'
               required
             >
               <option defaultValue='Number'>Number</option>
@@ -90,7 +100,6 @@ function OpenAlbumPage() {
           <div className='grid h-full overflow-scroll overflow-x-hidden pr-1'>
             {userCardsArray.length <= 0 && (
               <div className='grid w-full justify-center items-center text-white text-3xl text-center'>
-                <span>LOADING...</span>
                 <LoadingSpinner />
               </div>
             )}

@@ -22,6 +22,7 @@ import BattlesOverviewPage from './pages/battles/BattlesOverviewPage';
 import OpenBattleActivePage from './pages/battles/OpenBattleActivePage';
 import BattleRulesPage from './pages/battles/BattleRulesPage';
 import DecksOverviewPage from './pages/decks/DecksOverviewPage';
+import BuyPackPage from './pages/shop/BuyPackPage';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
       <Route path='/login' element={<LoginPage />} />
       <Route path='/sign-up' element={<RegisterPage />} />
       <Route path='/shop' element={<ShopPage />} />
+      <Route path='/shop/packs' element={<BuyPackPage />} />
       <Route path='/open-packs' element={<OpenPacksPage />} />
       <Route path='/pack/opened' element={<CardsInPackPage />} />
       <Route path='/packs/unopened' element={<UnopenedPacketsPage />} />

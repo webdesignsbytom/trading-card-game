@@ -50,13 +50,13 @@ function Navbar() {
 
       <section className='text-center p-2'>
         <div className='flex justify-center items-center'>
-          <div className='grid bg-transparent-black py-1 px-4 w-fit outline-transparent-white outline outline-2 rounded'>
-            <p className='text-2xl font-bold'>
+          <div className='grid bg-white main__bg py-1 px-2 lg:px-4 w-fit outline-blue-700 outline outline-4 mt-1 rounded'>
+            <p className='text-center text-2xl lg:text-3xl font-extrabold text__stroke font-gasoek tracking-wide'>
               <span className='text-blue-600'>
                 CON <span className='text-red-600'>CARDS</span>
               </span>
             </p>
-            <p className='text-gray-50 font-semibold'>
+            <p className='font-bold text-sm'>
               <span>The Torie Trading Card Game</span>
             </p>
           </div>

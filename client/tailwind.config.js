@@ -39,6 +39,7 @@ module.exports = {
       },
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
+        gasoek: ['Gasoek One', 'sans-serif'],
       },
       fontSize: {
         ss: '0.6rem',

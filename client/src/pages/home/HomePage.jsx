@@ -8,12 +8,12 @@ import { ToggleContext } from '../../context/ToggleContext';
 
 function HomePage() {
   const { user } = useContext(UserContext);
-  const { setActiveNav } = useContext(ToggleContext)
+  const { setActiveNav } = useContext(ToggleContext);
 
   useEffect(() => {
-    setActiveNav('/')
-  }, [])
-  
+    setActiveNav('/');
+  }, []);
+
   return (
     <div className='bg-blue-600 main__bg h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
@@ -23,13 +23,15 @@ function HomePage() {
             {user.email && !user.collectedStartedPacks && (
               <>
                 <section className='p-4 grid h-full items-center justify-center'>
-                  <article className='outline outline-4 outline-black rounded text-center bg-white w-fit p-4 main__bg'>
-                    <h1 className='text-center text-6xl font-extrabold'>
+                  <article className='outline outline-8 outline-black rounded text-center bg-white w-fit p-4 main__bg'>
+                    <h1 className='text-center text-4xl lg:text-8xl font-extrabold text__stroke font-gasoek tracking-wide'>
                       <span className='text-blue-600'>
                         CON <span className='text-red-600'>CARDS</span>
                       </span>
                     </h1>
-                    <h2>The Tory Trading Card Game</h2>
+                    <h2 className='text-center text-xl lg:text-3xl mt-2 font-bold '>
+                      The Tory Trading Card Game
+                    </h2>
                   </article>
                 </section>
                 <StartingPacks />
@@ -37,13 +39,13 @@ function HomePage() {
             )}
             {user.email && user.collectedStartedPacks && (
               <section className='p-4 grid h-full items-center justify-center'>
-                <article className='outline outline-4 outline-black rounded bg-white main__bg w-fit p-4'>
-                  <h1 className='text-center text-6xl font-extrabold'>
+                <article className='outline outline-8 outline-black rounded bg-white main__bg w-fit px-6 py-8'>
+                  <h1 className='text-center text-4xl lg:text-8xl font-extrabold text__stroke font-gasoek tracking-wide'>
                     <span className='text-blue-600'>
                       CON <span className='text-red-600'>CARDS</span>
                     </span>
                   </h1>
-                  <h2 className='text-center text-xl font-semibold'>
+                  <h2 className='text-center text-xl lg:text-3xl mt-2 font-bold '>
                     The Tory Trading Card Game
                   </h2>
                 </article>
@@ -51,13 +53,15 @@ function HomePage() {
             )}
             {!user.email && (
               <section className='p-4 grid h-full items-center justify-center'>
-                <article className='outline outline-4 outline-black rounded text-center bg-white w-fit p-4 main__bg'>
-                  <h1 className='text-center text-2xl md:text-4xl lg:text-8xl font-extrabold'>
+                <article className='outline outline-8 outline-black rounded text-center bg-white w-fit p-4 main__bg'>
+                  <h1 className='text-center text-4xl lg:text-8xl font-extrabold text__stroke font-gasoek tracking-wide'>
                     <span className='text-blue-600'>
                       CON <span className='text-red-600'>CARDS</span>
                     </span>
                   </h1>
-                  <h2 className='md:text-xl lg:text-2xl my-1 font-semibold'>The Tory Trading Card Game</h2>
+                  <h2 className='text-center text-xl lg:text-3xl mt-2 font-bold '>
+                    The Tory Trading Card Game
+                  </h2>
                 </article>
               </section>
             )}

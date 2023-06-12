@@ -1,15 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-// API
-import client from '../../utils/client';
-// Context
 import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
-// Components
+import client from '../../utils/client';
 import Navbar from '../../components/nav/Navbar';
 import PackSelector from '../../components/shop/PackSelector';
-import { Link } from 'react-router-dom';
 
-function ShopPage() {
+function BuyPackPage() {
   const { user, setUser } = useContext(UserContext);
   const { setActiveNav } = useContext(ToggleContext);
   const [togglePackPurchasing, setTogglePackPurchasing] = useState(false);
@@ -118,29 +114,23 @@ function ShopPage() {
 
           {/* Shop main */}
           <div className='pt-4 grid '>
-            <section className='grid bg-black main__bg justify-center items-center rounded-xl pt-4'>
-              {togglePackPurchasing ? (
-                <div className=' grid'>
-                  <PackSelector
-                    buyPacketsOfCards={buyPacketsOfCards}
-                    costOfStandardPack={costOfStandardPack}
-                    purchasingCovidPack={purchasingCovidPack}
-                    purchasingElectionPack={purchasingElectionPack}
-                    purchasingBrexitPack={purchasingBrexitPack}
-                  />
-                </div>
-              ) : (
-                <div>
-                  <Link to='/shop/packs'>
-                    <button
-                      onClick={openPackPurchasing}
-                      className='bg-red-700 hover:bg-red-500 main__bg text-xl uppercase font-semibold text-gray-50 hover:text-white active:scale-95 rounded outline outline-2 outline-black p-4'
-                    >
-                      Buy Packs
-                    </button>
-                  </Link>
-                </div>
-              )}
+            <section className='grid grid-rows-rev bg-black main__bg justify-center items-center rounded-xl pt-4'>
+              <div className='grid'>
+                <PackSelector
+                  buyPacketsOfCards={buyPacketsOfCards}
+                  costOfStandardPack={costOfStandardPack}
+                  purchasingCovidPack={purchasingCovidPack}
+                  purchasingElectionPack={purchasingElectionPack}
+                  purchasingBrexitPack={purchasingBrexitPack}
+                />
+              </div>
+
+              <div className='mb-20 text-center'>
+                <p className='text-xl text-gray-50'>
+                  All packs come with 12 cards and one guaranteed holographic
+                  card
+                </p>
+              </div>
             </section>
           </div>
         </main>
@@ -149,4 +139,4 @@ function ShopPage() {
   );
 }
 
-export default ShopPage;
+export default BuyPackPage;

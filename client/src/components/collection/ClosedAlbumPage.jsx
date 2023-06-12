@@ -30,30 +30,32 @@ function ClosedAlbumPage({ openAlbum }) {
   };
 
   return (
-    <section className='bg-green-800 main__bg grid grid-rows-2'>
+    <section className='bg-green-700 main__bg grid grid-rows-rev'>
       <section className='grid justify-center items-center'>
-        <article className='outline-black outline-4 outline p-4 bg-white main__bg'>
-          <h4 className='text-3xl uppercase font-bold'>
-            {user?.profile?.username}'S COLLECTION
-          </h4>
+        <article className='outline-black outline-4 outline p-4 bg-white main__bg rounded-xl'>
+          <h2 className='grid text-3xl uppercase font-bold'>
+            <span className='text-center text-4xl lg:text-8xl font-extrabold text__stroke__blue font-gasoek tracking-wide'>
+              {user?.profile?.username}'S
+            </span>
+            <span className='text-center text-4xl lg:text-8xl font-extrabold text__stroke font-gasoek tracking-wide'>
+              <span className='text-blue-600'>
+                CON <span className='text-red-600'>CARDS</span>
+              </span>
+            </span>
+            <span className='text-center text-4xl lg:text-8xl font-extrabold text__stroke__red font-gasoek tracking-wide'>
+              <span className=''>ALBUM</span>
+            </span>
+          </h2>
         </article>
       </section>
-      <section className='grid  items-center justify-center'>
-        <section className='grid grid-flow-col gap-4'>
-          <div>
-            <button
-              onClick={goToDecks}
-              className='bg-blue-500 main__bg outline outline-2 text-3xl active:scale-105 hover:bg-blue-600 font-bold outline-black rounded-xl px-4 py-2'
-            >
-              DECKS
-            </button>
-          </div>
+      <section className='grid items-center justify-center mb-10 -mt-10'>
+        <section className='grid'>
           <div>
             <button
               onClick={openAlbum}
-              className='bg-blue-500 main__bg outline outline-2 text-3xl active:scale-105 hover:bg-blue-600 font-bold outline-black rounded-xl px-4 py-2'
+              className='bg-blue-500 main__bg outline outline-2 text-3xl lg:text-6xl active:scale-105 hover:bg-blue-600 font-bold outline-black rounded-xl px-8 py-2'
             >
-              OPEN
+              <span>OPEN</span>
             </button>
           </div>
         </section>

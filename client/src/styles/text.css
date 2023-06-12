@@ -1,0 +1,26 @@
+.text__stroke {
+    /* Prefix required. Even Firefox only supports the -webkit- prefix */
+    color: black;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+  }
+
+.text__stroke__blue {
+    /* Prefix required. Even Firefox only supports the -webkit- prefix */
+    color: black;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #00aeef;
+  }
+
+.text__stroke__red {
+    /* Prefix required. Even Firefox only supports the -webkit- prefix */
+    color: black;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #eb2e1a;
+  }
+
+.text__stroke__none {
+    /* Prefix required. Even Firefox only supports the -webkit- prefix */
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #eb2e1a;
+  }

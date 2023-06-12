@@ -11,6 +11,7 @@ import TradingContextProvider from './context/TradingContext';
 import './styles/index.css';
 import './styles/components.css';
 import './styles/cards.css';
+import './styles/text.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
