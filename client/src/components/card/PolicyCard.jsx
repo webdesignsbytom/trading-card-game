@@ -37,7 +37,7 @@ function PolicyCard({ cardData }) {
   return (
     <section
     onClick={() => toggleCardData(cardData)}
-    className={`outline outline-4 grid grid-rows-a1a outline-purple-800 h-full text-white rounded px-2 py-[1px] ${bgColour} card__bg`}
+    className={`outline outline-4 grid grid-rows-a1a cardFront2 outline-purple-800 h-full text-white rounded px-2 py-[1px] ${bgColour} card__bg`}
 
     >
       <div className='flex justify-between items-center text-sm my-1'>

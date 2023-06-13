@@ -117,8 +117,8 @@ function CardsAvailablePage() {
                     <input
                       className='rounded px-1 py-1'
                       type='text'
-                      name='searchCards'
-                      id='searchCards'
+                      name='cardName'
+                      id='cardName'
                       onChange={handleSearchChange}
                       placeholder='Search the collection...'
                     />
@@ -150,7 +150,6 @@ function CardsAvailablePage() {
               <section className='grid h-full'>
                 {allCardsArray.length <= 0 && (
                   <div className='grid w-full justify-center items-center text-white text-3xl text-center'>
-                    <span>LOADING...</span>
                     <LoadingSpinner />
                   </div>
                 )}
