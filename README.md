@@ -13,18 +13,10 @@ Along with admin functions to create and edit cards. Along with managing users a
 
 - [Trading Card Game](#trading-card-game)
   - [Table of contents](#table-of-contents)
-  - [Rariry Level and Holographic Cards](#rariry-level-and-holographic-cards)
   - [Colours](#colours)
   - [Cards](#cards)
+  - [Rariry Level and Holographic Cards](#rariry-level-and-holographic-cards)
     - [Serial numbers](#serial-numbers)
-
-## Rariry Level and Holographic Cards
-
-There are 7 levels of card rariry
-The Rare cards can be found with holo or non holo versions
-Ultimate cards will have a whole page of holograpgic material
-<img src='./assets/images/holo-example-card.png' alt='Card Examples' />
-
 
 ## Colours
 
@@ -54,6 +46,14 @@ There are 3 type of pack
 1. Election
 2. Brexit
 3. Covid
+
+## Rariry Level and Holographic Cards
+
+There are 7 levels of card rariry
+The Rare cards can be found with holo or non holo versions
+Ultimate cards will have a whole page of holograpgic material
+
+<img height='300px' src='./assets/images/holo-example-card.png' alt='Card Examples' />
 
 ### Serial numbers
 
