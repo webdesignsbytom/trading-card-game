@@ -5,6 +5,10 @@ module.exports = {
     extend: {
       backgroundImage: {
         'green-bg': "url('../assets/img/myea/green-bg1.png')",
+        'holo-bg': "url('https://res.cloudinary.com/simey/image/upload/Dev/PokemonCards/illusion.webp')",
+      },
+      backgroundSize: {
+        '50': '50%',
       },
       colors: {
         'main-colour': '#4AAD37',

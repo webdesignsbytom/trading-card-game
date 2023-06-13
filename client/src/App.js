@@ -24,6 +24,7 @@ import OpenBattleActivePage from './pages/battles/OpenBattleActivePage';
 import BattleRulesPage from './pages/battles/BattleRulesPage';
 import DecksOverviewPage from './pages/decks/DecksOverviewPage';
 import BuyPackPage from './pages/shop/BuyPackPage';
+import TestPage from './pages/test/TestPage';
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
       <Route path='/admin/card-edit' element={<CardEditPage />} />
       <Route path='/admin/user-overview' element={<UserOverviewPage />} />
       <Route path='/admin/event-overview' element={<EventOverviewPage />} />
+      <Route path='/test' element={<TestPage />} />
       <Route path='*' element={<Error404 />} />
 
     </Routes>
