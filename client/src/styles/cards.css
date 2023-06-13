@@ -440,7 +440,6 @@
 }
 
 .cardFront {
-  width: 330px;
   aspect-ratio: .714;
   display: grid;
   grid-area: 1/1;
@@ -453,7 +452,6 @@
 }
 
 .cardFrontSecond {
-  width: 330px;
   aspect-ratio: .714;
   display: grid;
   grid-area: 1/1;
