@@ -3,33 +3,25 @@
 Sticker book and card collecting game - pokemon style
 Live Link [https://keen-dragon-c34a9d.netlify.app/](https://keen-dragon-c34a9d.netlify.app/)
 
+This game has all the classic features of a card collecting game including,
+
+Collecting Album, Holographic cards, Rariry levels, Trading functions, Basic battles, Daily rewards and Shop.
+
+Along with admin functions to create and edit cards. Along with managing users and events.
+
 ## Table of contents
 
 - [Trading Card Game](#trading-card-game)
   - [Table of contents](#table-of-contents)
   - [Colours](#colours)
   - [Cards](#cards)
+  - [Rariry Level and Holographic Cards](#rariry-level-and-holographic-cards)
     - [Serial numbers](#serial-numbers)
 
 ## Colours
 
 main blue #00aeef
 main red #eb2e1a
-
-https://wweb.dev/resources/animated-css-background-generator
-
-.special\_\_bg {
-background-color: #004f8c;
-background-image: url("https://www.transparenttextures.com/patterns/black-paper.png");
-}
-
-background-color: #004f8c;
-background-image: url("https://www.transparenttextures.com/patterns/shattered.png");
-/_ This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! _/
-
-background-color: #004f8c;
-background-image: url("https://www.transparenttextures.com/patterns/xv.png");
-/_ This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! _/
 
 ## Cards
 
@@ -47,14 +39,23 @@ The rarity levels are
 4. Rare Holographic
 5. Mega Rare
 6. Mega Rare Holo
+7. Ultimate (Holo only)
 
 There are 3 type of pack
 
 1. Election
 2. Brexit
 3. Covid
+
+## Rariry Level and Holographic Cards
+
+There are 7 levels of card rariry
+The Rare cards can be found with holo or non holo versions
+Ultimate cards will have a whole page of holograpgic material
+
+<img height='300px' src='./assets/images/holo-example-card.png' alt='Card Examples' />
+
 ### Serial numbers
 
 year yy - edition n - serial 0000
 23-1-0001
- 

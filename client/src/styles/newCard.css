@@ -1,0 +1,10 @@
+.cardFront {
+  aspect-ratio: 0.714;
+  display: grid;
+  grid-area: 1/1;
+}
+
+.cardFront2 {
+  display: grid;
+  grid-area: 1/1;
+}
