@@ -19,7 +19,9 @@ function InvintoryPage() {
         <main className='grid bg-blue-700 main__bg p-4 grid-rows-reg'>
           <article className='mt-2'>
             <div className='bg-red-500 nav__bg outline outline-4 outline-black rounded p-2'>
-              <h1 className='text-3xl font-bold text-center '>Invintory</h1>
+              <h1 className='text-center text-2xl lg:text-6xl font-extrabold text__stroke font-gasoek tracking-wide'>
+                <span className='text-blue-600'>INVINTORY</span>
+              </h1>
             </div>
           </article>
 

@@ -31,7 +31,7 @@
 .text__stroke2 {
   -webkit-text-stroke: 1px #080707;
   /* -webkit-text-stroke: 1px #f5f5f5; */
-  color: #4AAD37;
+  color: #4aad37;
 }
 .text__stroke3 {
   -webkit-text-stroke: 1px #080707;
@@ -41,5 +41,16 @@
 .text__stroke4 {
   -webkit-text-stroke: 1px #080707;
   /* -webkit-text-stroke: 1px #f5f5f5; */
-  color: #1A7408;
+  color: #1a7408;
+}
+
+.album__cover {
+  background: rgb(0, 174, 239);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 174, 239, 1) 0%,
+    rgba(255, 255, 255, 1) 48%,
+    rgba(235, 46, 26, 1) 100%
+  );
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }

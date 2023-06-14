@@ -30,8 +30,8 @@ function ClosedAlbumPage({ openAlbum }) {
   };
 
   return (
-    <section className='bg-green-700 main__bg grid grid-rows-rev'>
-      <section className='grid justify-center items-center'>
+    <section className='album__cover grid grid-rows-rev'>
+      <section className='grid justify-center items-center lg:px-8'>
         <article className='outline-black outline-4 outline p-4 bg-white main__bg rounded-xl'>
           <h2 className='grid text-3xl uppercase font-bold'>
             <span className='text-center text-4xl lg:text-8xl font-extrabold text__stroke__blue font-gasoek tracking-wide'>

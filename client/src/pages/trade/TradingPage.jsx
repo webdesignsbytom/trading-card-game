@@ -91,8 +91,9 @@ function TradingPage() {
           <section className='p-2 lg:p-4 grid lg:grid-cols-2 h-fit gap-2 lg:gap-6'>
             <article className='grid h-full'>
               <div className='bg-red-500 nav__bg outline outline-4 outline-black rounded p-2'>
-                <h1 className='text-3xl font-bold text-center'>Trading</h1>
-              </div>
+              <h1 className='text-center text-4xl font-extrabold text__stroke font-gasoek tracking-wide'>
+                <span className='text-blue-600'>TRADING</span>
+              </h1>              </div>
             </article>
             <section className='grid h-full'>
               <div className='bg-red-500 font-semibold w-full nav__bg outline outline-4 outline-black rounded p-2 grid lg:justify-end grid-flow-col gap-2 lg:gap-4'>

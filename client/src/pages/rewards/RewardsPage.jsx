@@ -33,13 +33,15 @@ function RewardsPage() {
         <main className='bg-white relative main__bg p-4 grid grid-rows-reg overflow-hidden'>
           <section className='grid grid-rows-reg'>
             <article className='text-center'>
-              <h1 className='text-6xl font-bold'>REWARDS</h1>
+              <h1 className='text-center text-2xl lg:text-6xl font-extrabold text__stroke font-gasoek tracking-wide'>
+                <span className='text-blue-600'>REWARDS</span>
+              </h1>
               <h2 className='text-xl mt-2 font-semibold'>
                 Login daily to collect fantastic rewards!
               </h2>
             </article>
 
-            <div className='mt-10 xl:mt-20'>
+            <div className='mt-10'>
               <article className='grid justify-center text-xl font-semibold text-center gap-4'>
                 <span>Daily Reward: 1 Card</span>
                 <span>5x Days : 1 Pack</span>
@@ -50,7 +52,7 @@ function RewardsPage() {
             </div>
           </section>
 
-          <section className='grid justify-center items-center xl:-mt-44 overflow-hidden'>
+          <section className='grid justify-center items-center overflow-hidden'>
             <div className='grid grid-cols-7'>
               {calenderDataArray.map((day, index) => {
                 return (

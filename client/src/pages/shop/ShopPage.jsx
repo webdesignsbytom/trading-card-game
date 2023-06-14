@@ -82,7 +82,7 @@ function ShopPage() {
                   CON <span className='text-red-600'>CARDS</span> STORE
                 </span>
               </h1>
-              <h2>Everything is unfairly priced!</h2>
+              <h2 className='font-bold'>Everything is unfairly priced!</h2>
             </div>
             <div>
               <span className='text-xl lg:text-2xl font-semibold'>
