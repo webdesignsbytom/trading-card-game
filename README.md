@@ -1,6 +1,8 @@
 # Trading Card Game
 
 Sticker book and card collecting game - pokemon style
+
+The database for this is often been turned on and off. You can still access the database thought https://trading-card-game-eta.vercel.app/
 Live Link [https://keen-dragon-c34a9d.netlify.app/](https://keen-dragon-c34a9d.netlify.app/)
 
 This game has all the classic features of a card collecting game including,
@@ -58,4 +60,6 @@ Ultimate cards will have a whole page of holograpgic material
 ### Serial numbers
 
 year yy - edition n - serial 0000
-23-1-0001
+23-1-BR1001
+23-1-EL1001
+23-1-CO1001

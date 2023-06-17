@@ -7,6 +7,7 @@ import {
 import { myEmitterErrors } from '../event/errorEvents.js';
 import {
   createMemberCard,
+  createMemberCardFromJSON,
   createNewInstanceForCard,
   createPartyCard,
   createPolicyCard,
@@ -200,6 +201,53 @@ export const createNewMemberCards = async (req, res) => {
     throw err;
   }
 };
+
+// MEMBER createNewMemberCardsFromJSON
+export const createNewMemberCardsFromJSON = async (req, res) => {
+  console.log('createNewMemberCardsFromJSON', req.body);
+  const { cardArray } = req.body;
+  console.log('cardArray', cardArray[1]);
+
+  try {
+    const createdCards = [];
+
+    for (let index = 0; index < cardArray.length; index++) {
+      const card = cardArray[index];
+      const createdCard = await createMemberCardFromJSON(
+        card.serialNumber,
+        card.cardName.toLowerCase(),
+        card.edition.toLowerCase(),
+        card.imageUrl,
+        card.memberName.toLowerCase(),
+        card.packType,
+        card.cardType,
+      );
+      createdCards.push(createdCard);
+    }
+
+    if (!createdCards) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.badRequest,
+        EVENT_MESSAGES.createCardsFail
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    return sendDataResponse(res, 200, { cards: createdCards });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Create new member cards from JSON failed`
+    );
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
 // PARTY createNewPartyCards
 export const createNewPartyCards = async (req, res) => {
   console.log('createNewCards', req.body);

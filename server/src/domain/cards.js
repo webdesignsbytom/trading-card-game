@@ -204,6 +204,33 @@ export const createMemberCard = (
       },
     },
   });
+
+export const createMemberCardFromJSON = (
+  serialNumber,
+  cardName,
+  edition,
+  imageUrl,
+  memberName,
+  packType,
+  cardType,
+  health,
+  attack
+) =>
+  dbClient.card.create({
+    data: {
+      serialNumber: serialNumber,
+      cardName: cardName,
+      edition: edition,
+      imageUrl: imageUrl,
+      packType: packType,
+      cardType: cardType,
+      memberCard: {
+        create: {
+          memberName: memberName,
+        },
+      },
+    },
+  });
 export const updateMemberCardById = (
   cardId, serialNumber, cardName, edition, rarity, holographic, editable, imageUrl, backgroundColour, availability, memberName, health, attack, cardStat
 ) =>
