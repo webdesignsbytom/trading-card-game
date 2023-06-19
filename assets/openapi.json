@@ -1,0 +1,547 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Express Database",
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3030"
+    }
+  ],
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/books": {
+      "get": {
+        "summary": "Retrieve all books",
+        "description": "This extension add 3 new parameters as documented. The page and per_page parameters add pagination to your API response data, allowing a client to specify limits to the amount of data they receive. You will need to make use of LIMIT and OFFSET in your SQL to accomplish these.",
+        "tags": [
+          "books"
+        ],
+        "parameters": [
+          {
+            "name": "author",
+            "in": "query",
+            "description": "Only get books by a specific author. Default to all books if not provided",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to return. Must default to 1 if not provided.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "The number of records to return per page. Maximum should be 50, minimum is 10. Must default to 20 if not provided.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "books": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Book"
+                      }
+                    },
+                    "perPage": {
+                      "type": "number"
+                    },
+                    "page": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a book",
+        "description": "Add some error responses!",
+        "tags": [
+          "books"
+        ],
+        "requestBody": {
+          "400": {
+            "description": "ERROR - Missing fields in the request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ERROR - A book with the provided title already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookPost"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{id}": {
+      "get": {
+        "summary": "Get a book by ID",
+        "description": "Add some error responses!",
+        "tags": [
+          "books"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "404": {
+            "description": "ERROR - A book with the provided ID does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a book",
+        "description": "Add some error responses!",
+        "tags": [
+          "books"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "ERROR - A book with the provided ID was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ERROR - A book with the provided title already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a book",
+        "description": "Add some error responses!",
+        "tags": [
+          "books"
+        ],
+        "responses": {
+          "404": {
+            "description": "ERROR - A book with the provided ID was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pets": {
+      "get": {
+        "summary": "Retrieve all pets",
+        "description": "The page and per_page parameters add pagination to your API response data, allowing a client to specify limits to the amount of data they receive. You will need to make use of LIMIT and OFFSET in your SQL to accomplish these.",
+        "tags": [
+          "pets"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to return. Must default to 1 if not provided.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "The number of records to return per page. Maximum should be 50, minimum is 10. Must default to 20 if not provided.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pets": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Pet"
+                      }
+                    },
+                    "perPage": {
+                      "type": "number"
+                    },
+                    "page": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a pet",
+        "tags": [
+          "pets"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PetPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "ERROR - Missing fields in the request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pets/{id}": {
+      "get": {
+        "summary": "Get a pet by ID",
+        "tags": [
+          "pets"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "404": {
+            "description": "ERROR - A pet with the provided ID does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a pet",
+        "tags": [
+          "pets"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PetPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "ERROR - A pet with the provided ID was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a pet",
+        "tags": [
+          "pets"
+        ],
+        "responses": {
+          "404": {
+            "description": "ERROR - A pet with the provided ID was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/breeds": {
+      "get": {
+        "summary": "Retrieve all unique breeds for a given type",
+        "description": "This should use the existing data in the pets table. You will need to use DISTINCT in your SQL.",
+        "tags": [
+          "breeds"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Filter breeds to only animals of the specified type (e.g. \"dog\")",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "breeds": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Breed"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Breed": {
+        "type": "object",
+        "properties": {
+          "breed": {
+            "type": "string"
+          }
+        }
+      },
+      "Pet": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "age": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          },
+          "breed": {
+            "type": "string"
+          },
+          "microchip": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PetPost": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "age": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          },
+          "breed": {
+            "type": "string"
+          },
+          "microchip": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Book": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "topic": {
+            "type": "string"
+          },
+          "publicationDate": {
+            "type": "string"
+          },
+          "pages": {
+            "type": "integer"
+          }
+        }
+      },
+      "BookPost": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "topic": {
+            "type": "string"
+          },
+          "publicationDate": {
+            "type": "string"
+          },
+          "pages": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}
