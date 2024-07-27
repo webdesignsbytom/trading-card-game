@@ -7,6 +7,8 @@ import Navbar from '../../components/nav/Navbar';
 // Context
 import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
+// Constants
+import { ALBUM_PAGE_URL } from '../../utils/Constants';
 
 function AlbumPage() {
   const { user } = useContext(UserContext);
@@ -15,7 +17,7 @@ function AlbumPage() {
   const [albumOpen, setAlbumOpen] = useState(false);
 
   useEffect(() => {
-    setActiveNav('/album');
+    setActiveNav(ALBUM_PAGE_URL);
   }, []);
 
   const [usersCardCollectionArray, setUsersCardCollectionArray] = useState(

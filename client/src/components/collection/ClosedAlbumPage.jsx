@@ -39,7 +39,7 @@ function ClosedAlbumPage({ openAlbum }) {
             </span>
             <span className='text-center text-4xl lg:text-8xl font-extrabold text__stroke font-gasoek tracking-wide'>
               <span className='text-blue-600'>
-                CON <span className='text-red-600'>CARDS</span>
+                MON <span className='text-red-600'>CARDS</span>
               </span>
             </span>
             <span className='text-center text-4xl lg:text-8xl font-extrabold text__stroke__red font-gasoek tracking-wide'>

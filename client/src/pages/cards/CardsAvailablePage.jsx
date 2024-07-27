@@ -20,7 +20,7 @@ function CardsAvailablePage() {
     setActiveNav('/cards');
     console.log('useEFFECT');
     client
-      .get(`/con-cards/all-cards`)
+      .get(`/mon-cards/all-cards`)
       .then((res) => {
         setAllCardsArray(res.data.data.cards);
       })
@@ -45,7 +45,7 @@ function CardsAvailablePage() {
     setCardNotFound(false);
 
     client
-      .post(`/con-cards/card/search-cards-by-name`, searchQuery)
+      .post(`/mon-cards/card/search-cards-by-name`, searchQuery)
       .then((res) => {
         console.log('res', res.data.data);
         setFoundCards(res.data.data.cards);

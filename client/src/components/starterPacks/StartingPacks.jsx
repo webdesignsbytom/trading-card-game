@@ -43,7 +43,7 @@ function StartingPacks() {
             <span className='italic capitalize font-semibold'>
               {user.profile.username}
             </span>{' '}
-            to the Con Cards trading card game!
+            to the Mon Cards trading card game!
           </h3>
           <p>
             You can start you collection below by claiming your{' '}

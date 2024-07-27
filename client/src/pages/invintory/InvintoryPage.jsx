@@ -4,12 +4,14 @@ import Navbar from '../../components/nav/Navbar';
 import InvintoryOptions from '../../components/invintory/InvintoryOptions';
 // Context
 import { ToggleContext } from '../../context/ToggleContext';
+// Constants
+import { INVENTORY_PAGE_URL } from '../../utils/Constants';
 
 function InvintoryPage() {
   const { setActiveNav } = useContext(ToggleContext);
 
   useEffect(() => {
-    setActiveNav('/invintory');
+    setActiveNav(INVENTORY_PAGE_URL);
   }, []);
 
   return (

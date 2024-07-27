@@ -36,7 +36,7 @@ const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 // Start of actions
 app.use('/', authRouter);
-app.use('/con-cards', cardsRouter);
+app.use('/mon-cards', cardsRouter);
 app.use('/users', userRouter);
 app.use('/packs', packRouter);
 app.use('/trades', tradeRouter);

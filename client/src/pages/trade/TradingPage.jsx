@@ -63,7 +63,7 @@ function TradingPage() {
     console.log('value', value);
 
     client
-      .get(`/con-cards/card/get-by-id/${value}`)
+      .get(`/mon-cards/card/get-by-id/${value}`)
       .then((res) => {
         setUserCardToTrade(res.data.data.cardInstance);
         setDisplayCard(res.data.data.card);

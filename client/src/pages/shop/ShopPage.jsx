@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 // API
 import client from '../../api/client';
 // Context
@@ -7,23 +8,30 @@ import { ToggleContext } from '../../context/ToggleContext';
 // Components
 import Navbar from '../../components/nav/Navbar';
 import PackSelector from '../../components/shop/PackSelector';
-import { Link } from 'react-router-dom';
+// Constants
+import { SHOP_PAGE_URL } from '../../utils/Constants';
+import {
+  PACK_TYPE_ALPHA,
+  PACK_TYPE_BETA,
+  PACK_TYPE_GAMMA,
+  StandardPackCost,
+} from '../../utils/cards/CardGameConstants';
 
 function ShopPage() {
   const { user, setUser } = useContext(UserContext);
   const { setActiveNav } = useContext(ToggleContext);
   const [togglePackPurchasing, setTogglePackPurchasing] = useState(false);
-  const [costOfStandardPack] = useState(10);
+  const [costOfStandardPack] = useState(StandardPackCost);
   const [purchasingCovidPack, setPurchasingCovidPack] = useState(false);
   const [purchasingElectionPack, setPurchasingElectionPack] = useState(false);
   const [purchasingBrexitPack, setPurchasingBrexitPack] = useState(false);
 
   useEffect(() => {
-    setActiveNav('/shop');
+    setActiveNav(SHOP_PAGE_URL);
   }, []);
 
   const buyPacketsOfCards = (name) => {
-    console.log('id tt', name);
+    console.log('buyPacketsOfCards: id tt', name);
 
     let purchaseRequest = {
       packType: name,
@@ -31,13 +39,13 @@ function ShopPage() {
       cost: costOfStandardPack,
     };
 
-    if (name === 'BREXIT') {
+    if (name === PACK_TYPE_ALPHA) {
       setPurchasingBrexitPack(true);
     }
-    if (name === 'COVID') {
+    if (name === PACK_TYPE_BETA) {
       setPurchasingCovidPack(true);
     }
-    if (name === 'ELECTION') {
+    if (name === PACK_TYPE_GAMMA) {
       setPurchasingElectionPack(true);
     }
 
@@ -79,7 +87,7 @@ function ShopPage() {
             <div className='grid justify-center items-center text-center'>
               <h1 className='text-center text-2xl lg:text-4xl font-bold text__stroke font-gasoek tracking-wide'>
                 <span className='text-blue-600'>
-                  CON <span className='text-red-600'>CARDS</span> STORE
+                  MON <span className='text-red-600'>CARDS</span> STORE
                 </span>
               </h1>
               <h2 className='font-bold'>Everything is unfairly priced!</h2>
@@ -95,7 +103,7 @@ function ShopPage() {
             <div className='grid justify-center items-center text-center w-full'>
               <h1 className='text-center text-3xl lg:text-4xl font-bold text__stroke font-gasoek tracking-wide'>
                 <span className='text-blue-600'>
-                  CON <span className='text-red-600'>CARDS</span> STORE
+                  MON <span className='text-red-600'>CARDS</span> STORE
                 </span>
               </h1>
               <h2 className='font-semibold mt-1'>

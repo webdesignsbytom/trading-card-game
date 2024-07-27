@@ -1,14 +1,18 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 // Components
 import Navbar from '../../components/nav/Navbar';
-import { tempLeaderboardData } from '../../utils/TemporaryData';
-import { useEffect } from 'react';
-import client from '../../api/client';
-import { UserContext } from '../../context/UserContext';
-import { useNavigate } from 'react-router-dom';
-import { ToggleContext } from '../../context/ToggleContext';
 import BattlesOverviewComponent from '../../components/battles/BattlesOverviewComponent';
 import StartNewBattleComponent from '../../components/battles/StartNewBattleComponent';
+// Api
+import client from '../../api/client';
+// Context
+import { UserContext } from '../../context/UserContext';
+import { ToggleContext } from '../../context/ToggleContext';
+// Data
+import { tempLeaderboardData } from '../../utils/TemporaryData';
+// Constants
+import { BATTLES_PAGE_URL } from '../../utils/Constants';
 
 function BattlesOverviewPage() {
   const { user } = useContext(UserContext);
@@ -21,7 +25,7 @@ function BattlesOverviewPage() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    setActiveNav('/battles');
+    setActiveNav(BATTLES_PAGE_URL);
   }, []);
 
   console.log('openBattleRequests', openBattleRequests);

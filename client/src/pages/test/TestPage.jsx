@@ -6,7 +6,7 @@ function TestPage() {
 
   useEffect(() => {
     client
-      .get(`/con-cards/card/get-by-id/1`)
+      .get(`/mon-cards/card/get-by-id/1`)
       .then((res) => {
         setCardData(res.data.data.card);
       })

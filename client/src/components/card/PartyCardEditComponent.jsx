@@ -27,7 +27,7 @@ function PartyCardEditComponent({ cardData, setSelectedCardData }) {
     event.preventDefault();
 
     client
-      .patch(`/con-cards/update-card/${cardData.id}`, cardData)
+      .patch(`/mon-cards/update-card/${cardData.id}`, cardData)
       .then((res) => {
         console.log('res', res.data);
         setSelectedCardData(res.data.data.updatedCard);

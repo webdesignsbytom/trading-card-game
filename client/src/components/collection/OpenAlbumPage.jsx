@@ -39,7 +39,7 @@ function OpenAlbumPage() {
     setCardNotFound(false);
 
     client
-      .get(`/con-cards/card/search-cards-by-name`, searchQuery.cardName)
+      .get(`/mon-cards/card/search-cards-by-name`, searchQuery.cardName)
       .then((res) => {
         console.log('res', res.data.data);
         setFoundCards(res.data.data.cards);

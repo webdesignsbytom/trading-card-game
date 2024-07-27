@@ -6,6 +6,8 @@ import CardOverviewAdminComponent from '../../components/admin/CardOverviewAdmin
 import ErrorOverviewAdminComponent from '../../components/admin/EventOverviewAdminComponent';
 // Context
 import { ToggleContext } from '../../context/ToggleContext';
+// Constants
+import { ADMIN_PAGE_URL } from '../../utils/Constants';
 
 function AdminPage() {
   const { setActiveNav } = useContext(ToggleContext);
@@ -16,7 +18,7 @@ function AdminPage() {
 
   
   useEffect(() => {
-    setActiveNav('/admin');
+    setActiveNav(ADMIN_PAGE_URL);
   }, []);
 
   const openUsersOverview = () => {

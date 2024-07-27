@@ -16,7 +16,7 @@ function CardOverviewAdminComponent() {
 
   useEffect(() => {
     client
-      .get(`/con-cards/all-cards`)
+      .get(`/mon-cards/all-cards`)
       .then((res) => {
         setAllCardsArray(res.data.data.cards);
       })
@@ -33,7 +33,7 @@ function CardOverviewAdminComponent() {
     setCardNotFound(false);
 
     client
-      .get(`/con-cards/${searchQuery.cardName}`)
+      .get(`/mon-cards/${searchQuery.cardName}`)
       .then((res) => {
         setCardsFound(res.data.data.cards);
       })
