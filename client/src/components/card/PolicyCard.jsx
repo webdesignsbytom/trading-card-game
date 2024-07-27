@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 // Context
 import { ToggleContext } from '../../context/ToggleContext';
+import { FIRST_EDITION, FORTH_EDITION, PACK_TYPE_ALPHA, PACK_TYPE_BETA, PACK_TYPE_GAMMA, SECOND_EDITION, THIRD_EDITION } from '../../utils/cards/CardGameConstants';
 
 function PolicyCard({ cardData }) {
   const { toggleCardData } = useContext(ToggleContext);
@@ -55,15 +56,15 @@ function PolicyCard({ cardData }) {
             <p className='text-white capitalize'>{cardData.cardType}</p>
             <div className='flex'>
               <p className='text-white'>
-                {cardData.packType === 'BREXIT' && <span>🏝️</span>}
-                {cardData.packType === 'COVID' && <span>🦠</span>}
-                {cardData.packType === 'ELECTION' && <span>👑</span>}
+                {cardData.packType === PACK_TYPE_ALPHA && <span>🏝️</span>}
+                {cardData.packType === PACK_TYPE_BETA && <span>🦠</span>}
+                {cardData.packType === PACK_TYPE_GAMMA && <span>👑</span>}
               </p>
               <p className='text-white'>
-                {cardData.edition === 'first' && <span>1️⃣</span>}
-                {cardData.edition === 'Second' && <span>2️⃣</span>}
-                {cardData.edition === 'Third' && <span>1️3️⃣</span>}
-                {cardData.edition === 'Fourth' && <span>1️4️⃣</span>}
+                {cardData.edition === FIRST_EDITION && <span>1️⃣</span>}
+                {cardData.edition === SECOND_EDITION && <span>2️⃣</span>}
+                {cardData.edition === THIRD_EDITION && <span>1️3️⃣</span>}
+                {cardData.edition === FORTH_EDITION && <span>1️4️⃣</span>}
               </p>
             </div>
           </div>

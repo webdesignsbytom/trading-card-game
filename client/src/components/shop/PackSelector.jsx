@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 // Images
 import CovidPack from '../../assets/img/packets/pack1.png';
 import BrexitPack from '../../assets/img/packets/pack2.png';
 import ElectionPack from '../../assets/img/packets/pack3.png';
 import LoadingSpinner from '../utils/LoadingSpinner';
+// Constants
+import {
+  PACK_TYPE_ALPHA,
+  PACK_TYPE_BETA,
+  PACK_TYPE_GAMMA,
+} from '../../utils/cards/CardGameConstants';
 
 function PackSelector({
   buyPacketsOfCards,
@@ -20,8 +26,8 @@ function PackSelector({
         </div>
         <div className='grid items-center justify-center my-4'>
           <button
-            id='brexit'
-            onClick={() => buyPacketsOfCards('BREXIT')}
+            id={PACK_TYPE_ALPHA}
+            onClick={() => buyPacketsOfCards(PACK_TYPE_ALPHA)}
             className='rounded bg-red-700 hover:bg-red-500 active:scale-95 text-white font-semibold main__bg my-2 outline outline-2 outline-black p-2'
           >
             {purchasingBrexitPack ? (
@@ -48,8 +54,8 @@ function PackSelector({
         </div>
         <div className='grid items-center justify-center my-4'>
           <button
-            id='covid'
-            onClick={() => buyPacketsOfCards('COVID')}
+            id={PACK_TYPE_BETA}
+            onClick={() => buyPacketsOfCards(PACK_TYPE_BETA)}
             className='rounded bg-red-700 hover:bg-red-500 active:scale-95 text-white font-semibold main__bg my-2 outline outline-2 outline-black p-2'
           >
             {purchasingCovidPack ? (
@@ -76,8 +82,8 @@ function PackSelector({
         </div>
         <div className='grid items-center justify-center my-4'>
           <button
-            id='election'
-            onClick={() => buyPacketsOfCards('ELECTION')}
+            id={PACK_TYPE_GAMMA}
+            onClick={() => buyPacketsOfCards(PACK_TYPE_GAMMA)}
             className='rounded bg-red-700 hover:bg-red-500 active:scale-95 text-white font-semibold main__bg my-2 outline outline-2 outline-black p-2'
           >
             {purchasingElectionPack ? (

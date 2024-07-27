@@ -1,9 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
+// Context
 import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
+// Api
 import client from '../../api/client';
+// Components
 import Navbar from '../../components/nav/Navbar';
 import PackSelector from '../../components/shop/PackSelector';
+// Constants
+import { SHOP_PAGE_URL } from '../../utils/Constants';
+import { PACK_TYPE_ALPHA, PACK_TYPE_BETA, PACK_TYPE_GAMMA } from '../../utils/cards/CardGameConstants';
 
 function BuyPackPage() {
   const { user, setUser } = useContext(UserContext);
@@ -15,7 +21,7 @@ function BuyPackPage() {
   const [purchasingBrexitPack, setPurchasingBrexitPack] = useState(false);
 
   useEffect(() => {
-    setActiveNav('/shop');
+    setActiveNav(SHOP_PAGE_URL);
   }, []);
 
   const buyPacketsOfCards = (name) => {
@@ -27,13 +33,13 @@ function BuyPackPage() {
       cost: costOfStandardPack,
     };
 
-    if (name === 'BREXIT') {
+    if (name === PACK_TYPE_ALPHA) {
       setPurchasingBrexitPack(true);
     }
-    if (name === 'COVID') {
+    if (name === PACK_TYPE_BETA) {
       setPurchasingCovidPack(true);
     }
-    if (name === 'ELECTION') {
+    if (name === PACK_TYPE_GAMMA) {
       setPurchasingElectionPack(true);
     }
 

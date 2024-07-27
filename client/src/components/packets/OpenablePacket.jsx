@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 // context
 import { ToggleContext } from '../../context/ToggleContext';
 import { UserContext } from '../../context/UserContext';
@@ -7,7 +8,8 @@ import { UserContext } from '../../context/UserContext';
 import CovidPack from '../../assets/img/packets/pack1.png';
 import BrexitPack from '../../assets/img/packets/pack2.png';
 import ElectionPack from '../../assets/img/packets/pack3.png';
-import { useNavigate } from 'react-router-dom';
+// Constants
+import { PACK_TYPE_ALPHA, PACK_TYPE_BETA, PACK_TYPE_GAMMA } from '../../utils/cards/CardGameConstants';
 
 function OpenablePacket({ pack }) {
   console.log('PPSPSWD', pack);
@@ -33,13 +35,13 @@ function OpenablePacket({ pack }) {
             <h3>{pack?.packType}</h3>
           </div>
           <div>
-            {pack.packType === 'BREXIT' && (
+            {pack.packType === PACK_TYPE_ALPHA && (
               <img src={BrexitPack} alt='Brexit pack' />
             )}
-            {pack.packType === 'COVID' && (
+            {pack.packType === PACK_TYPE_BETA && (
               <img src={CovidPack} alt='Covid pack' />
             )}
-            {pack.packType === 'ELECTION' && (
+            {pack.packType === PACK_TYPE_GAMMA && (
               <img src={ElectionPack} alt='Election pack' />
             )}
           </div>

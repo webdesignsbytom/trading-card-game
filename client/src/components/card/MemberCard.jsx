@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 // Context
 import { ToggleContext } from '../../context/ToggleContext';
+// Constants
+import { MEGARAREHOLO_CARD_RARITY, PACK_TYPE_ALPHA, PACK_TYPE_BETA, PACK_TYPE_GAMMA, RAREHOLO_CARD_RARITY } from '../../utils/cards/CardGameConstants';
 
 function MemberCard({ cardData, viewCardData }) {
   const { toggleCardData } = useContext(ToggleContext);
@@ -26,10 +28,10 @@ function MemberCard({ cardData, viewCardData }) {
         default:
           return setBgColour('bg-white');
       }
-    else if (cardData.rarity === 'RAREHOLO') {
+    else if (cardData.rarity === RAREHOLO_CARD_RARITY) {
       setHoloCard(true);
       setBgColour('bg-slate-700');
-    } else if (cardData.rarity === 'MEGARAREHOLO') {
+    } else if (cardData.rarity === MEGARAREHOLO_CARD_RARITY) {
       setRareHoloCard(true);
       setBgColour('bg-slate-500');
     }
@@ -57,9 +59,9 @@ function MemberCard({ cardData, viewCardData }) {
             <p className='text-white capitalize'>{cardData.cardType}</p>
             <div className='flex'>
               <p className='text-white'>
-                {cardData.packType === 'BREXIT' && <span>🏝️</span>}
-                {cardData.packType === 'COVID' && <span>🦠</span>}
-                {cardData.packType === 'ELECTION' && <span>👑</span>}
+                {cardData.packType === PACK_TYPE_ALPHA && <span>🏝️</span>}
+                {cardData.packType === PACK_TYPE_BETA && <span>🦠</span>}
+                {cardData.packType === PACK_TYPE_GAMMA && <span>👑</span>}
               </p>
               <p className='text-white'>
                 {cardData.edition === 'first' && <span>1️⃣</span>}
