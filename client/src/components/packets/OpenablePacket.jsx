@@ -3,7 +3,6 @@ import React, { useContext, useEffect } from 'react';
 import { ToggleContext } from '../../context/ToggleContext';
 import { UserContext } from '../../context/UserContext';
 // API
-import client from '../../utils/client';
 // Images
 import CovidPack from '../../assets/img/packets/pack1.png';
 import BrexitPack from '../../assets/img/packets/pack2.png';

@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import Navbar from '../../components/nav/Navbar';
 import { tempLeaderboardData } from '../../utils/TemporaryData';
 import { useEffect } from 'react';
-import client from '../../utils/client';
+import client from '../../api/client';
 import { UserContext } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { ToggleContext } from '../../context/ToggleContext';

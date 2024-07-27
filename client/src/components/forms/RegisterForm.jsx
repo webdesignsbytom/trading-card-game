@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // API
-import client from '../../utils/client';
+import client from '../../api/client';
 import LoadingSpinner from '../../components/utils/LoadingSpinner';
 // Utils
 import CountrySelect from '../../utils/CountrySelect';

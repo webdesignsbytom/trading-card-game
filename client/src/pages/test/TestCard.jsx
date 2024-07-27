@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import client from '../../utils/client';
+import client from '../../api/client';
 import Card from '../../components/card/Card';
 
 function TestCard() {

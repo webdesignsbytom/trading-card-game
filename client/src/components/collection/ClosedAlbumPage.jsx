@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 // Context
 import { UserContext } from '../../context/UserContext';
 import { CardContext } from '../../context/CardContext';
-import client from '../../utils/client';
+import client from '../../api/client';
 import { useNavigate } from 'react-router-dom';
 
 function ClosedAlbumPage({ openAlbum }) {

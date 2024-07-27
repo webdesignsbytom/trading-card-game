@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
-import client from '../../utils/client';
+import client from '../../api/client';
 import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '../../components/utils/LoadingSpinner';
 function StartingPacks() {

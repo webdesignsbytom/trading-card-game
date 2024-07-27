@@ -1,5 +1,5 @@
 import React from 'react';
-import client from '../../utils/client';
+import client from '../../api/client';
 
 function PolicyCardEditComponent({ cardData, setSelectedCardData }) {
   const handleChange = (event) => {

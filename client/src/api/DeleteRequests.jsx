@@ -1,4 +1,4 @@
-import client from '../utils/client';
+import client from '../api/client';
 
 export const deleteUserApiRequestNoReturn = (userData, setDeletedUserData) => {
   client

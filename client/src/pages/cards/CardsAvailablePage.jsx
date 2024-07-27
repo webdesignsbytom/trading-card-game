@@ -5,7 +5,7 @@ import Card from '../../components/card/Card';
 // Context
 import { ToggleContext } from '../../context/ToggleContext';
 // Utils
-import client from '../../utils/client';
+import client from '../../api/client';
 import LoadingSpinner from '../../components/utils/LoadingSpinner';
 
 function CardsAvailablePage() {

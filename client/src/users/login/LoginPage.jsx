@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
 // API
-import client from '../../utils/client';
+import client from '../../api/client';
 // Components
 import Navbar from '../../components/nav/Navbar';
 import LoadingSpinner from '../../components/utils/LoadingSpinner';

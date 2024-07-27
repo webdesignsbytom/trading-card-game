@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 // API
-import client from '../../utils/client';
+import client from '../../api/client';
 // Context
 import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';

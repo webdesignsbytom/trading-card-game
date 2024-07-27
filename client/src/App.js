@@ -26,37 +26,64 @@ import DecksOverviewPage from './pages/decks/DecksOverviewPage';
 import BuyPackPage from './pages/shop/BuyPackPage';
 import TestPage from './pages/test/TestPage';
 import TestCard from './pages/test/TestCard';
+// Constants
+import {
+  HOME_PAGE_URL,
+  SHOP_PAGE_URL,
+  LOGIN_PAGE_URL,
+  SIGN_UP_PAGE_URL,
+  ALBUM_PAGE_URL,
+  TRADING_PAGE_URL,
+  ADMIN_PAGE_URL,
+  CARDS_PAGE_URL,
+  BATTLES_PAGE_URL,
+  INVENTORY_PAGE_URL,
+  REWARDS_PAGE_URL,
+  UNOPENED_PACKS_URL,
+  BUY_PACK_PAGE_URL,
+  OPEN_PACKS_PAGE_URL,
+  CARDS_IN_PACK_PAGE_URL,
+  CARD_OVERVIEW_PAGE_URL,
+  INVENTORY_ITEMS_PAGE_URL,
+  OPEN_BATTLE_ACTIVE_PAGE_URL,
+  BATTLE_RULES_PAGE_URL,
+  DECKS_OVERVIEW_PAGE_URL,
+  CARD_EDIT_PAGE_URL,
+  USER_OVERVIEW_PAGE_URL,
+  EVENT_OVERVIEW_PAGE_URL,
+  TEST_PAGE_URL,
+  TEST_CARD_PAGE_URL,
+} from './utils/Constants';
 
 function App() {
   return (
     <Routes>
-      <Route path='/' index element={<HomePage />} />
-      <Route path='/album' element={<AlbumPage />} />
-      <Route path='/login' element={<LoginPage />} />
-      <Route path='/sign-up' element={<RegisterPage />} />
-      <Route path='/shop' element={<ShopPage />} />
-      <Route path='/shop/packs' element={<BuyPackPage />} />
-      <Route path='/open-packs' element={<OpenPacksPage />} />
-      <Route path='/pack/opened' element={<CardsInPackPage />} />
-      <Route path='/packs/unopened' element={<UnopenedPacketsPage />} />
-      <Route path='/cards' element={<CardsAvailablePage />} />
-      <Route path='/card-overview/:id' element={<CardOverviewPage />} />
-      <Route path='/invintory' element={<InvintoryPage />} />
-      <Route path='/invintory/items' element={<InvintoryItemsPage />} />
-      <Route path='/trading' element={<TradingPage />} />
-      <Route path='/rewards' element={<RewardsPage />} />
-      <Route path='/battles' element={<BattlesOverviewPage />} />
-      <Route path='/battle/open-battle' element={<OpenBattleActivePage />} />
-      <Route path='/battles/rules' element={<BattleRulesPage />} />
-      <Route path='/user/decks' element={<DecksOverviewPage />} />
-      <Route path='/admin' element={<AdminPage />} />
-      <Route path='/admin/card-edit' element={<CardEditPage />} />
-      <Route path='/admin/user-overview' element={<UserOverviewPage />} />
-      <Route path='/admin/event-overview' element={<EventOverviewPage />} />
-      <Route path='/test' element={<TestPage />} />
-      <Route path='/test/card' element={<TestCard />} />
+      <Route path={HOME_PAGE_URL} index element={<HomePage />} />
+      <Route path={ALBUM_PAGE_URL} element={<AlbumPage />} />
+      <Route path={LOGIN_PAGE_URL} element={<LoginPage />} />
+      <Route path={SIGN_UP_PAGE_URL} element={<RegisterPage />} />
+      <Route path={SHOP_PAGE_URL} element={<ShopPage />} />
+      <Route path={BUY_PACK_PAGE_URL} element={<BuyPackPage />} />
+      <Route path={OPEN_PACKS_PAGE_URL} element={<OpenPacksPage />} />
+      <Route path={CARDS_IN_PACK_PAGE_URL} element={<CardsInPackPage />} />
+      <Route path={UNOPENED_PACKS_URL} element={<UnopenedPacketsPage />} />
+      <Route path={CARDS_PAGE_URL} element={<CardsAvailablePage />} />
+      <Route path={CARD_OVERVIEW_PAGE_URL} element={<CardOverviewPage />} />
+      <Route path={INVENTORY_PAGE_URL} element={<InvintoryPage />} />
+      <Route path={INVENTORY_ITEMS_PAGE_URL} element={<InvintoryItemsPage />} />
+      <Route path={TRADING_PAGE_URL} element={<TradingPage />} />
+      <Route path={REWARDS_PAGE_URL} element={<RewardsPage />} />
+      <Route path={BATTLES_PAGE_URL} element={<BattlesOverviewPage />} />
+      <Route path={OPEN_BATTLE_ACTIVE_PAGE_URL} element={<OpenBattleActivePage />} />
+      <Route path={BATTLE_RULES_PAGE_URL} element={<BattleRulesPage />} />
+      <Route path={DECKS_OVERVIEW_PAGE_URL} element={<DecksOverviewPage />} />
+      <Route path={ADMIN_PAGE_URL} element={<AdminPage />} />
+      <Route path={CARD_EDIT_PAGE_URL} element={<CardEditPage />} />
+      <Route path={USER_OVERVIEW_PAGE_URL} element={<UserOverviewPage />} />
+      <Route path={EVENT_OVERVIEW_PAGE_URL} element={<EventOverviewPage />} />
+      <Route path={TEST_PAGE_URL} element={<TestPage />} />
+      <Route path={TEST_CARD_PAGE_URL} element={<TestCard />} />
       <Route path='*' element={<Error404 />} />
-
     </Routes>
   );
 }

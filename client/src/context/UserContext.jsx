@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 // Fetch
-import client from '../utils/client';
+import client from '../api/client';
 import LoggedInUser from '../utils/LoggedInUser';
 // Context
 export const UserContext = React.createContext();

@@ -8,7 +8,7 @@ import OpenTradeComponent from '../../components/trade/OpenTradeComponent';
 import { UserContext } from '../../context/UserContext';
 import { TradingContext } from '../../context/TradingContext';
 // API
-import client from '../../utils/client';
+import client from '../../api/client';
 import { ToggleContext } from '../../context/ToggleContext';
 
 function TradingPage() {

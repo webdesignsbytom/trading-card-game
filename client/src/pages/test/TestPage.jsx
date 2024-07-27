@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../../components/card/Card';
-import client from '../../utils/client';
+import client from '../../api/client';
 function TestPage() {
   const [cardData, setCardData] = useState({});
 

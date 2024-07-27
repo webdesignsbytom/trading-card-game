@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import client from '../../utils/client';
+import client from '../../api/client';
 
 function StartNewBattleComponent() {
   const [searchQuery, setSearchQuery] = useState({ username: '' });

@@ -6,7 +6,7 @@ import { UserContext } from '../../context/UserContext';
 import { CardContext } from '../../context/CardContext';
 // Utils
 import LoadingSpinner from '../utils/LoadingSpinner';
-import client from '../../utils/client';
+import client from '../../api/client';
 
 function OpenAlbumPage() {
   const { user } = useContext(UserContext);

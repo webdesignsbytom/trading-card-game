@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 // Context
 import { UserContext } from '../../context/UserContext';
-import client from '../../utils/client';
+import client from '../../api/client';
 
 function RewardCalenderSquare({
   day,

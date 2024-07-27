@@ -1,6 +1,6 @@
 import React from 'react';
 // API
-import client from '../../utils/client';
+import client from '../../api/client';
 
 function MemberCardEditComponent({ cardData, setSelectedCardData }) {
   const handleChange = (event) => {

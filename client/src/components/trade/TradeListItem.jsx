@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 // Api
-import client from '../../utils/client';
+import client from '../../api/client';
 import { useNavigate } from 'react-router-dom';
 // Context
 import { TradingContext } from '../../context/TradingContext';
