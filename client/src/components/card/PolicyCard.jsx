@@ -75,7 +75,7 @@ function PolicyCard({ cardData }) {
             </h4>
             <h5 className='text-white text-xs leading-3'>
               <span className='text-xs lg:text-base'>Effect:</span>{' '}
-              <span className='text-ss leading-3 lg:text-xs'>{cardData.policyCard.effect}</span>
+              <span className='text-ss leading-3 lg:text-xs'>Effect stat on enemy</span>
             </h5>
           </div>
         </section>

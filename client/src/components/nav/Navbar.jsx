@@ -53,7 +53,7 @@ function Navbar() {
           <div className='grid bg-white main__bg py-1 px-2 lg:px-4 w-fit outline-blue-700 outline outline-4 mt-1 rounded'>
             <p className='text-center text-2xl font-extrabold text__stroke font-gasoek tracking-wide'>
               <span className='text-blue-600'>
-                CON <span className='text-red-600'>CARDS</span>
+                MON <span className='text-red-600'>CARDS</span>
               </span>
             </p>
             <p className='font-bold text-sm'>
