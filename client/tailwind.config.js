@@ -16,6 +16,8 @@ module.exports = {
         'nav-colour': '#ef4444',
         'footer-colour': '#1F2937',
         'main-border': '#000000',
+        'main-button': '#60a5fa',
+        'selected-button': '#1d4ed8',
         'colour-light': '#6DC85A',
         'colour-med': '#32931D',
         'colour-dark': '#1A7408',

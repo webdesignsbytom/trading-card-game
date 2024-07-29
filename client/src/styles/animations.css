@@ -1,0 +1,145 @@
+.animate-fade-in-move-up {
+  animation: fadeInMoveUp 2s ease-in-out forwards;
+}
+
+@keyframes fadeInMoveUp {
+  from {
+    opacity: 0;
+    transform: translateY(200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-info-tabs {
+  animation: staggeredSideFade 2s ease forwards;
+}
+
+@keyframes staggeredSideFade {
+  from {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-info-tabs-up {
+  animation: staggeredFadeUp 2s ease forwards;
+}
+
+@keyframes staggeredFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(300px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate_open_nav {
+  animation: openNav 1.2s ease forwards;
+}
+
+@keyframes openNav {
+  from {
+    opacity: 0;
+    transform: translateY(-300px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate_close_nav {
+  animation: closeNav 1.2s ease forwards;
+}
+
+@keyframes closeNav {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-300px);
+  }
+}
+
+.opening-animation{
+  animation: openComponent 1.5s ease forwards;
+}
+
+@keyframes openComponent {
+  from {
+    opacity: 0;
+    scale: 0.1;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+
+.fade-out {
+  animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    scale: 0.3;
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.move-center {
+  animation: moveCenter 3s forwards;
+}
+
+@keyframes moveCenter {
+  to {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+}
+
+.transition-max-height {
+  transition: max-height 0.5s ease-in-out;
+}
+
+.max-h-32 {
+  max-height: 8rem; /* adjust as necessary */
+}
+
+.max-h-screen {
+  max-height: 100vh; /* or a high enough value to show all content */
+}
+
+
+/* Scroll image */
+.image-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  scrollbar-width: none; /* Firefox */
+}
+
+.image-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.start-scrolling {
+  scroll-behavior: smooth;
+}

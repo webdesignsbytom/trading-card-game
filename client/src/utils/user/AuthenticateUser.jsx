@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 // Context
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '../../context/UserContext';
 // Utils
-import LoggedInUser from './LoggedInUser';
+import LoggedInUser from '../LoggedInUser';
 
 export function AuthenticateUser({ children, redirectPath = '/' }) {
   if (!LoggedInUser()) {

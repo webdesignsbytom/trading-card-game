@@ -14,16 +14,16 @@ import {
   INVENTORY_PAGE_URL,
   REWARDS_PAGE_URL,
   UNOPENED_PACKS_URL,
-  SecondaryTitle,
 } from '../../utils/Constants';
+// Context
 import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
+// Components
 import SmallMonCardsHeader from '../headers/SmallMonCardsHeader';
 
 function LargeScreenNavbar({ logoutUser }) {
-  const { user, setUser } = useContext(UserContext);
-  const { toggleNavbar, toggleNavigation, activeNav, setActiveNav } =
-    useContext(ToggleContext);
+  const { user } = useContext(UserContext);
+  const { toggleNavbar, activeNav } = useContext(ToggleContext);
 
   const navigate = useNavigate();
 
@@ -32,47 +32,42 @@ function LargeScreenNavbar({ logoutUser }) {
     navigate(UNOPENED_PACKS_URL, { replace: true });
   };
 
-  const navigateToPage = (event) => {
-    const { id } = event.target;
-    setActiveNav(id);
-    toggleNavbar();
-    navigate(id);
-  };
-  
   return (
-    <section className='grid bg-orange-400'>
+    <section className='grid'>
       {/* Header and updates */}
-      <section className='bg-red-700'>
+      <section className='grid px-2'>
         <SmallMonCardsHeader />
 
-       {/* Buttons */}
-        <section className='text-center mt-4 hidden lg:grid gap-2'>
+        {/* User conditional buttons */}
+        <section className='grid gap-1 h-fit'>
           {user?.packs?.length > 0 && (
-            <div
-              onClick={goToUnopenedPacks}
-              className='outline bg-blue-500 main__bg outline-black outline-2 rounded animate-pulse'
-            >
-              <button className='font-semibold py-1'>
-                <div>
+            <div className='grid'>
+              <button
+                onClick={goToUnopenedPacks}
+                className='bg-blue-500 main__bg h-fit border-2 border-solid border-main-border rounded animate-pulse'
+              >
+                <div className='font-semibold py-1'>
                   <span>{user.packs.length} Unopened Packs</span>
                 </div>
               </button>
             </div>
           )}
           {user?.loginRecord?.collectedReward === false && (
-            <Link to={REWARDS_PAGE_URL}>
-              <div className='outline bg-blue-700 main__bg outline-black outline-2 rounded animate-pulse'>
-                <div className='font-semibold py-1'>
-                  <span>Daily Reward Available</span>
+            <div className='grid'>
+              <Link to={REWARDS_PAGE_URL}>
+                <div className='bg-blue-700 main__bg text-center border-2 border-solid border-main-border rounded animate-pulse'>
+                  <div className='font-semibold py-1'>
+                    <span>Daily Reward Available</span>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </div>
           )}
         </section>
       </section>
 
-      <section className='grid bg-green-700'>
-        <div className='grid items-center'>
+      <section className='grid grid-rows-rev h-full'>
+        <section className='grid'>
           <ul className='text-center grid bg-black h-fit w-full text-xl'>
             <NavItem to={HOME_PAGE_URL} activeNav={activeNav} text='Home' />
             <NavItem to={SHOP_PAGE_URL} activeNav={activeNav} text='Shop' />
@@ -126,14 +121,15 @@ function LargeScreenNavbar({ logoutUser }) {
               to={REWARDS_PAGE_URL}
               activeNav={activeNav}
               text='Rewards'
+              bottom={true}
             />
           </ul>
-        </div>
+        </section>
 
-        {!user.email && (
-          <section className='flex items-center justify-center h-fit bg-gray-600'>
+        {user.email && (
+          <section className='flex items-center justify-center h-fit bg-black'>
             <button
-              className='w-full nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+              className='w-full nav__bg hover:bg-selected-button active:scale-95 grid py-2 border-t-2  border-solid border-main-border bg-main-button text-gray-800 font-semibold'
               onClick={logoutUser}
             >
               Logout
@@ -145,12 +141,12 @@ function LargeScreenNavbar({ logoutUser }) {
   );
 }
 
-const NavItem = ({ to, activeNav, text }) => (
+const NavItem = ({ to, activeNav, text, bottom }) => (
   <li
     className={
       activeNav === to
-        ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-green-400 text-gray-800 font-semibold'
-        : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-blue-400 text-gray-800 font-semibold'
+        ? `w-full no__highlights nav__bg hover:bg-selected-button active:scale-95 grid py-2 ${bottom ? 'border-b-2 border-t-2' : 'border-t-2'} border-solid border-main-border bg-selected-button text-gray-800 font-semibold`
+        : `w-full no__highlights nav__bg hover:bg-selected-button active:scale-95 grid py-2 ${bottom ? 'border-b-2 border-t-2' : 'border-t-2'} border-solid border-main-border bg-main-button text-gray-800 font-semibold`
     }
   >
     <Link className='w-full' to={to}>

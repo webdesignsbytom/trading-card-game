@@ -12,6 +12,7 @@ import './styles/index.css';
 import './styles/components.css';
 import './styles/cards.css';
 import './styles/text.css';
+import './styles/animations.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

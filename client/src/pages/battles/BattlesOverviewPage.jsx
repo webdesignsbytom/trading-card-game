@@ -10,7 +10,7 @@ import client from '../../api/client';
 import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
 // Data
-import { tempLeaderboardData } from '../../utils/TemporaryData';
+import { tempLeaderboardData } from '../../utils/user/TemporaryData';
 // Constants
 import { BATTLES_PAGE_URL } from '../../utils/Constants';
 

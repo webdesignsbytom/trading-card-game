@@ -9,7 +9,6 @@ import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
 // Constants
 import { HOME_PAGE_URL, SIGN_UP_PAGE_URL } from '../../utils/Constants';
-import Navbar2 from '../../components/nav/Navbar2';
 
 function HomePage() {
   const { user } = useContext(UserContext);
@@ -22,8 +21,8 @@ function HomePage() {
   return (
     <div className='bg-main-colour main__bg h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
-        <Navbar2 />
-        <main className='grid border-solid border-main-border border-t-4 border-b-4 border-r-4'>
+        <Navbar />
+        <main className='grid'>
           <section className='grid h-full p-2'>
             {user.email && !user.collectedStartedPacks && (
               <>
