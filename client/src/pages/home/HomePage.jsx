@@ -9,6 +9,7 @@ import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
 // Constants
 import { HOME_PAGE_URL, SIGN_UP_PAGE_URL } from '../../utils/Constants';
+import Navbar2 from '../../components/nav/Navbar2';
 
 function HomePage() {
   const { user } = useContext(UserContext);
@@ -19,10 +20,10 @@ function HomePage() {
   }, []);
 
   return (
-    <div className='bg-blue-600 main__bg h-screen grid'>
+    <div className='bg-main-colour main__bg h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
-        <Navbar />
-        <main className='grid'>
+        <Navbar2 />
+        <main className='grid border-solid border-main-border border-t-4 border-b-4 border-r-4'>
           <section className='grid h-full p-2'>
             {user.email && !user.collectedStartedPacks && (
               <>
@@ -49,7 +50,7 @@ function HomePage() {
                     </div>
                     <Link
                       to={SIGN_UP_PAGE_URL}
-                      className='outline outline-2 bg-white font-bold active:scale-95 hover:brightness-90 outline-black main__bg py-2 px-4 my-2 rounded-xl text-center'
+                      className='outline outline-2 bg-secondary-colour font-bold active:scale-95 hover:brightness-90 outline-black main__bg py-2 px-4 my-2 rounded-xl text-center'
                     >
                       SIGN UP NOW
                     </Link>

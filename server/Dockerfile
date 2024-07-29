@@ -10,11 +10,13 @@ WORKDIR /app
 COPY package*.json ./
 
 ## Install info
-RUN npx prisma generate
 RUN npm install
 
 ## COPY source code
 COPY . .
+
+# Generate Prisma client
+RUN npx prisma generate --schema=prisma/schema.prisma
 
 ## Environment variables
 ENV PORT=5000

@@ -6,19 +6,20 @@ import Navbar from '../../components/nav/Navbar';
 import { ToggleContext } from '../../context/ToggleContext';
 
 function RegisterPage() {
-  const { setActiveNav } = useContext(ToggleContext)
+  const { setActiveNav } = useContext(ToggleContext);
 
   useEffect(() => {
-    setActiveNav('/sign-up')
-  }, [])
-  
+    setActiveNav('/sign-up');
+  }, []);
+
   return (
     <div className='bg-black main__bg h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
-        <main className='grid bg-white grid-rows-reg main__bg h-full items-center justify-center'>
-          <section className='bg-white rounded p-4 shadow my-10 lg:my-0'>
-            <article className='text-center my-2 '>
+
+        <main className='grid bg-secondary-colour grid-rows-reg main__bg h-full items-center justify-center'>
+          <section className='bg-white rounded p-4 shadow-lg'>
+            <article className='text-center my-2'>
               <h1 className='text-3xl font-semibold'>Sign Up Now</h1>
             </article>
             <RegisterForm />

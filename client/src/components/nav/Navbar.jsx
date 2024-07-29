@@ -21,6 +21,8 @@ import {
   UNOPENED_PACKS_URL,
   SecondaryTitle,
 } from '../../utils/Constants';
+// Icons
+import { IoMenu } from "react-icons/io5";
 
 function Navbar() {
   const { user, setUser } = useContext(UserContext);
@@ -51,74 +53,16 @@ function Navbar() {
   };
 
   return (
-    <nav className='nav__bg h-full relative z-30 bg-red-500 lg:border-4 border-black border-b-4 border-solid grid grid-cols-a1a lg:grid-cols-none lg:grid-rows-reg'>
-      <section className='grid lg:hidden items-center justify-center pl-4'>
-        <Link className='no__highlights' to={HOME_PAGE_URL}>
-          <img className='w-10 no__highlights h-10' src={LogoImage} alt='Logo' />
-        </Link>
-      </section>
-
-      <section className='text-center p-2'>
-        <div className='flex justify-center items-center'>
-          <div className='grid bg-white main__bg py-1 px-2 lg:px-4 w-fit outline-blue-700 outline outline-4 mt-1 rounded'>
-            <p className='text-center text-2xl font-extrabold text__stroke font-gasoek tracking-wide'>
-              <span className='text-blue-600'>
-                MON <span className='text-red-600'>CARDS</span>
-              </span>
-            </p>
-            <p className='font-bold text-xs md:text-sm'>
-              <span>{SecondaryTitle}</span>
-            </p>
-          </div>
-        </div>
-
-        <section className='text-center mt-4 hidden lg:grid gap-2'>
-          {user?.packs?.length > 0 && (
-            <div
-              onClick={goToUnopenedPacks}
-              className='outline bg-blue-500 main__bg outline-black outline-2 rounded animate-pulse'
-            >
-              <button className='font-semibold py-1'>
-                <div>
-                  <span>{user.packs.length} Unopened Packs</span>
-                </div>
-              </button>
-            </div>
-          )}
-          {user?.loginRecord?.collectedReward === false && (
-            <Link to={REWARDS_PAGE_URL}>
-              <div className='outline bg-blue-700 main__bg outline-black outline-2 rounded animate-pulse'>
-                <div className='font-semibold py-1'>
-                  <span>Daily Reward Available</span>
-                </div>
-              </div>
-            </Link>
-          )}
-        </section>
-      </section>
+    <nav className='nav__bg h-full relative z-30 bg-nav-colour lg:border-4 border-main-border border-b-4 border-solid grid grid-flow-col  justify-between lg:grid-rows-reg'>
 
       {/* Phone Nav */}
       <nav
         onClick={toggleNavbar}
-        className='grid items-center justify-center lg:hidden no__highlights pr-4'
+        className='grid lg:hidden no__highlights'
       >
-        <span className='cursor-pointer text-gray-100 hover:text-hover-grey'>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            strokeWidth='1.5'
-            stroke='currentColor'
-            className='w-10 h-10 transition no__highlights duration-200 ease-in-out select-none no__highlights focus:scale-125 active:scale-125'
-            data-te-animation-init
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
-            />
-          </svg>
-        </span>
+        <button className='text-white'>
+          <IoMenu size={50} />
+        </button>
       </nav>
 
       {/* Navigation */}
