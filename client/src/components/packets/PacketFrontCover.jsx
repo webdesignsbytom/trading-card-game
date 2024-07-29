@@ -1,11 +1,11 @@
 import React from 'react';
 // images
-import BrexitPack from '../../assets/img/packets/pack2.png';
+import AlphaPack from '../../assets/img/packets/pack2.png';
 
 function PacketFrontCover() {
   return (
     <div className='grid cursor-pointer'>
-      <img src={BrexitPack} alt='Brexit pack' />
+      <img src={AlphaPack} alt='Brexit pack' />
     </div>
   );
 }

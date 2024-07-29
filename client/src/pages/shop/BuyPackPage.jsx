@@ -10,15 +10,16 @@ import PackSelector from '../../components/shop/PackSelector';
 // Constants
 import { SHOP_PAGE_URL } from '../../utils/Constants';
 import { PACK_TYPE_ALPHA, PACK_TYPE_BETA, PACK_TYPE_GAMMA } from '../../utils/cards/CardGameConstants';
+import ShopHeader from '../../components/shop/ShopHeader';
 
 function BuyPackPage() {
   const { user, setUser } = useContext(UserContext);
   const { setActiveNav } = useContext(ToggleContext);
   const [togglePackPurchasing, setTogglePackPurchasing] = useState(false);
   const [costOfStandardPack] = useState(10);
-  const [purchasingCovidPack, setPurchasingCovidPack] = useState(false);
-  const [purchasingElectionPack, setPurchasingElectionPack] = useState(false);
-  const [purchasingBrexitPack, setPurchasingBrexitPack] = useState(false);
+  const [purchasingBetaPack, setPurchasingBetaPack] = useState(false);
+  const [purchasingGammaPack, setPurchasingGammaPack] = useState(false);
+  const [purchasingAlphaPack, setPurchasingAlphaPack] = useState(false);
 
   useEffect(() => {
     setActiveNav(SHOP_PAGE_URL);
@@ -34,13 +35,13 @@ function BuyPackPage() {
     };
 
     if (name === PACK_TYPE_ALPHA) {
-      setPurchasingBrexitPack(true);
+      setPurchasingAlphaPack(true);
     }
     if (name === PACK_TYPE_BETA) {
-      setPurchasingCovidPack(true);
+      setPurchasingBetaPack(true);
     }
     if (name === PACK_TYPE_GAMMA) {
-      setPurchasingElectionPack(true);
+      setPurchasingGammaPack(true);
     }
 
     client
@@ -48,15 +49,15 @@ function BuyPackPage() {
       .then((res) => {
         console.log('res', res.data);
         setUser(res.data.data.updatedUser);
-        setPurchasingElectionPack(false);
-        setPurchasingBrexitPack(false);
-        setPurchasingCovidPack(false);
+        setPurchasingGammaPack(false);
+        setPurchasingAlphaPack(false);
+        setPurchasingBetaPack(false);
       })
 
       .catch((err) => {
-        setPurchasingElectionPack(false);
-        setPurchasingBrexitPack(false);
-        setPurchasingCovidPack(false);
+        setPurchasingGammaPack(false);
+        setPurchasingAlphaPack(false);
+        setPurchasingBetaPack(false);
         console.error('Unable to buy packs', err);
       });
   };
@@ -70,53 +71,7 @@ function BuyPackPage() {
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
         <main className='grid p-2 grid-rows-reg'>
-          {/* Player data */}
-          {/* Monitor size */}
-          <section className='hidden lg:flex justify-between items-center px-4 mt-2 '>
-            <div>
-              <span className='text-xl lg:text-2xl font-semibold'>
-                £{user?.bank?.funds} 💷
-              </span>
-            </div>
-            <div className='grid justify-center items-center text-center'>
-              <h1 className='text-center text-2xl lg:text-4xl font-bold text__stroke font-gasoek tracking-wide'>
-                <span className='text-blue-600'>
-                  MON <span className='text-red-600'>CARDS</span> STORE
-                </span>
-              </h1>
-              <h2>Everything is unfairly priced!</h2>
-            </div>
-            <div>
-              <span className='text-xl lg:text-2xl font-semibold'>
-                {user?.bank?.gems} 💎
-              </span>
-            </div>
-          </section>
-          {/* PHONE SIXE */}
-          <section className='grid lg:hidden justify-center items-center px-4'>
-            <div className='grid justify-center items-center text-center w-full'>
-              <h1 className='text-center text-3xl lg:text-4xl font-bold text__stroke font-gasoek tracking-wide'>
-                <span className='text-blue-600'>
-                  MON <span className='text-red-600'>CARDS</span> STORE
-                </span>
-              </h1>
-              <h2 className='font-semibold mt-1'>
-                Everything is unfairly priced!
-              </h2>
-            </div>
-            <div className='flex justify-between w-full gap-6 mt-2'>
-              <div>
-                <span className='text-xl lg:text-2xl font-semibold text-center grid items-center'>
-                  £{user?.bank?.funds} 💷
-                </span>
-              </div>
-              <div>
-                <span className='text-xl lg:text-2xl font-semibold text-center grid items-center'>
-                  {user?.bank?.gems} 💎
-                </span>
-              </div>
-            </div>
-          </section>
+          <ShopHeader />
 
           {/* Shop main */}
           <div className='pt-4 grid '>
@@ -125,9 +80,9 @@ function BuyPackPage() {
                 <PackSelector
                   buyPacketsOfCards={buyPacketsOfCards}
                   costOfStandardPack={costOfStandardPack}
-                  purchasingCovidPack={purchasingCovidPack}
-                  purchasingElectionPack={purchasingElectionPack}
-                  purchasingBrexitPack={purchasingBrexitPack}
+                  purchasingBetaPack={purchasingBetaPack}
+                  purchasingGammaPack={purchasingGammaPack}
+                  purchasingAlphaPack={purchasingAlphaPack}
                 />
               </div>
 

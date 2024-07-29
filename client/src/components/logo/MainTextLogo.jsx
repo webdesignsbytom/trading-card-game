@@ -1,4 +1,6 @@
 import React from 'react';
+// Constants
+import { SecondaryTitle } from '../../utils/Constants';
 
 function MainTextLogo() {
   return (
@@ -9,7 +11,7 @@ function MainTextLogo() {
         </span>
       </p>
       <p className='text-gray-50 text-ss font-semibold text-center'>
-        <span>The Tory Trading Card Game</span>
+        <span>{SecondaryTitle}</span>
       </p>
     </div>
   );

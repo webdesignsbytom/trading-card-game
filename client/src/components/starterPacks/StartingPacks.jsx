@@ -1,8 +1,14 @@
 import React, { useContext, useState } from 'react';
-import { UserContext } from '../../context/UserContext';
-import client from '../../api/client';
 import { useNavigate } from 'react-router-dom';
+// Api
+import client from '../../api/client';
+// Context
+import { UserContext } from '../../context/UserContext';
+// Components
 import LoadingSpinner from '../../components/utils/LoadingSpinner';
+// Constants
+import { CARDS_IN_PACK_PAGE_URL } from '../../utils/Constants';
+
 function StartingPacks() {
   const { user } = useContext(UserContext);
 
@@ -12,10 +18,7 @@ function StartingPacks() {
 
   let navigate = useNavigate();
 
-  const homePage = () => {};
-
   const claimStarterPacks = () => {
-    console.log('CLAIMed');
     setLoadingStarterPacks(true);
     let data = { userId: user.id };
 
@@ -26,7 +29,7 @@ function StartingPacks() {
         setStarterPacks(res.data.data.packs);
         setLoadingStarterPacks(false);
         setClaimedFreePacks(true);
-        navigate('/packs/unopened');
+        navigate(CARDS_IN_PACK_PAGE_URL);
       })
       .catch((err) => {
         console.error('Unable to claim starter packs', err);

@@ -5,9 +5,9 @@ import { ToggleContext } from '../../context/ToggleContext';
 import { UserContext } from '../../context/UserContext';
 // API
 // Images
-import CovidPack from '../../assets/img/packets/pack1.png';
-import BrexitPack from '../../assets/img/packets/pack2.png';
-import ElectionPack from '../../assets/img/packets/pack3.png';
+import BetaPack from '../../assets/img/packets/pack1.png';
+import AlphaPack from '../../assets/img/packets/pack2.png';
+import GammaPack from '../../assets/img/packets/pack3.png';
 // Constants
 import { PACK_TYPE_ALPHA, PACK_TYPE_BETA, PACK_TYPE_GAMMA } from '../../utils/cards/CardGameConstants';
 
@@ -36,13 +36,13 @@ function OpenablePacket({ pack }) {
           </div>
           <div>
             {pack.packType === PACK_TYPE_ALPHA && (
-              <img src={BrexitPack} alt='Brexit pack' />
+              <img src={AlphaPack} alt='Brexit pack' />
             )}
             {pack.packType === PACK_TYPE_BETA && (
-              <img src={CovidPack} alt='Covid pack' />
+              <img src={BetaPack} alt='Covid pack' />
             )}
             {pack.packType === PACK_TYPE_GAMMA && (
-              <img src={ElectionPack} alt='Election pack' />
+              <img src={GammaPack} alt='Election pack' />
             )}
           </div>
         </article>

@@ -1,35 +1,50 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 // Images
-import CovidPack from '../../assets/img/packets/pack1.png';
+import BetaPack from '../../assets/img/packets/pack1.png';
 import ItemsImg from '../../assets/img/invintory/items.png';
+// Constants
+import { CARDS_IN_PACK_PAGE_URL, INVENTORY_ITEMS_PAGE_URL } from '../../utils/Constants';
 
 function InvintoryOptions() {
   let navigate = useNavigate();
 
   const toggleOpenPackets = () => {
-    navigate('/packs/unopened');
+    navigate(CARDS_IN_PACK_PAGE_URL);
   };
 
   const toggleOpenItems = () => {
-    navigate('/invintory/items');
+    navigate(INVENTORY_ITEMS_PAGE_URL);
   };
 
+  const arrayOfInvintoryItems = [
+    {
+      name: 'cardPacks',
+      title: 'Card Packs',
+      function: toggleOpenPackets,
+      image: BetaPack,
+    },
+    {
+      name: 'items',
+      title: 'Items',
+      function: toggleOpenItems,
+      image: ItemsImg,
+    },
+  ];
+
   return (
-    <section className='grid'>
+    <section className='grid bg-white main__bg rounded-lg outline outline-2 outline-black shadow-2xl'>
       <div className='grid grid-cols-2 lg:grid-cols-4 mt-4'>
-        <div className='p-4 text-center h-fit grid justify-center'>
-          <span className='text-3xl mb-2 font-semibold'>Card Packs</span>
-          <div className='cursor-pointer mt-4' onClick={toggleOpenPackets}>
-            <img src={CovidPack} alt='Covid pack' />
-          </div>
-        </div>
-        <div className='p-4 text-center h-fit grid justify-center'>
-          <span className='text-3xl mb-2 font-semibold'>Items</span>
-          <div className='cursor-pointer mt-4' onClick={toggleOpenItems}>
-            <img src={ItemsImg} alt='Covid pack' />
-          </div>
-        </div>
+        {arrayOfInvintoryItems.map((item, index) => {
+          return (
+            <article key={index} className='p-4 text-center h-fit grid justify-center'>
+              <span className='text-3xl mb-2 font-semibold'>{item.title}</span>
+              <div className='cursor-pointer mt-4' onClick={item.function}>
+                <img src={item.image} alt={item.title} />
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );

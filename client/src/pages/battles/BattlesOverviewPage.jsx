@@ -28,7 +28,6 @@ function BattlesOverviewPage() {
     setActiveNav(BATTLES_PAGE_URL);
   }, []);
 
-  console.log('openBattleRequests', openBattleRequests);
 
   useEffect(() => {
     client

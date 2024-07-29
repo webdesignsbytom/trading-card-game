@@ -6,8 +6,7 @@ import Card from '../../components/card/Card';
 
 function CardOverviewPage() {
   const location = useLocation();
-  console.log('location', location);
-  console.log('location', location.state);
+
   const cardData = location.state;
 
 

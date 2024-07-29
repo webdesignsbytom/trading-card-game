@@ -3,11 +3,21 @@ import React, { useContext, useEffect, useState } from 'react';
 import Navbar from '../../components/nav/Navbar';
 // Context
 import { UserContext } from '../../context/UserContext';
-import { calenderDataArray } from '../../utils/CalenderData';
+import { ToggleContext } from '../../context/ToggleContext';
 // Components
 import Card from '../../components/card/Card';
 import RewardCalenderSquare from '../../components/calander/RewardCalenderSquare';
-import { ToggleContext } from '../../context/ToggleContext';
+// Constants
+import {
+  FiveDayLoginReward,
+  OneDayLoginReward,
+  TenDayLoginReward,
+  ThirtyDayLoginReward,
+  TwentyDayLoginReward,
+} from '../../utils/cards/CardGameConstants';
+import { REWARDS_PAGE_URL } from '../../utils/Constants';
+// Data
+import { calenderDataArray } from '../../utils/CalenderData';
 
 function RewardsPage() {
   const { user } = useContext(UserContext);
@@ -19,7 +29,7 @@ function RewardsPage() {
   console.log('rewardData', rewardData);
 
   useEffect(() => {
-    setActiveNav('/rewards');
+    setActiveNav(REWARDS_PAGE_URL);
   }, []);
 
   const collectReward = () => {
@@ -43,11 +53,11 @@ function RewardsPage() {
 
             <div className='mt-10'>
               <article className='grid justify-center text-xl font-semibold text-center gap-4'>
-                <span>Daily Reward: 1 Card</span>
-                <span>5x Days : 1 Pack</span>
-                <span>10x Days: 1 Mega Rare Holo Card</span>
-                <span>20x Days: 5 Packs</span>
-                <span>30x Days: 10 Packs 2 Ultimate Cards</span>
+                <span>Daily Reward: {OneDayLoginReward}</span>
+                <span>5x Days : {FiveDayLoginReward}</span>
+                <span>10x Days: {TenDayLoginReward}</span>
+                <span>20x Days: {TwentyDayLoginReward}</span>
+                <span>30x Days: {ThirtyDayLoginReward}</span>
               </article>
             </div>
           </section>
@@ -96,6 +106,7 @@ function RewardsPage() {
                   <button
                     className='outline outline-2 my-2 outline-black rounded p-2 bg-blue-700 hover:bg-blue-500 active:scale-95 main__bg text-white font-semibold text-xl'
                     onClick={collectReward}
+                    aria-label='Close reward modal'
                   >
                     CLOSE
                   </button>

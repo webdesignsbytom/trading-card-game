@@ -12,31 +12,29 @@ import { ADMIN_PAGE_URL } from '../../utils/Constants';
 function AdminPage() {
   const { setActiveNav } = useContext(ToggleContext);
 
-  const [userComponentSelected, setUserComponentSelected] = useState(false);
-  const [cardComponentSelected, setCardComponentSelected] = useState(true);
-  const [errorComponentSelected, setErrorComponentSelected] = useState(false);
+  const [selectedComponent, setSelectedComponent] = useState('cards');
 
-  
   useEffect(() => {
     setActiveNav(ADMIN_PAGE_URL);
   }, []);
 
-  const openUsersOverview = () => {
-    setCardComponentSelected(false);
-    setErrorComponentSelected(false);
-    setUserComponentSelected(true);
-  };
+  const BUTTON_OPTIONS = [
+    { label: 'USERS', action: () => setSelectedComponent('users') },
+    { label: 'CARDS', action: () => setSelectedComponent('cards') },
+    { label: 'EVENTS', action: () => setSelectedComponent('events') },
+  ];
 
-  const openEventOverview = () => {
-    setCardComponentSelected(false);
-    setUserComponentSelected(false);
-    setErrorComponentSelected(true);
-  };
-
-  const openCardsOverview = () => {
-    setErrorComponentSelected(false);
-    setUserComponentSelected(false);
-    setCardComponentSelected(true);
+  const renderSelectedComponent = () => {
+    switch (selectedComponent) {
+      case 'users':
+        return <UserOverviewAdminComponent />;
+      case 'cards':
+        return <CardOverviewAdminComponent />;
+      case 'events':
+        return <ErrorOverviewAdminComponent />;
+      default:
+        return null;
+    }
   };
 
   return (
@@ -51,38 +49,22 @@ function AdminPage() {
               </div>
 
               <div className='grid justify-end grid-flow-col gap-4 items-center'>
-                <div>
-                  <button
-                    onClick={openUsersOverview}
-                    className='outline outline-2 outline-black bg-blue-500 hover:bg-blue-700 active:scale-95 p-2 text-white rounded-xl'
-                  >
-                    USERS
-                  </button>
-                </div>
-                <div>
-                  <button
-                    onClick={openCardsOverview}
-                    className='outline outline-2 outline-black bg-blue-500 hover:bg-blue-700 active:scale-95 p-2 text-white rounded-xl'
-                  >
-                    CARDS
-                  </button>
-                </div>
-                <div>
-                  <button
-                    onClick={openEventOverview}
-                    className='outline outline-2 outline-black bg-blue-500 hover:bg-blue-700 active:scale-95 p-2 text-white rounded-xl'
-                  >
-                    EVENTS
-                  </button>
-                </div>
+                {BUTTON_OPTIONS.map(({ label, action }) => (
+                  <div key={label}>
+                    <button
+                      onClick={action}
+                      className='outline outline-2 outline-black bg-blue-500 hover:bg-blue-700 active:scale-95 p-2 text-white rounded-xl'
+                    >
+                      {label}
+                    </button>
+                  </div>
+                ))}
               </div>
             </section>
 
             {/* Main */}
             <section className='grid bg-blue-100 rounded-xl mt-2 h-full overflow-hidden'>
-              {userComponentSelected && <UserOverviewAdminComponent />}
-              {cardComponentSelected && <CardOverviewAdminComponent />}
-              {errorComponentSelected && <ErrorOverviewAdminComponent />}
+              {renderSelectedComponent()}
             </section>
           </div>
         </main>

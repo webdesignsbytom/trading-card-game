@@ -2,52 +2,45 @@ import React, { useContext, useEffect, useState } from 'react';
 // Components
 import Navbar from '../../components/nav/Navbar';
 import Card from '../../components/card/Card';
+import LoadingSpinner from '../../components/utils/LoadingSpinner';
 // Context
 import { ToggleContext } from '../../context/ToggleContext';
 // Utils
 import client from '../../api/client';
-import LoadingSpinner from '../../components/utils/LoadingSpinner';
+// Constants
+import { CARDS_PAGE_URL } from '../../utils/Constants';
 
 function CardsAvailablePage() {
   const { setActiveNav } = useContext(ToggleContext);
 
-  const [allCardsArray, setAllCardsArray] = useState([]);
-  const [searchQuery, setSearchQuery] = useState({ cardName: '' });
+  const [allCards, setAllCards] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [cardNotFound, setCardNotFound] = useState(false);
   const [foundCards, setFoundCards] = useState([]);
 
   useEffect(() => {
-    setActiveNav('/cards');
-    console.log('useEFFECT');
+    setActiveNav(CARDS_PAGE_URL);
+
     client
-      .get(`/mon-cards/all-cards`)
+      .get('/mon-cards/all-cards')
       .then((res) => {
-        setAllCardsArray(res.data.data.cards);
+        setAllCards(res.data.data.cards);
       })
       .catch((err) => {
         console.error('Unable to retrieve all cards', err);
       });
   }, []);
 
-  const handleTypeChange = () => {};
-
   const handleSearchChange = (event) => {
-    const { value } = event.target;
-
-    setSearchQuery({
-      ...setSearchQuery,
-      cardName: value,
-    });
+    setSearchQuery(event.target.value);
   };
 
   const searchForCard = () => {
-    console.log('xxx', searchQuery);
     setCardNotFound(false);
 
     client
-      .post(`/mon-cards/card/search-cards-by-name`, searchQuery)
+      .post('/mon-cards/card/search-cards-by-name', { cardName: searchQuery })
       .then((res) => {
-        console.log('res', res.data.data);
         setFoundCards(res.data.data.cards);
       })
       .catch((err) => {
@@ -57,6 +50,12 @@ function CardsAvailablePage() {
         }
       });
   };
+
+  const renderCards = (cards) => {
+    return cards.map((card, index) => <Card key={index} cardData={card} />);
+  };
+
+  const cardOptions = ['Number', 'Rarity', 'Name A-Z', 'Pack Type', 'Card Type'];
 
   return (
     <div className='bg-black main__bg h-screen grid'>
@@ -68,7 +67,7 @@ function CardsAvailablePage() {
               <div className='hidden lg:grid grid-cols-3 mb-4 outline outline-4 outline-red-700 rounded bg-blue-600 main__bg py-2 px-4'>
                 <div className='flex justify-start items-center'>
                   <h3 className='text-sm md:text-xl font-semibold'>
-                    Total Cards: {allCardsArray?.length}
+                    Total Cards: {allCards.length}
                   </h3>
                 </div>
                 <div className='grid items-center justify-center p-1 w-full'>
@@ -78,6 +77,7 @@ function CardsAvailablePage() {
                       type='text'
                       name='cardName'
                       id='cardName'
+                      value={searchQuery}
                       onChange={handleSearchChange}
                       placeholder='Search the collection...'
                     />
@@ -93,23 +93,23 @@ function CardsAvailablePage() {
                   <select
                     id='displayValue'
                     name='displayValue'
-                    onChange={handleTypeChange}
+                    onChange={() => {}}
                     className='rounded p-1 h-fit'
                     required
                   >
-                    <option defaultValue='Number'>Number</option>
-                    <option value='Rarity'>Rarity</option>
-                    <option value='Name A-Z'>Name A-Z</option>
-                    <option value='Pack Type'>Pack Type</option>
-                    <option value='Card Type'>Card Type</option>
+                    {cardOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
                   </select>
                 </section>
               </div>
-              {/* phone size */}
+              {/* Phone size */}
               <div className='grid lg:hidden grid-rows-reg mb-4 outline outline-4 outline-black bg-blue-600 main__bg py-2 px-2'>
                 <div className='flex justify-center text-center w-full items-center'>
                   <h3 className='text-sm md:text-xl font-semibold'>
-                    Total Cards: {allCardsArray?.length}
+                    Total Cards: {allCards.length}
                   </h3>
                 </div>
                 <div className='flex justify-between'>
@@ -119,6 +119,7 @@ function CardsAvailablePage() {
                       type='text'
                       name='cardName'
                       id='cardName'
+                      value={searchQuery}
                       onChange={handleSearchChange}
                       placeholder='Search the collection...'
                     />
@@ -133,35 +134,30 @@ function CardsAvailablePage() {
                     <select
                       id='country'
                       name='country'
-                      onChange={handleTypeChange}
+                      onChange={() => {}}
                       className='rounded px-2 h-full'
                       required
                     >
-                      <option defaultValue='Number'>Number</option>
-                      <option value='Rarity'>Rarity</option>
-                      <option value='Name A-Z'>Name A-Z</option>
-                      <option value='Pack Type'>Pack Type</option>
-                      <option value='Card Type'>Card Type</option>
+                      {cardOptions.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
                     </select>
                   </section>
                 </div>
               </div>
 
               <section className='grid h-full'>
-                {allCardsArray.length <= 0 && (
+                {allCards.length <= 0 ? (
                   <div className='grid w-full justify-center items-center text-white text-3xl text-center'>
                     <LoadingSpinner />
                   </div>
+                ) : (
+                  <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-y-4 gap-x-3 p-4 sm:p-0'>
+                    {renderCards(foundCards.length > 0 ? foundCards : allCards)}
+                  </div>
                 )}
-                <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-y-4 gap-x-3 p-4 sm:p-0'>
-                  {foundCards.map((card, index) => {
-                    return <Card key={index} cardData={card} />;
-                  })}
-
-                  {allCardsArray.map((card, index) => {
-                    return <Card key={index} cardData={card} />;
-                  })}
-                </div>
               </section>
             </section>
           </main>

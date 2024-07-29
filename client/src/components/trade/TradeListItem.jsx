@@ -1,15 +1,12 @@
 import React, { useContext } from 'react';
 // Api
 import client from '../../api/client';
-import { useNavigate } from 'react-router-dom';
 // Context
 import { TradingContext } from '../../context/TradingContext';
 
 function TradeListItem({ trade }) {
   const { openTradeItem, closeTradeItem, tradeItemOpen } =
     useContext(TradingContext);
-
-  console.log('ppppppp', trade);
 
   const deleteTrade = (trade) => {
     client
