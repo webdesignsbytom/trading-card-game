@@ -11,23 +11,23 @@ function CardOverviewPage() {
 
 
   return (
-    <div className='bg-black main__bg h-screen grid lg:overflow-hidden'>
-      <section className='grid h-full bg-black lg:overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
+    <div className='grid lg:overflow-hidden bg-green-300 main__bg h-screen'>
+      <section className='grid h-full lg:overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
         <main className='grid overflow-hidden h-full w-full p-2'>
           <div className='grid grid-rows-reg h-full overflow-hidden'>
+
             <section className='grid w-full my-2 px-2'>
-              <article className='bg-white py-2 px-4 rounded-xl w-full text-center grid items-center justify-center main__bg outline-4 outline outline-blue-600'>
-                <h1 className='text-xl font-semibold'>CARD INFORMATION</h1>
+              <article className='grid bg-main-colour py-1 px-4 rounded-xl w-full text-center items-center justify-center main__bg border-2 border-main-border border-solid shadow-lg'>
                 <h2 className='font-semibold lg:text-xl'>{cardData?.cardName}</h2>
               </article>
             </section>
 
-            <section className='grid h-full lg:grid-cols-2 py-4 px-2 gap-6 overflow-hidden'>
-              <section className='grid h-full rounded-xl bg-white main__bg outline outline-4 outline-blue-800 p-4 overflow-hidden'>
+            <section className='grid h-full lg:grid-cols-2 py-2 px-2 gap-4 overflow-hidden'>
+              <section className='grid h-full w-full overflow-hidden'>
                 <Card cardData={cardData} />
               </section>
-              <section className='grid h-full bg-white rounded-xl main__bg outline outline-4 outline-blue-800 overflow-hidden'>
+              <section className='grid h-full bg-white rounded-xl main__bg border-2 border-main-border border-solid shadow-lg overflow-hidden'>
                 data
               </section>
             </section>

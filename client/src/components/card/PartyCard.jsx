@@ -44,64 +44,68 @@ function PartyCard({ cardData }) {
   }, []);
 
   return (
-    <section
+    <article
       onClick={() => toggleCardData(cardData)}
-      className={`outline outline-4 grid grid-rows-a1a outline-red-800 h-full text-white rounded px-2 py-[1px] ${bgColour} card__bg`}
+      className={`grid h-full text-white overflow-hidden`}
     >
-      <div className='flex justify-between items-center text-sm my-1'>
-        <h2 className='text-white capitalize'>{cardData.partyCard.name}</h2>
-      </div>
-
-      <section className='grid grid-rows-2 h-full'>
-        <div className='mb-1 h-full outline outline-1 outline-black bg-white'>
-          <img className='h-full' src={cardData.imageUrl} alt='card' />
+      <div
+        className={`grid grid-rows-a1a rounded-lg overflow-hidden px-2 py-[1px] ${bgColour} card__bg border-8 border-card-border border-solid`}
+      >
+        <div className='flex justify-between items-center text-sm my-1'>
+          <h2 className='text-white capitalize'>{cardData.partyCard.name}</h2>
         </div>
 
-        <section className='grid grid-rows-reg'>
-          <div className='flex justify-between text-sm outline outline-1 outline-black py-1 mt-1 px-[2px]'>
-            <p className='text-white capitalize'>{cardData.cardType}</p>
-            <div className='flex'>
-              <p className='text-white'>
-                {cardData.packType === PACK_TYPE_ALPHA && <span>🏝️</span>}
-                {cardData.packType === PACK_TYPE_BETA && <span>🦠</span>}
-                {cardData.packType === PACK_TYPE_GAMMA && <span>👑</span>}
-              </p>
-              <p className='text-white'>
-                {cardData.edition === 'first' && <span>1️⃣</span>}
-                {cardData.edition === 'Second' && <span>2️⃣</span>}
-                {cardData.edition === 'Third' && <span>1️3️⃣</span>}
-                {cardData.edition === 'Fourth' && <span>1️4️⃣</span>}
-              </p>
-            </div>
+        <section className='grid grid-rows-2 h-full'>
+          <div className='mb-1 h-full outline outline-1 outline-black bg-white'>
+            <img className='h-full' src={cardData.imageUrl} alt='card' />
           </div>
 
-          <div className='py-1 px-[2px]'>
-            <h3 className='text-white flex justify-between'>
-              <span className='lg:text-base text-xs font-semibold'>
-                Power Up:
-              </span>
-              <span>{cardData.partyCard.powerUp}</span>
-            </h3>
-            <h4 className='text-white text-xs leading-3 mb-1'>
-              <span className='text-xs lg:text-base'>Stat:</span>{' '}
-              <span className='text-ss leading-3 lg:text-xs'>
-                Effect stat on enemy
-              </span>
-            </h4>
-            <h5 className='text-white text-xs leading-3'>
-              <span className='text-xs lg:text-base'>Effect:</span>{' '}
-              <span className='text-ss leading-3 lg:text-xs'>
-                {cardData.partyCard.effect}
-              </span>
-            </h5>
-          </div>
+          <section className='grid grid-rows-reg'>
+            <div className='flex justify-between text-sm py-1 border-solid border-2 border-main-border '>
+              <p className='text-white capitalize'>{cardData.cardType}</p>
+              <div className='flex'>
+                <p className=''>
+                  {cardData.packType === PACK_TYPE_ALPHA && <span>🏝️</span>}
+                  {cardData.packType === PACK_TYPE_BETA && <span>🦠</span>}
+                  {cardData.packType === PACK_TYPE_GAMMA && <span>👑</span>}
+                </p>
+                <p className=''>
+                  {cardData.edition === 'first' && <span>1️⃣</span>}
+                  {cardData.edition === 'Second' && <span>2️⃣</span>}
+                  {cardData.edition === 'Third' && <span>1️3️⃣</span>}
+                  {cardData.edition === 'Fourth' && <span>1️4️⃣</span>}
+                </p>
+              </div>
+            </div>
+
+            <div className='py-1 px-[2px]'>
+              <h3 className='text-white flex justify-between'>
+                <span className='lg:text-base text-xs font-semibold'>
+                  Power Up:
+                </span>
+                <span>{cardData.partyCard.powerUp}</span>
+              </h3>
+              <h4 className='text-white text-xs leading-3 mb-1'>
+                <span className='text-xs lg:text-base'>Stat:</span>{' '}
+                <span className='text-ss leading-3 lg:text-xs'>
+                  Effect stat on enemy
+                </span>
+              </h4>
+              <h5 className='text-white text-xs leading-3'>
+                <span className='text-xs lg:text-base'>Effect:</span>{' '}
+                <span className='text-ss leading-3 lg:text-xs'>
+                  {cardData.partyCard.effect}
+                </span>
+              </h5>
+            </div>
+          </section>
         </section>
-      </section>
-      <div className='flex justify-between text-ss'>
-        <p className='text-white'>{cardData.rarity}</p>
-        <p className='text-white'>#{cardData.id}</p>
+        <div className='flex justify-between text-ss'>
+          <p className='text-white'>{cardData.rarity}</p>
+          <p className='text-white'>#{cardData.id}</p>
+        </div>
       </div>
-    </section>
+    </article>
   );
 }
 

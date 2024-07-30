@@ -18,7 +18,7 @@ module.exports = {
         'main-border': '#000000',
         'main-button': '#60a5fa',
         'selected-button': '#1d4ed8',
-        'colour-light': '#6DC85A',
+        'card-border': '#ffffff',
         'colour-med': '#32931D',
         'colour-dark': '#1A7408',
         'transparent-black': 'rgba(0, 0, 0, 0.65)',
