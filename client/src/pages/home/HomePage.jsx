@@ -22,7 +22,7 @@ function HomePage() {
     <div className='bg-main-colour main__bg h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
-        <main className='grid'>
+        <main className='grid border-solid border-main-border border-b-2 border-l-2 border-r-2 lg:border-l-0 lg:border-t-2 shadow-[inset_-1px_43px_35px_48px_#00000024]'>
           <section className='grid h-full p-2'>
             {user.email && !user.collectedStartedPacks && (
               <>

@@ -126,7 +126,7 @@ function SmallScreenNavbar({ logoutUser }) {
               )}
             </section>
 
-            <ul className='text-center grid h-fit bg-black w-full text-xl border-2 border-solid border-main-border'>
+            <ul className='text-center grid h-fit bg-black w-full text-xl font-fantasy border-2 border-solid border-main-border overflow-hidden rounded-lg'>
               <NavButton
                 to={HOME_PAGE_URL}
                 activeNav={activeNav}

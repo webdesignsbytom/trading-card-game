@@ -196,9 +196,9 @@ model Event {
 }
 
 enum PackType {
-  BREXIT
-  COVID
-  ELECTION
+  ALPHA
+  BETA
+  GAMMA
 }
 
 enum CardType {

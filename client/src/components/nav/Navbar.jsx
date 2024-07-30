@@ -26,7 +26,7 @@ function Navbar() {
   };
 
   return (
-    <nav className='grid h-full w-full'>
+    <nav className='grid h-full w-full font-poppins'>
       <div className='grid h-full nav__bg bg-nav-colour'>
         <section className='relative grid lg:hidden shadow-[inset_-1px_18px_35px_22px_#00000024] border-2 border-main-border border-solid'>
           <SmallScreenNavbar logoutUser={logoutUser} />

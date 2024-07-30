@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'FantasyFont';
+  src: url('../assets/fonts/SEVESBRG.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .text__stroke {
     /* Prefix required. Even Firefox only supports the -webkit- prefix */
     color: black;
