@@ -14,6 +14,7 @@ import {
   INVENTORY_PAGE_URL,
   REWARDS_PAGE_URL,
   UNOPENED_PACKS_URL,
+  DEV_PAGE_URL,
 } from '../../utils/Constants';
 // Context
 import { UserContext } from '../../context/UserContext';
@@ -177,6 +178,14 @@ function SmallScreenNavbar({ logoutUser }) {
                   to={ADMIN_PAGE_URL}
                   activeNav={activeNav}
                   text='Admin'
+                  onClick={navigateToPage}
+                />
+              )}
+              {user.role === 'DEVELOPER' && (
+                <NavButton
+                  to={DEV_PAGE_URL}
+                  activeNav={activeNav}
+                  text='Developer'
                   onClick={navigateToPage}
                 />
               )}

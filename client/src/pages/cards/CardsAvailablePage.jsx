@@ -9,6 +9,7 @@ import { ToggleContext } from '../../context/ToggleContext';
 import client from '../../api/client';
 // Constants
 import { CARDS_PAGE_URL, GET_ALL_CARDS_API } from '../../utils/Constants';
+import EmptyCardSlot from '../../components/card/EmptyCardSlot';
 
 function CardsAvailablePage() {
   const { setActiveNav } = useContext(ToggleContext);
@@ -18,9 +19,12 @@ function CardsAvailablePage() {
   const [cardNotFound, setCardNotFound] = useState(false);
   const [foundCards, setFoundCards] = useState([]);
 
+  console.log('foundCards', foundCards);
   useEffect(() => {
     setActiveNav(CARDS_PAGE_URL);
+  }, []);
 
+  useEffect(() => {
     client
       .get(GET_ALL_CARDS_API)
       .then((res) => {
@@ -53,10 +57,16 @@ function CardsAvailablePage() {
   };
 
   const renderCards = (cards) => {
-    return cards.map((card, index) => <Card key={index} cardData={card} />);
+    return cards.map((card, index) => <EmptyCardSlot key={index} cardData={card} />);
   };
 
-  const cardOptions = ['Number', 'Rarity', 'Name A-Z', 'Pack Type', 'Card Type'];
+  const cardOptions = [
+    'Number',
+    'Rarity',
+    'Name A-Z',
+    'Pack Type',
+    'Card Type',
+  ];
 
   return (
     <div className='bg-black main__bg h-screen grid'>

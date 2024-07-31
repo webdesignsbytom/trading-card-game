@@ -6,6 +6,7 @@ export const SIGN_UP_PAGE_URL = '/sign-up';
 export const ALBUM_PAGE_URL = '/album';
 export const TRADING_PAGE_URL = '/trading';
 export const ADMIN_PAGE_URL = '/admin';
+export const DEV_PAGE_URL = '/developer';
 export const CARDS_PAGE_URL = '/cards';
 export const BATTLES_PAGE_URL = '/battles';
 export const INVENTORY_PAGE_URL = '/invintory';

@@ -14,6 +14,7 @@ import {
   INVENTORY_PAGE_URL,
   REWARDS_PAGE_URL,
   UNOPENED_PACKS_URL,
+  DEV_PAGE_URL,
 } from '../../utils/Constants';
 // Context
 import { UserContext } from '../../context/UserContext';
@@ -102,6 +103,13 @@ function LargeScreenNavbar({ logoutUser }) {
             {(user.role === 'ADMIN' || user.role === 'DEVELOPER') && (
               <NavItem to={ADMIN_PAGE_URL} activeNav={activeNav} text='Admin' />
             )}
+            {user.role === 'DEVELOPER' && (
+              <NavItem
+                to={DEV_PAGE_URL}
+                activeNav={activeNav}
+                text='Developer'
+              />
+            )}
             <NavItem
               to={CARDS_PAGE_URL}
               activeNav={activeNav}
@@ -145,8 +153,12 @@ const NavItem = ({ to, activeNav, text, bottom }) => (
   <li
     className={
       activeNav === to
-        ? `w-full no__highlights nav__bg hover:bg-selected-button active:scale-95 grid py-2 ${bottom ? 'border-b-2 border-t-2' : 'border-t-2'} border-solid border-main-border bg-selected-button text-gray-800 font-semibold`
-        : `w-full no__highlights nav__bg hover:bg-selected-button active:scale-95 grid py-2 ${bottom ? 'border-b-2 border-t-2' : 'border-t-2'} border-solid border-main-border bg-main-button text-gray-800 font-semibold`
+        ? `w-full no__highlights nav__bg hover:bg-selected-button active:scale-95 grid py-2 ${
+            bottom ? 'border-b-2 border-t-2' : 'border-t-2'
+          } border-solid border-main-border bg-selected-button text-gray-800 font-semibold`
+        : `w-full no__highlights nav__bg hover:bg-selected-button active:scale-95 grid py-2 ${
+            bottom ? 'border-b-2 border-t-2' : 'border-t-2'
+          } border-solid border-main-border bg-main-button text-gray-800 font-semibold`
     }
   >
     <Link className='w-full' to={to}>
