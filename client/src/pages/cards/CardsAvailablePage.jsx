@@ -8,7 +8,7 @@ import { ToggleContext } from '../../context/ToggleContext';
 // Utils
 import client from '../../api/client';
 // Constants
-import { CARDS_PAGE_URL } from '../../utils/Constants';
+import { CARDS_PAGE_URL, GET_ALL_CARDS_API } from '../../utils/Constants';
 
 function CardsAvailablePage() {
   const { setActiveNav } = useContext(ToggleContext);
@@ -22,8 +22,9 @@ function CardsAvailablePage() {
     setActiveNav(CARDS_PAGE_URL);
 
     client
-      .get('/mon-cards/all-cards')
+      .get(GET_ALL_CARDS_API)
       .then((res) => {
+        console.log('res', res.data.data.cards);
         setAllCards(res.data.data.cards);
       })
       .catch((err) => {

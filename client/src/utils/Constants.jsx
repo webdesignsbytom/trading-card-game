@@ -27,3 +27,6 @@ export const TEST_CARD_PAGE_URL = '/test/card';
 
 // Text data
 export const SecondaryTitle = 'The Monster Trading Card Game'
+
+// API
+export const GET_ALL_CARDS_API = '/mon-cards/get-all-cards'

@@ -8,6 +8,7 @@ import PolicyCard from './PolicyCard';
 import { CARD_TYPE_ALPHA, CARD_TYPE_BETA, CARD_TYPE_GAMMA } from '../../utils/cards/CardGameConstants';
 
 function Card({ cardData }) {
+  console.log('CARD DATA', cardData);
   if (!cardData.id) {
     return <EmptyCardSlot />;
   }

@@ -18,7 +18,7 @@ import {
 
 const router = Router();
 
-router.get('/all-cards', getAllCards);
+router.get('/get-all-cards', getAllCards);
 router.get('/all-card-instances', getAllCardInstances);
 router.get('/pack/:packType', getAllCardsFromPackType);
 router.get('/card/get-by-id/:cardId', getCardById);

@@ -27,6 +27,7 @@ import { createSingleCardsForUser } from '../utils/createCards.js';
 // Get all cards from all packs
 export const getAllCards = async (req, res) => {
   console.log('getAllCards');
+  
   try {
     const foundCards = await findAllCards();
     console.log('found cards', foundCards);
