@@ -19,6 +19,7 @@ export const CARD_TYPE_SPECIAL = 'SPECIAL';
 // Rarity types
 export const RAREHOLO_CARD_RARITY = 'RAREHOLO';
 export const MEGARAREHOLO_CARD_RARITY = 'MEGARAREHOLO';
+export const ULTIMATE_CARD_RARITY = 'ULTIMATE';
 
 // Card idition
 export const FIRST_EDITION = 'first';
@@ -48,12 +49,20 @@ export const PACK_TYPE_ICONS = {
   ALPHA: '🏝️',
   BETA: '🦠',
   GAMMA: '👑',
-  COVID: '😷', 
+  COVID: '😷',
 };
 
 export const EDITION_ICONS = {
-    first: '1️⃣',
-    second: '2️⃣',
-    third: '3️⃣',
-    fourth: '4️⃣',
-  };
+  first: '1️⃣',
+  second: '2️⃣',
+  third: '3️⃣',
+  fourth: '4️⃣',
+};
+
+export const cardOrderOptions = [
+  'Number',
+  'Rarity',
+  'Name A-Z',
+  'Pack Type',
+  'Card Type',
+];

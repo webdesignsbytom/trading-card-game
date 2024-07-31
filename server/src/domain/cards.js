@@ -6,9 +6,7 @@ export const findAllCards = () =>
       createdAt: 'asc',
     },
     include: {
-      monsterDetail: true,
-      itemDetail: true,
-      powerUpDetail: true,
+      cardStats: true,  
     },
   });
 

@@ -1,4 +1,4 @@
-export const cards = [
+export const cardArrayAlpha = [
   {
     serialNumber: 'a-001',
     cardName: 'Common Alpha Monster card test 1',
@@ -9,10 +9,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png',
     backgroundColour: 'BLUE',
-    monsterDetail: {
-      monsterClass: 'ELEMENTAL',
-      health: 100,
-      attack: 20,
+    cardStats: {
+      create: [
+        {
+          value: 100,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 20,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -25,10 +34,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/002.png',
     backgroundColour: 'GREEN',
-    monsterDetail: {
-      monsterClass: 'ELEMENTAL',
-      health: 120,
-      attack: 25,
+    cardStats: {
+      create: [
+        {
+          value: 120,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 25,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -41,10 +59,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/003.png',
     backgroundColour: 'GREEN',
-    monsterDetail: {
-      monsterClass: 'ELEMENTAL',
-      health: 150,
-      attack: 30,
+    cardStats: {
+      create: [
+        {
+          value: 150,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 30,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -57,10 +84,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png',
     backgroundColour: 'GREEN',
-    monsterDetail: {
-      monsterClass: 'ELEMENTAL',
-      health: 150,
-      attack: 35,
+    cardStats: {
+      create: [
+        {
+          value: 150,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 35,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -73,10 +109,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/005.png',
     backgroundColour: 'GREEN',
-    monsterDetail: {
-      monsterClass: 'ELEMENTAL',
-      health: 180,
-      attack: 40,
+    cardStats: {
+      create: [
+        {
+          value: 180,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 40,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -89,10 +134,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/006.png',
     backgroundColour: 'RED',
-    monsterDetail: {
-      monsterClass: 'ELEMENTAL',
-      health: 200,
-      attack: 50,
+    cardStats: {
+      create: [
+        {
+          value: 200,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 50,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -105,9 +159,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png',
     backgroundColour: 'WHITE',
-    itemDetail: {
-      effectType: 'DRAW',
-      effectValue: 50,
+    cardStats: {
+      create: [
+        {
+          value: 50,
+          description: 'Draw Effect',
+          itemEffectType: 'DRAW',
+        },
+      ],
     },
   },
   {
@@ -120,9 +179,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/008.png',
     backgroundColour: 'BLUE',
-    itemDetail: {
-      effectType: 'DRAW',
-      effectValue: 60,
+    cardStats: {
+      create: [
+        {
+          value: 60,
+          description: 'Draw Effect',
+          itemEffectType: 'DRAW',
+        },
+      ],
     },
   },
   {
@@ -135,9 +199,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/009.png',
     backgroundColour: 'PURPLE',
-    itemDetail: {
-      effectType: 'DRAW',
-      effectValue: 70,
+    cardStats: {
+      create: [
+        {
+          value: 70,
+          description: 'Draw Effect',
+          itemEffectType: 'DRAW',
+        },
+      ],
     },
   },
   {
@@ -150,9 +219,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/010.png',
     backgroundColour: 'YELLOW',
-    itemDetail: {
-      effectType: 'DRAW',
-      effectValue: 80,
+    cardStats: {
+      create: [
+        {
+          value: 80,
+          description: 'Draw Effect',
+          itemEffectType: 'DRAW',
+        },
+      ],
     },
   },
   {
@@ -165,9 +239,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/011.png',
     backgroundColour: 'PURPLE',
-    itemDetail: {
-      effectType: 'DRAW',
-      effectValue: 90,
+    cardStats: {
+      create: [
+        {
+          value: 90,
+          description: 'Draw Effect',
+          itemEffectType: 'DRAW',
+        },
+      ],
     },
   },
   {
@@ -180,9 +259,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/012.png',
     backgroundColour: 'BLACK',
-    itemDetail: {
-      effectType: 'DRAW',
-      effectValue: 100,
+    cardStats: {
+      create: [
+        {
+          value: 100,
+          description: 'Draw Effect',
+          itemEffectType: 'DRAW',
+        },
+      ],
     },
   },
   {
@@ -195,9 +279,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/013.png',
     backgroundColour: 'BLACK',
-    powerUpDetail: {
-      effectType: 'HEALTH',
-      effectValue: 50,
+    cardStats: {
+      create: [
+        {
+          value: 50,
+          description: 'Health Effect',
+          powerUpEffectType: 'HEALTH',
+        },
+      ],
     },
   },
   {
@@ -210,9 +299,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/014.png',
     backgroundColour: 'BLUE',
-    powerUpDetail: {
-      effectType: 'HEALTH',
-      effectValue: 60,
+    cardStats: {
+      create: [
+        {
+          value: 60,
+          description: 'Health Effect',
+          powerUpEffectType: 'HEALTH',
+        },
+      ],
     },
   },
   {
@@ -225,9 +319,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/015.png',
     backgroundColour: 'BLUE',
-    powerUpDetail: {
-      effectType: 'HEALTH',
-      effectValue: 70,
+    cardStats: {
+      create: [
+        {
+          value: 70,
+          description: 'Health Effect',
+          powerUpEffectType: 'HEALTH',
+        },
+      ],
     },
   },
   {
@@ -240,9 +339,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/016.png',
     backgroundColour: 'RED',
-    powerUpDetail: {
-      effectType: 'HEALTH',
-      effectValue: 80,
+    cardStats: {
+      create: [
+        {
+          value: 80,
+          description: 'Health Effect',
+          powerUpEffectType: 'HEALTH',
+        },
+      ],
     },
   },
   {
@@ -255,9 +359,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/017.png',
     backgroundColour: 'GREEN',
-    powerUpDetail: {
-      effectType: 'HEALTH',
-      effectValue: 90,
+    cardStats: {
+      create: [
+        {
+          value: 90,
+          description: 'Health Effect',
+          powerUpEffectType: 'HEALTH',
+        },
+      ],
     },
   },
   {
@@ -270,9 +379,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/018.png',
     backgroundColour: 'RED',
-    powerUpDetail: {
-      effectType: 'HEALTH',
-      effectValue: 100,
+    cardStats: {
+      create: [
+        {
+          value: 100,
+          description: 'Health Effect',
+          powerUpEffectType: 'HEALTH',
+        },
+      ],
     },
   },
   {
@@ -285,11 +399,19 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/149.png',
     backgroundColour: 'RED',
-    powerUpDetail: {
-      effectType: 'HEALTH',
-      effectValue: 110,
+    cardStats: {
+      create: [
+        {
+          value: 110,
+          description: 'Health Effect',
+          powerUpEffectType: 'HEALTH',
+        },
+      ],
     },
   },
+];
+
+export const cardArrayBeta = [
   {
     serialNumber: 'b-001',
     cardName: 'Common Beta Monster card test 1',
@@ -300,10 +422,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/019.png',
     backgroundColour: 'BLUE',
-    monsterDetail: {
-      monsterClass: 'DEMONIC',
-      health: 100,
-      attack: 20,
+    cardStats: {
+      create: [
+        {
+          value: 100,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 20,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -316,10 +447,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/020.png',
     backgroundColour: 'GREEN',
-    monsterDetail: {
-      monsterClass: 'DEMONIC',
-      health: 120,
-      attack: 25,
+    cardStats: {
+      create: [
+        {
+          value: 120,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 25,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -332,10 +472,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/021.png',
     backgroundColour: 'GREEN',
-    monsterDetail: {
-      monsterClass: 'DEMONIC',
-      health: 150,
-      attack: 30,
+    cardStats: {
+      create: [
+        {
+          value: 150,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 30,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -348,10 +497,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/022.png',
     backgroundColour: 'GREEN',
-    monsterDetail: {
-      monsterClass: 'DEMONIC',
-      health: 150,
-      attack: 35,
+    cardStats: {
+      create: [
+        {
+          value: 150,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 35,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -364,10 +522,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/023.png',
     backgroundColour: 'GREEN',
-    monsterDetail: {
-      monsterClass: 'DEMONIC',
-      health: 180,
-      attack: 40,
+    cardStats: {
+      create: [
+        {
+          value: 180,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 40,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -380,10 +547,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/024.png',
     backgroundColour: 'RED',
-    monsterDetail: {
-      monsterClass: 'DEMONIC',
-      health: 200,
-      attack: 50,
+    cardStats: {
+      create: [
+        {
+          value: 200,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 50,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -396,9 +572,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png',
     backgroundColour: 'WHITE',
-    itemDetail: {
-      effectType: 'RETRIEVE',
-      effectValue: 50,
+    cardStats: {
+      create: [
+        {
+          value: 50,
+          description: 'Retrieve Effect',
+          itemEffectType: 'RETRIEVE',
+        },
+      ],
     },
   },
   {
@@ -411,9 +592,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/026.png',
     backgroundColour: 'BLUE',
-    itemDetail: {
-      effectType: 'RETRIEVE',
-      effectValue: 60,
+    cardStats: {
+      create: [
+        {
+          value: 60,
+          description: 'Retrieve Effect',
+          itemEffectType: 'RETRIEVE',
+        },
+      ],
     },
   },
   {
@@ -426,9 +612,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/027.png',
     backgroundColour: 'PURPLE',
-    itemDetail: {
-      effectType: 'RETRIEVE',
-      effectValue: 70,
+    cardStats: {
+      create: [
+        {
+          value: 70,
+          description: 'Retrieve Effect',
+          itemEffectType: 'RETRIEVE',
+        },
+      ],
     },
   },
   {
@@ -441,9 +632,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/028.png',
     backgroundColour: 'YELLOW',
-    itemDetail: {
-      effectType: 'RETRIEVE',
-      effectValue: 80,
+    cardStats: {
+      create: [
+        {
+          value: 80,
+          description: 'Retrieve Effect',
+          itemEffectType: 'RETRIEVE',
+        },
+      ],
     },
   },
   {
@@ -456,9 +652,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/029.png',
     backgroundColour: 'PURPLE',
-    itemDetail: {
-      effectType: 'RETRIEVE',
-      effectValue: 90,
+    cardStats: {
+      create: [
+        {
+          value: 90,
+          description: 'Retrieve Effect',
+          itemEffectType: 'RETRIEVE',
+        },
+      ],
     },
   },
   {
@@ -471,9 +672,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/030.png',
     backgroundColour: 'BLACK',
-    itemDetail: {
-      effectType: 'RETRIEVE',
-      effectValue: 100,
+    cardStats: {
+      create: [
+        {
+          value: 100,
+          description: 'Retrieve Effect',
+          itemEffectType: 'RETRIEVE',
+        },
+      ],
     },
   },
   {
@@ -486,9 +692,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/031.png',
     backgroundColour: 'BLACK',
-    powerUpDetail: {
-      effectType: 'STRENGTH',
-      effectValue: 50,
+    cardStats: {
+      create: [
+        {
+          value: 50,
+          description: 'Strength Effect',
+          powerUpEffectType: 'STRENGTH',
+        },
+      ],
     },
   },
   {
@@ -501,9 +712,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/032.png',
     backgroundColour: 'BLUE',
-    powerUpDetail: {
-      effectType: 'STRENGTH',
-      effectValue: 60,
+    cardStats: {
+      create: [
+        {
+          value: 60,
+          description: 'Strength Effect',
+          powerUpEffectType: 'STRENGTH',
+        },
+      ],
     },
   },
   {
@@ -516,9 +732,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/033.png',
     backgroundColour: 'BLUE',
-    powerUpDetail: {
-      effectType: 'STRENGTH',
-      effectValue: 70,
+    cardStats: {
+      create: [
+        {
+          value: 70,
+          description: 'Strength Effect',
+          powerUpEffectType: 'STRENGTH',
+        },
+      ],
     },
   },
   {
@@ -531,9 +752,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/034.png',
     backgroundColour: 'RED',
-    powerUpDetail: {
-      effectType: 'STRENGTH',
-      effectValue: 80,
+    cardStats: {
+      create: [
+        {
+          value: 80,
+          description: 'Strength Effect',
+          powerUpEffectType: 'STRENGTH',
+        },
+      ],
     },
   },
   {
@@ -546,9 +772,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/035.png',
     backgroundColour: 'GREEN',
-    powerUpDetail: {
-      effectType: 'STRENGTH',
-      effectValue: 90,
+    cardStats: {
+      create: [
+        {
+          value: 90,
+          description: 'Strength Effect',
+          powerUpEffectType: 'STRENGTH',
+        },
+      ],
     },
   },
   {
@@ -561,9 +792,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/036.png',
     backgroundColour: 'RED',
-    powerUpDetail: {
-      effectType: 'STRENGTH',
-      effectValue: 100,
+    cardStats: {
+      create: [
+        {
+          value: 100,
+          description: 'Strength Effect',
+          powerUpEffectType: 'STRENGTH',
+        },
+      ],
     },
   },
   {
@@ -576,11 +812,19 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png',
     backgroundColour: 'RED',
-    powerUpDetail: {
-      effectType: 'STRENGTH',
-      effectValue: 110,
+    cardStats: {
+      create: [
+        {
+          value: 110,
+          description: 'Strength Effect',
+          powerUpEffectType: 'STRENGTH',
+        },
+      ],
     },
   },
+];
+
+export const cardArrayGamma = [
   {
     serialNumber: 'g-001',
     cardName: 'Common Gamma Monster card test 1',
@@ -591,10 +835,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png',
     backgroundColour: 'BLUE',
-    monsterDetail: {
-      monsterClass: 'TREE',
-      health: 100,
-      attack: 20,
+    cardStats: {
+      create: [
+        {
+          value: 100,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 20,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -607,10 +860,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/002.png',
     backgroundColour: 'GREEN',
-    monsterDetail: {
-      monsterClass: 'TREE',
-      health: 120,
-      attack: 25,
+    cardStats: {
+      create: [
+        {
+          value: 120,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 25,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -623,10 +885,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/003.png',
     backgroundColour: 'GREEN',
-    monsterDetail: {
-      monsterClass: 'TREE',
-      health: 150,
-      attack: 30,
+    cardStats: {
+      create: [
+        {
+          value: 150,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 30,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -639,10 +910,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png',
     backgroundColour: 'GREEN',
-    monsterDetail: {
-      monsterClass: 'TREE',
-      health: 150,
-      attack: 35,
+    cardStats: {
+      create: [
+        {
+          value: 150,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 35,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -655,10 +935,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/005.png',
     backgroundColour: 'GREEN',
-    monsterDetail: {
-      monsterClass: 'TREE',
-      health: 180,
-      attack: 40,
+    cardStats: {
+      create: [
+        {
+          value: 180,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 40,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -671,10 +960,19 @@ export const cards = [
     cardType: 'MONSTER',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/006.png',
     backgroundColour: 'RED',
-    monsterDetail: {
-      monsterClass: 'TREE',
-      health: 200,
-      attack: 50,
+    cardStats: {
+      create: [
+        {
+          value: 200,
+          description: 'Health',
+          monsterEffectType: 'HEALTH',
+        },
+        {
+          value: 50,
+          description: 'Attack',
+          monsterEffectType: 'ATTACK',
+        },
+      ],
     },
   },
   {
@@ -687,9 +985,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png',
     backgroundColour: 'WHITE',
-    itemDetail: {
-      effectType: 'DRAW',
-      effectValue: 50,
+    cardStats: {
+      create: [
+        {
+          value: 50,
+          description: 'Draw Effect',
+          itemEffectType: 'DRAW',
+        },
+      ],
     },
   },
   {
@@ -702,9 +1005,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/008.png',
     backgroundColour: 'BLUE',
-    itemDetail: {
-      effectType: 'DRAW',
-      effectValue: 60,
+    cardStats: {
+      create: [
+        {
+          value: 60,
+          description: 'Draw Effect',
+          itemEffectType: 'DRAW',
+        },
+      ],
     },
   },
   {
@@ -717,9 +1025,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/009.png',
     backgroundColour: 'PURPLE',
-    itemDetail: {
-      effectType: 'DRAW',
-      effectValue: 70,
+    cardStats: {
+      create: [
+        {
+          value: 70,
+          description: 'Draw Effect',
+          itemEffectType: 'DRAW',
+        },
+      ],
     },
   },
   {
@@ -732,9 +1045,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/010.png',
     backgroundColour: 'YELLOW',
-    itemDetail: {
-      effectType: 'DRAW',
-      effectValue: 80,
+    cardStats: {
+      create: [
+        {
+          value: 80,
+          description: 'Draw Effect',
+          itemEffectType: 'DRAW',
+        },
+      ],
     },
   },
   {
@@ -747,9 +1065,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/011.png',
     backgroundColour: 'PURPLE',
-    itemDetail: {
-      effectType: 'DRAW',
-      effectValue: 90,
+    cardStats: {
+      create: [
+        {
+          value: 90,
+          description: 'Draw Effect',
+          itemEffectType: 'DRAW',
+        },
+      ],
     },
   },
   {
@@ -762,9 +1085,14 @@ export const cards = [
     cardType: 'ITEM',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/012.png',
     backgroundColour: 'BLACK',
-    itemDetail: {
-      effectType: 'DRAW',
-      effectValue: 100,
+    cardStats: {
+      create: [
+        {
+          value: 100,
+          description: 'Draw Effect',
+          itemEffectType: 'DRAW',
+        },
+      ],
     },
   },
   {
@@ -777,9 +1105,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/013.png',
     backgroundColour: 'BLACK',
-    powerUpDetail: {
-      effectType: 'HEALTH',
-      effectValue: 50,
+    cardStats: {
+      create: [
+        {
+          value: 50,
+          description: 'Health Effect',
+          powerUpEffectType: 'HEALTH',
+        },
+      ],
     },
   },
   {
@@ -792,9 +1125,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/032.png',
     backgroundColour: 'BLUE',
-    powerUpDetail: {
-      effectType: 'HEALTH',
-      effectValue: 60,
+    cardStats: {
+      create: [
+        {
+          value: 60,
+          description: 'Health Effect',
+          powerUpEffectType: 'HEALTH',
+        },
+      ],
     },
   },
   {
@@ -807,9 +1145,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/033.png',
     backgroundColour: 'BLUE',
-    powerUpDetail: {
-      effectType: 'HEALTH',
-      effectValue: 70,
+    cardStats: {
+      create: [
+        {
+          value: 70,
+          description: 'Health Effect',
+          powerUpEffectType: 'HEALTH',
+        },
+      ],
     },
   },
   {
@@ -822,9 +1165,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/034.png',
     backgroundColour: 'RED',
-    powerUpDetail: {
-      effectType: 'HEALTH',
-      effectValue: 80,
+    cardStats: {
+      create: [
+        {
+          value: 80,
+          description: 'Health Effect',
+          powerUpEffectType: 'HEALTH',
+        },
+      ],
     },
   },
   {
@@ -837,9 +1185,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/035.png',
     backgroundColour: 'GREEN',
-    powerUpDetail: {
-      effectType: 'HEALTH',
-      effectValue: 90,
+    cardStats: {
+      create: [
+        {
+          value: 90,
+          description: 'Health Effect',
+          powerUpEffectType: 'HEALTH',
+        },
+      ],
     },
   },
   {
@@ -852,9 +1205,14 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/036.png',
     backgroundColour: 'RED',
-    powerUpDetail: {
-      effectType: 'HEALTH',
-      effectValue: 100,
+    cardStats: {
+      create: [
+        {
+          value: 100,
+          description: 'Health Effect',
+          powerUpEffectType: 'HEALTH',
+        },
+      ],
     },
   },
   {
@@ -867,12 +1225,18 @@ export const cards = [
     cardType: 'POWERUP',
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/149.png',
     backgroundColour: 'RED',
-    powerUpDetail: {
-      effectType: 'HEALTH',
-      effectValue: 110,
+    cardStats: {
+      create: [
+        {
+          value: 110,
+          description: 'Health Effect',
+          powerUpEffectType: 'HEALTH',
+        },
+      ],
     },
   },
 ];
+
 
 export const users = [
     { email: 'xtombrock1989@gmail.com', username: 'xtombrock', id: 'test' },

@@ -114,7 +114,6 @@ model LoginRecord {
   updatedAt         DateTime? @updatedAt
 }
 
-
 model SocialMediaLink {
   id        String    @id @default(uuid())
   name      String
@@ -191,6 +190,12 @@ enum BackgroundColour {
   GREEN
 }
 
+enum MonsterEffectType {
+  ATTACK
+  DEFENCE
+  HEALTH
+}
+
 enum ItemEffectType {
   SKIP
   DISCARD
@@ -232,54 +237,40 @@ model Card {
   editable         Boolean          @default(false) // holo card option available
   imageUrl         String           @default("imageUrl") @db.VarChar(5000)
   isAvailable      Boolean          @default(true)
+  cardStats        CardStat[]
   cardInstances    CardInstance[]
   createdAt        DateTime         @default(now())
   updatedAt        DateTime?        @updatedAt
-
-  monsterDetail    MonsterDetail?
-  itemDetail       ItemDetail?
-  powerUpDetail    PowerUpDetail?
 }
 
 model CardInstance {
-  id                   String        @id @default(uuid())
-  name                 String        @default("Name")
-  userId               String?
-  user                 User?         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  cardId               Int
-  card                 Card          @relation(fields: [cardId], references: [id], onDelete: Cascade)
-  packId               String?
-  pack                 Pack?         @relation(fields: [packId], references: [id])
-  deckId               String?
-  deck                 Deck?         @relation(fields: [deckId], references: [id])
-  createdAt            DateTime      @default(now())
-  updatedAt            DateTime?     @updatedAt
+  id        String    @id @default(uuid())
+  name      String    @default("Name")
+  userId    String?
+  user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cardId    Int
+  card      Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  packId    String?
+  pack      Pack?     @relation(fields: [packId], references: [id])
+  deckId    String?
+  deck      Deck?     @relation(fields: [deckId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
 
-model MonsterDetail {
-  cardId             Int          @id
-  card               Card         @relation(fields: [cardId], references: [id])
-  monsterClass       MonsterClass
-  attack             Int?         @default(0) // Optional with default
-  attackDescription  String?      @db.VarChar(255) // Optional description
-  defense            Int?         @default(0) // Optional with default
-  defenseDescription String?      @db.VarChar(255) // Optional description
-  health             Int?         @default(0) // Optional with default
-  healthDescription  String?      @db.VarChar(255) // Optional description
-}
+model CardStat {
+  id          Int       @id @default(autoincrement())
+  value       Int
+  description String?   @db.VarChar(255)
 
-model ItemDetail {
-  cardId      Int            @id
-  card        Card           @relation(fields: [cardId], references: [id])
-  effectType  ItemEffectType
-  effectValue Int
-}
+  monsterEffectType MonsterEffectType?
+  itemEffectType    ItemEffectType?
+  powerUpEffectType PowerUpEffectType?
 
-model PowerUpDetail {
-  cardId      Int               @id
-  card        Card              @relation(fields: [cardId], references: [id])
-  effectType  PowerUpEffectType
-  effectValue Int
+  cardId Int
+  card   Card @relation(fields: [cardId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
 }
 
 // EVENTS

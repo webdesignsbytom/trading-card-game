@@ -219,9 +219,9 @@ export const buyPackAndAddToUser = async (req, res) => {
 };
 
 // Create starter packs for new players
-export const createStarterPacksForUser = async (req, res) => {
-  const { userId } = req.body;
-  
+export const createStarterPacksForUser = async (req, res, id) => {
+  const { userId } = id;
+console.log('START', userId);
   try {
     const foundUser = await findUserByIdBasic(userId);
     if (!foundUser) {
@@ -271,12 +271,7 @@ export const createStarterPacksForUser = async (req, res) => {
     );
     starterPacks.push(createdPack3.cardInstanceArray);
     cardsInPackArray.push(createdPack3.cards);
-
-    const updatedUser = await setStarterCardsToClaimed(userId);
-
-    return sendDataResponse(res, 201, {
-      updatedUser: updatedUser,
-    });
+    console.log('DONE');
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Create starter packs`);

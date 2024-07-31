@@ -7,7 +7,7 @@ import { UserContext } from '../../context/UserContext';
 // Components
 import LoadingSpinner from '../../components/utils/LoadingSpinner';
 // Constants
-import { CARDS_IN_PACK_PAGE_URL } from '../../utils/Constants';
+import { CARDS_IN_PACK_PAGE_URL, STARTING_PACKS_API } from '../../utils/Constants';
 
 function StartingPacks() {
   const { user } = useContext(UserContext);
@@ -23,7 +23,7 @@ function StartingPacks() {
     let data = { userId: user.id };
 
     client
-      .post(`/packs/create-starter-packs-for-user`, data)
+      .post(STARTING_PACKS_API, data)
       .then((res) => {
         console.log('res', res.data);
         setStarterPacks(res.data.data.packs);

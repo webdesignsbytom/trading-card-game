@@ -43,10 +43,21 @@ import {
 } from '../event/utils/errorUtils.js';
 // Time
 import { v4 as uuid } from 'uuid';
-import { findAllUserCardInstances, findCardById, setCardFromPackToUser } from '../domain/cards.js';
-import { deletePackbyIdWhenOpened, findAllPacksForUser, findPackById } from '../domain/packs.js';
+import {
+  findAllUserCardInstances,
+  findCardById,
+  setCardFromPackToUser,
+} from '../domain/cards.js';
+import {
+  deletePackbyIdWhenOpened,
+  findAllPacksForUser,
+  findPackById,
+} from '../domain/packs.js';
 import { createBankForUser } from '../domain/bank.js';
 import { freeSingleRandomCard } from './cards.js';
+import { createStarterPacksForUser } from './packs.js';
+import { starterPackNames } from '../utils/constants.js';
+import { createSinglePacksOfCardsForUser } from '../utils/createPackets.js';
 // Password hash
 const hashRate = 8;
 
@@ -231,7 +242,9 @@ export const registerNewUser = async (req, res) => {
       return sendMessageResponse(res, notCreated.code, notCreated.message);
     }
 
-    const createdBank = await createBankForUser(createdUser.id);
+    let userId = createdUser.id;
+    // TODO: create bank on sign up
+    const createdBank = await createBankForUser(userId);
 
     delete createdUser.password;
     delete createdUser.updatedAt;
@@ -245,6 +258,32 @@ export const registerNewUser = async (req, res) => {
     //   createdUser.email,
     //   uniqueString
     // );
+    console.log('ZZZZZZZZZZZZZZZZZZ');
+
+    const starterPacks = [];
+    const cardsInPackArray = [];
+
+    const createdPack1 = await createSinglePacksOfCardsForUser(
+      starterPackNames[0],
+      userId
+    );
+    starterPacks.push(createdPack1.cardInstanceArray);
+    cardsInPackArray.push(createdPack1.cards);
+
+    const createdPack2 = await createSinglePacksOfCardsForUser(
+      starterPackNames[1],
+      userId
+    );
+    starterPacks.push(createdPack2.cardInstanceArray);
+    cardsInPackArray.push(createdPack2.cards);
+
+    const createdPack3 = await createSinglePacksOfCardsForUser(
+      starterPackNames[2],
+      userId
+    );
+    starterPacks.push(createdPack3.cardInstanceArray);
+    cardsInPackArray.push(createdPack3.cards);
+    console.log('DONE');
 
     return sendDataResponse(res, 201, { createdUser });
   } catch (err) {
@@ -316,14 +355,17 @@ export const getAllPacksForUser = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    const foundPacks = await findAllPacksForUser(userId)
+    const foundPacks = await findAllPacksForUser(userId);
     console.log('found', foundPacks);
 
     // myEmitterUsers.emit('get-user-by-id', req.user);
     return sendDataResponse(res, 200, { packs: foundPacks });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get all packs for user`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Get all packs for user`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -348,7 +390,7 @@ export const getAllUserCardInstances = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    const foundInstances = await findAllUserCardInstances(userId)
+    const foundInstances = await findAllUserCardInstances(userId);
     console.log('found instances', foundInstances);
 
     // myEmitterUsers.emit('get-user-by-id', req.user);
@@ -367,7 +409,6 @@ export const openPackAndAddToUser = async (req, res) => {
   const { packId, userId } = req.body;
   console.log('pack', packId, userId);
   try {
-
     const foundUser = await findUserById(userId);
     console.log('foundUser', foundUser);
     if (!foundUser) {
@@ -451,14 +492,13 @@ export const collectDailyReward = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    let rewardType = 'card'
-    
+    let rewardType = 'card';
+
     return sendDataResponse(res, 200, {
       reward: freeReward.cardFound,
       rewardType: rewardType,
       updatedUser: updatedUser,
     });
-
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
@@ -749,14 +789,13 @@ export const deleteUser = async (req, res) => {
 
     await deleteUserById(userId);
 
-    const updatedUserArray = await findAllUsers()
-    
+    const updatedUserArray = await findAllUsers();
+
     return sendDataResponse(res, 200, {
       deletedUser: foundUser,
       updatedUserArray: updatedUserArray,
       message: `User ${foundUser.email} deleted`,
     });
-
   } catch (err) {
     //
     const serverError = new ServerErrorEvent(req.user, `delete user by ID`);

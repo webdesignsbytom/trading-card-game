@@ -13,9 +13,10 @@ import {
   CARD_TYPE_ITEM,
   PACK_TYPE_ICONS,
   EDITION_ICONS,
+  ULTIMATE_CARD_RARITY,
 } from '../../utils/cards/CardGameConstants';
 
-function Card({ cardData }) {
+function Card2({ cardData }) {
   const { toggleCardData } = useContext(ToggleContext);
   const [bgColour, setBgColour] = useState('bg-white');
   const [holoCard, setHoloCard] = useState(false);
@@ -32,6 +33,11 @@ function Card({ cardData }) {
     } else if (cardData.rarity === MEGARAREHOLO_CARD_RARITY) {
       setRareHoloCard(true);
       setBgColour('bg-slate-500');
+    } else if (cardData.rarity === ULTIMATE_CARD_RARITY) {
+      setRareHoloCard(true);
+      setBgColour('bg-pink-500');
+    } else {
+      setBgColour('bg-white');
     }
   }, [cardData]);
 
@@ -95,37 +101,49 @@ function Card({ cardData }) {
   };
 
   return (
-    <section
-      onClick={() => toggleCardData(cardData)}
-      className={`${holoCard} ${rareholoCard}  cursor-pointer outline outline-4 grid grid-rows-a1a outline-blue-800 h-full text-white rounded px-2 py-[1px] ${bgColour} card__bg`}
+    <article
+      className={`grid card__bg ${bgColour} border-[0.5rem] bg-black border-card-border border-solid rounded-lg overflow-hidden h-full w-full cursor-pointer`}
+      style={{ aspectRatio: '2 / 3' }}
     >
-      <div className='flex justify-between items-center text-sm my-1'>
-        <h2 className='text-white text-sm capitalize'>{cardData.cardName}</h2>
-      </div>
+      <div className='grid grid-rows-a1a p-[2px] h-full w-full overflow-hidden'>
+        {/* Name */}
+        <section className='grid h-fit'>
+          <div className='truncate'>
+            <h4 className='text-[1rem] font-medium'>{cardData.cardName}</h4>
+          </div>
+        </section>
 
-      <section className='grid grid-rows-2 h-full'>
-        <div className='mb-1 h-full outline outline-1 outline-black bg-white'>
-          <img className='h-full' src={cardData.imageUrl} alt='card' />
-        </div>
-
-        <section className='grid grid-rows-reg'>
-          <div className='flex justify-between text-sm outline outline-1 outline-black py-1 mt-1 px-[2px]'>
-            <p className='text-white capitalize'>{cardData.cardType}</p>
-            <div className='flex'>
+        {/* Image and data */}
+        <section className='grid grid-rows-reg gap-2 h-full bg-red-500 overflow-hidden'>
+          <div className='grid h-fit'>
+            <img
+              src={cardData.imageUrl}
+              alt={cardData.cardName}
+              className='aspect-square w-fit h-fit object-contain'
+            />
+          </div>
+          <div className='grid grid-rows-reg bg-blue-300 h-full overflow-hidden'>
+            <div className='flex justify-between h-fit overflow-hidden text-sm lg:text-base'>
               <p className='text-white'>{PACK_TYPE_ICONS[cardData.packType]}</p>
               <p className='text-white'>{EDITION_ICONS[cardData.edition]}</p>
             </div>
+            <div className='grid h-full bg-green-300 overflow-hidden text-sm lg:text-base'>
+              {cardData.cardStats.map((stat, index) => {
+                return <div key={index}>{stat.value}flex justify-between h-fit overflow-hidden text-sm lg:text-base flex justify-between h-fit overflow-hidden text-sm lg:text-base</div>;
+              })}
+            </div>
           </div>
-
-          <div className='py-1 px-[2px]'>{renderCardDetails()}</div>
         </section>
-      </section>
-      <div className='flex justify-between text-ss'>
-        <p className='text-white'>{cardData.rarity}</p>
-        <p className='text-white'>{cardData.serialNumber}</p>
+
+        <section className='grid h-fit bg-orange-500'>
+          <div className='flex justify-between text-xss lg:text-ss'>
+            <p>{cardData.serialNumber}</p>
+            <p>{cardData.rarity}</p>
+          </div>
+        </section>
       </div>
-    </section>
+    </article>
   );
 }
 
-export default Card;
+export default Card2;

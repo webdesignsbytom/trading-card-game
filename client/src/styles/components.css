@@ -8,6 +8,11 @@
   user-select: none;
 }
 
+.grid_cols_card {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+}
+
 .triangular__shape {
   clip-path: polygon(100% 0, 0% 100%, 100% 100%);
 }

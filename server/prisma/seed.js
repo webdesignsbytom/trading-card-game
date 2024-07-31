@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import dbClient from '../src/utils/dbClient.js';
 // Data
-import { cards, users } from './cardArray.js';
+import { cardArrayAlpha, cardArrayBeta, cardArrayGamma, users } from './cardArray.js';
 
 async function seed() {
   const password = await bcrypt.hash('123', 8);
@@ -78,9 +78,16 @@ async function seed() {
     });
   };
 
-  for (const card of cards) {
+  for (const card of cardArrayAlpha) {
     await createCard(card);
   }
+  for (const card of cardArrayBeta) {
+    await createCard(card);
+  }
+  for (const card of cardArrayGamma) {
+    await createCard(card);
+  }
+
 
   // User cards
   const firstInstance = await dbClient.cardInstance.create({
