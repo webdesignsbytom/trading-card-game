@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 // Context
 import { UserContext } from '../../context/UserContext';
-import CardTradeSelector from '../../utils/CardTradeSelector';
+// Components
 import Card from '../card/Card';
+// Data
+import CardTradeSelector from '../../utils/cards/CardTradeSelector';
 
 function CreateTradeComponent({
   handleChange,

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 // Api
 import client from '../api/client';
 // Utils
-import LoggedInUser from '../utils/LoggedInUser';
+import LoggedInUser from '../utils/user/LoggedInUser';
 // Data
 import { tempUserData } from '../utils/user/TemporaryData';
 // Constants

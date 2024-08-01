@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 // Context
 import { UserContext } from '../../context/UserContext';
+// Components
 import TradeListItem from './TradeListItem';
+// Api
 import client from '../../api/client';
 
 function OpenRequestsListComponent() {

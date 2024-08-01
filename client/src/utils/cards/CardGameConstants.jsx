@@ -1,4 +1,7 @@
 export const StandardPackCost = 10;
+export const NumCardsInPack = 12
+export const StandardBoxCost = 80;
+export const NumCardsInBox = 128
 
 // Pack types
 export const PACK_TYPE_ALPHA = 'ALPHA';

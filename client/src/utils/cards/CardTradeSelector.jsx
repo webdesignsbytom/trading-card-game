@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 // Context
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '../../context/UserContext';
 
 function CardTradeSelector({ handleChange }) {
     const { user } = useContext(UserContext)
