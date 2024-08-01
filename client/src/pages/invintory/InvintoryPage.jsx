@@ -6,6 +6,7 @@ import InvintoryOptions from '../../components/invintory/InvintoryOptions';
 import { ToggleContext } from '../../context/ToggleContext';
 // Constants
 import { INVENTORY_PAGE_URL } from '../../utils/Constants';
+import InvintoryHeader from '../../components/invintory/InvintoryHeader';
 
 function InvintoryPage() {
   const { setActiveNav } = useContext(ToggleContext);
@@ -18,15 +19,11 @@ function InvintoryPage() {
     <div className='h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
-        <main className='grid bg-blue-700 main__bg p-4 grid-rows-reg gap-4'>
-          <article className='mt-2'>
-            <div className='bg-red-500 nav__bg outline outline-4 outline-black rounded p-2'>
-              <h1 className='text-center text-2xl lg:text-6xl font-extrabold text__stroke font-gasoek tracking-wide'>
-                <span className='text-blue-600'>INVINTORY</span>
-              </h1>
-            </div>
-          </article>
+        <main className='grid bg-main-colour main__bg grid-rows-reg gap-4 p-4'>
+          {/* Header */}
+          <InvintoryHeader />
 
+          {/* Main content */}
           <InvintoryOptions />
         </main>
       </section>

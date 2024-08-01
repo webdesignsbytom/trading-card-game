@@ -104,7 +104,7 @@ function ShopPage() {
           <section className='grid h-full w-full overflow-hidden'>
             <div className='grid md:grid-cols-2 gap-4 h-full w-full'>
               {/* Shop items */}
-              <section className='grid bg-blue-400 main__bg rounded overflow-hidden w-full h-full'>
+              <section className='grid bg-blue-400 main__bg rounded overflow-hidden w-full h-full border-4 border-solid border-main-border'>
                 {/* Store front */}
                 {currentDisplay === shopDisplayOptions.STOREFRONT && (
                   <StoreFrontContainer openSubMenu={openSubMenu} />
@@ -130,10 +130,10 @@ function ShopPage() {
 
               {/* Shop owner */}
               <section
-                className='grid bg-blue-500 main__bg rounded overflow-hidden w-full h-full'
+                className='grid rounded overflow-hidden w-full h-full'
                 style={{
                   backgroundImage: `url(${ShopKeeper})`,
-                  backgroundSize: 'cover',
+                  backgroundSize: 'contain',
                   backgroundPosition: 'center',
                 }}
               ></section>

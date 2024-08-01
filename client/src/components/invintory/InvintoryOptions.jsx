@@ -4,7 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import BetaPack from '../../assets/images/packets/mon_cards_alpha_box_set_first_edition.png';
 import ItemsImg from '../../assets/images/invintory/items.png';
 // Constants
-import { CARDS_IN_PACK_PAGE_URL, INVENTORY_ITEMS_PAGE_URL } from '../../utils/Constants';
+import {
+  CARDS_IN_PACK_PAGE_URL,
+  INVENTORY_ITEMS_PAGE_URL,
+} from '../../utils/Constants';
 
 function InvintoryOptions() {
   let navigate = useNavigate();
@@ -22,25 +25,42 @@ function InvintoryOptions() {
       name: 'cardPacks',
       title: 'Card Packs',
       function: toggleOpenPackets,
-      image: BetaPack,
+      imageUrl: BetaPack,
     },
     {
       name: 'items',
       title: 'Items',
       function: toggleOpenItems,
-      image: ItemsImg,
+      imageUrl: ItemsImg,
     },
   ];
 
   return (
-    <section className='grid bg-white main__bg rounded-lg outline outline-2 outline-black shadow-2xl'>
-      <div className='grid grid-cols-2 lg:grid-cols-4 mt-4'>
+    <section className='grid bg-white main__bg rounded-lg border-solid border-main-border border-4 shadow-2xl overflow-hidden'>
+      <div className='grid grid-cols-2 lg:grid-cols-4 overflow-hidden'>
+        {/* Items types available */}
         {arrayOfInvintoryItems.map((item, index) => {
           return (
-            <article key={index} className='p-4 text-center h-fit grid justify-center'>
-              <span className='text-3xl mb-2 font-semibold'>{item.title}</span>
-              <div className='cursor-pointer mt-4' onClick={item.function}>
-                <img src={item.image} alt={item.title} />
+            <article
+              key={index}
+              className='grid p-4 cursor-pointer'
+              style={{ aspectRatio: '2 / 3' }}
+              onClick={() => item.function()}
+            >
+              <div className='grid grid-rows-rev w-full h-full'>
+                <div className='grid h-full w-full overflow-hidden p-4'>
+                  <img
+                    src={item.imageUrl}
+                    alt={item.title}
+                    className='w-full h-full hover:brightness-150 duration-300'
+                    style={{ aspectRatio: '2 / 3' }}
+                  />
+                </div>
+                <div className='h-fit text-center'>
+                  <h6 className='text-yellow-500 font-semibold text-lg'>
+                    {item.title}
+                  </h6>
+                </div>
               </div>
             </article>
           );
