@@ -37,14 +37,14 @@ function RewardsPage() {
   };
 
   return (
-    <div className='h-screen grid'>
+    <div className='h-screen grid overflow-hidden'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
         <main className='bg-white relative main__bg p-4 grid grid-rows-reg overflow-hidden'>
           <section className='grid grid-rows-reg'>
-            <article className='text-center'>
-              <h1 className='text-center text-2xl lg:text-6xl font-extrabold text__stroke font-gasoek tracking-wide'>
-                <span className='text-blue-600'>REWARDS</span>
+            <article className='text-center text__stroke'>
+              <h1 className='text-center text-2xl lg:text-7xl font-extrabold text-blue-600 font-fantasy tracking-wide'>
+                DAILY <span className='text-red-600'>REWARDS</span>
               </h1>
               <h2 className='text-xl mt-2 font-semibold'>
                 Login daily to collect fantastic rewards!

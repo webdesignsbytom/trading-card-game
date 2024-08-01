@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 // Images
-import BetaPack from '../../assets/img/packets/pack1.png';
-import ItemsImg from '../../assets/img/invintory/items.png';
+import BetaPack from '../../assets/images/packets/pack1.png';
+import ItemsImg from '../../assets/images/invintory/items.png';
 // Constants
 import { CARDS_IN_PACK_PAGE_URL, INVENTORY_ITEMS_PAGE_URL } from '../../utils/Constants';
 

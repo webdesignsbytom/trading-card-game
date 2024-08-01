@@ -6,7 +6,9 @@ import client from '../api/client';
 import LoggedInUser from '../utils/LoggedInUser';
 // Data
 import { tempUserData } from '../utils/user/TemporaryData';
-// Context
+// Constants
+import { GET_USER_API } from '../utils/Constants';
+
 export const UserContext = React.createContext();
 
 const UserContextProvider = ({ children }) => {
@@ -15,10 +17,7 @@ const UserContextProvider = ({ children }) => {
   const [token, setToken] = useState(
     localStorage.getItem(process.env.REACT_APP_USER_TOKEN) || ''
   );
-
   const [toggleCookiePolicy, setToggleCookiePolicy] = useState(false);
-
-  console.log('usercontext', user);
 
   useEffect(() => {
     const decodedUserData = LoggedInUser();
@@ -26,7 +25,7 @@ const UserContextProvider = ({ children }) => {
     if (decodedUserData !== null) {
       const userId = decodedUserData.id;
       client
-        .get(`/users/user/userId/${userId}`)
+        .get(`${GET_USER_API}/${userId}`)
         .then((res) => {
           setUser(res.data.data.user);
         })

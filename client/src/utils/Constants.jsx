@@ -32,3 +32,4 @@ export const SecondaryTitle = 'The Monster Trading Card Game'
 // API
 export const GET_ALL_CARDS_API = '/mon-cards/get-all-cards'
 export const STARTING_PACKS_API = '/packs/create-starter-packs-for-user'
+export const GET_USER_API = '/users/get-user-by-id'

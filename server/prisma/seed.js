@@ -89,40 +89,6 @@ async function seed() {
   }
 
 
-  // User cards
-  const firstInstance = await dbClient.cardInstance.create({
-    data: {
-      userId: 'dev',
-      cardId: 1,
-    },
-  });
-
-  const secondInstance = await dbClient.cardInstance.create({
-    data: {
-      userId: 'dev',
-      cardId: 2,
-    },
-  });
-
-  const thirdInstance = await dbClient.cardInstance.create({
-    data: {
-      userId: 'dev',
-      cardId: 3,
-    },
-  });
-  const thirdInstance4 = await dbClient.cardInstance.create({
-    data: {
-      userId: 'dev',
-      cardId: 4,
-    },
-  });
-  const thirdInstance3 = await dbClient.cardInstance.create({
-    data: {
-      userId: 'dev',
-      cardId: 5,
-    },
-  });
-
   // EVENTS
   const eventOne = await dbClient.event.create({
     data: {

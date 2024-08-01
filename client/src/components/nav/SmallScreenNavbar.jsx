@@ -20,7 +20,7 @@ import {
 import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
 // Images
-import MainLogo from '../../assets/img/logos/mon_card_main_logo_of_creatures.png';
+import MainLogo from '../../assets/images/logos/mon_card_main_logo_of_creatures.png';
 // Icons
 import { IoMenu } from 'react-icons/io5';
 

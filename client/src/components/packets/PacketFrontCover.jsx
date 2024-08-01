@@ -1,6 +1,6 @@
 import React from 'react';
 // images
-import AlphaPack from '../../assets/img/packets/pack2.png';
+import AlphaPack from '../../assets/images/packets/pack2.png';
 
 function PacketFrontCover() {
   return (
