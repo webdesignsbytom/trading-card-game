@@ -19,7 +19,7 @@ import UserOverviewPage from './pages/admin/UserOverviewPage';
 import EventOverviewPage from './pages/admin/EventsOverviewPage';
 import CardsInPackPage from './pages/packs/CardsInPackPage';
 import UnopenedPacketsPage from './pages/packs/UnopenedPacketsPage';
-import BattlesOverviewPage from './pages/battles/BattlesOverviewPage';
+import BattlesOverviewPage from './pages/battles/BattlesMainPage';
 import OpenBattleActivePage from './pages/battles/OpenBattleActivePage';
 import BattleRulesPage from './pages/battles/BattleRulesPage';
 import DecksOverviewPage from './pages/decks/DecksOverviewPage';

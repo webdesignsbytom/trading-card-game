@@ -3,7 +3,7 @@ import BetaPackOne from '../../assets/images/packets/mon_cards_beta_pack_first_e
 import GamePackOne from '../../assets/images/packets/mon_cards_gamma_pack_first_edition.png';
 import AlphaBoxOne from '../../assets/images/packets/mon_cards_alpha_box_set_first_edition.png';
 import BetaBoxOne from '../../assets/images/packets/mon_cards_beta_box_set_first_edition.png';
-import GammaBoxOne from '../../assets/images/packets/mon_cards_beta_box_set_first_edition.png';
+import GammaBoxOne from '../../assets/images/packets/mon_cards_gamma_box_set_first_edition.png';
 // Constants
 import {
   NumCardsInBox,

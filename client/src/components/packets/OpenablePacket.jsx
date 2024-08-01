@@ -1,13 +1,13 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 // context
 import { ToggleContext } from '../../context/ToggleContext';
 import { UserContext } from '../../context/UserContext';
 // API
 // Images
-import BetaPack from '../../assets/images/packets/pack1.png';
-import AlphaPack from '../../assets/images/packets/pack2.png';
-import GammaPack from '../../assets/images/packets/pack3.png';
+import AlphaPack from '../../assets/images/packets/mon_cards_alpha_box_set_first_edition.png';
+import BetaPack from '../../assets/images/packets/mon_cards_beta_box_set_first_edition.png';
+import GammaPack from '../../assets/images/packets/mon_cards_gamma_box_set_first_edition.png';
 // Constants
 import { PACK_TYPE_ALPHA, PACK_TYPE_BETA, PACK_TYPE_GAMMA } from '../../utils/cards/CardGameConstants';
 

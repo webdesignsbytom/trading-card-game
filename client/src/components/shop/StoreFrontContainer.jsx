@@ -13,15 +13,18 @@ function StoreFrontContainer({ openSubMenu }) {
           onClick={() => openSubMenu(category)}
         >
           <div className='grid grid-rows-rev w-full h-full'>
-            <div className='grid h-full w-full overflow-hidden'>
+            <div className='grid h-full w-full overflow-hidden p-4'>
               <img
                 src={category.imageUrl}
                 alt={category.category}
-                className='object-contain w-full h-full'
+                className='w-full h-full hover:brightness-150 duration-300'
+                style={{ aspectRatio: '2 / 3' }}
               />
             </div>
             <div className='h-fit text-center'>
-              <h6>{category.category}</h6>
+              <h6 className='text-yellow-500 font-semibold text-lg'>
+                {category.category}
+              </h6>
             </div>
           </div>
         </article>

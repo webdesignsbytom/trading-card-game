@@ -1,6 +1,6 @@
 import React from 'react';
 // images
-import AlphaPack from '../../assets/images/packets/pack2.png';
+import AlphaPack from '../../assets/images/packets/mon_cards_alpha_box_set_first_edition.png';
 
 function DeckCoverComponent() {
   return (

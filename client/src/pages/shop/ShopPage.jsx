@@ -7,7 +7,7 @@ import { ToggleContext } from '../../context/ToggleContext';
 // Components
 import Navbar from '../../components/nav/Navbar';
 import ShopHeader from '../../components/shop/ShopHeader';
-import StoreFrontContainer from './StoreFrontContainer';
+import StoreFrontContainer from '../../components/shop/StoreFrontContainer';
 // Constants
 import { BUY_PACK_API, SHOP_PAGE_URL } from '../../utils/Constants';
 import {
@@ -18,8 +18,8 @@ import {
   StandardPackCost,
 } from '../../utils/cards/CardGameConstants';
 // Images
-import ShopKeeper from '../../assets/images/backgrounds/shop_keeper_temp.png';
-import PurchasingContainer from './PurchasingContainer';
+import ShopKeeper from '../../assets/images/backgrounds/shop_keeper_main_with_potions.png';
+import PurchasingContainer from '../../components/shop/PurchasingContainer';
 
 function ShopPage() {
   const { user, setUser } = useContext(UserContext);
