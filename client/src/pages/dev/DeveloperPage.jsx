@@ -15,14 +15,11 @@ function DeveloperPage() {
     setActiveNav(DEV_PAGE_URL);
   }, []);
 
-
   return (
     <div className='bg-black main__bg h-screen grid overflow-hidden'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
-        <main className='grid p-3 overflow-hidden'>
-DEVPAGE
-        </main>
+        <main className='grid p-3 overflow-hidden'>DEVPAGE</main>
       </section>
     </div>
   );

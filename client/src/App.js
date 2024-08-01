@@ -23,7 +23,7 @@ import BattlesOverviewPage from './pages/battles/BattlesOverviewPage';
 import OpenBattleActivePage from './pages/battles/OpenBattleActivePage';
 import BattleRulesPage from './pages/battles/BattleRulesPage';
 import DecksOverviewPage from './pages/decks/DecksOverviewPage';
-import BuyPackPage from './pages/shop/BuyPackPage';
+import DeveloperPage from './pages/dev/DeveloperPage';
 import TestPage from './pages/test/TestPage';
 import TestCard from './pages/test/TestCard';
 // Constants
@@ -40,7 +40,6 @@ import {
   INVENTORY_PAGE_URL,
   REWARDS_PAGE_URL,
   UNOPENED_PACKS_URL,
-  BUY_PACK_PAGE_URL,
   OPEN_PACKS_PAGE_URL,
   CARDS_IN_PACK_PAGE_URL,
   CARD_OVERVIEW_PAGE_URL,
@@ -53,6 +52,7 @@ import {
   EVENT_OVERVIEW_PAGE_URL,
   TEST_PAGE_URL,
   TEST_CARD_PAGE_URL,
+  DEV_PAGE_URL,
 } from './utils/Constants';
 
 function App() {
@@ -63,7 +63,6 @@ function App() {
       <Route path={LOGIN_PAGE_URL} element={<LoginPage />} />
       <Route path={SIGN_UP_PAGE_URL} element={<RegisterPage />} />
       <Route path={SHOP_PAGE_URL} element={<ShopPage />} />
-      <Route path={BUY_PACK_PAGE_URL} element={<BuyPackPage />} />
       <Route path={OPEN_PACKS_PAGE_URL} element={<OpenPacksPage />} />
       <Route path={CARDS_IN_PACK_PAGE_URL} element={<CardsInPackPage />} />
       <Route path={UNOPENED_PACKS_URL} element={<UnopenedPacketsPage />} />
@@ -78,6 +77,7 @@ function App() {
       <Route path={BATTLE_RULES_PAGE_URL} element={<BattleRulesPage />} />
       <Route path={DECKS_OVERVIEW_PAGE_URL} element={<DecksOverviewPage />} />
       <Route path={ADMIN_PAGE_URL} element={<AdminPage />} />
+      <Route path={DEV_PAGE_URL} element={<DeveloperPage />} />
       <Route path={CARD_EDIT_PAGE_URL} element={<CardEditPage />} />
       <Route path={USER_OVERVIEW_PAGE_URL} element={<UserOverviewPage />} />
       <Route path={EVENT_OVERVIEW_PAGE_URL} element={<EventOverviewPage />} />

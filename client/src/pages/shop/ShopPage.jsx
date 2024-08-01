@@ -1,35 +1,36 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-// API
+// Api
 import client from '../../api/client';
 // Context
 import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
 // Components
 import Navbar from '../../components/nav/Navbar';
-import PackSelector from '../../components/shop/PackSelector';
 import ShopHeader from '../../components/shop/ShopHeader';
+import StoreFrontContainer from './StoreFrontContainer';
 // Constants
-import {
-  BUY_PACK_API,
-  BUY_PACK_PAGE_URL,
-  SHOP_PAGE_URL,
-} from '../../utils/Constants';
+import { BUY_PACK_API, SHOP_PAGE_URL } from '../../utils/Constants';
 import {
   PACK_TYPE_ALPHA,
   PACK_TYPE_BETA,
   PACK_TYPE_GAMMA,
+  shopDisplayOptions,
   StandardPackCost,
 } from '../../utils/cards/CardGameConstants';
 // Images
 import ShopKeeper from '../../assets/images/backgrounds/shop_keeper_temp.png';
-import { ShopSalesItem } from '../../utils/cards/ShopItems';
+import PurchasingContainer from './PurchasingContainer';
 
 function ShopPage() {
   const { user, setUser } = useContext(UserContext);
   const { setActiveNav } = useContext(ToggleContext);
-  const [togglePackPurchasing, setTogglePackPurchasing] = useState(false);
-  const [costOfStandardPack] = useState(StandardPackCost);
+
+  const [currentDisplay, setCurrentDisplay] = useState(
+    shopDisplayOptions.STOREFRONT
+  );
+
+  const [displayItems, setDisplayItems] = useState({});
+
   const [purchasingBetaPack, setPurchasingBetaPack] = useState(false);
   const [purchasingGammaPack, setPurchasingGammaPack] = useState(false);
   const [purchasingAlphaPack, setPurchasingAlphaPack] = useState(false);
@@ -44,7 +45,7 @@ function ShopPage() {
     let purchaseRequest = {
       packType: name,
       userId: user.id,
-      cost: costOfStandardPack,
+      cost: StandardPackCost,
     };
 
     if (name === PACK_TYPE_ALPHA) {
@@ -75,7 +76,19 @@ function ShopPage() {
       });
   };
 
-  const openSubMenu= (category) => {
+  const openSubMenu = (category) => {
+    console.log('category', category);
+    if (category.category === 'Foil Packs') {
+      setCurrentDisplay(shopDisplayOptions.FOILPACK);
+    } else if (category.category === 'Boxes') {
+      setCurrentDisplay(shopDisplayOptions.BOXSETS);
+    }
+
+    setDisplayItems(category.items);
+  };
+
+  const goBack = () => {
+    setCurrentDisplay(shopDisplayOptions.STOREFRONT);
   };
 
   return (
@@ -91,28 +104,28 @@ function ShopPage() {
           <section className='grid h-full w-full overflow-hidden'>
             <div className='grid md:grid-cols-2 gap-4 h-full w-full'>
               {/* Shop items */}
-              <section className='grid bg-blue-400 main__bg rounded overflow-hidden w-full h-full grid_cols_card gap-4'>
-                {ShopSalesItem.map((category, index) => (
-                  <article
-                    key={index}
-                    className='grid p-4 cursor-pointer'
-                    style={{ aspectRatio: '2 / 3' }}
-                    onClick={() => openSubMenu(category)}
-                  >
-                    <div className='grid grid-rows-rev w-full h-full'>
-                      <div className='grid h-full w-full overflow-hidden'>
-                        <img
-                          src={category.imageUrl}
-                          alt={category.category}
-                          className='object-contain w-full h-full'
-                        />
-                      </div>
-                      <div className='h-fit text-center'>
-                        <h6>{category.category}</h6>
-                      </div>
-                    </div>
-                  </article>
-                ))}
+              <section className='grid bg-blue-400 main__bg rounded overflow-hidden w-full h-full'>
+                {/* Store front */}
+                {currentDisplay === shopDisplayOptions.STOREFRONT && (
+                  <StoreFrontContainer openSubMenu={openSubMenu} />
+                )}
+
+                {/* But single packs */}
+                {currentDisplay === shopDisplayOptions.FOILPACK && (
+                  <PurchasingContainer
+                    displayItems={displayItems}
+                    onclickFunction={buyPacketsOfCards}
+                    goBack={goBack}
+                  />
+                )}
+                {/* Buy boxes */}
+                {currentDisplay === shopDisplayOptions.BOXSETS && (
+                  <PurchasingContainer
+                    displayItems={displayItems}
+                    onclickFunction={buyPacketsOfCards}
+                    goBack={goBack}
+                  />
+                )}
               </section>
 
               {/* Shop owner */}

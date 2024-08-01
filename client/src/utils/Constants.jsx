@@ -12,7 +12,6 @@ export const BATTLES_PAGE_URL = '/battles';
 export const INVENTORY_PAGE_URL = '/invintory';
 export const REWARDS_PAGE_URL = '/rewards';
 export const UNOPENED_PACKS_URL = '/packs/unopened';
-export const BUY_PACK_PAGE_URL = '/shop/packs';
 export const OPEN_PACKS_PAGE_URL = '/open-packs';
 export const CARDS_IN_PACK_PAGE_URL = '/pack/opened';
 export const CARD_OVERVIEW_PAGE_URL = '/card-overview/:id';

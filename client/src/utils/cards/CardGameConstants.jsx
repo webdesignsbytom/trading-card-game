@@ -69,3 +69,9 @@ export const cardOrderOptions = [
   'Pack Type',
   'Card Type',
 ];
+
+export const shopDisplayOptions = {
+  STOREFRONT: 'storefront',
+  FOILPACK: 'packs',
+  BOXSETS: 'boxsets',
+}
