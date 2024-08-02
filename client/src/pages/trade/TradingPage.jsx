@@ -59,9 +59,7 @@ function TradingPage() {
   };
 
   const handleChangeCard = (event) => {
-    console.log('change');
     const { value } = event.target;
-    console.log('value', value);
 
     client
       .get(`/mon-cards/card/get-by-id/${value}`)

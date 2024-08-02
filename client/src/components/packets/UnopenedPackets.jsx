@@ -49,8 +49,6 @@ function UnopenedPackets() {
     setPackIndex(newArray);
   };
 
-  console.log('unopenedPacks', unopenedPacks);
-
   return (
     <div className='grid grid-rows-a1a py-6'>
       <section className='grid items-center justify-center'>

@@ -12,15 +12,12 @@ function ClosedAlbumPage({ openAlbum }) {
   const { user } = useContext(UserContext);
   const { userCardsArray, setUserCardsArray } = useContext(CardContext);
 
-  console.log('userCardsArray', userCardsArray);
   let navigate = useNavigate();
 
   useEffect(() => {
-    console.log('LOADING');
     client
       .get(`/users/user/userId/${user.id}/all-cards`)
       .then((res) => {
-        console.log('res', res.data);
         setUserCardsArray(res.data.data.cards);
       })
       .catch((err) => {

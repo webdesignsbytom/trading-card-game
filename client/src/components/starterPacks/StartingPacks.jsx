@@ -25,7 +25,6 @@ function StartingPacks() {
     client
       .post(STARTING_PACKS_API, data)
       .then((res) => {
-        console.log('res', res.data);
         setStarterPacks(res.data.data.packs);
         setLoadingStarterPacks(false);
         setClaimedFreePacks(true);
@@ -36,7 +35,6 @@ function StartingPacks() {
       });
   };
 
-  console.log('starterPacks', starterPacks);
   return (
     <div className='grid h-fit'>
       <section className='grid grid-rows-reg'>

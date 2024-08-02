@@ -25,8 +25,6 @@ function RewardsPage() {
   const [rewardData, setRewardData] = useState({});
   const [rewardDataType, setRewardDataType] = useState('');
   const [rewardAvailable, setRewardAvailable] = useState(false);
-  console.log('rewardDataType', rewardDataType);
-  console.log('rewardData', rewardData);
 
   useEffect(() => {
     setActiveNav(REWARDS_PAGE_URL);

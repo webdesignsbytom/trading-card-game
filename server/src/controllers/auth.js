@@ -32,17 +32,13 @@ export const login = async (req, res) => {
     }
 
     let lastLoginTime = foundUser.loginRecord.lastLoginDateTime
-    console.log('last login time', lastLoginTime);
 
     let oneDayLater = new Date(lastLoginTime.getTime() + 1)
-    console.log('one day later', oneDayLater)
 
     // let twoDaysLater = new Date(lastLoginTime.getTime() + 172800000)
     let twoDaysLater = new Date(lastLoginTime.getTime() + 172800000)
-    console.log('twoDaysLater', twoDaysLater)
     ;
     let newLoginTime = new Date()
-    console.log('newLoginTime', newLoginTime);
 
     // rewards
     if (newLoginTime > oneDayLater && newLoginTime < twoDaysLater) {

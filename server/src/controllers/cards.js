@@ -84,7 +84,6 @@ export const getCardById = async (req, res) => {
 export const getCardInstanceById = async (req, res) => {
   console.log('getCardById');
   const { cardInstanceId } = req.params;
-  console.log('cardId', cardInstanceId);
 
   try {
     const foundCardInstance = await findCardInstanceById(cardInstanceId);

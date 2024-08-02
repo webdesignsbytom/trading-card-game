@@ -12,7 +12,6 @@ import GammaPack from '../../assets/images/packets/mon_cards_gamma_box_set_first
 import { PACK_TYPE_ALPHA, PACK_TYPE_BETA, PACK_TYPE_GAMMA } from '../../utils/cards/CardGameConstants';
 
 function OpenablePacket({ pack }) {
-  console.log('PPSPSWD', pack);
 
   const { toggleOpeningNewPack } = useContext(ToggleContext);
   const { user } = useContext(UserContext);
@@ -22,7 +21,6 @@ function OpenablePacket({ pack }) {
   const openPack = (pack) => {
     navigate('/pack/opened', { state: pack });
     toggleOpeningNewPack(pack);
-    console.log('OPEN XXX');
   };
 
 

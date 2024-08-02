@@ -16,14 +16,12 @@ const TradingContextProvider = ({ children }) => {
   const [selectedTradeItem, setSelectedTradeItem] = useState({});
 
   const openTradeItem = (trade) => {
-    console.log('togtoggleOpenPacketsgle');
     setSelectedTradeItem(trade);
     setTradeItemOpen(true);
     setGridColSettings('grid-cols-2x gap-4')
   };
 
   const closeTradeItem = () => {
-    console.log('togtoggleOpenPacketsgle');
     setTradeItemOpen(false);
   };
 

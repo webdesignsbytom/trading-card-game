@@ -28,7 +28,7 @@ function OpenAlbumPage() {
         {/* Top bar - search bar */}
         <CardSearchAndSelectionContainer allCards={user.cards} />
 
-        <div className='grid h-full overflow-hidden bg-black rounded-tr-xl rounded-tl-xl main__bg border-t-4 border-l-4 border-r-4 border-solid border-white'>
+        <div className='grid h-full overflow-y-auto bg-black rounded-tr-xl rounded-tl-xl main__bg border-t-4 border-l-4 border-r-4 border-solid border-white'>
           {/* Main cards display */}
           <section className='grid h-full p-1 w-full'>
             {userCards.length <= 0 ? (

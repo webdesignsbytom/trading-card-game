@@ -40,7 +40,6 @@ function ShopPage() {
   }, []);
 
   const buyPacketsOfCards = (name) => {
-    console.log('buyPacketsOfCards: id tt', name);
 
     let purchaseRequest = {
       packType: name,
@@ -61,7 +60,6 @@ function ShopPage() {
     client
       .post(BUY_PACK_API, purchaseRequest)
       .then((res) => {
-        console.log('res', res.data);
         setUser(res.data.data.updatedUser);
         setPurchasingGammaPack(false);
         setPurchasingAlphaPack(false);
@@ -77,7 +75,6 @@ function ShopPage() {
   };
 
   const openSubMenu = (category) => {
-    console.log('category', category);
     if (category.category === 'Foil Packs') {
       setCurrentDisplay(shopDisplayOptions.FOILPACK);
     } else if (category.category === 'Boxes') {

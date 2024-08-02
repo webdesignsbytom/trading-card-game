@@ -27,7 +27,6 @@ export const getAllBattles = async (req, res) => {
 
   try {
     const foundBattles = await findAllBattles();
-    console.log('found battles:', foundBattles);
 
     if (!foundBattles) {
       const notFound = new NotFoundEvent(
@@ -53,7 +52,6 @@ export const getAllBattles = async (req, res) => {
 export const getBattleById = async (req, res) => {
   console.log('getBattleById');
   const { battleId } = req.params;
-  console.log('battleId', battleId);
 
   try {
     const foundBattle = await findBattleById(battleId);

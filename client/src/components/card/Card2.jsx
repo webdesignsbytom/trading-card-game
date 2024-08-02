@@ -17,8 +17,6 @@ function Card2({ cardData }) {
   const [holoCard, setHoloCard] = useState(false);
   const [rareholoCard, setRareHoloCard] = useState(false);
 
-  console.log('cardAdded', cardData);
-
   useEffect(() => {
     if (!cardData.holographic) {
       setBgColour(
