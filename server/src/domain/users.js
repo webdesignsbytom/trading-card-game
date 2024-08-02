@@ -134,6 +134,11 @@ export const createUser = (email, password, username, country, agreedToTerms) =>
           gems: 25, // Default value
         },
       },
+      loginRecord: {
+        create: {
+          daysInARow: 1
+        }
+      }
     },
   });
 

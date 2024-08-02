@@ -24,7 +24,7 @@ function RewardCalenderSquare({
       })
 
       .catch((err) => {
-        console.error('Unable to login', err);
+        console.error('Unable to collect reward', err);
       });
   };
 

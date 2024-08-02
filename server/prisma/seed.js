@@ -35,6 +35,11 @@ async function seed() {
             gems: 25, // Default value
           },
         },
+        loginRecord: {
+          create: {
+            daysInARow: 1
+          }
+        }
       },
     });
   };
@@ -42,18 +47,6 @@ async function seed() {
   for (const user of users) {
     await createUser(user.email, user.username, user.role, user.id);
   }
-
-  const devLoginRecord = await dbClient.loginRecord.create({
-    data: {
-      userId: 'dev',
-    },
-  });
-
-  const userLoginRecord = await dbClient.loginRecord.create({
-    data: {
-      userId: 'test',
-    },
-  });
 
   const createCard = async (card) => {
     const { monsterDetail, itemDetail, powerUpDetail, ...cardData } = card;
