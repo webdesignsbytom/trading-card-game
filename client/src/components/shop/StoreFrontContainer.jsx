@@ -4,7 +4,7 @@ import { ShopSalesItem } from '../../utils/cards/ShopItems';
 
 function StoreFrontContainer({ openSubMenu }) {
   return (
-    <section className='grid grid_cols_card gap-4'>
+    <section className='grid grid-cols-2 md:grid_cols_card gap-4'>
       {ShopSalesItem.map((category, index) => (
         <article
           key={index}

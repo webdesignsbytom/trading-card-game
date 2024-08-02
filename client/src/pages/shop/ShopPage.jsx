@@ -132,6 +132,7 @@ function ShopPage() {
                   backgroundImage: `url(${ShopKeeper})`,
                   backgroundSize: 'contain',
                   backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
                 }}
               ></section>
             </div>

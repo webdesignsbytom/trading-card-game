@@ -53,20 +53,12 @@ import {
   findAllPacksForUser,
   findPackById,
 } from '../domain/packs.js';
-import { createBankForUser } from '../domain/bank.js';
 import { freeSingleRandomCard } from './cards.js';
 import { createStarterPacksForUser } from './packs.js';
 import { starterPackNames } from '../utils/constants.js';
 import { createSinglePacksOfCardsForUser } from '../utils/createPackets.js';
 // Password hash
 const hashRate = 8;
-
-// export const sendTestyEmail = async (req, res) => {
-//   console.log('testin');
-//   const { email } = req.params;
-//   console.log('email', email);
-//   await testEmail(email);
-// };
 
 export const getAllUsers = async (req, res) => {
   console.log('getAllUsers');
@@ -196,10 +188,9 @@ export const getUserByUsername = async (req, res) => {
 };
 
 export const registerNewUser = async (req, res) => {
-  console.log('create new user');
   const { email, password, username, country, agreedToTerms } = req.body;
+
   const lowerCaseEmail = email.toLowerCase();
-  const lowerCaseUsername = username.toLowerCase();
 
   try {
     if (!lowerCaseEmail || !password || !username) {
@@ -229,7 +220,7 @@ export const registerNewUser = async (req, res) => {
     const createdUser = await createUser(
       lowerCaseEmail,
       hashedPassword,
-      lowerCaseUsername,
+      username,
       country,
       agreedToTerms
     );
@@ -244,8 +235,6 @@ export const registerNewUser = async (req, res) => {
     }
 
     let userId = createdUser.id;
-    // TODO: create bank on sign up
-    const createdBank = await createBankForUser(userId);
 
     delete createdUser.password;
     delete createdUser.updatedAt;
@@ -259,7 +248,6 @@ export const registerNewUser = async (req, res) => {
     //   createdUser.email,
     //   uniqueString
     // );
-    console.log('ZZZZZZZZZZZZZZZZZZ');
 
     const starterPacks = [];
     const cardsInPackArray = [];
@@ -284,7 +272,6 @@ export const registerNewUser = async (req, res) => {
     );
     starterPacks.push(createdPack3.cardInstanceArray);
     cardsInPackArray.push(createdPack3.cards);
-    console.log('DONE');
 
     return sendDataResponse(res, 201, { createdUser });
   } catch (err) {
@@ -299,9 +286,7 @@ export const registerNewUser = async (req, res) => {
 };
 
 export const getAllCardsForUser = async (req, res) => {
-  console.log('getAllCardsForUser');
-  const userId = req.params.userId;
-  console.log('xxx', userId);
+  const { userId } = req.params;
 
   try {
     const foundUser = await findUserById(userId);
@@ -316,22 +301,19 @@ export const getAllCardsForUser = async (req, res) => {
     }
 
     const cardsToFindArray = foundUser.cards;
-    console.log('cardsToFindArray', cardsToFindArray);
 
     const userCardArray = [];
 
     for (let index = 0; index < cardsToFindArray.length; index++) {
       const card = cardsToFindArray[index];
       const foundCard = await findCardById(card.cardId);
-      console.log('FOUND', foundCard);
       userCardArray.push(foundCard);
     }
 
-    // myEmitterUsers.emit('get-user-by-id', req.user);
     return sendDataResponse(res, 200, { cards: userCardArray });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
+    const serverError = new ServerErrorEvent(req.user, `Get all cards for user`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -340,9 +322,7 @@ export const getAllCardsForUser = async (req, res) => {
 
 // get all packs for user
 export const getAllPacksForUser = async (req, res) => {
-  console.log('getAllCardsForUser');
-  const userId = req.params.userId;
-  console.log('xxx', userId);
+  const { userId } = req.params;
 
   try {
     const foundUser = await findUserById(userId);
@@ -357,9 +337,7 @@ export const getAllPacksForUser = async (req, res) => {
     }
 
     const foundPacks = await findAllPacksForUser(userId);
-    console.log('found', foundPacks);
 
-    // myEmitterUsers.emit('get-user-by-id', req.user);
     return sendDataResponse(res, 200, { packs: foundPacks });
   } catch (err) {
     // Error
@@ -375,9 +353,7 @@ export const getAllPacksForUser = async (req, res) => {
 
 // get all user card instances
 export const getAllUserCardInstances = async (req, res) => {
-  console.log('getAllUserCardInstances');
-  const userId = req.params.userId;
-  console.log('xxx', userId);
+  const { userId } = req.params;
 
   try {
     const foundUser = await findUserById(userId);
@@ -394,11 +370,10 @@ export const getAllUserCardInstances = async (req, res) => {
     const foundInstances = await findAllUserCardInstances(userId);
     console.log('found instances', foundInstances);
 
-    // myEmitterUsers.emit('get-user-by-id', req.user);
     return sendDataResponse(res, 200, { cardInstances: foundInstances });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
+    const serverError = new ServerErrorEvent(req.user, `Get all card instances for user`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -409,6 +384,7 @@ export const openPackAndAddToUser = async (req, res) => {
   console.log('openPackAndAddToUser');
   const { packId, userId } = req.body;
   console.log('pack', packId, userId);
+  
   try {
     const foundUser = await findUserById(userId);
     console.log('foundUser', foundUser);
@@ -453,7 +429,7 @@ export const openPackAndAddToUser = async (req, res) => {
     });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
+    const serverError = new ServerErrorEvent(req.user, `Open pack and add to card instances failed`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -461,7 +437,6 @@ export const openPackAndAddToUser = async (req, res) => {
 };
 
 export const collectDailyReward = async (req, res) => {
-  console.log('xx collectDailyReward');
   const { userId } = req.body;
 
   try {

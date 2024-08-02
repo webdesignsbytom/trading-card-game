@@ -28,11 +28,11 @@ export const findUserByEmail = (email) =>
 
 export const findUserByUsername = (username) =>
   dbClient.user.findFirst({
-    where: { 
+    where: {
       profile: {
-        username: username 
+        username: username,
       },
-    }, 
+    },
   });
 
 export const findUserById = (userId) =>
@@ -128,6 +128,12 @@ export const createUser = (email, password, username, country, agreedToTerms) =>
           country: country,
         },
       },
+      bank: {
+        create: {
+          funds: 1000, // Default value
+          gems: 25, // Default value
+        },
+      },
     },
   });
 
@@ -177,7 +183,7 @@ export const setStarterCardsToClaimed = (userId) =>
     },
     data: {
       collectedStartedPacks: true,
-    }
+    },
   });
 
 export const updateUserCardArray = (userId, newCardArray) =>

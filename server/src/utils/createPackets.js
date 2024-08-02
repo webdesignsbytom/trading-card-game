@@ -32,8 +32,10 @@ export async function createSinglePacksOfCardsForUser(packType, userId) {
   // create instances
   for (let index = 0; index < cards.length; index++) {
     const card = cards[index];
-    cardInstanceArray.push({ packId: newPack.id, cardId: card.id, name: card.cardName })
+    cardInstanceArray.push({ packId: newPack.id, cardId: card.id })
   }
+
+  console.log('AAAAAAAAAAAAAAAAAAAAAAAAA');
   await createManyNewInstanceForPack(cardInstanceArray)
 
   return newPack;

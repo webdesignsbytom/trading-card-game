@@ -221,7 +221,8 @@ export const buyPackAndAddToUser = async (req, res) => {
 // Create starter packs for new players
 export const createStarterPacksForUser = async (req, res, id) => {
   const { userId } = id;
-console.log('START', userId);
+
+  console.log('START', userId);
   try {
     const foundUser = await findUserByIdBasic(userId);
     if (!foundUser) {

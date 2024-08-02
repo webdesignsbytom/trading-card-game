@@ -1,7 +1,12 @@
 import bcrypt from 'bcrypt';
 import dbClient from '../src/utils/dbClient.js';
 // Data
-import { cardArrayAlpha, cardArrayBeta, cardArrayGamma, users } from './cardArray.js';
+import {
+  cardArrayAlpha,
+  cardArrayBeta,
+  cardArrayGamma,
+  users,
+} from './cardArray.js';
 
 async function seed() {
   const password = await bcrypt.hash('123', 8);
@@ -31,23 +36,6 @@ async function seed() {
   for (const user of users) {
     await createUser(user.email, user.username, user.role, user.id);
   }
-
-  // User items and status
-  const devBank = await dbClient.bank.create({
-    data: {
-      userId: 'dev',
-      funds: 1000000,
-      gems: 1000,
-    },
-  });
-
-  const testUserBank = await dbClient.bank.create({
-    data: {
-      userId: 'test',
-      funds: 1000000.67,
-      gems: 1000,
-    },
-  });
 
   const devLoginRecord = await dbClient.loginRecord.create({
     data: {
@@ -88,6 +76,15 @@ async function seed() {
     await createCard(card);
   }
 
+  let maxNum = 52;
+  for (let i = 1; i < maxNum; i++) {
+    await dbClient.cardInstance.create({
+      data: {
+        userId: 'dev',
+        cardId: i,
+      },
+    });
+  }
 
   // EVENTS
   const eventOne = await dbClient.event.create({

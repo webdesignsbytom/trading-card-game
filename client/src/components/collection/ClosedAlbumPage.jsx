@@ -14,16 +14,16 @@ function ClosedAlbumPage({ openAlbum }) {
 
   let navigate = useNavigate();
 
-  useEffect(() => {
-    client
-      .get(`/users/user/userId/${user.id}/all-cards`)
-      .then((res) => {
-        setUserCardsArray(res.data.data.cards);
-      })
-      .catch((err) => {
-        console.error('Unable to get user cards', err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   client
+  //     .get(`/users/user/userId/${user.id}/all-cards`)
+  //     .then((res) => {
+  //       setUserCardsArray(res.data.data.cards);
+  //     })
+  //     .catch((err) => {
+  //       console.error('Unable to get user cards', err);
+  //     });
+  // }, []);
 
   return (
     <div className='grid h-full w-full overflow-hidden rounded p-6 lg:p-12'>
