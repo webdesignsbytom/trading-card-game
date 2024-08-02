@@ -29,6 +29,9 @@ export const findCardById = (id) =>
     where: {
       id: id,
     },
+    include: {
+      cardStats: true,  
+    },
   });
 
 export const findAllUserCardInstances = (userId) =>
@@ -42,6 +45,9 @@ export const findCardByName = (cardName) =>
   dbClient.card.findFirst({
     where: {
       cardName: cardName,
+    },
+    include: {
+      cardStats: true,  
     },
   });
 
@@ -59,6 +65,9 @@ export const findAllCardsFromPack = (packType) =>
     where: {
       packType: packType,
     },
+    include: {
+      cardStats: true,  
+    },
     orderBy: {
       createdAt: 'desc',
     },
@@ -68,6 +77,9 @@ export const findCardsByCardType = (cardType) =>
   dbClient.card.findMany({
     where: {
       cardType: cardType,
+    },
+    include: {
+      cardStats: true,  
     },
   });
 
@@ -104,7 +116,10 @@ export const findAllPolicyCards = () =>
 export const findAllCardsAvailableToBuy = () =>
   dbClient.card.findMany({
     where: {
-      availability: true,
+      isAvailable: true,
+    },
+    include: {
+      cardStats: true,  
     },
     orderBy: {
       createdAt: 'desc',

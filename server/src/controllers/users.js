@@ -102,6 +102,7 @@ export const getUserById = async (req, res) => {
   console.log('getUserById');
   const userId = req.params.userId;
   console.log('xxx');
+  
   try {
     const foundUser = await findUserById(userId);
     if (!foundUser) {

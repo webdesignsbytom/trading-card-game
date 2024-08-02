@@ -97,7 +97,7 @@ function Card({ cardData }) {
   return (
     <section
       onClick={() => toggleCardData(cardData)}
-      className={`${holoCard} ${rareholoCard}  cursor-pointer outline outline-4 grid grid-rows-a1a outline-blue-800 h-full text-white rounded px-2 py-[1px] ${bgColour} card__bg`}
+      className={`${holoCard} ${rareholoCard} cursor-pointer outline outline-4 grid grid-rows-a1a outline-blue-800 h-full text-white rounded px-2 py-[1px] ${bgColour} card__bg`}
     >
       <div className='flex justify-between items-center text-sm my-1'>
         <h2 className='text-white text-sm capitalize'>{cardData.cardName}</h2>

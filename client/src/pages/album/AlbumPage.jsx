@@ -20,12 +20,6 @@ function AlbumPage() {
     setActiveNav(ALBUM_PAGE_URL);
   }, []);
 
-  console.log('USER', user);
-
-  const [usersCardCollectionArray, setUsersCardCollectionArray] = useState(
-    user.cards
-  );
-
   const openAlbum = () => {
     setAlbumOpen(!albumOpen);
   };
@@ -44,9 +38,7 @@ function AlbumPage() {
 
             {/* Open album */}
             {albumOpen && !viewCard && (
-              <OpenAlbumPage
-                usersCardCollectionArray={usersCardCollectionArray}
-              />
+              <OpenAlbumPage />
             )}
 
             {/* Single card */}

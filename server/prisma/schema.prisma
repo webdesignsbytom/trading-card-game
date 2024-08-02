@@ -225,7 +225,7 @@ model Pack {
 }
 
 model Card {
-  id               Int              @id @default(autoincrement()) // pack id
+  id               Int              @id @default(autoincrement()) //
   serialNumber     String           @unique @default("") @db.VarChar(128) // number from all cards
   cardName         String           @unique @db.VarChar(255) // name of the card
   edition          String           @default("") @db.VarChar(128) // first second third fouth

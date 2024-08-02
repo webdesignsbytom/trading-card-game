@@ -1,26 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
-// Components
-import Navbar from '../../components/nav/Navbar';
-import Card from '../../components/card/Card';
-import LoadingSpinner from '../../components/utils/LoadingSpinner';
+// Api
+import client from '../../api/client';
 // Context
 import { ToggleContext } from '../../context/ToggleContext';
-// Utils
-import client from '../../api/client';
-// Constants
-import { CARDS_PAGE_URL, GET_ALL_CARDS_API } from '../../utils/Constants';
-import EmptyCardSlot from '../../components/card/EmptyCardSlot';
+// Components
+import Navbar from '../../components/nav/Navbar';
+import LoadingSpinner from '../../components/utils/LoadingSpinner';
 import Card2 from '../../components/card/Card2';
 import CardSearchAndSelectionContainer from '../../components/search/CardSearchAndSelectionContainer';
+// Constants
+import { CARDS_PAGE_URL, GET_ALL_CARDS_API } from '../../utils/Constants';
 
 function CardsAvailablePage() {
   const { setActiveNav } = useContext(ToggleContext);
 
   const [allCards, setAllCards] = useState([]);
-  const [foundCards, setFoundCards] = useState([]);
-
-  console.log('foundCards', foundCards);
-  console.log('allCards', allCards);
 
   useEffect(() => {
     setActiveNav(CARDS_PAGE_URL);
@@ -30,7 +24,6 @@ function CardsAvailablePage() {
     client
       .get(GET_ALL_CARDS_API)
       .then((res) => {
-        console.log('res', res.data.data.cards);
         setAllCards(res.data.data.cards);
       })
       .catch((err) => {

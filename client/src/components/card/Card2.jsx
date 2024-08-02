@@ -1,12 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import EmptyCardSlot from './EmptyCardSlot';
-import { ToggleContext } from '../../context/ToggleContext';
 import {
   MEGARAREHOLO_CARD_RARITY,
   RAREHOLO_CARD_RARITY,
-  PACK_TYPE_ALPHA,
-  PACK_TYPE_BETA,
-  PACK_TYPE_GAMMA,
   BACKGROUND_COLORS,
   CARD_TYPE_MONSTER,
   CARD_TYPE_POWERUP,
@@ -17,10 +13,11 @@ import {
 } from '../../utils/cards/CardGameConstants';
 
 function Card2({ cardData }) {
-  const { toggleCardData } = useContext(ToggleContext);
   const [bgColour, setBgColour] = useState('bg-white');
   const [holoCard, setHoloCard] = useState(false);
   const [rareholoCard, setRareHoloCard] = useState(false);
+
+  console.log('cardAdded', cardData);
 
   useEffect(() => {
     if (!cardData.holographic) {
@@ -102,7 +99,7 @@ function Card2({ cardData }) {
 
   return (
     <article
-      className={`grid card__bg ${bgColour} border-[0.5rem] bg-black border-card-border border-solid rounded-lg overflow-hidden h-full w-full cursor-pointer`}
+      className={`grid card__bg ${bgColour} border-[0.5rem] bg-black border-card-border border-solid rounded-lg overflow-hidden h-fit w-full cursor-pointer`}
       style={{ aspectRatio: '2 / 3' }}
     >
       <div className='grid grid-rows-a1a p-[2px] h-full w-full overflow-hidden'>
@@ -129,7 +126,7 @@ function Card2({ cardData }) {
             </div>
             <div className='grid h-full bg-green-300 overflow-hidden text-sm lg:text-base'>
               {cardData.cardStats.map((stat, index) => {
-                return <div key={index}>{stat.value}flex justify-between h-fit overflow-hidden text-sm lg:text-base flex justify-between h-fit overflow-hidden text-sm lg:text-base</div>;
+                return <div key={index}>{stat.value}</div>;
               })}
             </div>
           </div>

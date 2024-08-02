@@ -13,6 +13,7 @@ export const UserContext = React.createContext();
 
 const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(tempUserData);
+  console.log('user', user);
 
   const [token, setToken] = useState(
     localStorage.getItem(process.env.REACT_APP_USER_TOKEN) || ''
