@@ -19,7 +19,7 @@ import {
 
 const router = Router();
 
-router.get('/all-users', getAllUsers);
+router.get('/get-all-users', getAllUsers);
 router.post('/register', registerNewUser);
 router.patch('/user/packs/open-pack', openPackAndAddToUser);
 router.patch('/user/rewards/collect', collectDailyReward);
