@@ -17,10 +17,10 @@ function RegisterPage() {
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
 
-        <main className='grid bg-secondary-colour grid-rows-reg main__bg h-full items-center justify-center'>
+        <main className='grid bg-secondary-colour main__bg h-full items-center justify-center'>
           <section className='bg-white rounded p-4 shadow-lg'>
-            <article className='text-center my-2'>
-              <h1 className='text-3xl font-semibold'>Sign Up Now</h1>
+            <article className='text-center mb-4 mt-1'>
+              <h1 className='text-3xl font-semibold font-fantasy'>Sign Up Now</h1>
             </article>
             <RegisterForm />
           </section>
