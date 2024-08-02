@@ -6,12 +6,12 @@ export const SIGN_UP_PAGE_URL = '/sign-up';
 export const ALBUM_PAGE_URL = '/album';
 export const TRADING_PAGE_URL = '/trading';
 export const ADMIN_PAGE_URL = '/admin';
+export const DEV_PAGE_URL = '/developer';
 export const CARDS_PAGE_URL = '/cards';
 export const BATTLES_PAGE_URL = '/battles';
 export const INVENTORY_PAGE_URL = '/invintory';
 export const REWARDS_PAGE_URL = '/rewards';
 export const UNOPENED_PACKS_URL = '/packs/unopened';
-export const BUY_PACK_PAGE_URL = '/shop/packs';
 export const OPEN_PACKS_PAGE_URL = '/open-packs';
 export const CARDS_IN_PACK_PAGE_URL = '/pack/opened';
 export const CARD_OVERVIEW_PAGE_URL = '/card-overview/:id';
@@ -27,3 +27,11 @@ export const TEST_CARD_PAGE_URL = '/test/card';
 
 // Text data
 export const SecondaryTitle = 'The Monster Trading Card Game'
+
+// API
+export const GET_ALL_CARDS_API = '/mon-cards/get-all-cards'
+export const STARTING_PACKS_API = '/packs/create-starter-packs-for-user'
+export const GET_USER_API = '/users/get-user-by-id'
+export const BUY_PACK_API = '/packs/buy-pack-for-user'
+export const LOGIN_API = '/login'
+export const REGISTER_API = '/users/register'

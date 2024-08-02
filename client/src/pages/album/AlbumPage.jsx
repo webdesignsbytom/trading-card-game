@@ -20,34 +20,32 @@ function AlbumPage() {
     setActiveNav(ALBUM_PAGE_URL);
   }, []);
 
-  const [usersCardCollectionArray, setUsersCardCollectionArray] = useState(
-    user.cards
-  );
-
   const openAlbum = () => {
     setAlbumOpen(!albumOpen);
   };
 
   return (
-    <div className='h-screen grid'>
-      <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
+    <div className='h-screen grid overflow-hidden'>
+      <div className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
-        <section className='bg-blue-500 grid h-full overflow-hidden main__bg p-4'>
-          <div className='grid h-full overflow-hidden outline-black outline-4 outline rounded'>
-            <main className='grid h-full overflow-hidden rounded'>
-              {!albumOpen && !viewCard && (
-                <ClosedAlbumPage openAlbum={openAlbum} />
-              )}
-              {albumOpen && !viewCard && (
-                <OpenAlbumPage
-                  usersCardCollectionArray={usersCardCollectionArray}
-                />
-              )}
-              {viewCard && <CardOverview />}
-            </main>
+
+        <main className='bg-white grid h-full w-full overflow-hidden main__bg'>
+          <div className='grid h-full w-full overflow-hidden'>
+            {/* Closed album cover */}
+            {!albumOpen && !viewCard && (
+              <ClosedAlbumPage openAlbum={openAlbum} />
+            )}
+
+            {/* Open album */}
+            {albumOpen && !viewCard && (
+              <OpenAlbumPage />
+            )}
+
+            {/* Single card */}
+            {viewCard && <CardOverview />}
           </div>
-        </section>
-      </section>
+        </main>
+      </div>
     </div>
   );
 }

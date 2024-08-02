@@ -28,7 +28,6 @@ const ToggleContextProvider = ({ children }) => {
     client
       .patch('/users/user/packs/open-pack', data, true)
       .then((res) => {
-        console.log('res', res.data);
         setReturnedOpenPack(res.data.data.cards);
         setToggleOpeningPackDiplay(!toggleOpeningPackDiplay);
       })
@@ -46,7 +45,6 @@ const ToggleContextProvider = ({ children }) => {
     navigate(`/card-overview/${card.id}`, { state: card });
   };
 
-  console.log('selectedCard', selectedCard);
   return (
     <ToggleContext.Provider
       value={{

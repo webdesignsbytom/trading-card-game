@@ -4,8 +4,6 @@ import client from '../../api/client';
 function PolicyCardEditComponent({ cardData, setSelectedCardData }) {
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log('name', name);
-    console.log('value', value);
 
     if (name === 'attack' || name === 'health' || 'memberName' || 'cardStat') {
       setSelectedCardData({
@@ -29,7 +27,6 @@ function PolicyCardEditComponent({ cardData, setSelectedCardData }) {
     client
       .patch(`/mon-cards/update-card/${cardData.id}`, cardData)
       .then((res) => {
-        console.log('res', res.data);
         setSelectedCardData(res.data.data.updatedCard);
       })
 

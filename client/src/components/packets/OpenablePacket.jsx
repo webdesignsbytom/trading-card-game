@@ -1,18 +1,17 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 // context
 import { ToggleContext } from '../../context/ToggleContext';
 import { UserContext } from '../../context/UserContext';
 // API
 // Images
-import BetaPack from '../../assets/img/packets/pack1.png';
-import AlphaPack from '../../assets/img/packets/pack2.png';
-import GammaPack from '../../assets/img/packets/pack3.png';
+import AlphaPack from '../../assets/images/packets/mon_cards_alpha_box_set_first_edition.png';
+import BetaPack from '../../assets/images/packets/mon_cards_beta_box_set_first_edition.png';
+import GammaPack from '../../assets/images/packets/mon_cards_gamma_box_set_first_edition.png';
 // Constants
 import { PACK_TYPE_ALPHA, PACK_TYPE_BETA, PACK_TYPE_GAMMA } from '../../utils/cards/CardGameConstants';
 
 function OpenablePacket({ pack }) {
-  console.log('PPSPSWD', pack);
 
   const { toggleOpeningNewPack } = useContext(ToggleContext);
   const { user } = useContext(UserContext);
@@ -22,7 +21,6 @@ function OpenablePacket({ pack }) {
   const openPack = (pack) => {
     navigate('/pack/opened', { state: pack });
     toggleOpeningNewPack(pack);
-    console.log('OPEN XXX');
   };
 
 

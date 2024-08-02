@@ -14,12 +14,13 @@ import {
   INVENTORY_PAGE_URL,
   REWARDS_PAGE_URL,
   UNOPENED_PACKS_URL,
+  DEV_PAGE_URL,
 } from '../../utils/Constants';
 // Context
 import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
 // Images
-import MainLogo from '../../assets/img/logos/mon_card_main_logo_of_creatures.png';
+import MainLogo from '../../assets/images/logos/mon_card_main_logo_of_creatures.png';
 // Icons
 import { IoMenu } from 'react-icons/io5';
 
@@ -177,6 +178,14 @@ function SmallScreenNavbar({ logoutUser }) {
                   to={ADMIN_PAGE_URL}
                   activeNav={activeNav}
                   text='Admin'
+                  onClick={navigateToPage}
+                />
+              )}
+              {user.role === 'DEVELOPER' && (
+                <NavButton
+                  to={DEV_PAGE_URL}
+                  activeNav={activeNav}
+                  text='Developer'
                   onClick={navigateToPage}
                 />
               )}

@@ -19,7 +19,6 @@ const client = {
   },
 
   post: (path, data, withToken = true) => {
-    console.log('DATA', data);
     const url = `${host}${path}`;
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMjg3OTcxLTVkZDAtNDE1Mi1hMzVmLWU2ZjMxYmM5YjY0YyIsImVtYWlsIjoiZGV2QGRldi5jb20iLCJpYXQiOjE2ODU4NDQ5MzIsImV4cCI6MTY4NjIwNDkzMn0.andbmuUS-nyHf1zvnDdBmKjr8Z6wnab8dLU1SInZjWY";
     let headers = {};

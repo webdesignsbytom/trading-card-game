@@ -27,6 +27,7 @@ import { createSingleCardsForUser } from '../utils/createCards.js';
 // Get all cards from all packs
 export const getAllCards = async (req, res) => {
   console.log('getAllCards');
+  
   try {
     const foundCards = await findAllCards();
     console.log('found cards', foundCards);
@@ -83,7 +84,6 @@ export const getCardById = async (req, res) => {
 export const getCardInstanceById = async (req, res) => {
   console.log('getCardById');
   const { cardInstanceId } = req.params;
-  console.log('cardId', cardInstanceId);
 
   try {
     const foundCardInstance = await findCardInstanceById(cardInstanceId);
@@ -517,12 +517,13 @@ export const updateCardDateById = async (req, res) => {
   }
 };
 
-export const freeSingleRandomCard = async (userId) => {
+export const freeSingleRandomCard = async (req, res) => {
   console.log('buySingleRandomCard');
+  const { userId } = req.body
 
   try {
     let cardFound = await createSingleCardsForUser();
-
+console.log('cardFound', cardFound);
     let newInstance = await createNewInstanceForCard(
       cardFound.id,
       userId,
@@ -538,8 +539,8 @@ export const freeSingleRandomCard = async (userId) => {
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
-
-    return { newInstance, cardFound };
+console.log('AAAAAAAAAAAAA');
+    return sendDataResponse(res, 200, { newInstance, cardFound });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent('freecard', `Create single card`);

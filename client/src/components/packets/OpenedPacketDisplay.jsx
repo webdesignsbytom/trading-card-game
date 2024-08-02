@@ -13,7 +13,6 @@ function OpenedPacketDisplay() {
     setActiveNav('/invintory')
   }, [])
 
-  console.log('XXXX ', returnedOpenPack);
   return (
     <div className='grid h-full grid-rows-reg overflow-hidden'>
       <article className='h-fit text-center'>

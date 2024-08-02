@@ -8,10 +8,15 @@ import client from '../../api/client';
 // Components
 import Navbar from '../../components/nav/Navbar';
 import LoadingSpinner from '../../components/utils/LoadingSpinner';
+import {
+  HOME_PAGE_URL,
+  LOGIN_API,
+  LOGIN_PAGE_URL,
+} from '../../utils/Constants';
 
 function LoginPage() {
   const { setUser } = useContext(UserContext);
-  const { setActiveNav } = useContext(ToggleContext)
+  const { setActiveNav } = useContext(ToggleContext);
 
   const [loginInProgress, setLoginInProgress] = useState(false);
   const [loginError, setLoginError] = useState(false);
@@ -24,32 +29,31 @@ function LoginPage() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    setActiveNav('/login')
-  }, [])
+    setActiveNav(LOGIN_PAGE_URL);
+  }, []);
 
   const homePage = () => {
-    navigate('/', { replace: true });
+    navigate(HOME_PAGE_URL, { replace: true });
   };
 
   const handleLogin = (event) => {
     event.preventDefault();
 
-    setLoginInProgress(true)
+    setLoginInProgress(true);
     client
-      .post('/login', loginFormData, false)
+      .post(LOGIN_API, loginFormData, false)
       .then((res) => {
-
         localStorage.setItem(
           process.env.REACT_APP_USER_TOKEN,
           res.data.data.token
         );
-        setLoginInProgress(false)
+        setLoginInProgress(false);
         setUser(res.data.data.existingUser);
       })
       .then(() => homePage())
 
       .catch((err) => {
-        setLoginError(true)
+        setLoginError(true);
         console.error('Unable to login', err);
       });
   };
@@ -78,9 +82,11 @@ function LoginPage() {
         <main className='bg-white main__bg grid items-center justify-center'>
           <div className='grid justify-center items-center w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700'>
             <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
-              <h1 className='text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white'>
-                Sign in to your account
-              </h1>
+              <article className='text-center mb-4 mt-1'>
+                <h1 className='text-3xl font-semibold font-fantasy'>
+                  Login to your account
+                </h1>
+              </article>
               <form className='space-y-4 md:space-y-6' onSubmit={handleLogin}>
                 <div>
                   <label
@@ -160,18 +166,22 @@ function LoginPage() {
                 </button>
                 {loginError && (
                   <div className='text-center'>
-                    <span className='text-red-700 font-semibold'>LOGIN FAILED</span>
+                    <span className='text-red-700 font-semibold'>
+                      LOGIN FAILED
+                    </span>
                   </div>
                 )}
-                <p className='font-light text-gray-500 dark:text-gray-400'>
-                  Don’t have an account yet?{' '}
-                  <Link
-                    to='/sign-up'
-                    className='font-medium text-blue-600 hover:underline'
-                  >
-                    Sign up
-                  </Link>
-                </p>
+                <section className='text-center'>
+                  <p className='font-light text-gray-500 dark:text-gray-400'>
+                    Don’t have an account yet?{' '}
+                    <Link
+                      to='/sign-up'
+                      className='font-medium text-blue-600 hover:underline'
+                    >
+                      Sign up
+                    </Link>
+                  </p>
+                </section>
               </form>
             </div>
           </div>

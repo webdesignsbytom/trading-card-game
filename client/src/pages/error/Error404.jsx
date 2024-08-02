@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 // Images
-import TreeBG from '../../assets/img/404cat.png';
+import TreeBG from '../../assets/images/404cat.png';
 // Components
 import Navbar from '../../components/nav/Navbar';
 // Context

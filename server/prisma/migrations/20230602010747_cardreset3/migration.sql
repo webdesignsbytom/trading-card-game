@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "Card" ALTER COLUMN "rarity" SET DEFAULT 'COMMON',
-ALTER COLUMN "backgroundColour" SET DEFAULT 'WHITE';

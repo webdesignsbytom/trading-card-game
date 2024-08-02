@@ -12,13 +12,11 @@ function RewardCalenderSquare({
   const { user, setUser } = useContext(UserContext);
 
   const openDailyReward = (day) => {
-    console.log('openDailyReward');
     let rewardData = { userId: user.id };
 
     client
       .patch('/users/user/rewards/collect', rewardData)
       .then((res) => {
-        console.log('res', res.data);
         setRewardData(res.data.data.reward);
         setRewardDataType(res.data.data.rewardType);
         setUser(res.data.data.updatedUser);

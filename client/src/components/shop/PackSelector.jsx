@@ -1,8 +1,8 @@
 import React from 'react';
 // Images
-import BetaPack from '../../assets/img/packets/pack1.png';
-import AlphaPack from '../../assets/img/packets/pack2.png';
-import GammaPack from '../../assets/img/packets/pack3.png';
+import BetaPack from '../../assets/images/packets/.png';
+import AlphaPack from '../../assets/images/packets/pack2.png';
+import GammaPack from '../../assets/images/packets/pack3.png';
 import LoadingSpinner from '../utils/LoadingSpinner';
 // Constants
 import {

@@ -1,28 +1,36 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-// API
+// Api
 import client from '../../api/client';
 // Context
 import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
 // Components
 import Navbar from '../../components/nav/Navbar';
-import PackSelector from '../../components/shop/PackSelector';
 import ShopHeader from '../../components/shop/ShopHeader';
+import StoreFrontContainer from '../../components/shop/StoreFrontContainer';
 // Constants
-import { BUY_PACK_PAGE_URL, SHOP_PAGE_URL } from '../../utils/Constants';
+import { BUY_PACK_API, SHOP_PAGE_URL } from '../../utils/Constants';
 import {
   PACK_TYPE_ALPHA,
   PACK_TYPE_BETA,
   PACK_TYPE_GAMMA,
+  shopDisplayOptions,
   StandardPackCost,
 } from '../../utils/cards/CardGameConstants';
+// Images
+import ShopKeeper from '../../assets/images/backgrounds/shop_keeper_main_with_potions.png';
+import PurchasingContainer from '../../components/shop/PurchasingContainer';
 
 function ShopPage() {
   const { user, setUser } = useContext(UserContext);
   const { setActiveNav } = useContext(ToggleContext);
-  const [togglePackPurchasing, setTogglePackPurchasing] = useState(false);
-  const [costOfStandardPack] = useState(StandardPackCost);
+
+  const [currentDisplay, setCurrentDisplay] = useState(
+    shopDisplayOptions.STOREFRONT
+  );
+
+  const [displayItems, setDisplayItems] = useState({});
+
   const [purchasingBetaPack, setPurchasingBetaPack] = useState(false);
   const [purchasingGammaPack, setPurchasingGammaPack] = useState(false);
   const [purchasingAlphaPack, setPurchasingAlphaPack] = useState(false);
@@ -32,12 +40,11 @@ function ShopPage() {
   }, []);
 
   const buyPacketsOfCards = (name) => {
-    console.log('buyPacketsOfCards: id tt', name);
 
     let purchaseRequest = {
       packType: name,
       userId: user.id,
-      cost: costOfStandardPack,
+      cost: StandardPackCost,
     };
 
     if (name === PACK_TYPE_ALPHA) {
@@ -51,9 +58,8 @@ function ShopPage() {
     }
 
     client
-      .post('/packs/buy-pack-for-user', purchaseRequest)
+      .post(BUY_PACK_API, purchaseRequest)
       .then((res) => {
-        console.log('res', res.data);
         setUser(res.data.data.updatedUser);
         setPurchasingGammaPack(false);
         setPurchasingAlphaPack(false);
@@ -68,21 +74,74 @@ function ShopPage() {
       });
   };
 
-  const openPackPurchasing = () => {
-    setTogglePackPurchasing(!togglePackPurchasing);
+  const openSubMenu = (category) => {
+    if (category.category === 'Foil Packs') {
+      setCurrentDisplay(shopDisplayOptions.FOILPACK);
+    } else if (category.category === 'Boxes') {
+      setCurrentDisplay(shopDisplayOptions.BOXSETS);
+    }
+
+    setDisplayItems(category.items);
+  };
+
+  const goBack = () => {
+    setCurrentDisplay(shopDisplayOptions.STOREFRONT);
   };
 
   return (
-    <div className='bg-white main__bg h-screen grid'>
+    <div className='bg-white main__bg h-screen grid overflow-hidden'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
-        <main className='grid p-2 grid-rows-reg'>
+
+        <main className='grid p-4 grid-rows-reg gap-4 h-full w-full overflow-hidden'>
+          {/* Shop header */}
           <ShopHeader />
 
+          {/* Main shop */}
+          <section className='grid h-full w-full overflow-hidden'>
+            <div className='grid md:grid-cols-2 gap-4 h-full w-full'>
+              {/* Shop items */}
+              <section className='grid bg-blue-400 main__bg rounded overflow-hidden w-full h-full border-4 border-solid border-main-border'>
+                {/* Store front */}
+                {currentDisplay === shopDisplayOptions.STOREFRONT && (
+                  <StoreFrontContainer openSubMenu={openSubMenu} />
+                )}
+
+                {/* But single packs */}
+                {currentDisplay === shopDisplayOptions.FOILPACK && (
+                  <PurchasingContainer
+                    displayItems={displayItems}
+                    onclickFunction={buyPacketsOfCards}
+                    goBack={goBack}
+                  />
+                )}
+                {/* Buy boxes */}
+                {currentDisplay === shopDisplayOptions.BOXSETS && (
+                  <PurchasingContainer
+                    displayItems={displayItems}
+                    onclickFunction={buyPacketsOfCards}
+                    goBack={goBack}
+                  />
+                )}
+              </section>
+
+              {/* Shop owner */}
+              <section
+                className='grid rounded overflow-hidden w-full h-full'
+                style={{
+                  backgroundImage: `url(${ShopKeeper})`,
+                  backgroundSize: 'contain',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                }}
+              ></section>
+            </div>
+          </section>
+
           {/* Shop main */}
-          <div className='pt-4 grid '>
+          {/* <div className='pt-4 grid '>
             <section className='grid bg-blue-400 main__bg justify-center items-center rounded-xl pt-4'>
-              {togglePackPurchasing ? (
+              {togglePackPurchasing && (
                 <div className='grid'>
                   <PackSelector
                     buyPacketsOfCards={buyPacketsOfCards}
@@ -92,21 +151,9 @@ function ShopPage() {
                     purchasingAlphaPack={purchasingAlphaPack}
                   />
                 </div>
-              ) : (
-                <div>
-                  <Link to={BUY_PACK_PAGE_URL}>
-                    <button
-                      onClick={openPackPurchasing}
-                      className='bg-red-700 hover:bg-red-500 main__bg text-xl uppercase font-semibold text-gray-50 hover:text-white active:scale-95 rounded outline outline-2 outline-black p-4 shadow-2xl'
-                      aria-label='But pack of cards button'
-                    >
-                      Buy Packs
-                    </button>
-                  </Link>
-                </div>
               )}
             </section>
-          </div>
+          </div> */}
         </main>
       </section>
     </div>

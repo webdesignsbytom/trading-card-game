@@ -5,6 +5,7 @@ import client from '../../api/client';
 import LoadingSpinner from '../../components/utils/LoadingSpinner';
 // Utils
 import CountrySelect from '../../utils/CountrySelect';
+import { LOGIN_PAGE_URL, REGISTER_API } from '../../utils/Constants';
 
 function RegisterForm() {
   const [registerFormData, setRegisterFormData] = useState({
@@ -24,7 +25,7 @@ function RegisterForm() {
   let navigate = useNavigate();
 
   const loginPage = () => {
-    navigate('/login', { replace: true });
+    navigate(LOGIN_PAGE_URL, { replace: true });
   };
 
   const handleSubmitRegisterForm = (event) => {
@@ -36,9 +37,8 @@ function RegisterForm() {
     });
 
     client
-      .post('/users/register', registerFormData, false)
+      .post(REGISTER_API, registerFormData, false)
       .then((res) => {
-        console.log('res', res.data);
         setRegistrationFormData({
           ...registrationFormData,
           active: false,

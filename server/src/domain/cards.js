@@ -3,12 +3,10 @@ import dbClient from '../utils/dbClient.js';
 export const findAllCards = () =>
   dbClient.card.findMany({
     orderBy: {
-      createdAt: 'desc',
+      createdAt: 'asc',
     },
     include: {
-      memberCard: true,
-      partyCard: true,
-      policyCard: true,
+      cardStats: true,  
     },
   });
 
@@ -32,9 +30,7 @@ export const findCardById = (id) =>
       id: id,
     },
     include: {
-      memberCard: true,
-      partyCard: true,
-      policyCard: true,
+      cardStats: true,  
     },
   });
 
@@ -51,9 +47,7 @@ export const findCardByName = (cardName) =>
       cardName: cardName,
     },
     include: {
-      memberCard: true,
-      partyCard: true,
-      policyCard: true,
+      cardStats: true,  
     },
   });
 
@@ -64,11 +58,6 @@ export const findCardBySearchQuery = (cardName) =>
         startsWith: cardName,
       },
     },
-    include: {
-      memberCard: true,
-      partyCard: true,
-      policyCard: true,
-    },
   });
 
 export const findAllCardsFromPack = (packType) =>
@@ -76,13 +65,11 @@ export const findAllCardsFromPack = (packType) =>
     where: {
       packType: packType,
     },
+    include: {
+      cardStats: true,  
+    },
     orderBy: {
       createdAt: 'desc',
-    },
-    include: {
-      memberCard: true,
-      partyCard: true,
-      policyCard: true,
     },
   });
 
@@ -92,9 +79,7 @@ export const findCardsByCardType = (cardType) =>
       cardType: cardType,
     },
     include: {
-      memberCard: true,
-      partyCard: true,
-      policyCard: true,
+      cardStats: true,  
     },
   });
 
@@ -131,15 +116,13 @@ export const findAllPolicyCards = () =>
 export const findAllCardsAvailableToBuy = () =>
   dbClient.card.findMany({
     where: {
-      availability: true,
+      isAvailable: true,
+    },
+    include: {
+      cardStats: true,  
     },
     orderBy: {
       createdAt: 'desc',
-    },
-    include: {
-      memberCard: true,
-      partyCard: true,
-      policyCard: true,
     },
   });
 

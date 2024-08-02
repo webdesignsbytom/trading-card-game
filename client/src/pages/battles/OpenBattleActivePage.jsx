@@ -10,7 +10,6 @@ function OpenBattleActivePage() {
 
   const location = useLocation();
   const battleData = location.state;
-  console.log('battleData', battleData);
 
   return (
     <div className='h-screen grid'>

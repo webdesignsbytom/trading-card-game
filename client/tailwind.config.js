@@ -36,6 +36,7 @@ module.exports = {
         fantasy: ['FantasyFont', 'sans-serif'],
       },
       fontSize: {
+        xss: '0.3rem',
         ss: '0.6rem',
       },
       gridTemplateRows: {

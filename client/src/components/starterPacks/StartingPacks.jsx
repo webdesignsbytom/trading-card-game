@@ -7,10 +7,12 @@ import { UserContext } from '../../context/UserContext';
 // Components
 import LoadingSpinner from '../../components/utils/LoadingSpinner';
 // Constants
-import { CARDS_IN_PACK_PAGE_URL } from '../../utils/Constants';
+import { UNOPENED_PACKS_URL } from '../../utils/Constants';
 
 function StartingPacks() {
   const { user } = useContext(UserContext);
+
+  console.log('usercxxxx', user);
 
   const [claimedFreePacks, setClaimedFreePacks] = useState(false);
   const [starterPacks, setStarterPacks] = useState('');
@@ -20,23 +22,9 @@ function StartingPacks() {
 
   const claimStarterPacks = () => {
     setLoadingStarterPacks(true);
-    let data = { userId: user.id };
-
-    client
-      .post(`/packs/create-starter-packs-for-user`, data)
-      .then((res) => {
-        console.log('res', res.data);
-        setStarterPacks(res.data.data.packs);
-        setLoadingStarterPacks(false);
-        setClaimedFreePacks(true);
-        navigate(CARDS_IN_PACK_PAGE_URL);
-      })
-      .catch((err) => {
-        console.error('Unable to claim starter packs', err);
-      });
+    navigate(UNOPENED_PACKS_URL);
   };
 
-  console.log('starterPacks', starterPacks);
   return (
     <div className='grid h-fit'>
       <section className='grid grid-rows-reg'>
