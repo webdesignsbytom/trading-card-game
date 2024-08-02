@@ -29,6 +29,12 @@ async function seed() {
             username,
           },
         },
+        bank: {
+          create: {
+            funds: 1000, // Default value
+            gems: 25, // Default value
+          },
+        },
       },
     });
   };

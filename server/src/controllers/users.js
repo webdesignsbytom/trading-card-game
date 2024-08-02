@@ -54,7 +54,6 @@ import {
   findPackById,
 } from '../domain/packs.js';
 import { freeSingleRandomCard } from './cards.js';
-import { createStarterPacksForUser } from './packs.js';
 import { starterPackNames } from '../utils/constants.js';
 import { createSinglePacksOfCardsForUser } from '../utils/createPackets.js';
 // Password hash
