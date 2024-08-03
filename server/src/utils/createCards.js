@@ -128,6 +128,8 @@ export async function createCardsForPack(packType, packId) {
 
   // Get all cards from pack
   const allCardsInPack = await findAllCardsFromPack(packType);
+  console.log('all cards in pack', allCardsInPack);
+
   const commonCards = allCardsInPack.filter((card) => card.rarity === 'COMMON');
   const uncommonCards = allCardsInPack.filter(
     (card) => card.rarity === 'UNCOMMON'
@@ -143,6 +145,7 @@ export async function createCardsForPack(packType, packId) {
   // Create required cards for pack.
   // Create one holo card
   const holoCard = await createHolographicCardForPack(rareCards, megaRareCards);
+  console.log('holocard', holoCard);
   holoCard.packId = packId;
   packArray.push(holoCard);
 

@@ -32,10 +32,7 @@ function ShopPage() {
     setActiveNav(SHOP_PAGE_URL);
   }, []);
 
-  const buyPacketsOfCards = (pack) => {
-
-    console.log('pack.packtype', pack);
-    
+  const buyPacketsOfCards = (pack) => {    
     let purchaseRequest = {
       packType: pack.packType,
       userId: user.id,
@@ -49,7 +46,7 @@ function ShopPage() {
       })
 
       .catch((err) => {
-        console.error('Unable to buy packs', err);
+        console.error('Error: Unable to buy pack', err);
       });
   };
 
