@@ -42,7 +42,7 @@ import {
   UNOPENED_PACKS_URL,
   OPEN_PACKS_PAGE_URL,
   CARDS_IN_PACK_PAGE_URL,
-  CARD_OVERVIEW_PAGE_URL,
+  CARD_PAGE_URL,
   INVENTORY_ITEMS_PAGE_URL,
   OPEN_BATTLE_ACTIVE_PAGE_URL,
   BATTLE_RULES_PAGE_URL,
@@ -67,7 +67,7 @@ function App() {
       <Route path={CARDS_IN_PACK_PAGE_URL} element={<CardsInPackPage />} />
       <Route path={UNOPENED_PACKS_URL} element={<UnopenedPacketsPage />} />
       <Route path={CARDS_PAGE_URL} element={<CardsAvailablePage />} />
-      <Route path={CARD_OVERVIEW_PAGE_URL} element={<CardOverviewPage />} />
+      <Route path={`${CARD_PAGE_URL}/:cardName`} element={<CardOverviewPage />} />
       <Route path={INVENTORY_PAGE_URL} element={<InvintoryPage />} />
       <Route path={INVENTORY_ITEMS_PAGE_URL} element={<InvintoryItemsPage />} />
       <Route path={TRADING_PAGE_URL} element={<TradingPage />} />

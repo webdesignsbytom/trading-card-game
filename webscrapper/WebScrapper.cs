@@ -1,77 +1,46 @@
 using HtmlAgilityPack;
-using System.Xml.Linq;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace WebScrapper2
 {
-     class Program
+    class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-
-            // Where to get data from
-            String url = "https://www.parallelparliament.co.uk/MPs";
-            String srcUrl = "https://www.parallelparliament.co.uk";
-
             int startingIndex = 1;
-            // Create a client object
-            var httpClient = new HttpClient();
+            int endingIndex = 150;
+            string baseUrl = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/";
+            string saveDirectory = "C:\\Users\\tom_b\\Documents\\code\\javascript\\trading-card-game\\assets\\images";
 
-            // use get string to create a get request
-            // .result will give us a field
-            var html = httpClient.GetStringAsync(url).Result;
-            // Console.WriteLine("HTML: " + html); // This will display all html
+            // Ensure the directory exists
+            Directory.CreateDirectory(saveDirectory);
 
-            // Convert to a format
-            var htmlDocument = new HtmlDocument();
-            htmlDocument.LoadHtml(html);
-
-            HtmlNode[] nodes = htmlDocument.DocumentNode.SelectNodes("/html/body/div[3]/div[3]/div/div/div[2]/div/div/div[1]/div[1]").ToArray();
-
-            List<string> nameList = new List<string>();
-
-            Dictionary<int, MemberCard> cards = new Dictionary<int, MemberCard>();
-
-            foreach (HtmlNode item in nodes)
+            using (var httpClient = new HttpClient())
             {
-                Console.WriteLine("ITEM" + item.InnerHtml);
+                for (int i = startingIndex; i <= endingIndex; i++)
+                {
+                    string imageUrl = $"{baseUrl}{i:D3}.png";
+                    string localFilePath = Path.Combine(saveDirectory, $"{i:D3}.png");
 
-                var img = item.SelectSingleNode("a/img");
-                Console.WriteLine(img.Attributes["src"].Value);
-
-                var src = img.Attributes["src"].Value;
-                Console.WriteLine("IMage src" + src);
-
-                var fullSrcUrl = srcUrl + src;
-                Console.WriteLine("Full " + fullSrcUrl);
-
-                // Get name
-                var _name = item.SelectSingleNode("div/a/h3");
-                var nome = _name.InnerText;
-                Console.WriteLine($"_NAME {_name}");
-                Console.WriteLine($"NOME {nome}");
-
-                cards.Add(startingIndex, new MemberCard() { Name = nome, ImageURL = fullSrcUrl });
-                startingIndex++;
+                    try
+                    {
+                        byte[] imageBytes = await httpClient.GetByteArrayAsync(imageUrl);
+                        await File.WriteAllBytesAsync(localFilePath, imageBytes);
+                        Console.WriteLine($"Downloaded {imageUrl} to {localFilePath}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error downloading {imageUrl}: {ex.Message}");
+                    }
+                }
             }
 
-            foreach (MemberCard card in cards.Values)
-            {
-   
-                var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(card);
-                Console.WriteLine(jsonString + ",");
-            }
-
+            Console.WriteLine("Download completed.");
             Console.ReadLine();
-
-
         }
     }
-
-    class MemberCard
-    {
-        public string Name { get; set; }
-        public string ImageURL { get; set; }
-
-    }
-    
 }
