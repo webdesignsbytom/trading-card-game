@@ -5,9 +5,11 @@ import client from '../../api/client';
 import OpenablePacketComponent from './OpenablePacketComponent';
 // Context
 import { UserContext } from '../../context/UserContext';
+import { CardContext } from '../../context/CardContext';
 
 function UnopenedPacketsContainer() {
   const { user } = useContext(UserContext);
+  const { setReturnedOpenPack } = useContext(CardContext);
   const [unopenedPacks, setUnopenedPacks] = useState([]);
   const [packIndex, setPackIndex] = useState([0, 1, 2]);
 
@@ -20,6 +22,8 @@ function UnopenedPacketsContainer() {
       .catch((err) => {
         console.error('Unable to retrieve all packs', err);
       });
+
+      setReturnedOpenPack([])
   }, []);
 
   const nextPacks = () => {
@@ -54,9 +58,9 @@ function UnopenedPacketsContainer() {
     <div className='grid grid-rows-a1a h-full w-full lg:overflow-hidden py-2'>
       <section className='grid h-fit items-center justify-center lg:overflow-hidden'>
         <div className='flex text-center justify-center bg-black main__bg border-solid border-main-border border-4 rounded-xl w-fit px-4 py-1'>
-          <h2 className='text-2xl font-fantasy font-semibold text-white'>
+          <h1 className='text-2xl font-fantasy font-semibold text-white'>
             Unopened Packets
-          </h2>
+          </h1>
         </div>
 
         <div className='grid text-center pt-1'>

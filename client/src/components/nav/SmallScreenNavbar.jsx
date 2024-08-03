@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 // Constants
 import {
   HOME_PAGE_URL,
@@ -79,11 +79,13 @@ function SmallScreenNavbar({ logoutUser }) {
       <section className='grid grid-flow-col justify-between gap-4'>
         {/* Main logo */}
         <div className='grid items-center px-2'>
-          <img
-            src={MainLogo}
-            alt='Monster cards logo'
-            className='h-12 w-12 rounded'
-          />
+          <Link to={HOME_PAGE_URL}>
+            <img
+              src={MainLogo}
+              alt='Monster cards logo'
+              className='h-12 w-12 rounded'
+            />
+          </Link>
         </div>
 
         {/* Menu button */}

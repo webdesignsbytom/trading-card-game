@@ -15,7 +15,7 @@ function BattlesOverviewComponent({
   };
 
   return (
-    <section className='grid lg:grid-cols-2x gap-2 py-2 px-2'>
+    <section className='grid lg:grid-cols-rev gap-2 py-2 px-2'>
       <section
         className={`grid ${openBattleRequests.length >= 1 && 'grid-rows-2'} rounded border-solid border-4 border-blue-700 shadow-[inset_-1px_43px_35px_48px_#00000024]`}
         style={{

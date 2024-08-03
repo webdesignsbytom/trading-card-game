@@ -69,6 +69,7 @@ const CardContextProvider = ({ children }) => {
         userCardsArray,
         setUserCardsArray,
         toggleOpeningNewPack,
+        setReturnedOpenPack,
         returnedOpenPack
       }}
     >
