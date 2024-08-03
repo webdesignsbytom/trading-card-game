@@ -10,6 +10,9 @@ module.exports = {
       backgroundSize: {
         '50': '50%',
       },
+      boxShadow: {
+        'internal-main': 'inset -1px 43px 35px 48px #00000024',
+      },
       colors: {
         'main-colour': '#2563eb',
         'secondary-colour': '#ffffff',
@@ -24,6 +27,7 @@ module.exports = {
         'transparent-black': 'rgba(0, 0, 0, 0.65)',
         'transparent-white': 'rgba(255, 255, 255, 0.65)',
         'dark-alt-text': '#FFFFFF',
+        'alt-text': '#000000',
         'error': '#',
         'success': '#'
       },
@@ -48,13 +52,8 @@ module.exports = {
         ls: '1fr 0.4fr',
         a1a: 'auto 1fr auto',
         a11a: 'auto 1fr 1fr auto',
-        '1a1': '1fr auto 1fr',
         aa: 'auto auto',
-        '3x': '3fr 1fr',
-        '4x': '4fr 1fr',
         item: '50px 1fr',
-        'ten-one': '10fr 1fr',
-        '10': '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
       },
       gridTemplateColumns: {
         reg: 'auto 1fr',
@@ -62,12 +61,7 @@ module.exports = {
         even: '1fr 1fr 1fr',
         xo: '1fr 0.6fr',
         a1a: 'auto 1fr auto',
-        '1a1': '1fr 0.4fr 1fr',
         aa: 'auto auto',
-        '3x': '3fr 1fr',
-        'c8': '1fr 6fr',
-        'x3': '0.8fr 3fr',
-        '2x': '2fr 1fr',
       },
     },
   },

@@ -3,7 +3,7 @@ import { useState } from 'react';
 // Api
 import client from '../api/client';
 // Constants
-import { GET_ALL_CARDS_API } from '../utils/Constants';
+import { GET_ALL_CARDS_API, OPEN_PACK_API } from '../utils/Constants';
 // Context
 import { UserContext } from './UserContext';
 
@@ -13,6 +13,12 @@ const CardContextProvider = ({ children }) => {
   const { user } = useContext(UserContext);
   const [allCardsMasterCopy, setAllCardsMasterCopy] = useState([]);
   const [userCardsArray, setUserCardsArray] = useState([]);
+
+  const [viewCard, setViewCard] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({});
+  const [selectedPack, setSelectedPack] = useState({});
+  const [returnedOpenPack, setReturnedOpenPack] = useState([]);
+  const [toggleOpeningPackDiplay, setToggleOpeningPackDiplay] = useState(false);
 
   useEffect(() => {
     client
@@ -36,14 +42,34 @@ const CardContextProvider = ({ children }) => {
       .catch((err) => {
         console.error('Unable to retrieve all cards', err);
       });
-  }, [user]);
+  }, [user, returnedOpenPack]);
 
+  const toggleOpeningNewPack = (pack) => {
+    console.log('1 >>> PACK', pack);
+
+    setSelectedPack(pack);
+    const data = { packId: pack.id, userId: user.id };
+    console.log('2 >>> DATA', data);
+
+    client
+      .patch(OPEN_PACK_API, data, true)
+      .then((res) => {
+        setReturnedOpenPack(res.data.data.cards);
+        setToggleOpeningPackDiplay(!toggleOpeningPackDiplay);
+      })
+
+      .catch((err) => {
+        console.error('Unable to open pack', err);
+      });
+  };
 
   return (
     <CardContext.Provider
       value={{
         userCardsArray,
         setUserCardsArray,
+        toggleOpeningNewPack,
+        returnedOpenPack
       }}
     >
       {children}

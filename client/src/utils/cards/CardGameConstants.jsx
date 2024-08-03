@@ -7,11 +7,20 @@ export const NumCardsInBox = 128
 export const PACK_TYPE_ALPHA = 'ALPHA';
 export const PACK_TYPE_BETA = 'BETA';
 export const PACK_TYPE_GAMMA = 'GAMMA';
+// Pack types
+export const BOX_TYPE_ALPHA = 'ALPHA';
+export const BOX_TYPE_BETA = 'BETA';
+export const BOX_TYPE_GAMMA = 'GAMMA';
 
 // Pack types
 export const PackTypeAlpha = 'Alpha';
 export const PackTypeBeta = 'Beta';
 export const PackTypeGamma = 'Gamma';
+
+// Pack types
+export const BoxTypeAlpha = 'Alpha';
+export const BoxTypeBeta = 'Beta';
+export const BoxTypeGamma = 'Gamma';
 
 // Card types
 export const CARD_TYPE_MONSTER = 'MONSTER';

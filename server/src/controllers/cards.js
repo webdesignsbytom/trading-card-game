@@ -27,7 +27,7 @@ import { createSingleCardsForUser } from '../utils/createCards.js';
 // Get all cards from all packs
 export const getAllCards = async (req, res) => {
   console.log('getAllCards');
-  
+
   try {
     const foundCards = await findAllCards();
     console.log('found cards', foundCards);
@@ -220,7 +220,7 @@ export const createNewMemberCardsFromJSON = async (req, res) => {
         card.imageUrl,
         card.memberName.toLowerCase(),
         card.packType,
-        card.cardType,
+        card.cardType
       );
       createdCards.push(createdCard);
     }
@@ -507,7 +507,6 @@ export const updateCardDateById = async (req, res) => {
 
       return sendDataResponse(res, 200, { updatedCard: updatedCard });
     }
-    
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(req.user, `Update card failed`);
@@ -519,11 +518,11 @@ export const updateCardDateById = async (req, res) => {
 
 export const freeSingleRandomCard = async (req, res) => {
   console.log('buySingleRandomCard');
-  const { userId } = req.body
+  const { userId } = req.body;
 
   try {
     let cardFound = await createSingleCardsForUser();
-console.log('cardFound', cardFound);
+    console.log('cardFound', cardFound);
     let newInstance = await createNewInstanceForCard(
       cardFound.id,
       userId,
@@ -539,7 +538,6 @@ console.log('cardFound', cardFound);
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
-console.log('AAAAAAAAAAAAA');
     return sendDataResponse(res, 200, { newInstance, cardFound });
   } catch (err) {
     // Error

@@ -8,18 +8,15 @@ import { ToggleContext } from '../../context/ToggleContext';
 import Navbar from '../../components/nav/Navbar';
 import ShopHeader from '../../components/shop/ShopHeader';
 import StoreFrontContainer from '../../components/shop/StoreFrontContainer';
+import PurchasingContainer from '../../components/shop/PurchasingContainer';
 // Constants
 import { BUY_PACK_API, SHOP_PAGE_URL } from '../../utils/Constants';
 import {
-  PACK_TYPE_ALPHA,
-  PACK_TYPE_BETA,
-  PACK_TYPE_GAMMA,
   shopDisplayOptions,
   StandardPackCost,
 } from '../../utils/cards/CardGameConstants';
 // Images
 import ShopKeeper from '../../assets/images/backgrounds/shop_keeper_main_with_potions.png';
-import PurchasingContainer from '../../components/shop/PurchasingContainer';
 
 function ShopPage() {
   const { user, setUser } = useContext(UserContext);
@@ -31,45 +28,27 @@ function ShopPage() {
 
   const [displayItems, setDisplayItems] = useState({});
 
-  const [purchasingBetaPack, setPurchasingBetaPack] = useState(false);
-  const [purchasingGammaPack, setPurchasingGammaPack] = useState(false);
-  const [purchasingAlphaPack, setPurchasingAlphaPack] = useState(false);
-
   useEffect(() => {
     setActiveNav(SHOP_PAGE_URL);
   }, []);
 
-  const buyPacketsOfCards = (name) => {
+  const buyPacketsOfCards = (pack) => {
 
+    console.log('pack.packtype', pack);
+    
     let purchaseRequest = {
-      packType: name,
+      packType: pack.packType,
       userId: user.id,
       cost: StandardPackCost,
     };
-
-    if (name === PACK_TYPE_ALPHA) {
-      setPurchasingAlphaPack(true);
-    }
-    if (name === PACK_TYPE_BETA) {
-      setPurchasingBetaPack(true);
-    }
-    if (name === PACK_TYPE_GAMMA) {
-      setPurchasingGammaPack(true);
-    }
 
     client
       .post(BUY_PACK_API, purchaseRequest)
       .then((res) => {
         setUser(res.data.data.updatedUser);
-        setPurchasingGammaPack(false);
-        setPurchasingAlphaPack(false);
-        setPurchasingBetaPack(false);
       })
 
       .catch((err) => {
-        setPurchasingGammaPack(false);
-        setPurchasingAlphaPack(false);
-        setPurchasingBetaPack(false);
         console.error('Unable to buy packs', err);
       });
   };
@@ -137,23 +116,6 @@ function ShopPage() {
               ></section>
             </div>
           </section>
-
-          {/* Shop main */}
-          {/* <div className='pt-4 grid '>
-            <section className='grid bg-blue-400 main__bg justify-center items-center rounded-xl pt-4'>
-              {togglePackPurchasing && (
-                <div className='grid'>
-                  <PackSelector
-                    buyPacketsOfCards={buyPacketsOfCards}
-                    costOfStandardPack={costOfStandardPack}
-                    purchasingBetaPack={purchasingBetaPack}
-                    purchasingGammaPack={purchasingGammaPack}
-                    purchasingAlphaPack={purchasingAlphaPack}
-                  />
-                </div>
-              )}
-            </section>
-          </div> */}
         </main>
       </section>
     </div>

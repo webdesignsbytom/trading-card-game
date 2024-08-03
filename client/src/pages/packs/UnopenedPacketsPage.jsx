@@ -1,6 +1,6 @@
 import React from 'react';
 // Components
-import UnopenedPackets from '../../components/packets/UnopenedPackets';
+import UnopenedPacketsContainer from '../../components/packets/UnopenedPacketsContainer';
 import Navbar from '../../components/nav/Navbar';
 
 function UnopenedPacketsPage() {
@@ -9,9 +9,9 @@ function UnopenedPacketsPage() {
     <div className='bg-black main__bg h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
-        <main className='grid p-4'>
-          <section className='grid h-full bg-white main__bg outline outline-4 outline-blue-700 rounded-xl'>
-            <UnopenedPackets />
+        <main className='grid bg-main-colour p-2'>
+          <section className='grid h-full bg-white main__bg border-solid border-main-border border-4 rounded-xl'>
+            <UnopenedPacketsContainer />
           </section>
         </main>
       </section>

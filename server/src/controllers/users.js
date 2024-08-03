@@ -56,6 +56,7 @@ import {
 import { freeSingleRandomCard } from './cards.js';
 import { starterPackNames } from '../utils/constants.js';
 import { createSinglePacksOfCardsForUser } from '../utils/createPackets.js';
+import { collectLoginReward } from '../domain/rewards.js';
 // Password hash
 const hashRate = 8;
 
@@ -93,7 +94,7 @@ export const getUserById = async (req, res) => {
   console.log('getUserById');
   const userId = req.params.userId;
   console.log('xxx');
-  
+
   try {
     const foundUser = await findUserById(userId);
     if (!foundUser) {
@@ -312,7 +313,10 @@ export const getAllCardsForUser = async (req, res) => {
     return sendDataResponse(res, 200, { cards: userCardArray });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get all cards for user`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Get all cards for user`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -372,7 +376,10 @@ export const getAllUserCardInstances = async (req, res) => {
     return sendDataResponse(res, 200, { cardInstances: foundInstances });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get all card instances for user`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Get all card instances for user`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -383,7 +390,7 @@ export const openPackAndAddToUser = async (req, res) => {
   console.log('openPackAndAddToUser');
   const { packId, userId } = req.body;
   console.log('pack', packId, userId);
-  
+
   try {
     const foundUser = await findUserById(userId);
     console.log('foundUser', foundUser);
@@ -428,7 +435,10 @@ export const openPackAndAddToUser = async (req, res) => {
     });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Open pack and add to card instances failed`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Open pack and add to card instances failed`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -436,7 +446,11 @@ export const openPackAndAddToUser = async (req, res) => {
 };
 
 export const collectDailyReward = async (req, res) => {
-  const { userId } = req.body;
+  console.log('');
+  const { userId } = req.params;
+  const { daysInARow } = req.body;
+  console.log('userId', userId);
+  console.log('daysInARow', daysInARow);
 
   try {
     const foundRecord = await findUserLoginRecord(userId);
@@ -450,33 +464,21 @@ export const collectDailyReward = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    const updatedRecord = await updateUserLoginRecordToCollectedReward(
+    // Update collected reward to true and add one day to record
+    await updateUserLoginRecordToCollectedReward(
       foundRecord.id
     );
 
-    const freeReward = await freeSingleRandomCard(userId);
-
-    const updatedUser = await findUserById(userId);
-    if (!updatedUser) {
-      const notFound = new NotFoundEvent(
-        req.user,
-        EVENT_MESSAGES.notFound,
-        EVENT_MESSAGES.userNotFound
-      );
-      myEmitterErrors.emit('error', notFound);
-      return sendMessageResponse(res, notFound.code, notFound.message);
-    }
-
-    let rewardType = 'card';
+    // Create reward
+    const loginReward = await collectLoginReward(daysInARow, userId)
+    console.log('loginReward', loginReward);
 
     return sendDataResponse(res, 200, {
-      reward: freeReward.cardFound,
-      rewardType: rewardType,
-      updatedUser: updatedUser,
+      reward: loginReward,
     });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
+    const serverError = new ServerErrorEvent(req.user, `Get daily reward failed`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;

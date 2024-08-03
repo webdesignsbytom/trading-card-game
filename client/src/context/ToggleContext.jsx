@@ -1,41 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useState } from 'react';
-// Api
-import client from '../api/client';
 // Context
-import { UserContext } from './UserContext';
 import { useNavigate } from 'react-router-dom';
+// Constants
+import { HOME_PAGE_URL } from '../utils/Constants';
 
 export const ToggleContext = React.createContext();
 
 const ToggleContextProvider = ({ children }) => {
-  const { user } = useContext(UserContext);
   const [toggleNavigation, setToggleNavigation] = useState(false);
-  const [viewCard, setViewCard] = useState(false);
-  const [selectedCard, setSelectedCard] = useState({});
-  const [selectedPack, setSelectedPack] = useState({});
-  const [returnedOpenPack, setReturnedOpenPack] = useState([]);
-  const [toggleOpeningPackDiplay, setToggleOpeningPackDiplay] = useState(false);
-  const [activeNav, setActiveNav] = useState('/');
+  const [activeNav, setActiveNav] = useState(HOME_PAGE_URL);
 
   let navigate = useNavigate();
-
-
-  const toggleOpeningNewPack = (pack) => {
-    setSelectedPack(pack);
-    const data = { packId: pack.id, userId: user.id };
-
-    client
-      .patch('/users/user/packs/open-pack', data, true)
-      .then((res) => {
-        setReturnedOpenPack(res.data.data.cards);
-        setToggleOpeningPackDiplay(!toggleOpeningPackDiplay);
-      })
-
-      .catch((err) => {
-        console.error('Unable to open packs', err);
-      });
-  };
 
   const toggleNavbar = () => {
     setToggleNavigation(!toggleNavigation);
@@ -51,13 +27,7 @@ const ToggleContextProvider = ({ children }) => {
         toggleNavigation,
         toggleNavbar,
         toggleCardData,
-        toggleOpeningNewPack,
         activeNav,
-        viewCard,
-        selectedCard,
-        toggleOpeningPackDiplay,
-        selectedPack,
-        returnedOpenPack,
         setActiveNav,
       }}
     >

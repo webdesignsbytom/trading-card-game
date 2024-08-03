@@ -216,7 +216,7 @@ enum PowerUpEffectType {
 
 model Pack {
   id        String         @id @default(uuid()) // pack id
-  packType  String
+  packType  PackType
   cards     CardInstance[]
   userId    String?
   user      User?          @relation(fields: [userId], references: [id])
