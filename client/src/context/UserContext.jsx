@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react';
 import client from '../api/client';
 // Utils
 import LoggedInUser from '../utils/user/LoggedInUser';
-// Data
-import { tempUserData } from '../utils/user/TemporaryData';
 // Constants
 import { GET_USER_API } from '../utils/Constants';
 
@@ -13,7 +11,6 @@ export const UserContext = React.createContext();
 
 const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
-  console.log('user', user);
   const [token, setToken] = useState(
     localStorage.getItem(process.env.REACT_APP_USER_TOKEN) || ''
   );

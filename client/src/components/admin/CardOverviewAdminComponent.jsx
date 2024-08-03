@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 // API
 import client from '../../api/client';
+// Constants
+import { CARD_EDIT_PAGE_URL, GET_ALL_CARDS_API } from '../../utils/Constants';
 
 function CardOverviewAdminComponent() {
   const [allCardsArray, setAllCardsArray] = useState([]);
@@ -12,11 +14,9 @@ function CardOverviewAdminComponent() {
 
   let navigate = useNavigate();
   
-  console.log('allCardsArray', allCardsArray);
-
   useEffect(() => {
     client
-      .get(`/mon-cards/all-cards`)
+      .get(GET_ALL_CARDS_API)
       .then((res) => {
         setAllCardsArray(res.data.data.cards);
       })
@@ -26,7 +26,7 @@ function CardOverviewAdminComponent() {
   }, []);
 
   const openCardEditing = (card) => {
-    navigate('/admin/card-edit', { state: card });
+    navigate(CARD_EDIT_PAGE_URL, { state: card });
   };
 
   const searchForCard = () => {

@@ -29,7 +29,6 @@ import { chargePackToBankAccount } from '../domain/bank.js';
 
 // Get all packs of cards
 export const getAllPacks = async (req, res) => {
-  console.log('getAllPacks');
   try {
     const foundPacks = await findAllPacks();
 
@@ -56,7 +55,7 @@ export const getAllPacks = async (req, res) => {
 
 // Get pack by ID
 export const getPackById = async (req, res) => {
-  const packId = req.params.packId;
+  const { packId } = req.params;
 
   try {
     const foundPack = await findPackById(packId);
@@ -169,8 +168,6 @@ export const createPacksAndAddToUser = async (req, res) => {
 
 // BUY and Return new pack of any type with user id
 export const buyPackAndAddToUser = async (req, res) => {
-  console.log('');
-  console.log('BUY PACK');
   const { packType, userId, cost } = req.body;
 
   try {
@@ -207,7 +204,6 @@ export const buyPackAndAddToUser = async (req, res) => {
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
-    console.log('foundPack', foundPack);
 
     // Update banking
     await chargePackToBankAccount(userId, cost);
@@ -232,16 +228,10 @@ export const buyPackAndAddToUser = async (req, res) => {
 };
 
 export const openPackAndAddToUser = async (req, res) => {
-  console.log('');
-  console.log('-----------------------------');
-  console.log('openPackAndAddToUser');
   const { packId, userId } = req.body;
-  console.log('packid', packId);
-  console.log('userID', userId);
 
   try {
     const foundPack = await findPackById(packId);
-    console.log('foundpack', foundPack);
     if (!foundPack) {
       const notFound = new NotFoundEvent(
         req.user,
@@ -253,7 +243,6 @@ export const openPackAndAddToUser = async (req, res) => {
     }
 
     const foundUser = await findUserById(userId);
-    console.log('founduser', foundUser);
     if (!foundUser) {
       const notFound = new NotFoundEvent(
         req.user,
@@ -264,7 +253,6 @@ export const openPackAndAddToUser = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa');
     // All user packs (objects)
     const userPackArray = foundUser.packs;
 
@@ -291,9 +279,7 @@ export const openPackAndAddToUser = async (req, res) => {
 };
 
 export const deletePackById = async (req, res) => {
-  console.log('getAllPacks');
   const packId = req.params.packId;
-  console.log('packId', packId);
   try {
     const foundPacks = await findAllPacks();
 

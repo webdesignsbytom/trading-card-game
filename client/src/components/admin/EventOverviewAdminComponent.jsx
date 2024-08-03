@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 // Api
 import client from '../../api/client';
 import { deleteEventApiRequest } from '../../api/DeleteRequests';
+// Constants
+import { ALL_EVENTS_API, EVENT_OVERVIEW_PAGE_URL } from '../../utils/Constants';
 
 function EventOverviewAdminComponent() {
   const [allEventsArray, setAllEventsArray] = useState([]);
@@ -10,12 +12,11 @@ function EventOverviewAdminComponent() {
   const [foundEvent, setFoundEvent] = useState({});
   const [notFoundEvent, setNotFoundEvent] = useState(false);
 
-  console.log('foundEvent', foundEvent);
   let navigate = useNavigate();
 
   useEffect(() => {
     client
-      .get(`/events/all-events`)
+      .get(ALL_EVENTS_API)
       .then((res) => {
         setAllEventsArray(res.data.data.events);
       })
@@ -50,7 +51,7 @@ function EventOverviewAdminComponent() {
   };
 
   const openEventOverview = (event) => {
-    navigate('/admin/event-overview', { state: event });
+    navigate(EVENT_OVERVIEW_PAGE_URL, { state: event });
   };
 
   return (

@@ -8,7 +8,6 @@ import EmptyCardSlot from '../card/EmptyCardSlot';
 function OpenedPacketDisplayComponent() {
   const { returnedOpenPack } = useContext(CardContext);
   
-  console.log('returnedOpenPacl', returnedOpenPack);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

@@ -7,7 +7,7 @@ import client from '../../api/client';
 import { COLLECT_REWARD_API } from '../../utils/Constants';
 
 function RewardCalendarSquare({ day, setRewardData, setRewardAvailable }) {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   const openDailyReward = (day) => {
     const daysInARow = user.loginRecord.daysInARow;
@@ -15,7 +15,6 @@ function RewardCalendarSquare({ day, setRewardData, setRewardAvailable }) {
     client
       .patch(`${COLLECT_REWARD_API}/${user.id}`, { daysInARow })
       .then((res) => {
-        console.log('Reward data:', res.data.data.reward);
         setRewardData(res.data.data.reward[1]);
         setRewardAvailable(true);
       })

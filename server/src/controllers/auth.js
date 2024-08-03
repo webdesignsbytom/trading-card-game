@@ -25,7 +25,6 @@ export const login = async (req, res) => {
 
   try {
     const foundUser = await findUserByEmail(lowerCaseEmail);
-    console.log('found user', foundUser);
     const areCredentialsValid = await validateCredentials(password, foundUser);
 
     if (!areCredentialsValid) {

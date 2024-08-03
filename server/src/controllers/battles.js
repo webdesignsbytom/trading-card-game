@@ -23,7 +23,6 @@ import {
 import { findUserById } from '../domain/users.js';
 
 export const getAllBattles = async (req, res) => {
-  console.log('get all battles');
 
   try {
     const foundBattles = await findAllBattles();
@@ -50,7 +49,6 @@ export const getAllBattles = async (req, res) => {
 
 // Get battle by id
 export const getBattleById = async (req, res) => {
-  console.log('getBattleById');
   const { battleId } = req.params;
 
   try {
@@ -78,9 +76,7 @@ export const getBattleById = async (req, res) => {
 
 // Get getAllBattlesByUserId
 export const getAllBattlesByUserId = async (req, res) => {
-  console.log('getAllBattlesByUserId');
   const { userId } = req.params;
-  console.log('userId', userId);
 
   try {
     const foundBattles = await findAllUserBattles(userId);
@@ -107,9 +103,7 @@ export const getAllBattlesByUserId = async (req, res) => {
 
 // createBattle
 export const createBattle = async (req, res) => {
-  console.log('createBattle');
   const { createdById, receivedById } = req.body;
-  console.log('battleId', receivedById, createdById);
 
   try {
     const foundUser = await findUserById(createdById);
@@ -135,7 +129,6 @@ export const createBattle = async (req, res) => {
     }
 
     const createdBattle = await createNewBattle(createdById, receivedById, foundUser.profile.username, foundOpponent.profile.username)
-    console.log('createdBattle', createdBattle);
 
     return sendDataResponse(res, 200, { battle: createdBattle });
   } catch (err) {
@@ -149,9 +142,7 @@ export const createBattle = async (req, res) => {
 
 // opponentConfirmBattle
 export const opponentConfirmBattle = async (req, res) => {
-  console.log('opponentConfirmBattle');
   const { battleId, opponentId } = req.body;
-  console.log('battleId', battleId, opponentId);
 
   try {
     const foundUser = await findUserById(opponentId);
@@ -191,14 +182,10 @@ export const opponentConfirmBattle = async (req, res) => {
 
 // delete battle
 export const deleteBattle = async (req, res) => {
-  console.log('deleteOpenBattle');
-  console.log('req', req.params);
-  const battleId = req.params.battleId;
-  console.log('battleId', battleId);
+  const { battleId } = req.params;
 
   try {
     const foundBattle = await findBattleById(battleId);
-    console.log('foundBattle card', foundBattle);
 
     if (!foundBattle) {
       const notFound = new NotFoundEvent(

@@ -12,11 +12,9 @@ import { findUserById } from '../domain/users.js';
 import { findCardById } from '../domain/cards.js';
 
 export const getAllDecks = async (req, res) => {
-  console.log('get all decks');
 
   try {
     const foundDecks = await findAllDecks();
-    console.log('found decks:', foundDecks);
 
     if (!foundDecks) {
       const notFound = new NotFoundEvent(
@@ -40,13 +38,10 @@ export const getAllDecks = async (req, res) => {
 
 // Get deck by id
 export const getDeckById = async (req, res) => {
-  console.log('getDeckById');
   const { deckId } = req.params
-  console.log('deckId', deckId);
 
   try {
     const foundDeck = await findDeckById(deckId);
-    console.log('found deck', foundDeck);
 
     if (!foundDeck) {
       const notFound = new NotFoundEvent(
@@ -70,7 +65,6 @@ export const getDeckById = async (req, res) => {
 
 // Get getAllDisplayCardsFromDeck
 export const getAllDisplayCardsFromDeck = async (req, res) => {
-  console.log('getAllDisplayCardsFromDeck');
   const { deckId } = req.params
 
   try {
@@ -89,7 +83,6 @@ export const getAllDisplayCardsFromDeck = async (req, res) => {
     const cardsArray = []
     for (let index = 0; index < foundDeck.cards.length; index++) {
       const card = foundDeck.cards[index];
-      console.log('card RRRRRRR', card);
       const foundCard = await findCardById(card.cardId)
       cardsArray.push(foundCard);
     }
@@ -106,7 +99,6 @@ export const getAllDisplayCardsFromDeck = async (req, res) => {
 
 // Get getAllDecksByUserId
 export const getAllDecksByUserId = async (req, res) => {
-  console.log('getAllDecksByUserId');
   const { userId } = req.params;
 
   try {
@@ -134,7 +126,6 @@ export const getAllDecksByUserId = async (req, res) => {
 
 // createDeck
 export const createDeck = async (req, res) => {
-  console.log('createDeck');
   const { deckName, userId } = req.body;
 
   try {
@@ -163,9 +154,7 @@ export const createDeck = async (req, res) => {
 
 // addCardsToDeck
 export const addCardsToDeck = async (req, res) => {
-  console.log('addCardsToDeck');
   const { deckId, userId, cardInstancesArray } = req.body;
-  console.log('deckId, userId, cardInstancesArray', deckId, userId, cardInstancesArray);
 
   try {
     const foundUser = await findUserById(userId);
@@ -211,7 +200,6 @@ export const addCardsToDeck = async (req, res) => {
 
 // delete deck
 export const deleteDeck = async (req, res) => {
-  console.log('deleteDeck');
   const deckId = req.params.deckId;
 
   try {

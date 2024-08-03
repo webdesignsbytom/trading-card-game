@@ -12,10 +12,7 @@ import { UNOPENED_PACKS_URL } from '../../utils/Constants';
 function StartingPacks() {
   const { user } = useContext(UserContext);
 
-  console.log('usercxxxx', user);
-
   const [claimedFreePacks, setClaimedFreePacks] = useState(false);
-  const [starterPacks, setStarterPacks] = useState('');
   const [loadingStarterPacks, setLoadingStarterPacks] = useState(false);
 
   let navigate = useNavigate();

@@ -14,14 +14,12 @@ import {
   createTradeRecordRequest,
   deleteTradeById,
   findTradeById,
-  tradeCardInstance,
   findAllUserTradeRecords,
   findAllTrades,
 } from '../domain/trade.js';
 
 // get all trade records
 export const getAllTrades = async (req, res) => {
-  console.log('getAllTrades');
   try {
     const foundTrades = await findAllTrades();
 
@@ -39,7 +37,7 @@ export const getAllTrades = async (req, res) => {
     return sendDataResponse(res, 200, { trades: foundTrades });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get all users`);
+    const serverError = new ServerErrorEvent(req.user, `Get all trades failed: ${err.message}`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -48,9 +46,7 @@ export const getAllTrades = async (req, res) => {
 
 // get all user trades
 export const getAllUserTrades = async (req, res) => {
-  console.log('getAllUserTrades');
-  const userId = req.params.userId;
-  console.log('xxx', userId);
+  const { userId } = req.params;
 
   try {
     const foundTrades = await findAllUserTradeRecords(userId);
@@ -64,12 +60,10 @@ export const getAllUserTrades = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    console.log('trades', foundTrades);
-
     return sendDataResponse(res, 200, { trades: foundTrades });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
+    const serverError = new ServerErrorEvent(req.user, `Get all user trades failed: ${err.message}`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -77,15 +71,12 @@ export const getAllUserTrades = async (req, res) => {
 };
 // add a bank account
 export const createTradeCardWithUser = async (req, res) => {
-  console.log('createTradeCardWithUser');
   const { createdById, creatorCardInstanceId, receivedById } = req.body;
-  console.log('request', createdById, creatorCardInstanceId, receivedById);
 
   try {
     const foundCreatorInstanceCard = await findCardInstanceById(
       creatorCardInstanceId
     );
-    console.log('created card', foundCreatorInstanceCard);
 
     if (!foundCreatorInstanceCard) {
       const notFound = new NotFoundEvent(
@@ -105,7 +96,6 @@ export const createTradeCardWithUser = async (req, res) => {
       foundCreatorInstanceCard.name
     );
 
-    console.log('createdTradeRecord', createdTradeRecord);
 
     if (!createdTradeRecord) {
       const notFound = new BadRequestEvent(
@@ -120,7 +110,7 @@ export const createTradeCardWithUser = async (req, res) => {
     return sendDataResponse(res, 201, { createTrade: createdTradeRecord });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Create trade`);
+    const serverError = new ServerErrorEvent(req.user, `Create trade failed`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -129,14 +119,10 @@ export const createTradeCardWithUser = async (req, res) => {
 
 // delete trade
 export const deleteOpenTrade = async (req, res) => {
-  console.log('deleteOpenTrade');
-  console.log('req', req.params);
-  const tradeId = req.params.tradeId;
-  console.log('tradeId', tradeId);
+  const { tradeId } = req.params;
 
   try {
     const foundTrade = await findTradeById(tradeId);
-    console.log('foundTrade card', foundTrade);
 
     if (!foundTrade) {
       const notFound = new NotFoundEvent(
@@ -153,7 +139,7 @@ export const deleteOpenTrade = async (req, res) => {
     return sendDataResponse(res, 201, { deletedTrade: deletedTrade });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Create trade`);
+    const serverError = new ServerErrorEvent(req.user, `Delete open trade failed`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;

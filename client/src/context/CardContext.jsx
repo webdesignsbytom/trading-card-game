@@ -28,7 +28,6 @@ const CardContextProvider = ({ children }) => {
 
         setAllCardsMasterCopy(allCards);
         if (user) {
-          console.log('ssssss');
           // Extract user's card IDs
           const userCardIds = user.cards.map((card) => card.cardId);
           // Filter the full list of cards to find the ones the user owns
@@ -45,11 +44,9 @@ const CardContextProvider = ({ children }) => {
   }, [user, returnedOpenPack]);
 
   const toggleOpeningNewPack = (pack) => {
-    console.log('1 >>> PACK', pack);
-
     setSelectedPack(pack);
+    
     const data = { packId: pack.id, userId: user.id };
-    console.log('2 >>> DATA', data);
 
     client
       .patch(OPEN_PACK_API, data, true)

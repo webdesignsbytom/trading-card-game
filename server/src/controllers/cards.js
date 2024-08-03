@@ -26,11 +26,9 @@ import { createSingleCardsForUser } from '../utils/createCards.js';
 
 // Get all cards from all packs
 export const getAllCards = async (req, res) => {
-  console.log('getAllCards');
 
   try {
     const foundCards = await findAllCards();
-    console.log('found cards', foundCards);
 
     if (!foundCards) {
       const notFound = new NotFoundEvent(
@@ -55,7 +53,6 @@ export const getAllCards = async (req, res) => {
 // Get card by id
 export const getCardById = async (req, res) => {
   const cardId = Number(req.params.cardId);
-  console.log('cardId', cardId);
 
   try {
     const foundCard = await findCardById(cardId);
@@ -82,12 +79,10 @@ export const getCardById = async (req, res) => {
 
 // Get card instance by id
 export const getCardInstanceById = async (req, res) => {
-  console.log('getCardById');
   const { cardInstanceId } = req.params;
 
   try {
     const foundCardInstance = await findCardInstanceById(cardInstanceId);
-    console.log('found card', foundCardInstance);
 
     if (!foundCardInstance) {
       const notFound = new NotFoundEvent(
@@ -100,7 +95,6 @@ export const getCardInstanceById = async (req, res) => {
     }
 
     const foundCard = await findCardByName(foundCardInstance.name);
-    console.log('found card', foundCard);
 
     return sendDataResponse(res, 200, {
       cardInstance: foundCardInstance,
@@ -120,13 +114,10 @@ export const getCardInstanceById = async (req, res) => {
 
 // search cards by name
 export const searchForCardsByName = async (req, res) => {
-  console.log('searchForCardsByName', req.body);
   const { cardName } = req.body;
-  console.log('cardName', cardName);
 
   try {
     const foundCards = await findCardBySearchQuery(cardName);
-    console.log('found card', foundCards[0]);
 
     if (!foundCards) {
       const notFound = new NotFoundEvent(
@@ -156,9 +147,7 @@ export const searchForCardsByName = async (req, res) => {
 
 // MEMBER createNewCards
 export const createNewMemberCards = async (req, res) => {
-  console.log('createNewCards', req.body);
   const { cardArray } = req.body;
-  console.log('cardArray', cardArray);
 
   try {
     const createdCards = [];
@@ -204,9 +193,7 @@ export const createNewMemberCards = async (req, res) => {
 
 // MEMBER createNewMemberCardsFromJSON
 export const createNewMemberCardsFromJSON = async (req, res) => {
-  console.log('createNewMemberCardsFromJSON', req.body);
   const { cardArray } = req.body;
-  console.log('cardArray', cardArray[1]);
 
   try {
     const createdCards = [];
@@ -250,9 +237,7 @@ export const createNewMemberCardsFromJSON = async (req, res) => {
 
 // PARTY createNewPartyCards
 export const createNewPartyCards = async (req, res) => {
-  console.log('createNewCards', req.body);
   const { cardArray } = req.body;
-  console.log('cardArray', cardArray);
 
   try {
     const createdCards = [];
@@ -294,9 +279,7 @@ export const createNewPartyCards = async (req, res) => {
 };
 // POLICY createNewPolicyCards
 export const createNewPolicyCards = async (req, res) => {
-  console.log('createNewCards', req.body);
   const { cardArray } = req.body;
-  console.log('cardArray', cardArray);
 
   try {
     const createdCards = [];
@@ -339,10 +322,8 @@ export const createNewPolicyCards = async (req, res) => {
 
 // Get all cards isntances from all packs
 export const getAllCardInstances = async (req, res) => {
-  console.log('getAllCardInstances');
   try {
     const foundInstances = await findAllCardInstances();
-    console.log('found cards', foundInstances);
 
     if (!foundInstances) {
       const notFound = new NotFoundEvent(
@@ -369,9 +350,7 @@ export const getAllCardInstances = async (req, res) => {
 
 // get all cards from pack type i.e brexit
 export const getAllCardsFromPackType = async (req, res) => {
-  console.log('getAllCardsFromPack');
   const { packType } = req.params;
-  console.log('pack', packType);
 
   try {
     const foundCards = await findAllCardsFromPack(packType);
@@ -401,9 +380,7 @@ export const getAllCardsFromPackType = async (req, res) => {
 
 // Get all cards by type i.e policy
 export const getAllCardsByType = async (req, res) => {
-  console.log('getAllCardsByType');
   const { cardType } = req.params;
-  console.log('type: ', cardType);
 
   try {
     const foundCards = await findCardsByCardType(cardType);
@@ -433,12 +410,10 @@ export const getAllCardsByType = async (req, res) => {
 
 // Get one of any card currently available
 export const buySingleRandomCard = async (req, res) => {
-  console.log('buySingleRandomCard');
   const { userId } = req.body;
 
   try {
     let cardFound = await createSingleCardsForUser();
-    console.log('AAWW cardFound', cardFound);
 
     let newInstance = await createNewInstanceForCard(
       cardFound.id,
@@ -471,7 +446,6 @@ export const buySingleRandomCard = async (req, res) => {
 
 // Get one of any card currently available
 export const updateCardDateById = async (req, res) => {
-  console.log('updateCardDateById');
   const { cardId } = req.params;
   const cardUpdateData = req.body;
 
@@ -517,12 +491,10 @@ export const updateCardDateById = async (req, res) => {
 };
 
 export const freeSingleRandomCard = async (req, res) => {
-  console.log('buySingleRandomCard');
   const { userId } = req.body;
 
   try {
     let cardFound = await createSingleCardsForUser();
-    console.log('cardFound', cardFound);
     let newInstance = await createNewInstanceForCard(
       cardFound.id,
       userId,

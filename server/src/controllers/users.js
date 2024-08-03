@@ -38,11 +38,9 @@ import {
   ServerErrorEvent,
   MissingFieldEvent,
   RegistrationServerErrorEvent,
-  ServerConflictError,
   BadRequestEvent,
 } from '../event/utils/errorUtils.js';
 // Time
-import { v4 as uuid } from 'uuid';
 import {
   findAllUserCardInstances,
   findCardById,
@@ -53,7 +51,6 @@ import {
   findAllPacksForUser,
   findPackById,
 } from '../domain/packs.js';
-import { freeSingleRandomCard } from './cards.js';
 import { starterPackNames } from '../utils/constants.js';
 import { createSinglePacksOfCardsForUser } from '../utils/createPackets.js';
 import { collectLoginReward } from '../domain/rewards.js';
@@ -61,7 +58,6 @@ import { collectLoginReward } from '../domain/rewards.js';
 const hashRate = 8;
 
 export const getAllUsers = async (req, res) => {
-  console.log('getAllUsers');
   try {
     const foundUsers = await findAllUsers();
 
@@ -83,7 +79,7 @@ export const getAllUsers = async (req, res) => {
     return sendDataResponse(res, 200, { users: foundUsers });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get all users`);
+    const serverError = new ServerErrorEvent(req.user, `Get all users failed`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -91,9 +87,7 @@ export const getAllUsers = async (req, res) => {
 };
 
 export const getUserById = async (req, res) => {
-  console.log('getUserById');
-  const userId = req.params.userId;
-  console.log('xxx');
+  const { userId } = req.params;
 
   try {
     const foundUser = await findUserById(userId);
@@ -114,7 +108,7 @@ export const getUserById = async (req, res) => {
     return sendDataResponse(res, 200, { user: foundUser });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
+    const serverError = new ServerErrorEvent(req.user, `Get user by ID failed`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -122,9 +116,7 @@ export const getUserById = async (req, res) => {
 };
 
 export const getUserByEmail = async (req, res) => {
-  console.log('getUserByEmail');
   const { email } = req.params;
-  console.log('xxx', email);
 
   const lowerCaseEmail = email.toLowerCase();
   try {
@@ -140,7 +132,6 @@ export const getUserByEmail = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    console.log('found', foundUser);
     delete foundUser.password;
     delete foundUser.agreedToTerms;
 
@@ -148,7 +139,7 @@ export const getUserByEmail = async (req, res) => {
     return sendDataResponse(res, 200, { user: foundUser });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get user by ID`);
+    const serverError = new ServerErrorEvent(req.user, `Get user by email address failed`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -156,7 +147,6 @@ export const getUserByEmail = async (req, res) => {
 };
 
 export const getUserByUsername = async (req, res) => {
-  console.log('getUserByUsername');
   const { username } = req.params;
 
   const lowerCaseUsername = username.toLowerCase();
@@ -180,7 +170,7 @@ export const getUserByUsername = async (req, res) => {
     return sendDataResponse(res, 200, { user: foundUser });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get user by username`);
+    const serverError = new ServerErrorEvent(req.user, `Get user by username failed`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -371,7 +361,6 @@ export const getAllUserCardInstances = async (req, res) => {
     }
 
     const foundInstances = await findAllUserCardInstances(userId);
-    console.log('found instances', foundInstances);
 
     return sendDataResponse(res, 200, { cardInstances: foundInstances });
   } catch (err) {
@@ -387,13 +376,10 @@ export const getAllUserCardInstances = async (req, res) => {
 };
 
 export const openPackAndAddToUser = async (req, res) => {
-  console.log('openPackAndAddToUser');
   const { packId, userId } = req.body;
-  console.log('pack', packId, userId);
 
   try {
     const foundUser = await findUserById(userId);
-    console.log('foundUser', foundUser);
     if (!foundUser) {
       const notFound = new NotFoundEvent(
         req.user,
@@ -419,16 +405,12 @@ export const openPackAndAddToUser = async (req, res) => {
 
     for (let index = 0; index < foundPack.cards.length; index++) {
       const card = foundPack.cards[index];
-      console.log('card', card);
       const newInstance = await setCardFromPackToUser(card.id, userId);
-      console.log('newInstance', newInstance);
       const newCard = await findCardById(card.cardId);
-      console.log('AQE', newCard);
       newCardsArray.push(newCard);
     }
 
     const deletedPack = await deletePackbyIdWhenOpened(packId);
-    console.log('deletedPack', deletedPack);
     return sendDataResponse(res, 200, {
       cards: newCardsArray,
       deletedPack: deletedPack,
@@ -446,11 +428,8 @@ export const openPackAndAddToUser = async (req, res) => {
 };
 
 export const collectDailyReward = async (req, res) => {
-  console.log('');
   const { userId } = req.params;
   const { daysInARow } = req.body;
-  console.log('userId', userId);
-  console.log('daysInARow', daysInARow);
 
   try {
     const foundRecord = await findUserLoginRecord(userId);
@@ -471,7 +450,6 @@ export const collectDailyReward = async (req, res) => {
 
     // Create reward
     const loginReward = await collectLoginReward(daysInARow, userId)
-    console.log('loginReward', loginReward);
 
     return sendDataResponse(res, 200, {
       reward: loginReward,
@@ -749,7 +727,6 @@ export const collectDailyReward = async (req, res) => {
 // };
 
 export const deleteUser = async (req, res) => {
-  console.log('deleteUser');
   const userId = req.params.userId;
 
   try {
@@ -775,7 +752,7 @@ export const deleteUser = async (req, res) => {
     });
   } catch (err) {
     //
-    const serverError = new ServerErrorEvent(req.user, `delete user by ID`);
+    const serverError = new ServerErrorEvent(req.user, `Delete user by ID failed`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
