@@ -18,7 +18,7 @@ import {
   sendDataResponse,
   sendMessageResponse,
 } from '../utils/responses.js';
-import { starterPackNames } from '../utils/constants.js';
+import { StandardPackCost, starterPackNames } from '../utils/constants.js';
 import {
   findUserById,
   findUserByIdBasic,
@@ -169,9 +169,21 @@ export const createPacksAndAddToUser = async (req, res) => {
 
 // BUY and Return new pack of any type with user id
 export const buyPackAndAddToUser = async (req, res) => {
+  console.log('');
+  console.log('BUY PACK');
   const { packType, userId, cost } = req.body;
-  console.log('cost', cost, userId, packType);
+
   try {
+    if (cost !== StandardPackCost) {
+      const conflict = new ConfictEvent(
+        req.user,
+        EVENT_MESSAGES.badRequest,
+        EVENT_MESSAGES.dataIncorrect
+      );
+      myEmitterErrors.emit('error', conflict);
+      return sendMessageResponse(res, conflict.code, conflict.message);
+    }
+    
     const foundUser = await findUserById(userId);
     if (!foundUser) {
       const notFound = new NotFoundEvent(
@@ -185,7 +197,7 @@ export const buyPackAndAddToUser = async (req, res) => {
 
     const createdPack = await createSinglePacksOfCardsForUser(packType, userId);
 
-    const foundPack = await findPackById(createdPack.newPack.id);
+    const foundPack = await findPackById(createdPack.id);
     if (!foundPack) {
       const notFound = new NotFoundEvent(
         req.user,
@@ -195,9 +207,10 @@ export const buyPackAndAddToUser = async (req, res) => {
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
+    console.log('foundPack', foundPack);
 
-    const updatedUserBank = await chargePackToBankAccount(userId, cost);
-    console.log('updatedUserBank', updatedUserBank);
+    // Update banking
+    await chargePackToBankAccount(userId, cost);
 
     const updatedUser = await findUserById(userId);
 
@@ -219,11 +232,16 @@ export const buyPackAndAddToUser = async (req, res) => {
 };
 
 export const openPackAndAddToUser = async (req, res) => {
+  console.log('');
+  console.log('-----------------------------');
   console.log('openPackAndAddToUser');
   const { packId, userId } = req.body;
+  console.log('packid', packId);
+  console.log('userID', userId);
 
   try {
     const foundPack = await findPackById(packId);
+    console.log('foundpack', foundPack);
     if (!foundPack) {
       const notFound = new NotFoundEvent(
         req.user,
@@ -235,6 +253,7 @@ export const openPackAndAddToUser = async (req, res) => {
     }
 
     const foundUser = await findUserById(userId);
+    console.log('founduser', foundUser);
     if (!foundUser) {
       const notFound = new NotFoundEvent(
         req.user,
@@ -245,6 +264,7 @@ export const openPackAndAddToUser = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
+    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa');
     // All user packs (objects)
     const userPackArray = foundUser.packs;
 

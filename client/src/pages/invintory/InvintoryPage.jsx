@@ -19,7 +19,7 @@ function InvintoryPage() {
     <div className='h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
-        <main className='grid bg-main-colour main__bg grid-rows-reg gap-4 p-4'>
+        <main className='grid bg-main-colour shadow-internal-main main__bg grid-rows-reg gap-2 p-4 lg:overflow-hidden'>
           {/* Header */}
           <InvintoryHeader />
 

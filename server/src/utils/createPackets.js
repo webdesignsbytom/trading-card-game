@@ -26,6 +26,8 @@ export async function createSinglePacksOfCards(packType) {
 
 // Buy pack of cards and id to user
 export async function createSinglePacksOfCardsForUser(packType, userId) {
+  console.log('TYPE !!!!', packType);
+  
   const newPack = await createBlankPackOfCardsForUser(packType, userId);
   const cards = await createCardsForPack(packType, newPack.id);
   const cardInstanceArray = []

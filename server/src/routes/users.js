@@ -19,10 +19,10 @@ import {
 
 const router = Router();
 
-router.get('/all-users', getAllUsers);
+router.get('/get-all-users', getAllUsers);
 router.post('/register', registerNewUser);
 router.patch('/user/packs/open-pack', openPackAndAddToUser);
-router.patch('/user/rewards/collect', collectDailyReward);
+router.patch('/user/rewards/daily-reward/collect/:userId', collectDailyReward);
 router.get('/get-user-by-id/:userId', getUserById);
 router.get('/user/userId/:userId/all-cards', getAllCardsForUser);
 router.get('/user/packs/:userId/all-packs', getAllPacksForUser);

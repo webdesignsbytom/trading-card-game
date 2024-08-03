@@ -150,6 +150,12 @@ enum PackType {
   GAMMA
 }
 
+enum BoxType {
+  ALPHA
+  BETA
+  GAMMA
+}
+
 enum CardType {
   MONSTER
   ITEM
@@ -216,7 +222,7 @@ enum PowerUpEffectType {
 
 model Pack {
   id        String         @id @default(uuid()) // pack id
-  packType  String
+  packType  PackType
   cards     CardInstance[]
   userId    String?
   user      User?          @relation(fields: [userId], references: [id])

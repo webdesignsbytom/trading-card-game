@@ -18,7 +18,7 @@ function CreateTradeComponent({
   const { user } = useContext(UserContext);
 
   return (
-    <section className='grid lg:grid-cols-2x gap-2 overflow-hidden'>
+    <section className='grid lg:grid-cols-rev gap-2 overflow-hidden'>
       {/* Main container */}
       <section className='bg-red-400 grid grid-rows-2 gap-2 main__bg border-4 border-main-border border-solid rounded-xl p-2 overflow-hidden'>
         {/* User container */}
@@ -110,7 +110,7 @@ function CreateTradeComponent({
         </section>
       </section>
 
-      <section className='bg-green-400 main__bg border-4 border-main-border border-solid rounded-xl p-2'>
+      <section className='bg-green-400 main__bg border-4 border-main-border border-solid rounded-xl p-2 min-w-[300px]'>
         {tradingPartner?.id && (
           <section>
             <div>

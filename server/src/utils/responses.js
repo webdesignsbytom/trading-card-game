@@ -16,6 +16,7 @@ export const EVENT_MESSAGES = {
   missingUserIdentifier: `Missing User identifier`,
   missingFields: `Missing fields in request`,
   alreadyClaimed: `Already Claimed`,
+  dataIncorrect: `Data incorrectly formatted or malformed request`,
   // Battles
   battleTag: `Battle database`,
   battleNotFound: `Failed to find battle/s`,

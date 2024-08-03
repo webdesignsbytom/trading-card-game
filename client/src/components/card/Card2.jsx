@@ -11,11 +11,15 @@ import {
   EDITION_ICONS,
   ULTIMATE_CARD_RARITY,
 } from '../../utils/cards/CardGameConstants';
+import { useNavigate } from 'react-router-dom';
+import { CARD_PAGE_URL } from '../../utils/Constants';
 
 function Card2({ cardData }) {
   const [bgColour, setBgColour] = useState('bg-white');
   const [holoCard, setHoloCard] = useState(false);
   const [rareholoCard, setRareHoloCard] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!cardData.holographic) {
@@ -95,10 +99,15 @@ function Card2({ cardData }) {
     }
   };
 
+  const openCardPage = (cardData) => {
+    navigate(`${CARD_PAGE_URL}/${cardData.cardName}`, { state: cardData });
+  };
+
   return (
     <article
       className={`grid card__bg ${bgColour} border-[0.5rem] bg-black border-card-border border-solid rounded-lg overflow-hidden h-fit w-full cursor-pointer`}
       style={{ aspectRatio: '2 / 3' }}
+      onClick={() => openCardPage(cardData)}
     >
       <div className='grid grid-rows-a1a p-[2px] h-full w-full overflow-hidden'>
         {/* Name */}
