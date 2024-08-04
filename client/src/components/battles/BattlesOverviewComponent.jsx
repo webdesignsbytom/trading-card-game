@@ -46,7 +46,7 @@ function BattlesOverviewComponent({
                 START <span className='text-red-600'>NEW</span> BATTLE
               </FantasyButton>
             </div>
-            {user?.battleRequestsReceived > 0 && (
+            {user.battleRequestsReceived && (
               <div className='grid'>
                 <Link to={BATTLE_REQUESTS_PAGE_URL}>
                   <div className='bg-blue-700 main__bg text-center border-2 border-solid border-main-border rounded animate-pulse duration-1000'>

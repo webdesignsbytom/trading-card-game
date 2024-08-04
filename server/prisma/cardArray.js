@@ -1371,7 +1371,7 @@ export const cardArrayGamma = [
 
 export const users = [
   { email: 'xtombrock1989@gmail.com', username: 'xtombrock', id: 'test' },
-  { email: 'testuser@example.com', username: 'testy' },
+  { email: 'testuser@example.com', username: 'testy', id: 'test1' },
   { email: 'testuser3@example.com', username: 'manny' },
   { email: 'testuser4@example.com', username: 'welshy' },
   { email: 'testuser5@example.com', username: 'geolorald' },

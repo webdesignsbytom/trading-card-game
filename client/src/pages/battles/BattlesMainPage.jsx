@@ -26,7 +26,6 @@ function BattlesMainPage() {
     setActiveNav(BATTLES_PAGE_URL);
   }, []);
 
-
   useEffect(() => {
     client
       .get(`/battles/battle/user-battles/${user.id}`)
@@ -62,15 +61,13 @@ function BattlesMainPage() {
           <BattlePageHeader />
 
           <div className='grid h-full bg-white main__bg md:overflow-hidden rounded'>
-            {!startingNewBattle && (
-              <BattlesOverviewComponent
-                openBattleRequests={openBattleRequests}
-                goToOpenBattle={goToOpenBattle}
-                deleteBattle={deleteBattle}
-                setStartingNewBattle={setStartingNewBattle}
-                startingNewBattle={startingNewBattle}
-              />
-            )}
+            <BattlesOverviewComponent
+              openBattleRequests={openBattleRequests}
+              goToOpenBattle={goToOpenBattle}
+              deleteBattle={deleteBattle}
+              setStartingNewBattle={setStartingNewBattle}
+              startingNewBattle={startingNewBattle}
+            />
           </div>
         </main>
       </section>

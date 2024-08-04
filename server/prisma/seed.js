@@ -85,6 +85,24 @@ async function seed() {
     });
   }
 
+  const battleReq1 = await dbClient.battleRequest.create({
+    data: {
+      senderId: 'test1',         
+      senderUsername : 'testy',
+      receiverId: 'dev',        
+      receiverUsername: 'deve',
+    },
+  });
+
+  const battleReq2 = await dbClient.battleRequest.create({
+    data: {
+      receiverId: 'test1',         
+      receiverUsername : 'testy',
+      senderId: 'dev',        
+      senderUsername: 'deve',
+    },
+  });
+
   // EVENTS
   const eventOne = await dbClient.event.create({
     data: {
