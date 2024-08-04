@@ -43,3 +43,4 @@ export const ALL_EVENTS_API = '/events/all-events'
 export const COLLECT_STARTER_PACKS_API = '/users/starter-packs/collect'
 export const BATTLE_USER_SEARCH_API = '/users/user-search/battle-search' // :username
 export const CREATE_BATTLE_REQ_API = '/battles/battle/create-battle-request'
+export const GET_USER_BATTLE_REQ_API = '/battles/battle/get-all-user-battle-requests'

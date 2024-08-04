@@ -7,6 +7,7 @@ import {
   getAllBattlesByUserId,
   opponentConfirmBattle,
   createBattleRequest,
+  getAllUserBattleRequests,
 } from '../controllers/battles.js';
 import {
   validateAuthentication,
@@ -20,6 +21,7 @@ router.get('/battle/:battleId', getBattleById);
 router.get('/battle/user-battles/:userId', getAllBattlesByUserId);
 router.post('/battle/create-battle', createBattle);
 router.post('/battle/create-battle-request', createBattleRequest);
+router.get('/battle/get-all-user-battle-requests/:userId', getAllUserBattleRequests);
 router.patch('/battle/opponent-confirm-battle', opponentConfirmBattle);
 router.delete('/delete-battle-by-id/:battleId', deleteBattle);
 

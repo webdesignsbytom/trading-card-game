@@ -7,6 +7,16 @@ export const findAllBattles = () =>
     },
   });
 
+export const findAllUserBattleRequests = (userId) =>
+  dbClient.battleRequest.findMany({
+    where : {
+      id: userId
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+
 export const findBattleById = (battleId) =>
   dbClient.battle.findFirst({
     where: {
