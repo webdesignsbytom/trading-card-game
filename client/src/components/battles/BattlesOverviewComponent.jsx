@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 // Images
 import BattleBackground from '../../assets/images/backgrounds/battle_page_fantasy_attackers.png';
+// Components
 import LeaderboardContainer from './LeaderboardContainer';
-import { useNavigate } from 'react-router-dom';
+import FantasyButton from '../utils/FantasyButton';
+// Constants
 import { FIND_BATTLER_PAGE_URL } from '../../utils/Constants';
 
 function BattlesOverviewComponent({
@@ -31,14 +34,9 @@ function BattlesOverviewComponent({
         }}
       >
         <div className='grid items-center justify-center'>
-          <button
-            onClick={openStartingBattleComponent}
-            className='main__bg outline outline-2 text-4xl bg-transparent-black hover:bg-red-300 shadow-[inset_-1px_18px_35px_22px_#00000024] hover:shadow-[inset_-1px_18px_35px_22px_#00000024] active:scale-95 outline-black rounded-xl px-10 py-2 text__stroke tracking-wider'
-          >
-            <span className='font-fantasy font-extrabold text-main-colour'>
+          <FantasyButton onClick={openStartingBattleComponent} black={true}>
               START <span className='text-red-600'>NEW</span> BATTLE
-            </span>
-          </button>
+          </FantasyButton>
         </div>
         {openBattleRequests.length >= 1 && (
           <section className='bg-green-400 '>

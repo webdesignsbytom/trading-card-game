@@ -24,16 +24,10 @@ function HomePage() {
     <div className='bg-main-colour main__bg h-screen grid'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
-        <main className='grid border-solid border-main-border border-b-2 border-l-2 border-r-2 lg:border-l-0 lg:border-t-2 shadow-[inset_-1px_43px_35px_48px_#00000024]'>
+
+        <main className='grid border-solid bg-cards-display bg-center border-main-border border-b-2 border-l-2 border-r-2 lg:border-l-0 lg:border-t-2 shadow-[inset_-1px_43px_35px_48px_#00000024]'>
           <section className='grid h-full items-center p-2'>
             <div className='grid lg:mb-4'>
-              <div className='grid justify-center'>
-                <img
-                  src={GeneralImage}
-                  alt='Mon cards fantasy card game'
-                  className='object-cover w-48'
-                />
-              </div>
               {user.email && !user.collectedStartedPacks && (
                 <>
                   <section className='p-4 grid h-full items-center justify-center'>
@@ -48,20 +42,15 @@ function HomePage() {
                 </section>
               )}
               {!user.email && (
-                <section className='p-4 grid grid-rows-rev gap-5 h-fit my-auto items-center justify-center'>
+                <section className='p-4 grid grid-rows-rev gap-8 h-fit my-auto items-center justify-center'>
                   <LargeMonCardsHeader />
                   <section className='h-fit'>
                     <div className='grid justify-center py-4'>
-                      <div>
-                        <p>
-                          Sign up now and get the starter pack collection free.
-                        </p>
-                      </div>
                       <Link
                         to={SIGN_UP_PAGE_URL}
-                        className='outline outline-2 bg-secondary-colour font-bold active:scale-95 hover:brightness-90 outline-black main__bg py-2 px-4 my-2 rounded-xl text-center'
+                        className='main__bg outline outline-2 text-3xl lg:text-5xl bg-transparent-black hover:bg-red-300 shadow-[inset_-1px_18px_35px_22px_#00000024] hover:shadow-[inset_-1px_18px_35px_22px_#00000024] active:scale-95 outline-black rounded-xl px-10 py-2 text__stroke'
                       >
-                        SIGN UP NOW
+                        <span className='font-fantasy font-extrabold text-main-colour'>SIGN <span className='text-red-600'>UP</span> NOW</span>
                       </Link>
                     </div>
                   </section>

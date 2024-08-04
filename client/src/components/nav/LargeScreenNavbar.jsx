@@ -72,6 +72,7 @@ function LargeScreenNavbar({ logoutUser }) {
           <ul className='text-center grid bg-black h-fit w-full text-xl'>
             <NavItem to={HOME_PAGE_URL} activeNav={activeNav} text='Home' />
             <NavItem to={SHOP_PAGE_URL} activeNav={activeNav} text='Shop' />
+            <NavItem to={ALBUM_PAGE_URL} activeNav={activeNav} text='Album' />
             {!user.email && (
               <>
                 <NavItem
@@ -88,11 +89,6 @@ function LargeScreenNavbar({ logoutUser }) {
             )}
             {user.email && (
               <>
-                <NavItem
-                  to={ALBUM_PAGE_URL}
-                  activeNav={activeNav}
-                  text='Album'
-                />
                 <NavItem
                   to={TRADING_PAGE_URL}
                   activeNav={activeNav}

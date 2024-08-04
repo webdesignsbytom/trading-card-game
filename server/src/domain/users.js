@@ -35,6 +35,16 @@ export const findUserByUsername = (username) =>
     },
   });
 
+export const findUserByUsernameForBattle = (username) =>
+  dbClient.profile.findFirst({
+    where: {
+      username: username,
+    },
+    include: {
+      user: true, 
+    },
+  });
+
 export const findUserById = (userId) =>
   dbClient.user.findUnique({
     where: {

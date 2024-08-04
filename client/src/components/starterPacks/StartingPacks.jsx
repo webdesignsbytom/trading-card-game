@@ -7,25 +7,33 @@ import { UserContext } from '../../context/UserContext';
 // Components
 import LoadingSpinner from '../../components/utils/LoadingSpinner';
 // Constants
-import { UNOPENED_PACKS_URL } from '../../utils/Constants';
+import { COLLECT_STARTER_PACKS_API, UNOPENED_PACKS_URL } from '../../utils/Constants';
 
 function StartingPacks() {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const [claimedFreePacks, setClaimedFreePacks] = useState(false);
   const [loadingStarterPacks, setLoadingStarterPacks] = useState(false);
 
   let navigate = useNavigate();
 
-  const claimStarterPacks = () => {
-    setLoadingStarterPacks(true);
-    navigate(UNOPENED_PACKS_URL);
+  const claimStarterPacks = () => { 
+    client
+      .patch(`${COLLECT_STARTER_PACKS_API}/${user.id}`, null)
+      .then((res) => {
+        setUser(res.data.data.user)
+        setLoadingStarterPacks(true);
+        navigate(UNOPENED_PACKS_URL);
+      })
+      .catch((err) => {
+        console.error('Unable to claim starter packs', err);
+      })     
   };
 
   return (
     <div className='grid h-fit'>
       <section className='grid grid-rows-reg'>
-        <article className='text-center py-4 text-xl font-semibold'>
+        <article className='text-center py-4 text-xl font-semibold bg-transparent-white w-fit mx-auto my-2 px-4'>
           <h3>
             Welcome{' '}
             <span className='italic capitalize font-semibold'>
@@ -43,7 +51,7 @@ function StartingPacks() {
           {!claimedFreePacks && (
             <button
               onClick={claimStarterPacks}
-              className='outline outline-2 my-2 outline-black rounded p-2 bg-red-600 main__bg text-white font-semibold text-xl'
+              className='main__bg text-2xl lg:text-5xl bg-transparent-black hover:bg-red-300 shadow-[inset_-1px_18px_35px_22px_#00000024] hover:shadow-[inset_-1px_18px_35px_22px_#00000024] active:scale-95 rounded-xl px-10 py-2 text__stroke tracking-wider'
             >
               {loadingStarterPacks && (
                 <div className='grid items-center justify-center'>
@@ -51,8 +59,8 @@ function StartingPacks() {
                 </div>
               )}
               {!loadingStarterPacks && (
-                <div className='grid items-center justify-center'>
-                  <span>CLAIM 3 FREE PACKS</span>
+                <div className='grid items-center justify-center pt-1'>
+                  <span className='font-fantasy font-extrabold text-main-colour'>CLAIM <span className='text-red-600'>3</span> FREE PACKS</span>
                 </div>
               )}
             </button>

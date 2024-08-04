@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'green-bg': "url('../assets/img/myea/green-bg1.png')",
+        'cards-display': "url('../assets/images/backgrounds/multiple_cards_framing_background_image_1.png')",
         'holo-bg': "url('https://res.cloudinary.com/simey/image/upload/Dev/PokemonCards/illusion.webp')",
       },
       backgroundSize: {

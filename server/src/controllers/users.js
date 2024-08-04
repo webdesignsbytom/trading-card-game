@@ -20,6 +20,8 @@ import {
   findUserByUsername,
   findUserLoginRecord,
   updateUserLoginRecordToCollectedReward,
+  setStarterCardsToClaimed,
+  findUserByUsernameForBattle,
 } from '../domain/users.js';
 import { createAccessToken } from '../utils/tokens.js';
 import {
@@ -139,7 +141,10 @@ export const getUserByEmail = async (req, res) => {
     return sendDataResponse(res, 200, { user: foundUser });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get user by email address failed`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Get user by email address failed`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -170,7 +175,41 @@ export const getUserByUsername = async (req, res) => {
     return sendDataResponse(res, 200, { user: foundUser });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get user by username failed`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Get user by username failed`
+    );
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+export const findUserForBattle = async (req, res) => {
+  const { username } = req.params;
+
+  const lowerCaseUsername = username.toLowerCase();
+
+  try {
+    const foundUser = await findUserByUsernameForBattle(lowerCaseUsername);
+
+    if (!foundUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    return sendDataResponse(res, 200, { battleUser: foundUser.username });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Get user by username failed`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -444,19 +483,62 @@ export const collectDailyReward = async (req, res) => {
     }
 
     // Update collected reward to true and add one day to record
-    await updateUserLoginRecordToCollectedReward(
-      foundRecord.id
-    );
+    await updateUserLoginRecordToCollectedReward(foundRecord.id);
 
     // Create reward
-    const loginReward = await collectLoginReward(daysInARow, userId)
+    const loginReward = await collectLoginReward(daysInARow, userId);
 
     return sendDataResponse(res, 200, {
       reward: loginReward,
     });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get daily reward failed`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Get daily reward failed`
+    );
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+export const collectStarterPacks = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const updatedRecord = await setStarterCardsToClaimed(userId);
+
+    if (!updatedRecord) {
+      const badRequest = new BadRequestEvent(
+        req.user,
+        EVENT_MESSAGES.badRequest,
+        'Failed to set starter packs to claimed'
+      );
+      myEmitterErrors.emit('error', badRequest);
+      return sendMessageResponse(res, badRequest.code, badRequest.message);
+    }
+
+    const updatedUser = await findUserById(userId);
+    if (!updatedUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    return sendDataResponse(res, 200, {
+      user: updatedUser,
+    });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Get daily reward failed`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -752,7 +834,10 @@ export const deleteUser = async (req, res) => {
     });
   } catch (err) {
     //
-    const serverError = new ServerErrorEvent(req.user, `Delete user by ID failed`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Delete user by ID failed`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;

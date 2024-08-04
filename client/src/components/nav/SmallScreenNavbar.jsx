@@ -143,6 +143,12 @@ function SmallScreenNavbar({ logoutUser }) {
                 text='Shop'
                 onClick={navigateToPage}
               />
+              <NavButton
+                to={ALBUM_PAGE_URL}
+                activeNav={activeNav}
+                text='Album'
+                onClick={navigateToPage}
+              />
               {!user.email && (
                 <>
                   <NavButton
@@ -161,12 +167,6 @@ function SmallScreenNavbar({ logoutUser }) {
               )}
               {user.email && (
                 <>
-                  <NavButton
-                    to={ALBUM_PAGE_URL}
-                    activeNav={activeNav}
-                    text='Album'
-                    onClick={navigateToPage}
-                  />
                   <NavButton
                     to={TRADING_PAGE_URL}
                     activeNav={activeNav}
