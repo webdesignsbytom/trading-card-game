@@ -2,6 +2,8 @@ import React from 'react';
 // Images
 import BattleBackground from '../../assets/images/backgrounds/battle_page_fantasy_attackers.png';
 import LeaderboardContainer from './LeaderboardContainer';
+import { useNavigate } from 'react-router-dom';
+import { FIND_BATTLER_PAGE_URL } from '../../utils/Constants';
 
 function BattlesOverviewComponent({
   openBattleRequests,
@@ -10,14 +12,18 @@ function BattlesOverviewComponent({
   setStartingNewBattle,
   startingNewBattle,
 }) {
-  const openStartingBattleComponent = () => {
-    setStartingNewBattle(!startingNewBattle);
+  let navigate = useNavigate();
+
+  const openStartingBattleComponent = (user) => {
+    navigate(FIND_BATTLER_PAGE_URL, { replace: true });
   };
 
   return (
     <section className='grid lg:grid-cols-rev gap-2 py-2 px-2'>
       <section
-        className={`grid ${openBattleRequests.length >= 1 && 'grid-rows-2'} rounded border-solid border-4 border-blue-700 shadow-[inset_-1px_43px_35px_48px_#00000024]`}
+        className={`grid ${
+          openBattleRequests.length >= 1 && 'grid-rows-2'
+        } rounded border-solid border-4 border-blue-700 shadow-[inset_-1px_43px_35px_48px_#00000024]`}
         style={{
           backgroundImage: `url(${BattleBackground})`,
           backgroundSize: 'cover',
@@ -78,7 +84,7 @@ function BattlesOverviewComponent({
       </section>
 
       {/* Leaderboard section */}
-        <LeaderboardContainer />
+      <LeaderboardContainer />
     </section>
   );
 }

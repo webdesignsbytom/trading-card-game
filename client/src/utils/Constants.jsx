@@ -9,6 +9,7 @@ export const ADMIN_PAGE_URL = '/admin';
 export const DEV_PAGE_URL = '/developer';
 export const CARDS_PAGE_URL = '/cards';
 export const BATTLES_PAGE_URL = '/battles';
+export const FIND_BATTLER_PAGE_URL = '/battles/find-opponents';
 export const INVENTORY_PAGE_URL = '/invintory';
 export const REWARDS_PAGE_URL = '/rewards';
 export const UNOPENED_PACKS_URL = '/packs/unopened';

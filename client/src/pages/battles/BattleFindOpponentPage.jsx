@@ -13,7 +13,7 @@ import { ToggleContext } from '../../context/ToggleContext';
 import { BATTLES_PAGE_URL } from '../../utils/Constants';
 import BattlePageHeader from '../../components/battles/BattlePageHeader';
 
-function BattlesMainPage() {
+function BattleFindOpponentPage() {
   const { user } = useContext(UserContext);
   const { setActiveNav } = useContext(ToggleContext);
 
@@ -26,33 +26,6 @@ function BattlesMainPage() {
     setActiveNav(BATTLES_PAGE_URL);
   }, []);
 
-
-  useEffect(() => {
-    client
-      .get(`/battles/battle/user-battles/${user.id}`)
-      .then((res) => {
-        setOpenBattleRequests(res.data.data.battles);
-      })
-      .catch((err) => {
-        console.error('Unable to retrieve all battles for user', err);
-      });
-  }, []);
-
-  const goToOpenBattle = (battle) => {
-    navigate('/battle/open-battle', { state: battle });
-  };
-
-  const deleteBattle = (battle) => {
-    client
-      .delete(`/battles/delete-battle-by-id/${battle.id}`)
-      .then((res) => {
-        console.log('Deleted battle', res.data.data.deletedBattle);
-      })
-      .catch((err) => {
-        console.error('Unable to delete battle', err);
-      });
-  };
-
   return (
     <div className='h-screen grid md:overflow-hidden w-full'>
       <section className='grid h-full lg:overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
@@ -61,21 +34,11 @@ function BattlesMainPage() {
           {/* Header */}
           <BattlePageHeader />
 
-          <div className='grid h-full bg-white main__bg md:overflow-hidden rounded'>
-            {!startingNewBattle && (
-              <BattlesOverviewComponent
-                openBattleRequests={openBattleRequests}
-                goToOpenBattle={goToOpenBattle}
-                deleteBattle={deleteBattle}
-                setStartingNewBattle={setStartingNewBattle}
-                startingNewBattle={startingNewBattle}
-              />
-            )}
-          </div>
+          <StartNewBattleComponent openBattleRequests={openBattleRequests} />
         </main>
       </section>
     </div>
   );
 }
 
-export default BattlesMainPage;
+export default BattleFindOpponentPage;

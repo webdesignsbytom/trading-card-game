@@ -225,7 +225,7 @@ model Pack {
   packType  PackType
   cards     CardInstance[]
   userId    String?
-  user      User?          @relation(fields: [userId], references: [id])
+  user      User?          @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime       @default(now())
   updatedAt DateTime?      @updatedAt
 }
@@ -234,6 +234,7 @@ model Card {
   id               Int              @id @default(autoincrement()) //
   serialNumber     String           @unique @default("") @db.VarChar(128) // number from all cards
   cardName         String           @unique @db.VarChar(255) // name of the card
+  description      String           @db.VarChar(512)
   edition          String           @default("") @db.VarChar(128) // first second third fouth
   rarity           Rarity           @default(COMMON)
   holographic      Boolean          @default(false) // holo card option available
@@ -241,7 +242,7 @@ model Card {
   packType         PackType
   cardType         CardType
   editable         Boolean          @default(false) // holo card option available
-  imageUrl         String           @default("imageUrl") @db.VarChar(5000)
+  imageUrl         String           @default("imageUrl") @db.VarChar(4096)
   isAvailable      Boolean          @default(true)
   cardStats        CardStat[]
   cardInstances    CardInstance[]
@@ -256,26 +257,27 @@ model CardInstance {
   cardId    Int
   card      Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
   packId    String?
-  pack      Pack?     @relation(fields: [packId], references: [id])
+  pack      Pack?     @relation(fields: [packId], references: [id], onDelete: Cascade)
   deckId    String?
-  deck      Deck?     @relation(fields: [deckId], references: [id])
+  deck      Deck?     @relation(fields: [deckId], references: [id], onDelete: Cascade)
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 }
 
 model CardStat {
-  id          Int       @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   value       Int
-  description String?   @db.VarChar(255)
+  statName    String  @db.VarChar(128)
+  description String? @db.VarChar(255)
 
   monsterEffectType MonsterEffectType?
   itemEffectType    ItemEffectType?
   powerUpEffectType PowerUpEffectType?
 
-  cardId Int
-  card   Card @relation(fields: [cardId], references: [id])
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime? @updatedAt
+  cardId    Int
+  card      Card      @relation(fields: [cardId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
 
 // EVENTS

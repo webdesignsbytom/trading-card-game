@@ -53,7 +53,9 @@ import {
   TEST_PAGE_URL,
   TEST_CARD_PAGE_URL,
   DEV_PAGE_URL,
+  FIND_BATTLER_PAGE_URL,
 } from './utils/Constants';
+import BattleFindOpponentPage from './pages/battles/BattleFindOpponentPage';
 
 function App() {
   return (
@@ -73,6 +75,7 @@ function App() {
       <Route path={TRADING_PAGE_URL} element={<TradingPage />} />
       <Route path={REWARDS_PAGE_URL} element={<RewardsPage />} />
       <Route path={BATTLES_PAGE_URL} element={<BattlesOverviewPage />} />
+      <Route path={FIND_BATTLER_PAGE_URL} element={<BattleFindOpponentPage />} />
       <Route path={OPEN_BATTLE_ACTIVE_PAGE_URL} element={<OpenBattleActivePage />} />
       <Route path={BATTLE_RULES_PAGE_URL} element={<BattleRulesPage />} />
       <Route path={DECKS_OVERVIEW_PAGE_URL} element={<DecksOverviewPage />} />
