@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Components
 import SmallScreenNavbar from './SmallScreenNavbar';
@@ -10,7 +10,7 @@ import { ToggleContext } from '../../context/ToggleContext';
 import { HOME_PAGE_URL } from '../../utils/Constants';
 
 function Navbar() {
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const { toggleNavbar, setActiveNav } =
     useContext(ToggleContext);
 

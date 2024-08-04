@@ -15,6 +15,7 @@ import {
   REWARDS_PAGE_URL,
   UNOPENED_PACKS_URL,
   DEV_PAGE_URL,
+  BATTLE_REQUESTS_PAGE_URL,
 } from '../../utils/Constants';
 // Context
 import { UserContext } from '../../context/UserContext';
@@ -126,6 +127,17 @@ function SmallScreenNavbar({ logoutUser }) {
                 >
                   Daily Reward Available
                 </button>
+              )}
+              {user?.battleRequestsReceived > 0 && (
+                <div className='grid'>
+                  <Link to={BATTLE_REQUESTS_PAGE_URL}>
+                    <div className='bg-blue-700 main__bg text-center border-2 border-solid border-main-border rounded animate-pulse'>
+                      <div className='font-semibold py-1'>
+                        <span>NEW BATTLE</span>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
               )}
             </section>
 

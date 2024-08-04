@@ -21,6 +21,8 @@ import CardsInPackPage from './pages/packs/CardsInPackPage';
 import UnopenedPacketsPage from './pages/packs/UnopenedPacketsPage';
 import BattlesOverviewPage from './pages/battles/BattlesMainPage';
 import OpenBattleActivePage from './pages/battles/OpenBattleActivePage';
+import BattleFindOpponentPage from './pages/battles/BattleFindOpponentPage';
+import BattlesRequestsPage from './pages/battles/BattlesRequestsPage';
 import BattleRulesPage from './pages/battles/BattleRulesPage';
 import DecksOverviewPage from './pages/decks/DecksOverviewPage';
 import DeveloperPage from './pages/dev/DeveloperPage';
@@ -54,8 +56,8 @@ import {
   TEST_CARD_PAGE_URL,
   DEV_PAGE_URL,
   FIND_BATTLER_PAGE_URL,
+  BATTLE_REQUESTS_PAGE_URL,
 } from './utils/Constants';
-import BattleFindOpponentPage from './pages/battles/BattleFindOpponentPage';
 
 function App() {
   return (
@@ -77,6 +79,7 @@ function App() {
       <Route path={BATTLES_PAGE_URL} element={<BattlesOverviewPage />} />
       <Route path={FIND_BATTLER_PAGE_URL} element={<BattleFindOpponentPage />} />
       <Route path={OPEN_BATTLE_ACTIVE_PAGE_URL} element={<OpenBattleActivePage />} />
+      <Route path={BATTLE_REQUESTS_PAGE_URL} element={<BattlesRequestsPage/>} />
       <Route path={BATTLE_RULES_PAGE_URL} element={<BattleRulesPage />} />
       <Route path={DECKS_OVERVIEW_PAGE_URL} element={<DecksOverviewPage />} />
       <Route path={ADMIN_PAGE_URL} element={<AdminPage />} />

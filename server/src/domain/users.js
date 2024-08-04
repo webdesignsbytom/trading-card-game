@@ -26,6 +26,20 @@ export const findUserByEmail = (email) =>
     },
   });
 
+export const findUserByEmailForLogin = (email) =>
+  dbClient.user.findUnique({
+    where: { email: email },
+    include: {
+      profile: true,
+      cards: true,
+      packs: true,
+      bank: true,
+      loginRecord: true,
+      battleRequestsSent: true,
+      battleRequestsReceived: true,
+    },
+  });
+
 export const findUserByUsername = (username) =>
   dbClient.user.findFirst({
     where: {
@@ -41,7 +55,7 @@ export const findUserByUsernameForBattle = (username) =>
       username: username,
     },
     include: {
-      user: true, 
+      user: true,
     },
   });
 
@@ -146,9 +160,9 @@ export const createUser = (email, password, username, country, agreedToTerms) =>
       },
       loginRecord: {
         create: {
-          daysInARow: 1
-        }
-      }
+          daysInARow: 1,
+        },
+      },
     },
   });
 

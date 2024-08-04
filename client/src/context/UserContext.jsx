@@ -15,6 +15,8 @@ const UserContextProvider = ({ children }) => {
     localStorage.getItem(process.env.REACT_APP_USER_TOKEN) || ''
   );
   const [toggleCookiePolicy, setToggleCookiePolicy] = useState(false);
+  const [newBattleRequestsRecieved, setNewBattleRequestsRecieved] =
+    useState(false);
 
   useEffect(() => {
     const decodedUserData = LoggedInUser();
@@ -47,6 +49,8 @@ const UserContextProvider = ({ children }) => {
         setToken,
         toggleCookiePolicy,
         setToggleCookiePolicy,
+        newBattleRequestsRecieved,
+        setNewBattleRequestsRecieved,
       }}
     >
       {children}

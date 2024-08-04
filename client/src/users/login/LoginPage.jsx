@@ -48,6 +48,7 @@ function LoginPage() {
           res.data.data.token
         );
         setLoginInProgress(false);
+        console.log('res.data.data.existingUser', res.data.data.existingUser);
         setUser(res.data.data.existingUser);
       })
       .then(() => homePage())

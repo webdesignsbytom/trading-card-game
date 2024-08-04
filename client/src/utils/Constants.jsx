@@ -19,6 +19,7 @@ export const CARD_PAGE_URL = '/card';
 export const INVENTORY_ITEMS_PAGE_URL = '/invintory/items';
 export const OPEN_BATTLE_ACTIVE_PAGE_URL = '/battle/open-battle';
 export const BATTLE_RULES_PAGE_URL = '/battles/rules';
+export const BATTLE_REQUESTS_PAGE_URL = '/battles/battle-requests';
 export const DECKS_OVERVIEW_PAGE_URL = '/user/decks';
 export const CARD_EDIT_PAGE_URL = '/admin/card-edit';
 export const USER_OVERVIEW_PAGE_URL = '/admin/user-overview';

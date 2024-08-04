@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 // Database
 import {
   findUserByEmail,
+  findUserByEmailForLogin,
   resetUserLoginRecord,
   updateUserLoginRecordToRewardAvailable,
 } from '../domain/users.js';
@@ -61,7 +62,7 @@ export const login = async (req, res) => {
     delete foundUser.password;
     const token = createAccessToken(foundUser.id, foundUser.email);
 
-    const existingUser = await findUserByEmail(lowerCaseEmail);
+    const existingUser = await findUserByEmailForLogin(lowerCaseEmail);
 
     return sendDataResponse(res, 200, { token, existingUser });
   } catch (err) {
