@@ -5,11 +5,13 @@ import client from '../../api/client';
 import LeaderboardContainer from './LeaderboardContainer';
 import FanstasyButton from '../utils/FantasyButton';
 import {
+  BATTLE_REQUESTS_PAGE_URL,
   BATTLE_USER_SEARCH_API,
   CREATE_BATTLE_REQ_API,
 } from '../../utils/Constants';
 // Context
 import { UserContext } from '../../context/UserContext';
+import { Link } from 'react-router-dom';
 
 function StartNewBattleComponent() {
   const { user } = useContext(UserContext);
@@ -49,6 +51,8 @@ function StartNewBattleComponent() {
     const battleData = {
       senderId: user.id,
       receiverId: battlePartnerFound.id,
+      senderUsername: user.profile.username,
+      receiverUsername: battlePartnerFound.username,
     };
 
     client
@@ -74,11 +78,21 @@ function StartNewBattleComponent() {
         <section className='grid items-center gap-4 w-full p-1'>
           <div className='grid grid-rows-2 w-full'>
             <section>
+              <div className='grid justify-center mb-8'>
+                <Link
+                  to={BATTLE_REQUESTS_PAGE_URL}
+                  className='border-main-border border-solid border-2 rounded-lg px-4 py-1 bg-white main__bg hover:bg-red-400 active:scale-95'
+                >
+                  <span className='text-sm font-semibold'>
+                    VIEW OPEN BATTLE REQUESTS
+                  </span>
+                </Link>
+              </div>
               <section className='mb-2'>
                 <div className='text-center'>
-                  <h2 className='text-xl font-semibold'>
+                  <h3 className='text-xl font-semibold'>
                     Search Users To Fight
-                  </h2>
+                  </h3>
                 </div>
               </section>
               <div className='grid h-fit'>

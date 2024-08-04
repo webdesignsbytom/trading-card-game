@@ -8,6 +8,8 @@ import {
   opponentConfirmBattle,
   createBattleRequest,
   getAllUserBattleRequests,
+  acceptBattleRequest,
+  deleteBattleRequest,
 } from '../controllers/battles.js';
 import {
   validateAuthentication,
@@ -22,7 +24,8 @@ router.get('/battle/user-battles/:userId', getAllBattlesByUserId);
 router.post('/battle/create-battle', createBattle);
 router.post('/battle/create-battle-request', createBattleRequest);
 router.get('/battle/get-all-user-battle-requests/:userId', getAllUserBattleRequests);
-router.patch('/battle/opponent-confirm-battle', opponentConfirmBattle);
+router.patch('/battle-requests/accept/:requestId', acceptBattleRequest);
+router.delete('/battle-requests/delete/:requestId', deleteBattleRequest);
 router.delete('/delete-battle-by-id/:battleId', deleteBattle);
 
 export default router;

@@ -24,6 +24,13 @@ export const EVENT_MESSAGES = {
   createBattleFail: `Failed to create battle`,
   markBattleViewedFailed: `Failed to mark battle as viewed`,
   oppenentNotFound: `Failed to find opponent user`,
+  // Battles
+  battleRequestTag: `Battle request database`,
+  battleRequestNotFound: `Failed to find battleRequest/s`,
+  userBattleRequestsNotFound: `Failed to find user battle requests`,
+  createBattleRequestFail: `Failed to create battle request`,
+  battleRequestNotFound: `Failed to find battle request`,
+  battleRequestNotDeleted: `Failed to find delete request`,
   // Complaints
   complaintTag: `Complaint database`,
   complaintNotFound: `Failed to find complaint/s`,

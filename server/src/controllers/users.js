@@ -22,6 +22,7 @@ import {
   updateUserLoginRecordToCollectedReward,
   setStarterCardsToClaimed,
   findUserByUsernameForBattle,
+  findUserByIdForLogin,
 } from '../domain/users.js';
 import { createAccessToken } from '../utils/tokens.js';
 import {
@@ -93,6 +94,35 @@ export const getUserById = async (req, res) => {
 
   try {
     const foundUser = await findUserById(userId);
+    if (!foundUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    delete foundUser.password;
+    delete foundUser.agreedToTerms;
+
+    // myEmitterUsers.emit('get-user-by-id', req.user);
+    return sendDataResponse(res, 200, { user: foundUser });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Get user by ID failed`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+export const getLoginUserData = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const foundUser = await findUserByIdForLogin(userId);
     if (!foundUser) {
       const notFound = new NotFoundEvent(
         req.user,

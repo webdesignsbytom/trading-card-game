@@ -5,7 +5,7 @@ import client from '../api/client';
 // Utils
 import LoggedInUser from '../utils/user/LoggedInUser';
 // Constants
-import { GET_USER_API } from '../utils/Constants';
+import { GET_USER_API, GET_USER_FOR_LOGIN_API } from '../utils/Constants';
 
 export const UserContext = React.createContext();
 
@@ -24,7 +24,7 @@ const UserContextProvider = ({ children }) => {
     if (decodedUserData !== null) {
       const userId = decodedUserData.id;
       client
-        .get(`${GET_USER_API}/${userId}`)
+        .get(`${GET_USER_FOR_LOGIN_API}/${userId}`)
         .then((res) => {
           setUser(res.data.data.user);
         })

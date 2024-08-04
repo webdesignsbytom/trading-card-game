@@ -14,6 +14,7 @@ import {
 } from '../../utils/Constants';
 // Components
 import BattlePageHeader from '../../components/battles/BattlePageHeader';
+import BattlesRequestsComponent from '../../components/battles/BattlesRequestsComponent';
 
 function BattlesRequestsPage() {
   const { user } = useContext(UserContext);
@@ -31,7 +32,10 @@ function BattlesRequestsPage() {
     client
       .get(`${GET_USER_BATTLE_REQ_API}/${user.id}`)
       .then((res) => {
-        console.log('res.data.data.battleRequests', res.data.data.battleRequests);
+        console.log(
+          'res.data.data.battleRequests',
+          res.data.data.battleRequests
+        );
         setFoundBattleRequests(res.data.data.battleRequests);
       })
       .catch((err) => {
@@ -48,7 +52,15 @@ function BattlesRequestsPage() {
           <BattlePageHeader />
 
           <div className='grid h-full bg-white main__bg md:overflow-hidden rounded'>
-            requests
+            {foundBattleRequests < 0 ? (
+              <div className='grid items-center justify-center'>
+                <span className='font-fantasy text-5xl tracking-wider'>
+                  NO REQUESTS
+                </span>
+              </div>
+            ) : (
+                <BattlesRequestsComponent />
+            )}
           </div>
         </main>
       </section>

@@ -13,13 +13,16 @@ import {
   ServerErrorEvent,
 } from '../event/utils/errorUtils.js';
 import {
+  acceptBattleRequestById,
   createNewBattle,
   createNewBattleRequest,
   deleteBattleById,
+  deleteBattleRequestById,
   findAllBattles,
   findAllUserBattleRequests,
   findAllUserBattles,
   findBattleById,
+  findBattleRequestById,
   updateBattleConfirmOpponent,
 } from '../domain/battles.js';
 import { findUserById, findUserByIdBasic } from '../domain/users.js';
@@ -49,8 +52,8 @@ export const getAllBattles = async (req, res) => {
 };
 
 export const getAllUserBattleRequests = async (req, res) => {
-  const { userId } = req.params
-   
+  const { userId } = req.params;
+
   try {
     const foundUser = await findUserById(userId);
     if (!foundUser) {
@@ -78,7 +81,10 @@ export const getAllUserBattleRequests = async (req, res) => {
     return sendDataResponse(res, 200, { battleRequests: foundBattleRequests });
   } catch (err) {
     //
-    const serverError = new ServerErrorEvent(req.user, `Get all user battle requests failed`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Get all user battle requests failed`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -185,10 +191,8 @@ export const createBattle = async (req, res) => {
 
 // createBattleRequest
 export const createBattleRequest = async (req, res) => {
-  console.log('XXXXXXXX');
-  const { senderId, receiverId } = req.body;
-  console.log('senders: ', senderId);
-  console.log('receivers: ', receiverId);
+  const { senderId, receiverId, senderUsername, receiverUsername } = req.body;
+
   try {
     const foundUser = await findUserByIdBasic(senderId);
     if (!foundUser) {
@@ -201,8 +205,6 @@ export const createBattleRequest = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    console.log('founduser', foundUser);
-
     const foundOpponent = await findUserByIdBasic(receiverId);
     if (!foundOpponent) {
       const notFound = new NotFoundEvent(
@@ -214,11 +216,11 @@ export const createBattleRequest = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    console.log('foundOpponent', foundOpponent);
-
     const createdBattleRequest = await createNewBattleRequest(
       senderId,
-      receiverId
+      receiverId,
+      senderUsername,
+      receiverUsername
     );
 
     console.log('createdBattleRequest', createdBattleRequest);
@@ -299,6 +301,73 @@ export const deleteBattle = async (req, res) => {
         req.user,
         EVENT_MESSAGES.badRequest,
         EVENT_MESSAGES.eventNotDeleted
+      );
+      myEmitterErrors.emit('error', notDeleted);
+      return sendMessageResponse(res, notDeleted.code, notDeleted.message);
+    }
+
+    return sendDataResponse(res, 201, { deletedBattle: deletedBattle });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(req.user, `Delete battle`);
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+// acceptBattleRequest battle
+export const acceptBattleRequest = async (req, res) => {
+  const { requestId } = req.params;
+
+  try {
+    const foundBattleRequest = await findBattleRequestById(requestId);
+
+    if (!foundBattleRequest) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.battleRequestNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    const acceptedRequest = await acceptBattleRequestById(requestId);
+    if (!acceptedRequest) {
+      const notDeleted = new BadRequestEvent(
+        req.user,
+        EVENT_MESSAGES.badRequest,
+        EVENT_MESSAGES.eventNotDeleted
+      );
+      myEmitterErrors.emit('error', notDeleted);
+      return sendMessageResponse(res, notDeleted.code, notDeleted.message);
+    }
+
+    return sendDataResponse(res, 201, { updateRequest: acceptedRequest });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Accept battle request failed`
+    );
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+// deleteBattleRequest
+export const deleteBattleRequest = async (req, res) => {
+  const { requestId } = req.params;
+  console.log('requestId', requestId);
+  
+  try {
+    const deletedBattle = await deleteBattleRequestById(requestId);
+    if (!deletedBattle) {
+      const notDeleted = new BadRequestEvent(
+        req.user,
+        EVENT_MESSAGES.badRequest,
+        EVENT_MESSAGES.battleRequestNotDeleted
       );
       myEmitterErrors.emit('error', notDeleted);
       return sendMessageResponse(res, notDeleted.code, notDeleted.message);

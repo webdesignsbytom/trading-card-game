@@ -73,6 +73,22 @@ export const findUserById = (userId) =>
     },
   });
 
+export const findUserByIdForLogin = (userId) =>
+  dbClient.user.findUnique({
+    where: {
+      id: userId,
+    },
+    include: {
+      profile: true,
+      cards: true,
+      packs: true,
+      bank: true,
+      loginRecord: true,
+      battleRequestsSent: true,
+      battleRequestsReceived: true,
+    },
+  });
+
 export const findUserByIdBasic = (userId) =>
   dbClient.user.findUnique({
     where: {

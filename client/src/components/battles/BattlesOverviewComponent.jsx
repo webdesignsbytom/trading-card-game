@@ -1,12 +1,16 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 // Images
 import BattleBackground from '../../assets/images/backgrounds/battle_page_fantasy_attackers.png';
 // Components
 import LeaderboardContainer from './LeaderboardContainer';
 import FantasyButton from '../utils/FantasyButton';
 // Constants
-import { FIND_BATTLER_PAGE_URL } from '../../utils/Constants';
+import {
+  BATTLE_REQUESTS_PAGE_URL,
+  FIND_BATTLER_PAGE_URL,
+} from '../../utils/Constants';
+import { UserContext } from '../../context/UserContext';
 
 function BattlesOverviewComponent({
   openBattleRequests,
@@ -15,6 +19,8 @@ function BattlesOverviewComponent({
   setStartingNewBattle,
   startingNewBattle,
 }) {
+  const { user } = useContext(UserContext);
+  console.log('user', user);
   let navigate = useNavigate();
 
   const openStartingBattleComponent = (user) => {
@@ -34,9 +40,24 @@ function BattlesOverviewComponent({
         }}
       >
         <div className='grid items-center justify-center'>
-          <FantasyButton onClick={openStartingBattleComponent} black={true}>
-              START <span className='text-red-600'>NEW</span> BATTLE
-          </FantasyButton>
+          <div className='grid gap-4 h-fit'>
+            <div>
+              <FantasyButton onClick={openStartingBattleComponent} black={true}>
+                START <span className='text-red-600'>NEW</span> BATTLE
+              </FantasyButton>
+            </div>
+            {user?.battleRequestsReceived > 0 && (
+              <div className='grid'>
+                <Link to={BATTLE_REQUESTS_PAGE_URL}>
+                  <div className='bg-blue-700 main__bg text-center border-2 border-solid border-main-border rounded animate-pulse duration-1000'>
+                    <div className='font-semibold py-1 font-fantasy'>
+                      <span className='text-2xl pt-1'>NEW BATTLE REQUESTS</span>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
         {openBattleRequests.length >= 1 && (
           <section className='bg-green-400 '>

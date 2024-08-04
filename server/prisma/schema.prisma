@@ -88,8 +88,10 @@ model BattleRequest {
   id                String    @id @default(uuid())
   sender            User      @relation("battleRequestsSent", fields: [senderId], references: [id], onDelete: Cascade)
   senderId          String
+  senderUsername    String
   receiver          User      @relation("battleRequestsReceived", fields: [receiverId], references: [id], onDelete: Cascade)
   receiverId        String
+  receiverUsername  String
   senderConfirmed   Boolean   @default(true)
   receiverConfirmed Boolean   @default(false)
   createdAt         DateTime  @default(now())
