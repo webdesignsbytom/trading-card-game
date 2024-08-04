@@ -109,7 +109,7 @@ function Card2({ cardData }) {
       style={{ aspectRatio: '2 / 3' }}
       onClick={() => openCardPage(cardData)}
     >
-      <div className='grid grid-rows-a1a p-[2px] h-full w-full overflow-hidden'>
+      <div className='grid grid-rows-a1a p-[0.5px] h-full w-full overflow-hidden'>
         {/* Name */}
         <section className='grid h-fit'>
           <div className='truncate'>
@@ -118,34 +118,41 @@ function Card2({ cardData }) {
         </section>
 
         {/* Image and data */}
-        <section className='grid grid-rows-reg gap-2 h-full bg-red-500 overflow-hidden'>
-          <div className='grid h-fit'>
-            <img
-              src={cardData.imageUrl}
-              alt={cardData.cardName}
-              className='aspect-square w-fit h-fit object-contain'
-            />
-          </div>
-          <div className='grid grid-rows-reg bg-blue-300 h-full w-full overflow-hidden'>
-            <div className='flex justify-between h-fit overflow-hidden text-sm lg:text-base'>
+        <section className='grid grid-rows-[1.2fr_1fr] h-full overflow-hidden px-0.5'>
+          <div
+            className='grid h-full w-full overflow-hidden bg-green-200 border-black border-solid border-2'
+            style={{
+              backgroundImage: `url(${cardData.imageUrl})`,
+              backgroundSize: 'contain',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+            }}
+          ></div>
+          <section className='grid grid-rows-reg h-full w-full overflow-hidden'>
+            <div className='flex justify-between h-fit overflow-hidden text-sm lg:text-base px-1 pb-1'>
               <p className='text-white'>{PACK_TYPE_ICONS[cardData.packType]}</p>
               <p className='text-white'>{EDITION_ICONS[cardData.edition]}</p>
             </div>
-            <div className='grid w-full h-full bg-green-300 overflow-hidden text-sm lg:text-base py-[1px]'>
-              {cardData.cardStats.map((stat, index) => {
-                return (
-                  <div key={index} className='grid grid-flow-col justify-between'>
-                    <div>{stat.statName}</div>
-                    <div>{stat.value}</div>
-                  </div>
-                );
-              })}
+            <div className='grid w-full h-full overflow-hidden text-sm lg:text-sm font-medium py-[1px]'>
+              <div className='grid h-fit gap-2'>
+                {cardData.cardStats.map((stat, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className='grid grid-flow-col justify-between'
+                    >
+                      <div>{stat.statName}</div>
+                      <div>{stat.value}</div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          </section>
         </section>
 
-        <section className='grid h-fit bg-orange-500'>
-          <div className='flex justify-between text-xss lg:text-ss'>
+        <section className='grid h-fit px-1'>
+          <div className='flex justify-between font-medium text-[0.6rem]'>
             <p>{cardData.serialNumber}</p>
             <p>{cardData.rarity}</p>
           </div>
