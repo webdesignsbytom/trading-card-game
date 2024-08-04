@@ -4,6 +4,7 @@ import {
   findPackById,
 } from '../domain/packs.js';
 import {
+  createBoxOfCardsForUser,
   createSinglePacksOfCards,
   createSinglePacksOfCardsForUser,
 } from '../utils/createPackets.js';
@@ -18,7 +19,11 @@ import {
   sendDataResponse,
   sendMessageResponse,
 } from '../utils/responses.js';
-import { StandardPackCost, starterPackNames } from '../utils/constants.js';
+import {
+  StandardBoxCost,
+  StandardPackCost,
+  starterPackNames,
+} from '../utils/constants.js';
 import {
   findUserById,
   findUserByIdBasic,
@@ -180,7 +185,7 @@ export const buyPackAndAddToUser = async (req, res) => {
       myEmitterErrors.emit('error', conflict);
       return sendMessageResponse(res, conflict.code, conflict.message);
     }
-    
+
     const foundUser = await findUserById(userId);
     if (!foundUser) {
       const notFound = new NotFoundEvent(
@@ -220,6 +225,54 @@ export const buyPackAndAddToUser = async (req, res) => {
     const serverError = new ServerErrorEvent(
       req.user,
       `Create pack of ${packType}`
+    );
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+export const buyBoxAndAddToUser = async (req, res) => {
+  const { boxType, userId, cost } = req.body;
+
+  console.log('box type: ', boxType);
+  try {
+    if (cost !== StandardBoxCost) {
+      const conflict = new ConfictEvent(
+        req.user,
+        EVENT_MESSAGES.badRequest,
+        EVENT_MESSAGES.dataIncorrect
+      );
+      myEmitterErrors.emit('error', conflict);
+      return sendMessageResponse(res, conflict.code, conflict.message);
+    }
+
+    const foundUser = await findUserById(userId);
+    if (!foundUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    const createdBox = await createBoxOfCardsForUser(boxType, userId);
+    console.log('createdBox', createdBox);
+
+    // Update banking
+    await chargePackToBankAccount(userId, cost);
+
+    const updatedUser = await findUserById(userId);
+
+    return sendDataResponse(res, 201, {
+      updatedUser: updatedUser,
+    });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Create box of ${boxType} failed`
     );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);

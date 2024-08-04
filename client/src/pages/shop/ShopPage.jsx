@@ -10,9 +10,10 @@ import ShopHeader from '../../components/shop/ShopHeader';
 import StoreFrontContainer from '../../components/shop/StoreFrontContainer';
 import PurchasingContainer from '../../components/shop/PurchasingContainer';
 // Constants
-import { BUY_PACK_API, SHOP_PAGE_URL } from '../../utils/Constants';
+import { BUY_BOX_API, BUY_PACK_API, SHOP_PAGE_URL } from '../../utils/Constants';
 import {
   shopDisplayOptions,
+  StandardBoxCost,
   StandardPackCost,
 } from '../../utils/cards/CardGameConstants';
 // Images
@@ -47,6 +48,24 @@ function ShopPage() {
 
       .catch((err) => {
         console.error('Error: Unable to buy pack', err);
+      });
+  };
+
+  const buyBoxOfCards = (box) => {    
+    let purchaseRequest = {
+      boxType: box.boxType,
+      userId: user.id,
+      cost: StandardBoxCost,
+    };
+
+    client
+      .post(BUY_BOX_API, purchaseRequest)
+      .then((res) => {
+        setUser(res.data.data.updatedUser);
+      })
+
+      .catch((err) => {
+        console.error('Error: Unable to buy box', err);
       });
   };
 
@@ -95,7 +114,7 @@ function ShopPage() {
                 {currentDisplay === shopDisplayOptions.BOXSETS && (
                   <PurchasingContainer
                     displayItems={displayItems}
-                    onclickFunction={buyPacketsOfCards}
+                    onclickFunction={buyBoxOfCards}
                     goBack={goBack}
                   />
                 )}

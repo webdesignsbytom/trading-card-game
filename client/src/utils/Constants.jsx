@@ -36,6 +36,7 @@ export const STARTING_PACKS_API = '/packs/create-starter-packs-for-user';
 export const GET_USER_API = '/users/get-user-by-id';
 export const GET_USER_FOR_LOGIN_API = '/users/login/get-user-by-id';
 export const BUY_PACK_API = '/packs/buy-pack-for-user';
+export const BUY_BOX_API = '/packs/buy-box-for-user';
 export const OPEN_PACK_API = '/users/user/packs/open-pack';
 export const LOGIN_API = '/login';
 export const REGISTER_API = '/users/register';

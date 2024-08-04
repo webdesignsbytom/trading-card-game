@@ -15,10 +15,8 @@ import {
   selectUncommonCard,
 } from './selectCard.js';
 
-
 // Create one random card
 export async function createSingleCardsForUser(packType, packId) {
-
   // Return all cards
   const allCardsAvailable = await findAllCardsAvailableToBuy();
 
@@ -115,11 +113,18 @@ export async function createSingleCardsForUser(packType, packId) {
 }
 
 // created cards from pack
-export async function createCardsForPack(packType, packId) {
+export async function createCardsForPack(
+  packType,
+  packId,
+  numCardsForType,
+  repeatedCards = false
+) {
   // Create pack
-  let numCards = NumCardsInPack;
+  let numCards = numCardsForType;
+  console.log('numCard', numCards);
   let packArray = [];
-
+  console.log('packArray', packArray);
+  console.log('repeatedCards', repeatedCards);
   // Get all cards from pack
   const allCardsInPack = await findAllCardsFromPack(packType);
 
@@ -137,9 +142,11 @@ export async function createCardsForPack(packType, packId) {
 
   // Create required cards for pack.
   // Create one holo card
+  console.log('AAAAAAAAAAAAA');
   const holoCard = await createHolographicCardForPack(rareCards, megaRareCards);
   holoCard.packId = packId;
   packArray.push(holoCard);
+  console.log('BBBBBBBBBBBBBB');
 
   // For each card find its rariry value
   while (packArray.length < numCards) {
@@ -158,7 +165,7 @@ export async function createCardsForPack(packType, packId) {
         return sendMessageResponse(res, notFound.code, notFound.message);
       }
 
-      if (packArray.includes(newCard)) {
+      if (packArray.includes(newCard) && !repeatedCards) {
         continue;
       } else {
         packArray.push(newCard);
@@ -178,7 +185,7 @@ export async function createCardsForPack(packType, packId) {
         return sendMessageResponse(res, notFound.code, notFound.message);
       }
 
-      if (packArray.includes(newCard)) {
+      if (packArray.includes(newCard) && !repeatedCards) {
         continue;
       } else {
         packArray.push(newCard);
@@ -197,7 +204,7 @@ export async function createCardsForPack(packType, packId) {
         myEmitterErrors.emit('error', notFound);
         return sendMessageResponse(res, notFound.code, notFound.message);
       }
-      if (packArray.includes(newCard)) {
+      if (packArray.includes(newCard) && !repeatedCards) {
         continue;
       } else {
         packArray.push(newCard);
@@ -216,7 +223,7 @@ export async function createCardsForPack(packType, packId) {
         myEmitterErrors.emit('error', notFound);
         return sendMessageResponse(res, notFound.code, notFound.message);
       }
-      if (packArray.includes(newCard)) {
+      if (packArray.includes(newCard) && !repeatedCards) {
         continue;
       } else {
         packArray.push(newCard);
@@ -235,7 +242,7 @@ export async function createCardsForPack(packType, packId) {
         myEmitterErrors.emit('error', notFound);
         return sendMessageResponse(res, notFound.code, notFound.message);
       }
-      if (packArray.includes(newCard)) {
+      if (packArray.includes(newCard) && !repeatedCards) {
         continue;
       } else {
         packArray.push(newCard);

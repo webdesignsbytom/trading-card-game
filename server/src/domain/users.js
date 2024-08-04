@@ -7,10 +7,6 @@ export const findAllUsers = () =>
     },
     include: {
       profile: true,
-      cards: true,
-      packs: true,
-      bank: true,
-      loginRecord: true,
     },
   });
 
@@ -33,6 +29,7 @@ export const findUserByEmailForLogin = (email) =>
       profile: true,
       cards: true,
       packs: true,
+      boxes: true,
       bank: true,
       loginRecord: true,
       battleRequestsSent: true,
@@ -82,6 +79,7 @@ export const findUserByIdForLogin = (userId) =>
       profile: true,
       cards: true,
       packs: true,
+      boxes: true,
       bank: true,
       loginRecord: true,
       battleRequestsSent: true,

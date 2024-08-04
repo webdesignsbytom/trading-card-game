@@ -40,6 +40,14 @@ export const createBlankPackOfCardsForUser = (packType, userId) =>
       userId: userId,
     },
   });
+  
+export const createBlankBoxForUser = (boxType, userId) =>
+  dbClient.box.create({
+    data: {
+      boxType: boxType,
+      userId: userId,
+    },
+  });
 
 export const findPackById = (id) =>
   dbClient.pack.findFirst({

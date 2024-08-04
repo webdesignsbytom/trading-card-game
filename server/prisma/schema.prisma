@@ -26,6 +26,7 @@ model User {
   cards                  CardInstance[]
   packs                  Pack[]
   deck                   Deck[]
+  boxes                  Box[]
   bank                   Bank?
   collectedStartedPacks  Boolean           @default(false)
   loginRecord            LoginRecord?
@@ -246,6 +247,16 @@ model Pack {
   updatedAt DateTime?      @updatedAt
 }
 
+model Box {
+  id        String         @id @default(uuid()) // pack id
+  boxType  BoxType
+  cards     CardInstance[]
+  userId    String?
+  user      User?          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime?      @updatedAt
+}
+
 model Card {
   id               Int              @id @default(autoincrement()) //
   serialNumber     String           @unique @default("") @db.VarChar(128) // number from all cards
@@ -276,6 +287,8 @@ model CardInstance {
   pack      Pack?     @relation(fields: [packId], references: [id], onDelete: Cascade)
   deckId    String?
   deck      Deck?     @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  boxId     String?
+  box       Box?      @relation(fields: [boxId], references: [id], onDelete: Cascade)
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 }

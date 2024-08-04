@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 // Images
-import BetaPack from '../../assets/images/packets/mon_cards_alpha_box_set_first_edition.png';
+import AlphaPack from '../../assets/images/packets/mon_cards_alpha_pack_first_edition.png';
+import BetaBox from '../../assets/images/packets/mon_cards_alpha_box_set_first_edition.png';
 import ItemsImg from '../../assets/images/invintory/items.png';
 // Constants
 import {
@@ -20,12 +21,22 @@ function InvintoryOptions() {
     navigate(INVENTORY_ITEMS_PAGE_URL);
   };
 
+  const toggleOpenBoxes = () => {
+    navigate(UNOPENED_PACKS_URL);
+  };
+
   const arrayOfInvintoryItems = [
     {
       name: 'cardPacks',
       title: 'Card Packs',
       function: toggleOpenPackets,
-      imageUrl: BetaPack,
+      imageUrl: AlphaPack,
+    },
+    {
+      name: 'cardBoxes',
+      title: 'Card Boxes',
+      function: toggleOpenBoxes,
+      imageUrl: BetaBox,
     },
     {
       name: 'items',
