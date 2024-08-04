@@ -19,7 +19,7 @@ function CardsInPackPage() {
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
         <Navbar />
 
-        <main className='grid bg-secondary-colour main__bg h-full w-full p-2 overflow-hidden'>
+        <main className='grid bg-secondary-colour main__bg shadow-internal-main h-full w-full p-2 overflow-hidden'>
           <section className='grid h-full w-full overflow-hidden'>
             {/* Card display */}
             <OpenedPacketDisplayComponent />

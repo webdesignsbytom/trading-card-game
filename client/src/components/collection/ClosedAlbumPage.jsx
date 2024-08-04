@@ -1,29 +1,22 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-// Api
-import client from '../../api/client';
 // Context
 import { UserContext } from '../../context/UserContext';
-import { CardContext } from '../../context/CardContext';
 // Images
 import AlbumCoverOne from '../../assets/images/backgrounds/mon_cards_album_cover_cards_and_monsters_one.png';
+// Components
+import FantasyButton from '../utils/FantasyButton';
+// Constants
+import { REGISTER_API } from '../../utils/Constants';
 
 function ClosedAlbumPage({ openAlbum }) {
   const { user } = useContext(UserContext);
-  const { userCardsArray, setUserCardsArray } = useContext(CardContext);
 
   let navigate = useNavigate();
 
-  // useEffect(() => {
-  //   client
-  //     .get(`/users/user/userId/${user.id}/all-cards`)
-  //     .then((res) => {
-  //       setUserCardsArray(res.data.data.cards);
-  //     })
-  //     .catch((err) => {
-  //       console.error('Unable to get user cards', err);
-  //     });
-  // }, []);
+  const goToSignUp = () => {
+    navigate(REGISTER_API, { replace: true });
+  };
 
   return (
     <div className='grid h-full w-full overflow-hidden rounded p-6 lg:p-12'>
@@ -36,14 +29,15 @@ function ClosedAlbumPage({ openAlbum }) {
         }}
       >
         <section className='absolute bottom-8 left-1/2 transform -translate-x-1/2 '>
-          <button
-            onClick={openAlbum}
-            className='main__bg outline outline-2 text-3xl lg:text-7xl hover:bg-red-300 shadow-[inset_-1px_18px_35px_22px_#00000024] hover:shadow-[inset_-1px_18px_35px_22px_#00000024] active:scale-95 outline-black rounded-xl px-10 py-2 text__stroke'
-          >
-            <span className='font-fantasy font-extrabold text-main-colour'>
+          {user?.id ? (
+            <FantasyButton onClick={openAlbum} xl={true}>
               OPEN
-            </span>
-          </button>
+            </FantasyButton>
+          ) : (
+            <FantasyButton onClick={goToSignUp} xl={true}>
+              SIGN <span className='text-red-600'>UP</span>
+            </FantasyButton>
+          )}
         </section>
       </section>
     </div>

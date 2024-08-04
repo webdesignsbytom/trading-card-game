@@ -30,6 +30,7 @@ The Trading Card Game is a sticker book and card collecting game inspired by Pok
   <div><img src="./assets/images/home_page.png" alt="Trading Card Game" style="width: 100%;"/></div>
   <div><img src="./assets/images/album_cover.png" alt="Card Album" style="width: 100%;"/></div>
   <div><img src="./assets/images/battle_screen.png" alt="Battle Screen" style="width: 100%;"/></div>
+  <div><img src="./assets/images/rewards_page.png" alt="Battle Screen" style="width: 100%;"/></div>
 </div>
 
 
