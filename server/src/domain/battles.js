@@ -34,8 +34,8 @@ export const updateBattleConfirmOpponent = (battleId) =>
       id: battleId,
     },
     data: {
-      playerTwoConfirmed: true
-    }
+      playerTwoConfirmed: true,
+    },
   });
 
 export const createNewBattle = (
@@ -52,6 +52,18 @@ export const createNewBattle = (
       playerTwoUserName: foundOpponent,
     },
   });
+
+
+export const createNewBattleRequest = (senderId, receiverId) =>
+  dbClient.battleRequest.create({
+    data: {
+      senderId: senderId,
+      receiverId: receiverId,
+      senderConfirmed: true, // Automatically confirm the sender
+      receiverConfirmed: false, // Initial state, receiver not yet confirmed
+    },
+  });
+  
 
 export const deleteBattleById = (battleId) =>
   dbClient.battle.delete({

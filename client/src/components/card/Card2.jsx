@@ -126,14 +126,19 @@ function Card2({ cardData }) {
               className='aspect-square w-fit h-fit object-contain'
             />
           </div>
-          <div className='grid grid-rows-reg bg-blue-300 h-full overflow-hidden'>
+          <div className='grid grid-rows-reg bg-blue-300 h-full w-full overflow-hidden'>
             <div className='flex justify-between h-fit overflow-hidden text-sm lg:text-base'>
               <p className='text-white'>{PACK_TYPE_ICONS[cardData.packType]}</p>
               <p className='text-white'>{EDITION_ICONS[cardData.edition]}</p>
             </div>
-            <div className='grid h-full bg-green-300 overflow-hidden text-sm lg:text-base'>
+            <div className='grid w-full h-full bg-green-300 overflow-hidden text-sm lg:text-base py-[1px]'>
               {cardData.cardStats.map((stat, index) => {
-                return <div key={index}>{stat.value}</div>;
+                return (
+                  <div key={index} className='grid grid-flow-col justify-between'>
+                    <div>{stat.statName}</div>
+                    <div>{stat.value}</div>
+                  </div>
+                );
               })}
             </div>
           </div>

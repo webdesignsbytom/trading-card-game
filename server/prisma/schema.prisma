@@ -16,32 +16,34 @@ enum Role {
 }
 
 model User {
-  id                    String            @id @default(uuid())
-  email                 String            @unique
-  password              String            @db.VarChar(250)
-  role                  Role              @default(USER)
-  profile               Profile?
-  passwordReset         PasswordReset?
-  verifications         UserVerification?
-  cards                 CardInstance[]
-  packs                 Pack[]
-  deck                  Deck[]
-  bank                  Bank?
-  collectedStartedPacks Boolean           @default(false)
-  loginRecord           LoginRecord?
-  lastLoggedIn          DateTime          @updatedAt
-  isVerified            Boolean           @default(false)
-  agreedToTerms         Boolean           @default(false)
-  isActive              Boolean           @default(true)
-  createdEvents         Event[]           @relation("createdEvents")
-  receivedEvents        Event[]           @relation("receivedEvents")
-  createdBattles        Battle[]          @relation("createdBattles")
-  receivedBattles       Battle[]          @relation("receivedBattles")
-  battlesWon            Int               @default(0)
-  battlesLost           Int               @default(0)
-  playerXP              Int               @default(0)
-  createdAt             DateTime          @default(now())
-  updatedAt             DateTime?         @updatedAt
+  id                     String            @id @default(uuid())
+  email                  String            @unique
+  password               String            @db.VarChar(250)
+  role                   Role              @default(USER)
+  profile                Profile?
+  passwordReset          PasswordReset?
+  verifications          UserVerification?
+  cards                  CardInstance[]
+  packs                  Pack[]
+  deck                   Deck[]
+  bank                   Bank?
+  collectedStartedPacks  Boolean           @default(false)
+  loginRecord            LoginRecord?
+  lastLoggedIn           DateTime          @updatedAt
+  isVerified             Boolean           @default(false)
+  agreedToTerms          Boolean           @default(false)
+  isActive               Boolean           @default(true)
+  createdEvents          Event[]           @relation("createdEvents")
+  receivedEvents         Event[]           @relation("receivedEvents")
+  createdBattles         Battle[]          @relation("createdBattles")
+  receivedBattles        Battle[]          @relation("receivedBattles")
+  battleRequestsSent     BattleRequest[]   @relation("battleRequestsSent")
+  battleRequestsReceived BattleRequest[]   @relation("battleRequestsReceived")
+  battlesWon             Int               @default(0)
+  battlesLost            Int               @default(0)
+  playerXP               Int               @default(0)
+  createdAt              DateTime          @default(now())
+  updatedAt              DateTime?         @updatedAt
 }
 
 model Profile {
@@ -80,6 +82,18 @@ model Battle {
   inProgress         Boolean   @default(true)
   createdAt          DateTime  @default(now())
   updatedAt          DateTime? @updatedAt
+}
+
+model BattleRequest {
+  id                String    @id @default(uuid())
+  sender            User      @relation("battleRequestsSent", fields: [senderId], references: [id], onDelete: Cascade)
+  senderId          String
+  receiver          User      @relation("battleRequestsReceived", fields: [receiverId], references: [id], onDelete: Cascade)
+  receiverId        String
+  senderConfirmed   Boolean   @default(true)
+  receiverConfirmed Boolean   @default(false)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime? @updatedAt
 }
 
 model Deck {

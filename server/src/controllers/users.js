@@ -203,7 +203,11 @@ export const findUserForBattle = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    return sendDataResponse(res, 200, { battleUser: foundUser.username });
+    console.log('found user', foundUser);
+
+    const user = { id: foundUser.user.id, username: foundUser.username}
+
+    return sendDataResponse(res, 200, { battleUser: user });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(
