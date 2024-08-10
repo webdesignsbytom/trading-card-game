@@ -3,7 +3,7 @@ import React from 'react';
 function PurchasingContainer({ displayItems, onclickFunction, goBack }) {
   return (
     <section className='grid relative overflow-hidden h-full w-full p-2'>
-      <div className='grid grid-cols-3 '>
+      <div className='grid grid-cols-3 no__highlights'>
         {displayItems.map((item, index) => {
           return (
             <article

@@ -144,7 +144,9 @@ export async function createCardsForPack(
   // Create one holo card
   console.log('AAAAAAAAAAAAA');
   const holoCard = await createHolographicCardForPack(rareCards, megaRareCards);
+  console.log('holo card', holoCard);
   holoCard.packId = packId;
+  console.log('holoCard.packId = packId', holoCard.packId = packId);
   packArray.push(holoCard);
   console.log('BBBBBBBBBBBBBB');
 

@@ -13,6 +13,7 @@ function OpenedPacketDisplayComponent() {
   useEffect(() => {
     if (returnedOpenPack.length > 0) {
       setLoading(false);
+      
     }
   }, [returnedOpenPack]);
 
