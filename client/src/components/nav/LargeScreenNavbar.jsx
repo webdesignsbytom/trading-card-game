@@ -25,12 +25,11 @@ import SmallMonCardsHeader from '../headers/SmallMonCardsHeader';
 
 function LargeScreenNavbar({ logoutUser }) {
   const { user } = useContext(UserContext);
-  const { toggleNavbar, activeNav } = useContext(ToggleContext);
+  const { activeNav } = useContext(ToggleContext);
 
   const navigate = useNavigate();
 
   const goToUnopenedPacks = () => {
-    toggleNavbar();
     navigate(UNOPENED_PACKS_URL, { replace: true });
   };
 

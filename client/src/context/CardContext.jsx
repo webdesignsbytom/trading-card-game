@@ -44,6 +44,7 @@ const CardContextProvider = ({ children }) => {
   }, [user, returnedOpenPack]);
 
   const toggleOpeningNewPack = (pack) => {
+    console.log('AAAAAAAAAAAAA', user.id);
     setSelectedPack(pack);
     
     const data = { packId: pack.id, userId: user.id };

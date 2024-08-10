@@ -235,7 +235,7 @@ export const findUserForBattle = async (req, res) => {
 
     console.log('found user', foundUser);
 
-    const user = { id: foundUser.user.id, username: foundUser.username}
+    const user = { id: foundUser.user.id, username: foundUser.username };
 
     return sendDataResponse(res, 200, { battleUser: user });
   } catch (err) {
@@ -478,7 +478,7 @@ export const openPackAndAddToUser = async (req, res) => {
 
     for (let index = 0; index < foundPack.cards.length; index++) {
       const card = foundPack.cards[index];
-      const newInstance = await setCardFromPackToUser(card.id, userId);
+      await setCardFromPackToUser(card.id, userId);
       const newCard = await findCardById(card.cardId);
       newCardsArray.push(newCard);
     }

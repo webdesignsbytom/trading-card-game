@@ -156,6 +156,7 @@ export const setCardFromPackToUser = (instanceId, userId) =>
     },
     data: {
       userId: userId,
+      packId: null
     },
   });
 
