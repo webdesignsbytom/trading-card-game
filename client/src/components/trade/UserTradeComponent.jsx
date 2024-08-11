@@ -18,9 +18,9 @@ function UserTradeComponent({
   const { tradeTypeSelected, setTradeTypeSelected, createNewOpenTrade } = useContext(TradingContext);
   
   return (
-    <section className='grid w-full h-full lg:grid-cols-3 gap-2 overflow-hidden bg-yellow-500'>
+    <section className='grid w-full h-full lg:grid-cols-3 gap-2 overflow-hidden'>
       {/* User image */}
-      <section className='bg-green-300 grid w-full h-full p-2'>
+      <section className='grid w-full h-full p-2'>
         <div className='grid w-full h-full'>
           <img
             className='rounded-xl w-full h-full object-cover shadow-xl'
@@ -31,7 +31,7 @@ function UserTradeComponent({
       </section>
 
       {/* Card to trade */}
-      <section className='bg-green-300 grid grid-rows-reg overflow-hidden w-full h-full p-2'>
+      <section className='grid grid-rows-reg overflow-hidden w-full h-full p-2'>
         <div className='grid h-fit'>
           <div className='text-center'>
             <h5>Select a card to trade</h5>
@@ -47,7 +47,7 @@ function UserTradeComponent({
       </section>
 
       {/* Find user */}
-      <section className='grid grid-rows-reg h-full w-full overflow-hidden bg-green-300 p-2'>
+      <section className='grid grid-rows-reg h-full w-full overflow-hidden p-2'>
         <section className='grid h-fit'>
           <div className='text-center'>
             <h2 className='text-xl font-semibold'>Create New Trade</h2>
@@ -95,12 +95,12 @@ function UserTradeComponent({
           </section>
         ) : tradeTypeSelected === 'open' ? (
           <section className='grid h-full items-center'>
-            <div className='text-center flex-wrap'>
+            <div className='text-center flex-wrap px-4'>
               <p>Select a card to trade and place it on the open market to see what offers you can get.</p>
             </div>
 
 
-            <div className='grid'>
+            <div className='grid items-end h-full'>
               <button
                 onClick={createNewOpenTrade}
                 className='border-2 border-main-border border-solid bg-main-colour hover:bg-blue-800 active:scale-95 main__bg no__highlights  py-2 px-4 my-2 rounded-xl'

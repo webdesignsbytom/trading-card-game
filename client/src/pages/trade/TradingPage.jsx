@@ -113,7 +113,7 @@ function TradingPage() {
             openMyTradesComponent={openMyTradesComponent}
           />
 
-          <section className='grid bg-red-500 grid-cols-rev gap-2 w-full h-full overflow-hidden'>
+          <section className='grid grid-cols-rev gap-2 w-full h-full overflow-hidden'>
             {tradingDispayComponent === 'my_trades' ? (
               <section className='grid w-full overflow-hidden'>
                 <CreateTradeComponent
