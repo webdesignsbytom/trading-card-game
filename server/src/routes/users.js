@@ -14,6 +14,8 @@ import {
   collectStarterPacks,
   findUserForBattle,
   getLoginUserData,
+  getAllBoxesForUser,
+  openBoxAndAddToUser,
 } from '../controllers/users.js';
 import {
   validateAuthentication,
@@ -25,12 +27,14 @@ const router = Router();
 router.get('/get-all-users', getAllUsers);
 router.post('/register', registerNewUser);
 router.patch('/user/packs/open-pack', openPackAndAddToUser);
+router.patch('/user/boxes/open-box', openBoxAndAddToUser);
 router.patch('/user/rewards/daily-reward/collect/:userId', collectDailyReward);
 router.patch('/starter-packs/collect/:userId', collectStarterPacks);
 router.get('/get-user-by-id/:userId', getUserById);
 router.get('/login/get-user-by-id/:userId', getLoginUserData);
 router.get('/user/userId/:userId/all-cards', getAllCardsForUser);
 router.get('/user/packs/:userId/all-packs', getAllPacksForUser);
+router.get('/user/boxes/:userId/all-boxes', getAllBoxesForUser);
 router.get(
   '/cards/cardInstances/get-all-card-instances/:userId',
   getAllUserCardInstances

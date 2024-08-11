@@ -170,6 +170,17 @@ export const setCardFromPackToUser = (instanceId, userId) =>
     },
   });
 
+export const setCardFromBoxToUser = (instanceId, userId) =>
+  dbClient.cardInstance.update({
+    where: {
+      id: instanceId,
+    },
+    data: {
+      userId: userId,
+      boxId: null,
+    },
+  });
+
 export const createMemberCard = (
   serialNumber,
   cardName,

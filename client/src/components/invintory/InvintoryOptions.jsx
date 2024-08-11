@@ -7,6 +7,7 @@ import ItemsImg from '../../assets/images/invintory/items.png';
 // Constants
 import {
   INVENTORY_ITEMS_PAGE_URL,
+  UNOPENED_BOXS_URL,
   UNOPENED_PACKS_URL,
 } from '../../utils/Constants';
 
@@ -22,7 +23,7 @@ function InvintoryOptions() {
   };
 
   const toggleOpenBoxes = () => {
-    navigate(UNOPENED_PACKS_URL);
+    navigate(UNOPENED_BOXS_URL);
   };
 
   const arrayOfInvintoryItems = [

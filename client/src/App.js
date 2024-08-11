@@ -57,7 +57,10 @@ import {
   DEV_PAGE_URL,
   FIND_BATTLER_PAGE_URL,
   BATTLE_REQUESTS_PAGE_URL,
+  UNOPENED_BOXS_URL,
+  CARDS_IN_BOX_PAGE_URL,
 } from './utils/Constants';
+import UnopenedBoxesPage from './pages/packs/UnopenedBoxesPage';
 
 function App() {
   return (
@@ -69,7 +72,9 @@ function App() {
       <Route path={SHOP_PAGE_URL} element={<ShopPage />} />
       <Route path={OPEN_PACKS_PAGE_URL} element={<OpenPacksPage />} />
       <Route path={CARDS_IN_PACK_PAGE_URL} element={<CardsInPackPage />} />
+      <Route path={CARDS_IN_BOX_PAGE_URL} element={<CardsInPackPage />} />
       <Route path={UNOPENED_PACKS_URL} element={<UnopenedPacketsPage />} />
+      <Route path={UNOPENED_BOXS_URL} element={<UnopenedBoxesPage />} />
       <Route path={CARDS_PAGE_URL} element={<CardsAvailablePage />} />
       <Route path={`${CARD_PAGE_URL}/:cardName`} element={<CardOverviewPage />} />
       <Route path={INVENTORY_PAGE_URL} element={<InvintoryPage />} />

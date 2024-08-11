@@ -31,6 +31,15 @@ export const EVENT_MESSAGES = {
   createBattleRequestFail: `Failed to create battle request`,
   battleRequestNotFound: `Failed to find battle request`,
   battleRequestNotDeleted: `Failed to find delete request`,
+  // Boxs
+  boxTypesTag: `BoxType database`,
+  notFoundBox: `Failed to find box`,
+  notFoundBoxType: `Failed to find boxType/s`,
+  userBoxTypesNotFound: `Failed to find user boxTypes`,
+  createBoxTypeFail: `Failed to create boxType`,
+  markBoxTypeViewedFailed: `Failed to mark boxType as viewed`,
+  startBoxsAlreadyClaimed: `User has already claimed starter boxs`,
+  failedToDeleteBox: `Failed to delete box`,
   // Complaints
   complaintTag: `Complaint database`,
   complaintNotFound: `Failed to find complaint/s`,

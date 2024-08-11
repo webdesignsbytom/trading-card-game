@@ -47,11 +47,15 @@ import {
 import {
   findAllUserCardInstances,
   findCardById,
+  setCardFromBoxToUser,
   setCardFromPackToUser,
 } from '../domain/cards.js';
 import {
+  deleteBoxbyIdWhenOpened,
   deletePackbyIdWhenOpened,
+  findAllBoxesForUser,
   findAllPacksForUser,
+  findBoxById,
   findPackById,
 } from '../domain/packs.js';
 import { starterPackNames } from '../utils/constants.js';
@@ -415,6 +419,37 @@ export const getAllPacksForUser = async (req, res) => {
   }
 };
 
+export const getAllBoxesForUser = async (req, res) => {
+  console.log('getAllBoxesForUser');
+  const { userId } = req.params;
+
+  try {
+    const foundUser = await findUserById(userId);
+    if (!foundUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    const foundBoxes = await findAllBoxesForUser(userId);
+console.log('found', foundBoxes);
+    return sendDataResponse(res, 200, { boxes: foundBoxes });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Get all packs for user`
+    );
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
 // get all user card instances
 export const getAllUserCardInstances = async (req, res) => {
   const { userId } = req.params;
@@ -512,6 +547,80 @@ export const openPackAndAddToUser = async (req, res) => {
     const serverError = new ServerErrorEvent(
       req.user,
       `Open pack and add to card instances failed`
+    );
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+
+export const openBoxAndAddToUser = async (req, res) => {
+  console.log('openBoxAndAddToUser');
+  const { boxId, userId } = req.body;
+
+  try {
+    const foundUser = await findUserById(userId);
+    if (!foundUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    const foundBox = await findBoxById(boxId);
+    if (!foundBox) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.notFoundBox
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+    let newCardsArray = [];
+
+    for (let index = 0; index < foundBox.cards.length; index++) {
+      const card = foundBox.cards[index];
+      let updatedCardish = await setCardFromBoxToUser(card.id, userId);
+      const newCard = await findCardById(card.cardId);
+      newCardsArray.push(newCard);
+    }
+
+    const deletedBox = await deleteBoxbyIdWhenOpened(boxId);
+    if (!deletedBox) {
+      const badRequest = new BadRequestEvent(
+        req.user,
+        EVENT_MESSAGES.badRequest,
+        EVENT_MESSAGES.failedToDeleteBox
+      );
+      myEmitterErrors.emit('error', badRequest);
+      return sendMessageResponse(res, badRequest.code, badRequest.message);
+    }
+
+    const updatedUser = await findUserById(userId);
+    if (!updatedUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
+    return sendDataResponse(res, 200, {
+      cards: newCardsArray,
+      deletedBox: deletedBox,
+      updatedUser: updatedUser,
+    });
+  } catch (err) {
+    // Error
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Open box and add to card instances failed`
     );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);

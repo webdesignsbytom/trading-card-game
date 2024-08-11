@@ -3,7 +3,11 @@ import { useState } from 'react';
 // Api
 import client from '../api/client';
 // Constants
-import { GET_ALL_CARDS_API, OPEN_PACK_API } from '../utils/Constants';
+import {
+  GET_ALL_CARDS_API,
+  OPEN_BOX_API,
+  OPEN_PACK_API,
+} from '../utils/Constants';
 // Context
 import { UserContext } from './UserContext';
 
@@ -17,7 +21,9 @@ const CardContextProvider = ({ children }) => {
   const [viewCard, setViewCard] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   const [selectedPack, setSelectedPack] = useState({});
+  const [selectedBox, setSelectedBox] = useState({});
   const [returnedOpenPack, setReturnedOpenPack] = useState([]);
+  const [returnedOpenBox, setReturnedOpenBox] = useState([]);
   const [toggleOpeningPackDiplay, setToggleOpeningPackDiplay] = useState(false);
 
   useEffect(() => {
@@ -61,6 +67,23 @@ const CardContextProvider = ({ children }) => {
       });
   };
 
+  const toggleOpeningNewBox = (box) => {
+    setSelectedBox(box);
+
+    const data = { boxId: box.id, userId: user.id };
+
+    client
+      .patch(OPEN_BOX_API, data, true)
+      .then((res) => {
+        setReturnedOpenBox(res.data.data.cards);
+        // setUser(res.data.data.updatedUser);
+      })
+
+      .catch((err) => {
+        console.error('Unable to open box', err);
+      });
+  };
+
   return (
     <CardContext.Provider
       value={{
@@ -70,6 +93,9 @@ const CardContextProvider = ({ children }) => {
         setReturnedOpenPack,
         returnedOpenPack,
         allCardsMasterCopy,
+        returnedOpenBox,
+        setReturnedOpenBox,
+        toggleOpeningNewBox,
       }}
     >
       {children}

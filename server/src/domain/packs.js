@@ -22,6 +22,18 @@ export const findAllPacksForUser = (userId) =>
       cards: true,
     },
   });
+export const findAllBoxesForUser = (userId) =>
+  dbClient.box.findMany({
+    where: {
+      userId: userId
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    include: {
+      cards: true,
+    },
+  });
   
 export const createBlankPackOfCards = (packType) =>
   dbClient.pack.create({
@@ -58,10 +70,26 @@ export const findPackById = (id) =>
       cards: true,
     },
   });
+export const findBoxById = (id) =>
+  dbClient.box.findFirst({
+    where: {
+      id: id,
+    },
+    include: {
+      cards: true,
+    },
+  });
 
 export const deletePackbyIdWhenOpened = (packId) =>
   dbClient.pack.delete({
     where: {
       id: packId,
+    },
+  });
+
+export const deleteBoxbyIdWhenOpened = (boxId) =>
+  dbClient.box.delete({
+    where: {
+      id: boxId,
     },
   });
