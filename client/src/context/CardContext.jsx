@@ -1,9 +1,10 @@
-import React, { useContext, useEffect } from 'react';
-import { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // Api
 import client from '../api/client';
 // Constants
 import {
+  CARDS_IN_BOX_PAGE_URL,
   GET_ALL_CARDS_API,
   OPEN_BOX_API,
   OPEN_PACK_API,
@@ -18,13 +19,20 @@ const CardContextProvider = ({ children }) => {
   const [allCardsMasterCopy, setAllCardsMasterCopy] = useState([]);
   const [userCardsArray, setUserCardsArray] = useState([]);
 
+  const [isOpening, setIsOpening] = useState(false);
+
   const [viewCard, setViewCard] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   const [selectedPack, setSelectedPack] = useState({});
   const [selectedBox, setSelectedBox] = useState({});
+
   const [returnedOpenPack, setReturnedOpenPack] = useState([]);
   const [returnedOpenBox, setReturnedOpenBox] = useState([]);
   const [toggleOpeningPackDiplay, setToggleOpeningPackDiplay] = useState(false);
+
+  console.log('returnedOpenBox', returnedOpenBox);
+
+  let navigate = useNavigate();
 
   useEffect(() => {
     client
@@ -68,6 +76,7 @@ const CardContextProvider = ({ children }) => {
   };
 
   const toggleOpeningNewBox = (box) => {
+    setIsOpening(true)
     setSelectedBox(box);
 
     const data = { boxId: box.id, userId: user.id };
@@ -75,12 +84,15 @@ const CardContextProvider = ({ children }) => {
     client
       .patch(OPEN_BOX_API, data, true)
       .then((res) => {
+        console.log('res.data', res.data.data.cards);
         setReturnedOpenBox(res.data.data.cards);
-        // setUser(res.data.data.updatedUser);
+        navigate(CARDS_IN_BOX_PAGE_URL, { state: box });
+        setIsOpening(false)
       })
 
       .catch((err) => {
         console.error('Unable to open box', err);
+        setIsOpening(false)
       });
   };
 
@@ -96,6 +108,8 @@ const CardContextProvider = ({ children }) => {
         returnedOpenBox,
         setReturnedOpenBox,
         toggleOpeningNewBox,
+        isOpening,
+        setIsOpening,
       }}
     >
       {children}

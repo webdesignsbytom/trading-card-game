@@ -102,7 +102,8 @@ export const cardArrayAlpha = [
         },
         {
           value: 30,
-          description: 'Spray super sticky cheese on your enemies, so they miss a turn and take 30 damage.',
+          description:
+            'Spray super sticky cheese on your enemies, so they miss a turn and take 30 damage.',
           statName: 'Cheese spray',
           monsterEffectType: 'ATTACK',
         },
@@ -131,7 +132,8 @@ export const cardArrayAlpha = [
         },
         {
           value: 60,
-          description: 'Your monster causes the earth to erupt and crush your enemies.',
+          description:
+            'Your monster causes the earth to erupt and crush your enemies.',
           statName: 'Landslode',
           monsterEffectType: 'ATTACK',
         },
@@ -153,15 +155,17 @@ export const cardArrayAlpha = [
     cardStats: {
       create: [
         {
-          value: 200,
-          description: 'Health',
-          statName: 'Omega Wink',
-          monsterEffectType: 'HEALTH',
+          value: 30,
+          description:
+            'A layer of icy armor forms around the monster, providing slight resistance to attacks.',
+          statName: 'Frostbite Claw',
+          monsterEffectType: 'DEFENCE',
         },
         {
-          value: 50,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          value: 150,
+          description:
+            'A savage slash imbued with the power of frost, chilling the target and reducing their mobility.',
+          statName: 'Ice Ride',
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -170,7 +174,8 @@ export const cardArrayAlpha = [
   {
     serialNumber: 'a-007',
     cardName: 'Common Alpha Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This card has power and magic infused with a hint of saffron. It allows you to control time for a moment.',
     edition: 'first',
     rarity: 'COMMON',
     holographic: false,
@@ -181,10 +186,10 @@ export const cardArrayAlpha = [
     cardStats: {
       create: [
         {
-          value: 50,
-          description: 'Draw Effect',
-          statName: 'Omega Wink',
-          itemEffectType: 'DRAW',
+          value: 30,
+          description: `Activates a temporal shift, allowing you to skip your opponent’s turn.`,
+          statName: 'Time Lock',
+          itemEffectType: 'SKIP',
         },
       ],
     },
@@ -192,7 +197,8 @@ export const cardArrayAlpha = [
   {
     serialNumber: 'a-008',
     cardName: 'Uncommon Alpha Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'Infused with potent magic, this card enhances your deck control by drawing an extra card.',
     edition: 'first',
     rarity: 'UNCOMMON',
     holographic: false,
@@ -204,8 +210,8 @@ export const cardArrayAlpha = [
       create: [
         {
           value: 60,
-          description: 'Draw Effect',
-          statName: 'Omega Wink',
+          description: `Draws one card from your deck, increasing your strategic options.`,
+          statName: 'Mystic Insight',
           itemEffectType: 'DRAW',
         },
       ],
@@ -214,7 +220,8 @@ export const cardArrayAlpha = [
   {
     serialNumber: 'a-009',
     cardName: 'Rare Alpha Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'A rare item that reaches into the past, retrieving a key card from your discard pile.',
     edition: 'first',
     rarity: 'RARE',
     holographic: false,
@@ -226,9 +233,9 @@ export const cardArrayAlpha = [
       create: [
         {
           value: 70,
-          description: 'Draw Effect',
-          statName: 'Omega Wink',
-          itemEffectType: 'DRAW',
+          description: `Retrieve one card from your discard pile, restoring a key element to your hand.`,
+          statName: 'Arcane Recall',
+          itemEffectType: 'RETRIEVE',
         },
       ],
     },
@@ -236,7 +243,8 @@ export const cardArrayAlpha = [
   {
     serialNumber: 'a-010',
     cardName: 'Rare holo Alpha Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'A holographic item of power, capable of forcing the opponent to discard a valuable card.',
     edition: 'first',
     rarity: 'RAREHOLO',
     holographic: true,
@@ -248,9 +256,9 @@ export const cardArrayAlpha = [
       create: [
         {
           value: 80,
-          description: 'Draw Effect',
-          statName: 'Omega Wink',
-          itemEffectType: 'DRAW',
+          description: `Forces the opponent to discard one card from their hand, disrupting their strategy.`,
+          statName: 'Golden Sacrifice',
+          itemEffectType: 'DISCARD',
         },
       ],
     },
@@ -258,7 +266,8 @@ export const cardArrayAlpha = [
   {
     serialNumber: 'a-011',
     cardName: 'Mega rare Alpha Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'A card of immense rarity that shuffles your deck, realigning your fate.',
     edition: 'first',
     rarity: 'MEGARARE',
     holographic: false,
@@ -270,9 +279,9 @@ export const cardArrayAlpha = [
       create: [
         {
           value: 90,
-          description: 'Draw Effect',
-          statName: 'Omega Wink',
-          itemEffectType: 'DRAW',
+          description: `Shuffles your deck, giving you a fresh chance to draw the right cards.`,
+          statName: `Fate’s Reorder`,
+          itemEffectType: 'SHUFFLE',
         },
       ],
     },
@@ -280,7 +289,8 @@ export const cardArrayAlpha = [
   {
     serialNumber: 'a-012',
     cardName: 'Mega rare holo Alpha Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This mega rare holographic card uses temporal magic to manipulate the flow of turns.',
     edition: 'first',
     rarity: 'MEGARAREHOLO',
     holographic: true,
@@ -292,9 +302,9 @@ export const cardArrayAlpha = [
       create: [
         {
           value: 100,
-          description: 'Draw Effect',
-          statName: 'Omega Wink',
-          itemEffectType: 'DRAW',
+          description: `Temporarily alters the game’s timeline, allowing you to skip or adjust turns.`,
+          statName: 'Chrono Shift',
+          itemEffectType: 'TEMPERAL',
         },
       ],
     },
@@ -302,7 +312,8 @@ export const cardArrayAlpha = [
   {
     serialNumber: 'a-013',
     cardName: 'Common Alpha Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This card has power and magic infused with a hint of saffron. It grants a temporary health boost.',
     edition: 'first',
     rarity: 'COMMON',
     holographic: false,
@@ -314,8 +325,8 @@ export const cardArrayAlpha = [
       create: [
         {
           value: 50,
-          description: 'Health Effect',
-          statName: 'Dark Elixar',
+          description: `Grants a temporary increase in health, fortifying the user against attacks.`,
+          statName: 'Saffron Vitality',
           powerUpEffectType: 'HEALTH',
         },
       ],
@@ -324,7 +335,8 @@ export const cardArrayAlpha = [
   {
     serialNumber: 'a-014',
     cardName: 'Uncommon Alpha Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This card brims with power and magic, enhancing your strength for a brief period.',
     edition: 'first',
     rarity: 'UNCOMMON',
     holographic: false,
@@ -336,9 +348,9 @@ export const cardArrayAlpha = [
       create: [
         {
           value: 60,
-          description: 'Health Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'HEALTH',
+          description: `Increases the user's strength, allowing for more powerful attacks.`,
+          statName: 'Mystic Might',
+          powerUpEffectType: 'STRENGTH',
         },
       ],
     },
@@ -346,7 +358,8 @@ export const cardArrayAlpha = [
   {
     serialNumber: 'a-015',
     cardName: 'Rare Alpha Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      `A rare card infused with saffron magic, it greatly enhances the user’s defense.`,
     edition: 'first',
     rarity: 'RARE',
     holographic: false,
@@ -358,9 +371,9 @@ export const cardArrayAlpha = [
       create: [
         {
           value: 70,
-          description: 'Health Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'HEALTH',
+          description: `Bolsters the user's defense, reducing incoming damage significantly.`,
+          statName: 'Arcane Shield',
+          powerUpEffectType: 'DEFENCE',
         },
       ],
     },
@@ -368,7 +381,8 @@ export const cardArrayAlpha = [
   {
     serialNumber: 'a-016',
     cardName: 'Rare holo Alpha Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This holographic card is charged with magic and saffron essence, capable of healing wounds.',
     edition: 'first',
     rarity: 'RAREHOLO',
     holographic: true,
@@ -380,9 +394,9 @@ export const cardArrayAlpha = [
       create: [
         {
           value: 80,
-          description: 'Health Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'HEALTH',
+          description: `Heals a significant amount of the user's health, restoring vitality.`,
+          statName: 'Golden Healing',
+          powerUpEffectType: 'HEAL',
         },
       ],
     },
@@ -390,7 +404,8 @@ export const cardArrayAlpha = [
   {
     serialNumber: 'a-017',
     cardName: 'Mega rare Alpha Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'A card of immense power, infused with the magic of saffron, capable of manipulating time itself.',
     edition: 'first',
     rarity: 'MEGARARE',
     holographic: false,
@@ -402,9 +417,9 @@ export const cardArrayAlpha = [
       create: [
         {
           value: 90,
-          description: 'Health Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'HEALTH',
+          description: `Allows the user to manipulate time, gaining a critical advantage in battle.`,
+          statName: 'Temporal Shift',
+          powerUpEffectType: 'TEMPERAL',
         },
       ],
     },
@@ -412,7 +427,7 @@ export const cardArrayAlpha = [
   {
     serialNumber: 'a-018',
     cardName: 'Mega rare holo Alpha Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description: `This mega rare holographic card grants a powerful boost to strength, fueled by saffron’s magic.`,
     edition: 'first',
     rarity: 'MEGARAREHOLO',
     holographic: true,
@@ -424,9 +439,9 @@ export const cardArrayAlpha = [
       create: [
         {
           value: 100,
-          description: 'Health Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'HEALTH',
+          description: `Increases the user's strength to its peak, enabling devastating attacks.`,
+          statName: 'Omega Force',
+          powerUpEffectType: 'STRENGTH',
         },
       ],
     },
@@ -434,7 +449,8 @@ export const cardArrayAlpha = [
   {
     serialNumber: 'a-019',
     cardName: 'Ultimate Alpha Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'The ultimate powerup card, infused with the highest concentration of saffron magic, providing unparalleled healing.',
     edition: 'first',
     rarity: 'ULTIMATE',
     holographic: true,
@@ -446,9 +462,9 @@ export const cardArrayAlpha = [
       create: [
         {
           value: 110,
-          description: 'Health Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'HEALTH',
+          description: `Restores all health, completely rejuvenating the user.`,
+          statName: 'Saffron Rebirth',
+          powerUpEffectType: 'HEAL',
         },
       ],
     },
@@ -471,15 +487,15 @@ export const cardArrayBeta = [
     cardStats: {
       create: [
         {
-          value: 100,
-          description: 'Health',
-          statName: 'Omega Wink',
-          monsterEffectType: 'HEALTH',
+          value: 30,
+          description: `The monster’s skin hardens into impenetrable iron, significantly reducing incoming damage.`,
+          statName: 'Iron Hide',
+          monsterEffectType: 'DEFENCE',
         },
         {
-          value: 20,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          value: 100,
+          description: `Bolstered by its newfound resilience, the monster’s attack does as it channels its inner strength.`,
+          statName: 'Steel Swipe',
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -500,15 +516,16 @@ export const cardArrayBeta = [
     cardStats: {
       create: [
         {
-          value: 120,
-          description: 'Health',
-          statName: 'Omega Wink',
-          monsterEffectType: 'HEALTH',
+          value: 50,
+          description: `The venom courses through the monster’s veins, hardening its resolve and slightly boosting its defenses.`,
+          statName: 'Venomous Strike',
+          monsterEffectType: 'DEFENCE',
         },
         {
-          value: 25,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          value: 60,
+          description:
+            'A quick, precise strike that injects venom, causing lingering damage over time to the target.',
+          statName: 'Venomous Spit',
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -529,15 +546,17 @@ export const cardArrayBeta = [
     cardStats: {
       create: [
         {
-          value: 150,
-          description: 'Health',
-          statName: 'Omega Wink',
-          monsterEffectType: 'HEALTH',
+          value: 50,
+          description:
+            'The eerie aura of the shadows saps the vitality of nearby foes, adding a minor attack boost.',
+          statName: 'Shadow Veil',
+          monsterEffectType: 'ATTACK',
         },
         {
-          value: 30,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          value: 200,
+          description:
+            'A fiery explosion that engulfs the target, dealing massive damage and leaving them burned.',
+          statName: 'Inferno Blast',
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -558,15 +577,16 @@ export const cardArrayBeta = [
     cardStats: {
       create: [
         {
-          value: 150,
-          description: 'Health',
-          statName: 'Omega Wink',
+          value: 40,
+          description: `The residual flames bolster the monster’s vitality, healing it slightly after the attack.`,
+          statName: 'Inferno Blast',
           monsterEffectType: 'HEALTH',
         },
         {
-          value: 35,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          value: 70,
+          description:
+            'A powerful stomp that causes the ground to tremble, damaging all foes and reducing their stability.',
+          statName: 'Earthquake Stomp',
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -587,15 +607,15 @@ export const cardArrayBeta = [
     cardStats: {
       create: [
         {
-          value: 180,
-          description: 'Health',
-          statName: 'Omega Wink',
-          monsterEffectType: 'HEALTH',
+          value: 40,
+          description: `The dread invoked by the gaze strengthens the monster’s resolve, increasing its defense.`,
+          statName: 'Abyssal Gaze',
+          monsterEffectType: 'DEFENCE',
         },
         {
-          value: 40,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          value: 140,
+          description: `A terrifying gaze that pierces the soul, weakening the target’s defenses and dealing moderate damage.`,
+          statName: 'Abyssal Gaze 2',
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -616,15 +636,16 @@ export const cardArrayBeta = [
     cardStats: {
       create: [
         {
-          value: 200,
-          description: 'Health',
-          statName: 'Omega Wink',
-          monsterEffectType: 'HEALTH',
+          value: 40,
+          description: `The spores also bolster the monster’s resistance to poison, slightly boosting its defense.`,
+          statName: 'Toxic Spore Cloud',
+          monsterEffectType: 'DEFENCE',
         },
         {
-          value: 50,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          value: 100,
+          description:
+            'The monster releases a cloud of toxic spores, poisoning enemies and causing gradual damage over time.',
+          statName: 'Toxic Revenge',
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -633,7 +654,8 @@ export const cardArrayBeta = [
   {
     serialNumber: 'b-007',
     cardName: 'Common Beta Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This card has power and magic infused with a hint of saffron. It helps you retrieve a card from your discard pile.',
     edition: 'first',
     rarity: 'COMMON',
     holographic: false,
@@ -645,8 +667,8 @@ export const cardArrayBeta = [
       create: [
         {
           value: 50,
-          description: 'Retrieve Effect',
-          statName: 'Omega Wink',
+          description: `Retrieve one card from your discard pile, bringing a lost resource back to your hand.`,
+          statName: 'Saffron Recall',
           itemEffectType: 'RETRIEVE',
         },
       ],
@@ -655,7 +677,8 @@ export const cardArrayBeta = [
   {
     serialNumber: 'b-008',
     cardName: 'Uncommon Beta Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This card, infused with potent magic and a hint of saffron, allows you to shuffle your deck strategically.',
     edition: 'first',
     rarity: 'UNCOMMON',
     holographic: false,
@@ -667,9 +690,9 @@ export const cardArrayBeta = [
       create: [
         {
           value: 60,
-          description: 'Retrieve Effect',
-          statName: 'Omega Wink',
-          itemEffectType: 'RETRIEVE',
+          description: `Shuffles your deck, providing you with a new set of options.`,
+          statName: 'Mystic Shuffle',
+          itemEffectType: 'SHUFFLE',
         },
       ],
     },
@@ -677,7 +700,8 @@ export const cardArrayBeta = [
   {
     serialNumber: 'b-009',
     cardName: 'Rare Beta Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This rare item card, powered by magic and saffron, forces your opponent to discard a card from their hand.',
     edition: 'first',
     rarity: 'RARE',
     holographic: false,
@@ -689,9 +713,9 @@ export const cardArrayBeta = [
       create: [
         {
           value: 70,
-          description: 'Retrieve Effect',
-          statName: 'Omega Wink',
-          itemEffectType: 'RETRIEVE',
+          description: `Forces your opponent to discard one card from their hand.`,
+          statName: 'Arcane Discard',
+          itemEffectType: 'DISCARD',
         },
       ],
     },
@@ -699,7 +723,8 @@ export const cardArrayBeta = [
   {
     serialNumber: 'b-010',
     cardName: 'Rare holo Beta Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      `A holographic item card that uses magic and saffron to skip the opponent’s turn.`,
     edition: 'first',
     rarity: 'RAREHOLO',
     holographic: true,
@@ -711,9 +736,9 @@ export const cardArrayBeta = [
       create: [
         {
           value: 80,
-          description: 'Retrieve Effect',
-          statName: 'Omega Wink',
-          itemEffectType: 'RETRIEVE',
+          description: `Allows you to skip the opponent's turn, giving you a strategic advantage.`,
+          statName: 'Golden Stasis',
+          itemEffectType: 'SKIP',
         },
       ],
     },
@@ -721,7 +746,8 @@ export const cardArrayBeta = [
   {
     serialNumber: 'b-011',
     cardName: 'Mega rare Beta Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      `This mega rare item card has the power to draw an extra card from your deck, infused with saffron’s essence.`,
     edition: 'first',
     rarity: 'MEGARARE',
     holographic: false,
@@ -733,9 +759,9 @@ export const cardArrayBeta = [
       create: [
         {
           value: 90,
-          description: 'Retrieve Effect',
-          statName: 'Omega Wink',
-          itemEffectType: 'RETRIEVE',
+          description: `Draws one additional card from your deck, enhancing your hand.`,
+          statName: 'Saffron Draw',
+          itemEffectType: 'DRAW',
         },
       ],
     },
@@ -743,7 +769,8 @@ export const cardArrayBeta = [
   {
     serialNumber: 'b-012',
     cardName: 'Mega rare holo Beta Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      `A mega rare holographic card that can alter the game’s timeline, powered by saffron’s magic.`,
     edition: 'first',
     rarity: 'MEGARAREHOLO',
     holographic: true,
@@ -755,9 +782,9 @@ export const cardArrayBeta = [
       create: [
         {
           value: 100,
-          description: 'Retrieve Effect',
-          statName: 'Omega Wink',
-          itemEffectType: 'RETRIEVE',
+          description: `Activates a temporal shift, allowing you to manipulate the flow of turns.`,
+          statName: 'Temporal Flux',
+          itemEffectType: 'TEMPERAL',
         },
       ],
     },
@@ -765,7 +792,8 @@ export const cardArrayBeta = [
   {
     serialNumber: 'b-013',
     cardName: 'Common Beta Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This card has power and magic infused with a hint of saffron. It grants a temporary boost in strength.',
     edition: 'first',
     rarity: 'COMMON',
     holographic: false,
@@ -777,8 +805,8 @@ export const cardArrayBeta = [
       create: [
         {
           value: 50,
-          description: 'Strength Effect',
-          statName: 'Dark Elixar',
+          description: `Increases the user's strength, allowing for more powerful attacks.`,
+          statName: 'Saffron Might',
           powerUpEffectType: 'STRENGTH',
         },
       ],
@@ -787,7 +815,8 @@ export const cardArrayBeta = [
   {
     serialNumber: 'b-014',
     cardName: 'Uncommon Beta Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This card, infused with potent magic and a hint of saffron, significantly boosts the user’s defense.',
     edition: 'first',
     rarity: 'UNCOMMON',
     holographic: false,
@@ -799,9 +828,9 @@ export const cardArrayBeta = [
       create: [
         {
           value: 60,
-          description: 'Strength Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'STRENGTH',
+          description: `Boosts the user's defense, making them more resilient to incoming damage.`,
+          statName: 'Mystic Barrier',
+          powerUpEffectType: 'DEFENCE',
         },
       ],
     },
@@ -809,7 +838,8 @@ export const cardArrayBeta = [
   {
     serialNumber: 'b-015',
     cardName: 'Rare Beta Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'A rare card infused with saffron magic, it enhances the user’s health, making them tougher in battle.',
     edition: 'first',
     rarity: 'RARE',
     holographic: false,
@@ -821,9 +851,9 @@ export const cardArrayBeta = [
       create: [
         {
           value: 70,
-          description: 'Strength Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'STRENGTH',
+          description: `Increases the user's health, allowing them to endure more damage.`,
+          statName: 'Arcane Fortitude',
+          powerUpEffectType: 'HEALTH',
         },
       ],
     },
@@ -831,7 +861,8 @@ export const cardArrayBeta = [
   {
     serialNumber: 'b-016',
     cardName: 'Rare holo Beta Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This holographic card, charged with magic and saffron essence, accelerates the user’s recovery by healing them.',
     edition: 'first',
     rarity: 'RAREHOLO',
     holographic: true,
@@ -843,9 +874,9 @@ export const cardArrayBeta = [
       create: [
         {
           value: 80,
-          description: 'Strength Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'STRENGTH',
+          description: `Heals a significant portion of the user's health, restoring vitality in the heat of battle.`,
+          statName: 'Saffron Restoration',
+          powerUpEffectType: 'HEAL',
         },
       ],
     },
@@ -853,7 +884,8 @@ export const cardArrayBeta = [
   {
     serialNumber: 'b-017',
     cardName: 'Mega rare Beta Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This card, of immense power, can manipulate time to give the user a temporal advantage in combat.',
     edition: 'first',
     rarity: 'MEGARARE',
     holographic: false,
@@ -865,9 +897,9 @@ export const cardArrayBeta = [
       create: [
         {
           value: 90,
-          description: 'Strength Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'STRENGTH',
+          description: `Grants the user the ability to manipulate time, allowing them to act out of turn.`,
+          statName: 'Temporal Distortion',
+          powerUpEffectType: 'TEMPERAL',
         },
       ],
     },
@@ -875,7 +907,8 @@ export const cardArrayBeta = [
   {
     serialNumber: 'b-018',
     cardName: 'Mega rare holo Beta Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This mega rare holographic card provides a massive boost to strength, powered by the magic of saffron.',
     edition: 'first',
     rarity: 'MEGARAREHOLO',
     holographic: true,
@@ -887,8 +920,8 @@ export const cardArrayBeta = [
       create: [
         {
           value: 100,
-          description: 'Strength Effect',
-          statName: 'Dark Elixar',
+          description: `Enhances the user's strength to its peak, allowing for unparalleled power in attacks.`,
+          statName: 'Omega Strike',
           powerUpEffectType: 'STRENGTH',
         },
       ],
@@ -897,7 +930,8 @@ export const cardArrayBeta = [
   {
     serialNumber: 'b-019',
     cardName: 'Ultimate Beta Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'The ultimate powerup card, infused with the highest concentration of saffron magic, greatly enhances the user’s defense.',
     edition: 'first',
     rarity: 'ULTIMATE',
     holographic: true,
@@ -909,9 +943,9 @@ export const cardArrayBeta = [
       create: [
         {
           value: 110,
-          description: 'Strength Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'STRENGTH',
+          description: `Maximizes the user's defense, making them nearly impervious to damage.`,
+          statName: 'Saffron Shield',
+          powerUpEffectType: 'DEFENCE',
         },
       ],
     },
@@ -934,15 +968,17 @@ export const cardArrayGamma = [
     cardStats: {
       create: [
         {
-          value: 100,
-          description: 'Health',
-          statName: 'Omega Wink',
+          value: 20,
+          description:
+            'The impact of the meteor rejuvenates the monster, restoring a portion of its health.',
+          statName: 'Meteoric Strike',
           monsterEffectType: 'HEALTH',
         },
         {
-          value: 20,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          value: 40,
+          description:
+            'A devastating strike that calls down a meteor from the sky, dealing massive area-of-effect damage.',
+          statName: 'Meteoric Strike',
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -963,15 +999,17 @@ export const cardArrayGamma = [
     cardStats: {
       create: [
         {
-          value: 120,
-          description: 'Health',
-          statName: 'Omega Wink',
-          monsterEffectType: 'HEALTH',
+          value: 50,
+          description:
+            'The monster’s thirst for blood heightens its senses, slightly increasing its defense.',
+          statName: 'Bloodthirst',
+          monsterEffectType: 'DEFENCE',
         },
         {
-          value: 25,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          value: 100,
+          description:
+            'A vicious attack that draws blood, healing the monster for a portion of the damage dealt.',
+          statName: 'Bloodthirst',
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -992,16 +1030,18 @@ export const cardArrayGamma = [
     cardStats: {
       create: [
         {
-          value: 150,
-          description: 'Health',
-          statName: 'Omega Wink',
-          monsterEffectType: 'HEALTH',
+          value: 40,
+          description:
+            'The crystals also reflect some of the damage back at the attacker, providing a minor attack boost.',
+          statName: 'Crystalline Barrier',
+          monsterEffectType: 'ATTACK',
         },
         {
-          value: 30,
-          description: 'Attack',
-          statName: 'Omega Wink',
-          monsterEffectType: 'ATTACK',
+          value: 200,
+          description:
+            'A shimmering barrier of crystals forms around the monster, greatly reducing incoming damage.',
+          statName: 'Crystalline Barrier',
+          monsterEffectType: 'DEFENCE',
         },
       ],
     },
@@ -1021,15 +1061,17 @@ export const cardArrayGamma = [
     cardStats: {
       create: [
         {
-          value: 150,
-          description: 'Health',
-          statName: 'Omega Wink',
+          value: 20,
+          description:
+            'The solar energy invigorates the monster, restoring a small portion of its health.',
+          statName: 'Solar Flare',
           monsterEffectType: 'HEALTH',
         },
         {
-          value: 35,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          value: 30,
+          description:
+            'A blinding flash of solar energy that scorches enemies and temporarily reduces their accuracy.',
+          statName: 'Solar Flare',
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -1050,15 +1092,17 @@ export const cardArrayGamma = [
     cardStats: {
       create: [
         {
-          value: 180,
-          description: 'Health',
-          statName: 'Omega Wink',
+          value: 30,
+          description:
+            'The cool water soothes the monster, slightly increasing its health after the attack.',
+          statName: 'Tidal Wave',
           monsterEffectType: 'HEALTH',
         },
         {
-          value: 40,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          value: 50,
+          description:
+            'A massive wave of water crashes down on enemies, dealing heavy damage and pushing them back.',
+          statName: 'Tidal Wave',
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -1079,15 +1123,10 @@ export const cardArrayGamma = [
     cardStats: {
       create: [
         {
-          value: 200,
-          description: 'Health',
-          statName: 'Omega Wink',
-          monsterEffectType: 'HEALTH',
-        },
-        {
-          value: 50,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          value: 180,
+          description:
+            'The monster sacrifices itself in a fiery explosion, dealing damage to all foes and rising again with renewed health.',
+          statName: 'Phoenix Rebirth',
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -1096,7 +1135,8 @@ export const cardArrayGamma = [
   {
     serialNumber: 'g-007',
     cardName: 'Common Gamma Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This card has power and magic infused with a hint of saffron. It offers a subtle advantage by allowing a strategic draw.',
     edition: 'first',
     rarity: 'COMMON',
     holographic: false,
@@ -1108,8 +1148,8 @@ export const cardArrayGamma = [
       create: [
         {
           value: 50,
-          description: 'Draw Effect',
-          statName: 'Omega Wink',
+          description: `Draws one card from your deck, giving you an extra option.`,
+          statName: 'Saffron Draw',
           itemEffectType: 'DRAW',
         },
       ],
@@ -1118,7 +1158,8 @@ export const cardArrayGamma = [
   {
     serialNumber: 'g-008',
     cardName: 'Uncommon Gamma Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'Infused with a stronger magic, this card disrupts the opponent’s strategy by forcing them to discard.',
     edition: 'first',
     rarity: 'UNCOMMON',
     holographic: false,
@@ -1130,9 +1171,9 @@ export const cardArrayGamma = [
       create: [
         {
           value: 60,
-          description: 'Draw Effect',
-          statName: 'Omega Wink',
-          itemEffectType: 'DRAW',
+          description: `Forces the opponent to discard one card from their hand.`,
+          statName: 'Mystic Discard',
+          itemEffectType: 'DISCARD',
         },
       ],
     },
@@ -1140,7 +1181,8 @@ export const cardArrayGamma = [
   {
     serialNumber: 'g-009',
     cardName: 'Rare Gamma Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'A rare item card that brings back a discarded card from your pile, infused with the essence of saffron.',
     edition: 'first',
     rarity: 'RARE',
     holographic: false,
@@ -1152,9 +1194,9 @@ export const cardArrayGamma = [
       create: [
         {
           value: 70,
-          description: 'Draw Effect',
-          statName: 'Omega Wink',
-          itemEffectType: 'DRAW',
+          description: `Retrieves one card from your discard pile, restoring a key component to your strategy.`,
+          statName: 'Arcane Retrieval',
+          itemEffectType: 'RETRIEVE',
         },
       ],
     },
@@ -1162,7 +1204,8 @@ export const cardArrayGamma = [
   {
     serialNumber: 'g-010',
     cardName: 'Rare holo Gamma Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This holographic card shuffles your deck, offering a fresh start with the power of saffron.',
     edition: 'first',
     rarity: 'RAREHOLO',
     holographic: true,
@@ -1174,9 +1217,9 @@ export const cardArrayGamma = [
       create: [
         {
           value: 80,
-          description: 'Draw Effect',
-          statName: 'Omega Wink',
-          itemEffectType: 'DRAW',
+          description: `Shuffles your deck, potentially altering the course of the game.`,
+          statName: 'Golden Shuffle',
+          itemEffectType: 'SHUFFLE',
         },
       ],
     },
@@ -1184,7 +1227,8 @@ export const cardArrayGamma = [
   {
     serialNumber: 'g-011',
     cardName: 'Mega rare Gamma Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'A card of immense rarity that can skip the opponent’s turn, infused with concentrated magic and saffron.',
     edition: 'first',
     rarity: 'MEGARARE',
     holographic: false,
@@ -1196,9 +1240,9 @@ export const cardArrayGamma = [
       create: [
         {
           value: 90,
-          description: 'Draw Effect',
-          statName: 'Omega Wink',
-          itemEffectType: 'DRAW',
+          description: `Allows you to skip the opponent's turn, giving you a critical advantage.`,
+          statName: 'Saffron Skip',
+          itemEffectType: 'SKIP',
         },
       ],
     },
@@ -1206,7 +1250,8 @@ export const cardArrayGamma = [
   {
     serialNumber: 'g-012',
     cardName: 'Mega rare holo Gamma Item card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'A mega rare holographic card that temporarily alters the game’s timeline, powered by saffron’s brilliance.',
     edition: 'first',
     rarity: 'MEGARAREHOLO',
     holographic: true,
@@ -1218,9 +1263,9 @@ export const cardArrayGamma = [
       create: [
         {
           value: 100,
-          description: 'Draw Effect',
-          statName: 'Omega Wink',
-          itemEffectType: 'DRAW',
+          description: `Activates a temporal shift, allowing you to manipulate the flow of turns.`,
+          statName: 'Temporal Twist',
+          itemEffectType: 'TEMPERAL',
         },
       ],
     },
@@ -1228,7 +1273,8 @@ export const cardArrayGamma = [
   {
     serialNumber: 'g-013',
     cardName: 'Common Gamma Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This card has power and magic infused with a hint of saffron. It grants a temporary health boost.',
     edition: 'first',
     rarity: 'COMMON',
     holographic: false,
@@ -1240,8 +1286,8 @@ export const cardArrayGamma = [
       create: [
         {
           value: 50,
-          description: 'Health Effect',
-          statName: 'Dark Elixar',
+          description: `Grants a temporary increase in health, fortifying the user against attacks.`,
+          statName: 'Saffron Vitality',
           powerUpEffectType: 'HEALTH',
         },
       ],
@@ -1250,7 +1296,8 @@ export const cardArrayGamma = [
   {
     serialNumber: 'g-014',
     cardName: 'Uncommon Gamma Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This card, infused with potent magic and a hint of saffron, significantly boosts the user’s strength.',
     edition: 'first',
     rarity: 'UNCOMMON',
     holographic: false,
@@ -1262,9 +1309,9 @@ export const cardArrayGamma = [
       create: [
         {
           value: 60,
-          description: 'Health Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'HEALTH',
+          description: `Enhances the user's strength, enabling them to deal more damage in battle.`,
+          statName: 'Mystic Power',
+          powerUpEffectType: 'STRENGTH',
         },
       ],
     },
@@ -1272,7 +1319,8 @@ export const cardArrayGamma = [
   {
     serialNumber: 'g-015',
     cardName: 'Rare Gamma Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'A rare item card, infused with saffron, that greatly improves the user’s defense.',
     edition: 'first',
     rarity: 'RARE',
     holographic: false,
@@ -1284,9 +1332,9 @@ export const cardArrayGamma = [
       create: [
         {
           value: 70,
-          description: 'Health Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'HEALTH',
+          description: `Increases the user's defense, making them more resilient to incoming damage.`,
+          statName: 'Arcane Armor',
+          powerUpEffectType: 'DEFENCE',
         },
       ],
     },
@@ -1294,7 +1342,8 @@ export const cardArrayGamma = [
   {
     serialNumber: 'g-016',
     cardName: 'Rare holo Gamma Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This holographic card, infused with saffron magic, heals the user and restores their vitality.',
     edition: 'first',
     rarity: 'RAREHOLO',
     holographic: true,
@@ -1306,9 +1355,9 @@ export const cardArrayGamma = [
       create: [
         {
           value: 80,
-          description: 'Health Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'HEALTH',
+          description: `Heals a significant portion of the user's health, allowing them to recover quickly.`,
+          statName: 'Golden Rejuvenation',
+          powerUpEffectType: 'HEAL',
         },
       ],
     },
@@ -1316,7 +1365,8 @@ export const cardArrayGamma = [
   {
     serialNumber: 'g-017',
     cardName: 'Mega rare Gamma Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'This mega rare item card grants the ability to manipulate time, providing a tactical advantage.',
     edition: 'first',
     rarity: 'MEGARARE',
     holographic: false,
@@ -1328,9 +1378,9 @@ export const cardArrayGamma = [
       create: [
         {
           value: 90,
-          description: 'Health Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'HEALTH',
+          description: `Allows the user to alter the flow of time, gaining a strategic upper hand.`,
+          statName: 'Temporal Mastery',
+          powerUpEffectType: 'TEMPERAL',
         },
       ],
     },
@@ -1338,7 +1388,8 @@ export const cardArrayGamma = [
   {
     serialNumber: 'g-018',
     cardName: 'Mega rare holo Gamma Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'A mega rare holographic card that greatly boosts strength, powered by saffron’s essence.',
     edition: 'first',
     rarity: 'MEGARAREHOLO',
     holographic: true,
@@ -1350,9 +1401,9 @@ export const cardArrayGamma = [
       create: [
         {
           value: 100,
-          description: 'Health Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'HEALTH',
+          description: `Maximizes the user's strength, enabling overwhelming attacks.`,
+          statName: 'Omega Might',
+          powerUpEffectType: 'STRENGTH',
         },
       ],
     },
@@ -1360,7 +1411,8 @@ export const cardArrayGamma = [
   {
     serialNumber: 'g-019',
     cardName: 'Ultimate Gamma Powerup card test 1',
-    description: 'This card has power and magic infused with a hint of safron.',
+    description:
+      'The ultimate powerup card, infused with saffron’s highest magic, it offers unrivaled healing capabilities.',
     edition: 'first',
     rarity: 'ULTIMATE',
     holographic: true,
@@ -1371,10 +1423,10 @@ export const cardArrayGamma = [
     cardStats: {
       create: [
         {
-          value: 50,
-          description: 'Health Effect',
-          statName: 'Dark Elixar',
-          powerUpEffectType: 'HEALTH',
+          value: 110,
+          description: `Completely restores the user's health, ensuring full recovery.`,
+          statName: 'Saffron Salvation',
+          powerUpEffectType: 'HEAL',
         },
       ],
     },

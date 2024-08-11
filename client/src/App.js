@@ -18,6 +18,7 @@ import CardEditPage from './pages/admin/CardEditPage';
 import UserOverviewPage from './pages/admin/UserOverviewPage';
 import EventOverviewPage from './pages/admin/EventsOverviewPage';
 import CardsInPackPage from './pages/packs/CardsInPackPage';
+import CardsInBoxPage from './pages/packs/CardsInBoxPage';
 import UnopenedPacketsPage from './pages/packs/UnopenedPacketsPage';
 import BattlesOverviewPage from './pages/battles/BattlesMainPage';
 import OpenBattleActivePage from './pages/battles/OpenBattleActivePage';
@@ -72,7 +73,7 @@ function App() {
       <Route path={SHOP_PAGE_URL} element={<ShopPage />} />
       <Route path={OPEN_PACKS_PAGE_URL} element={<OpenPacksPage />} />
       <Route path={CARDS_IN_PACK_PAGE_URL} element={<CardsInPackPage />} />
-      <Route path={CARDS_IN_BOX_PAGE_URL} element={<CardsInPackPage />} />
+      <Route path={CARDS_IN_BOX_PAGE_URL} element={<CardsInBoxPage />} />
       <Route path={UNOPENED_PACKS_URL} element={<UnopenedPacketsPage />} />
       <Route path={UNOPENED_BOXS_URL} element={<UnopenedBoxesPage />} />
       <Route path={CARDS_PAGE_URL} element={<CardsAvailablePage />} />

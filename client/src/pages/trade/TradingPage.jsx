@@ -26,6 +26,10 @@ function TradingPage() {
     setUserCardToTrade,
     userTradeCardId,
     setUserTradeCardId,
+    toggleOpenTrades,
+    openMyTradesComponent,
+    tradingDispayComponent,
+    setTradingDispayComponent,
   } = useContext(TradingContext);
   const { allCardsMasterCopy } = useContext(CardContext);
 
@@ -36,17 +40,15 @@ function TradingPage() {
   const [OpenTradesComponentSelected, setOpenTradesComponentSelected] =
     useState(false);
 
-  const [tradingDispayComponent, setTradingDispayComponent] = useState(null);
-
   useEffect(() => {
     setActiveNav(TRADING_PAGE_URL);
   }, []);
 
   useEffect(() => {
-    setTimeout(() => { 
-      setTradingDispayComponent('my_trades')
+    setTimeout(() => {
+      setTradingDispayComponent('my_trades');
     }, 1500);
-  }, [])
+  }, []);
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -87,14 +89,6 @@ function TradingPage() {
     // // Set the found card as the userCardToTrade
     setUserCardToTrade(foundCard || null); // If no card is found, set it to null
     setUserTradeCardId(selectedCard.id); // set id of your card instance
-  };
-
-  const toggleOpenTrades = () => {
-    setTradingDispayComponent('open');
-  };
-
-  const openMyTradesComponent = () => {
-    setTradingDispayComponent('my_trades');
   };
 
   const goToUpdatedTrade = () => {};

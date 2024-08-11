@@ -10,6 +10,7 @@ import { CardContext } from '../../context/CardContext';
 function UnopenedBoxesContainer() {
   const { user } = useContext(UserContext);
   const { setReturnedOpenBox } = useContext(CardContext);
+  
   const [unopenedBox, setUnopenedBox] = useState([]);
   const [boxIndex, setBoxIndex] = useState([0, 1, 2]);
 

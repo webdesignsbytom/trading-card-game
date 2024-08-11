@@ -23,16 +23,17 @@ const TradingContextProvider = ({ children }) => {
     tradingCardId: userTradeCardId || null,
   });
 
+  const [tradingDispayComponent, setTradingDispayComponent] = useState(null);
+
   useEffect(() => {
     setCreatedTrade({
       createdById: user.id,
       tradingCardId: userTradeCardId,
       cardName: userCardToTrade.cardName,
       cardId: userCardToTrade.id,
-      creatorUsername: user?.profile?.username
+      creatorUsername: user?.profile?.username,
     });
   }, [userTradeCardId]);
-
 
   const createNewOpenTrade = () => {
     client
@@ -42,6 +43,7 @@ const TradingContextProvider = ({ children }) => {
           'res.data.data.createdOpenTrade',
           res.data.data.createdOpenTrade
         );
+        toggleOpenTrades()
       })
       .catch((err) => {
         console.error('Unable to create open trade', err);
@@ -50,6 +52,14 @@ const TradingContextProvider = ({ children }) => {
 
   const createTradeResponseOffer = () => {
     console.log('aaaaaaaaa');
+  };
+
+  const toggleOpenTrades = () => {
+    setTradingDispayComponent('open');
+  };
+
+  const openMyTradesComponent = () => {
+    setTradingDispayComponent('my_trades');
   };
 
   return (
@@ -65,6 +75,10 @@ const TradingContextProvider = ({ children }) => {
         setUserTradeCardId,
         createNewOpenTrade,
         createTradeResponseOffer,
+        toggleOpenTrades,
+        openMyTradesComponent,
+        tradingDispayComponent,
+        setTradingDispayComponent,
       }}
     >
       {children}

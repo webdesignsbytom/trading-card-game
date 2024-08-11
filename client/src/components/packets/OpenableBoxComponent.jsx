@@ -13,21 +13,23 @@ import {
   BOX_TYPE_BETA,
   BOX_TYPE_GAMMA,
 } from '../../utils/cards/CardGameConstants';
-import { CARDS_IN_BOX_PAGE_URL } from '../../utils/Constants';
+import LoadingSpinner from '../utils/LoadingSpinner';
 
 function OpenableBoxComponent({ box }) {
-  const { toggleOpeningNewBox } = useContext(CardContext);
-
-  let navigate = useNavigate();
-
+  const { toggleOpeningNewBox, isOpening } = useContext(CardContext);
+  console.log('isOpening', isOpening);
   const openBox = (box) => {
-    navigate(CARDS_IN_BOX_PAGE_URL, { state: box });
     toggleOpeningNewBox(box);
   };
 
   if (box) {
     return (
-      <div className='grid grid-rows-rev gap-4 w-full h-1/2 items-center justify-center'>
+      <div className='relative grid grid-rows-rev gap-4 w-full h-1/2 items-center justify-center'>
+        {isOpening && (
+          <div className='absolute z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+            <LoadingSpinner md={true} />
+          </div>
+        )}
         <article className='grid grid-rows-reg gap-2 text-center overflow-hidden'>
           <div className='text-xl font-semibold'>
             <h4 className='text-sm uppercase'>Box type</h4>
