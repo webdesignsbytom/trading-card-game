@@ -10,7 +10,7 @@ import { UserContext } from './UserContext';
 export const CardContext = React.createContext();
 
 const CardContextProvider = ({ children }) => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [allCardsMasterCopy, setAllCardsMasterCopy] = useState([]);
   const [userCardsArray, setUserCardsArray] = useState([]);
 
@@ -46,7 +46,7 @@ const CardContextProvider = ({ children }) => {
   const toggleOpeningNewPack = (pack) => {
     console.log('AAAAAAAAAAAAA', user.id);
     setSelectedPack(pack);
-    
+
     const data = { packId: pack.id, userId: user.id };
 
     client
@@ -54,6 +54,7 @@ const CardContextProvider = ({ children }) => {
       .then((res) => {
         setReturnedOpenPack(res.data.data.cards);
         setToggleOpeningPackDiplay(!toggleOpeningPackDiplay);
+        setUser(res.data.data.updatedUser);
       })
 
       .catch((err) => {
@@ -68,7 +69,7 @@ const CardContextProvider = ({ children }) => {
         setUserCardsArray,
         toggleOpeningNewPack,
         setReturnedOpenPack,
-        returnedOpenPack
+        returnedOpenPack,
       }}
     >
       {children}

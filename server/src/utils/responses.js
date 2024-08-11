@@ -71,6 +71,7 @@ export const EVENT_MESSAGES = {
   createPackTypeFail: `Failed to create packType`,
   markPackTypeViewedFailed: `Failed to mark packType as viewed`,
   startPacksAlreadyClaimed: `User has already claimed starter packs`,
+  failedToDeletePack: `Failed to delete pack`,
   // Reviews
   reviewsTag: `Review database`,
   notFoundReview: `Failed to find review/s`,

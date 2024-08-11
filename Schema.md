@@ -32,3 +32,11 @@
   - Special Card
     - Custom design per card
     - Blank Card
+
+
+## Todos
+
+1. Fix daily rewards icon
+2. Fix number of card packs to open
+3. Go to open battle requests after submitting new battle req
+4. Trace that get all cards

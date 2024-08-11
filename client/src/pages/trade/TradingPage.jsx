@@ -59,17 +59,8 @@ function TradingPage() {
   };
 
   const handleChangeCard = (event) => {
-    const { value } = event.target;
-
-    client
-      .get(`/mon-cards/card/get-by-id/${value}`)
-      .then((res) => {
-        setUserCardToTrade(res.data.data.cardInstance);
-        setDisplayCard(res.data.data.card);
-      })
-      .catch((err) => {
-        console.error('Unable to find card', err);
-      });
+    console.log('CARD', event);
+    // allCardsMasterCopy
   };
 
   const toggleOpenTrades = () => {
@@ -107,10 +98,6 @@ function TradingPage() {
                   displayCard={displayCard}
                 />
               )}
-              {/* {openTradeComponentSelected && !tradeItemOpen && (
-                <OpenRequestsListComponent />
-              )} */}
-              {/* {tradeItemOpen && <OpenTradeComponent />} */}
             </section>
           </section>
         </main>

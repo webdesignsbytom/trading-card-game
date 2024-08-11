@@ -1,11 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// Context
 import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
-// API
 import client from '../../api/client';
-// Components
 import Navbar from '../../components/nav/Navbar';
 import LoadingSpinner from '../../components/utils/LoadingSpinner';
 import {
@@ -23,56 +20,53 @@ function LoginPage() {
   const [loginFormData, setLoginFormData] = useState({
     email: '',
     password: '',
-    keepMeLoggedIn: false,
+    rememberMe: false,
   });
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setActiveNav(LOGIN_PAGE_URL);
-  }, []);
+  }, [setActiveNav]);
 
   const homePage = () => {
-    navigate(HOME_PAGE_URL, { replace: true });
+    navigate(HOME_PAGE_URL, { replace: false });
   };
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
 
     setLoginInProgress(true);
-    client
-      .post(LOGIN_API, loginFormData, false)
-      .then((res) => {
-        localStorage.setItem(
-          process.env.REACT_APP_USER_TOKEN,
-          res.data.data.token
-        );
-        setLoginInProgress(false);
-        console.log('res.data.data.existingUser', res.data.data.existingUser);
-        setUser(res.data.data.existingUser);
-      })
-      .then(() => homePage())
+    setLoginError(false);
 
-      .catch((err) => {
-        setLoginError(true);
-        console.error('Unable to login', err);
-      });
+    try {
+      const res = await client.post(LOGIN_API, loginFormData, false);
+      localStorage.setItem(
+        process.env.REACT_APP_USER_TOKEN,
+        res.data.data.token
+      );
+      setUser(res.data.data.existingUser);
+      homePage();
+    } catch (err) {
+      setLoginInProgress(false);
+      setLoginError(true);
+      console.error('Unable to login', err);
+    }
   };
 
   const handleChange = (event) => {
-    setLoginError(false);
     const { name, value } = event.target;
-
     setLoginFormData({
       ...loginFormData,
       [name]: value,
     });
+    setLoginError(false); // Clear error message on input change
   };
 
-  const handleCheckedKeepMeLoggedIn = (event) => {
+  const handleCheckedRememberMe = () => {
     setLoginFormData({
       ...loginFormData,
-      keepMeLoggedIn: true,
+      rememberMe: !loginFormData.rememberMe,
     });
   };
 
@@ -127,17 +121,17 @@ function LoginPage() {
                   <div className='flex items-start'>
                     <div className='flex items-center h-5'>
                       <input
-                        className='form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer'
+                        className='form-check-input h-4 w-4 border border-gray-300 rounded-sm bg-white focus:outline-none transition duration-200 mt-1 align-top float-left mr-2 cursor-pointer'
                         type='checkbox'
                         id='rememberMe'
                         name='rememberMe'
-                        checked
-                        onChange={handleCheckedKeepMeLoggedIn}
+                        checked={loginFormData.rememberMe}
+                        onChange={handleCheckedRememberMe}
                       />
                     </div>
                     <div className='ml-3 text-sm'>
                       <label
-                        htmlFor='remember'
+                        htmlFor='rememberMe'
                         className='text-gray-500 dark:text-gray-300'
                       >
                         Remember me

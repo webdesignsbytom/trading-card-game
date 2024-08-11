@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^5.17.0",
+    "@prisma/client": "^5.18.0",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -29,6 +29,6 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.22",
-    "prisma": "^5.17.0"
+    "prisma": "^5.18.0"
   }
 }

@@ -11,13 +11,15 @@ import {
 } from '../../utils/Constants';
 // Context
 import { UserContext } from '../../context/UserContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function StartNewBattleComponent() {
   const { user } = useContext(UserContext);
   const [searchQuery, setSearchQuery] = useState({ username: '' });
   const [notFoundUser, setNotFoundUser] = useState(false);
   const [battlePartnerFound, setBattlePartnerFound] = useState(null);
+
+  const navigate = useNavigate();
 
   const searchForUser = () => {
     setNotFoundUser(false);
@@ -59,6 +61,7 @@ function StartNewBattleComponent() {
       .post(CREATE_BATTLE_REQ_API, battleData)
       .then((res) => {
         console.log('res.data.data.user', res.data.data.battleRequest);
+        navigate(BATTLE_REQUESTS_PAGE_URL, { replace: false });
       })
       .catch((err) => {
         console.error('Unable to create battle request', err);

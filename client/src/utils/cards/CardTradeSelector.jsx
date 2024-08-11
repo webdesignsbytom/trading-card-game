@@ -3,13 +3,13 @@ import React, { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 
 function CardTradeSelector({ handleChange }) {
-    const { user } = useContext(UserContext)
-
+  const { user } = useContext(UserContext);
+console.log('user?.cards', user.cards);
   return (
     <>
       <select
-        id='id'
-        name='id'
+        id='trade_card_select'
+        name='trade_card_select'
         onChange={handleChange}
         className='p-1 rounded w-full'
         required
@@ -17,11 +17,14 @@ function CardTradeSelector({ handleChange }) {
         <option defaultValue='-'>---</option>
 
         {user?.cards?.map((card, index) => {
-            return (
-                <option key={index} value={card.cardId}>{card.name}</option>
-            )
+          return (
+            <option key={index} value={card.cardName}>
+              {card.cardName}
+            </option>
+          );
         })}
-    </select>
+      </select>
     </>
-  )
-}export default CardTradeSelector
+  );
+}
+export default CardTradeSelector;

@@ -53,7 +53,7 @@ function BattlesRequestsComponent() {
   };
 
   return (
-    <section className='grid grid-cols-2 p-4'>
+    <section className='grid md:grid-cols-2 p-4'>
       <section className='grid grid-rows-reg h-full w-full'>
         <div className='grid h-fit text-center'>
           <h4 className='text-2xl font-fantasy tracking-wider'>
@@ -63,7 +63,7 @@ function BattlesRequestsComponent() {
         <section className='grid h-full w-full overflow-hidden'>
           <div className='grid h-fit overflow-y-auto px-4'>
             {battleRequestsReceived?.map((request) => (
-              <article key={request.id} className='grid grid-cols-rev bg-white'>
+              <article key={request.id} className='grid grid-cols-rev bg-white p-1 outline outline-1 rounded'>
                 <section className='grid grid-flow-col items-center pl-1'>
                   <div>
                     <span>{request.senderUsername}</span>
@@ -100,12 +100,12 @@ function BattlesRequestsComponent() {
           </h4>
         </div>
         <section className='grid h-full w-full overflow-hidden'>
-          <div className='grid gap-2 h-fit overflow-y-auto px-4'>
+          <div className='grid gap-2 h-fit overflow-y-auto px-4 py-1'>
             {battleRequestsSent?.map((request) => (
-              <article key={request.id} className='grid grid-cols-rev bg-white'>
+              <article key={request.id} className='grid grid-cols-rev bg-white p-1 outline outline-1 rounded'>
                 <section className='grid grid-flow-col items-center pl-1'>
                   <div>
-                    <span>{request.receiverUsername}</span>
+                    <span>To: {request.receiverUsername}</span>
                   </div>
                   <div>
                     <span>Sent {getDaysOld(request.createdAt)} days ago</span>

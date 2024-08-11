@@ -249,7 +249,7 @@ model Pack {
 
 model Box {
   id        String         @id @default(uuid()) // pack id
-  boxType  BoxType
+  boxType   BoxType
   cards     CardInstance[]
   userId    String?
   user      User?          @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -279,6 +279,7 @@ model Card {
 
 model CardInstance {
   id        String    @id @default(uuid())
+  cardName  String    @default("")
   userId    String?
   user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
   cardId    Int

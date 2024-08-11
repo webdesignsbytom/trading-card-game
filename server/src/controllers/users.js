@@ -473,20 +473,45 @@ export const openPackAndAddToUser = async (req, res) => {
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
-
+    console.log('foundPack', foundPack[0]);
     let newCardsArray = [];
 
     for (let index = 0; index < foundPack.cards.length; index++) {
       const card = foundPack.cards[index];
-      await setCardFromPackToUser(card.id, userId);
+      let updatedCardish = await setCardFromPackToUser(card.id, userId);
+      console.log('updatedCardish', updatedCardish);
       const newCard = await findCardById(card.cardId);
       newCardsArray.push(newCard);
     }
 
+    console.log('newCardsArray', newCardsArray[0]);
+
     const deletedPack = await deletePackbyIdWhenOpened(packId);
+    if (!deletedPack) {
+      const badRequest = new BadRequestEvent(
+        req.user,
+        EVENT_MESSAGES.badRequest,
+        EVENT_MESSAGES.failedToDeletePack
+      );
+      myEmitterErrors.emit('error', badRequest);
+      return sendMessageResponse(res, badRequest.code, badRequest.message);
+    }
+
+    const updatedUser = await findUserById(userId);
+    if (!updatedUser) {
+      const notFound = new NotFoundEvent(
+        req.user,
+        EVENT_MESSAGES.notFound,
+        EVENT_MESSAGES.userNotFound
+      );
+      myEmitterErrors.emit('error', notFound);
+      return sendMessageResponse(res, notFound.code, notFound.message);
+    }
+
     return sendDataResponse(res, 200, {
       cards: newCardsArray,
       deletedPack: deletedPack,
+      updatedUser: updatedUser,
     });
   } catch (err) {
     // Error

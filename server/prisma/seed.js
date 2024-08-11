@@ -75,15 +75,15 @@ async function seed() {
     await createCard(card);
   }
 
-  let maxNum = 52;
-  for (let i = 1; i < maxNum; i++) {
-    await dbClient.cardInstance.create({
-      data: {
-        userId: 'dev',
-        cardId: i,
-      },
-    });
-  }
+  // let maxNum = 52;
+  // for (let i = 1; i < maxNum; i++) {
+  //   await dbClient.cardInstance.create({
+  //     data: {
+  //       userId: 'dev',
+  //       cardId: i,
+  //     },
+  //   });
+  // }
 
   const battleReq1 = await dbClient.battleRequest.create({
     data: {
