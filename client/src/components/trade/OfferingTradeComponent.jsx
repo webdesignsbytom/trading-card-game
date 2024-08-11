@@ -4,6 +4,7 @@ import CardTradeSelector from '../../utils/cards/CardTradeSelector';
 import Card2 from '../card/Card2';
 
 function OfferingTradeComponent({ displayCard }) {
+  
   const handleTradeListChange = () => {
     console.log('kkk');
   };

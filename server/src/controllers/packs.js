@@ -234,7 +234,6 @@ export const buyPackAndAddToUser = async (req, res) => {
 export const buyBoxAndAddToUser = async (req, res) => {
   const { boxType, userId, cost } = req.body;
 
-  console.log('box type: ', boxType);
   try {
     if (cost !== StandardBoxCost) {
       const conflict = new ConfictEvent(
@@ -258,7 +257,6 @@ export const buyBoxAndAddToUser = async (req, res) => {
     }
 
     const createdBox = await createBoxOfCardsForUser(boxType, userId);
-    console.log('createdBox', createdBox);
 
     // Update banking
     await chargePackToBankAccount(userId, cost);

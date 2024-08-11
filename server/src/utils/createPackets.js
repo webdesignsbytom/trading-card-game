@@ -36,9 +36,8 @@ export async function createSinglePacksOfCards(packType) {
 export async function createSinglePacksOfCardsForUser(packType, userId) {
   const newPack = await createBlankPackOfCardsForUser(packType, userId);
   const cards = await createCardsForPack(packType, newPack.id, NumCardsInPack);
-  console.log('Eeeeeeeeeee');
   const cardInstanceArray = [];
-  console.log('cardInstanceArray', cardInstanceArray);
+
   // create instances
   for (let index = 0; index < cards.length; index++) {
     const card = cards[index];
@@ -49,7 +48,6 @@ export async function createSinglePacksOfCardsForUser(packType, userId) {
       cardId: card.id,
     });
   }
-  console.log('cardInstanceArray', cardInstanceArray);
 
   await createManyNewInstanceForPack(cardInstanceArray);
 

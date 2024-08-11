@@ -11,7 +11,6 @@ import client from '../../api/client';
 function OpenedPacketDisplayComponent() {
   const { returnedOpenPack } = useContext(CardContext);
   const { user } = useContext(UserContext);
-  console.log('returnedOpenPack', returnedOpenPack);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

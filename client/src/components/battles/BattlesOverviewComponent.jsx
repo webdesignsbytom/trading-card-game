@@ -20,7 +20,6 @@ function BattlesOverviewComponent({
   startingNewBattle,
 }) {
   const { user } = useContext(UserContext);
-  console.log('user', user);
   let navigate = useNavigate();
 
   const openStartingBattleComponent = (user) => {

@@ -27,7 +27,6 @@ function StartNewBattleComponent() {
     client
       .get(`${BATTLE_USER_SEARCH_API}/${searchQuery.username}`)
       .then((res) => {
-        console.log('res.data.data.user', res.data.data.battleUser);
         setBattlePartnerFound(res.data.data.battleUser);
       })
       .catch((err) => {
@@ -60,7 +59,6 @@ function StartNewBattleComponent() {
     client
       .post(CREATE_BATTLE_REQ_API, battleData)
       .then((res) => {
-        console.log('res.data.data.user', res.data.data.battleRequest);
         navigate(BATTLE_REQUESTS_PAGE_URL, { replace: false });
       })
       .catch((err) => {

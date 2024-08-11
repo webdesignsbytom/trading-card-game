@@ -77,8 +77,6 @@ function TradingPage() {
       });
   };
 
-  console.log('userCardToTrade', userCardToTrade);
-
   const handleChangeCard = (event) => {
     const selectedCard = JSON.parse(event.target.value);
 

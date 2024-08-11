@@ -121,10 +121,7 @@ export async function createCardsForPack(
 ) {
   // Create pack
   let numCards = numCardsForType;
-  console.log('numCard', numCards);
   let packArray = [];
-  console.log('packArray', packArray);
-  console.log('repeatedCards', repeatedCards);
   // Get all cards from pack
   const allCardsInPack = await findAllCardsFromPack(packType);
 
@@ -142,13 +139,9 @@ export async function createCardsForPack(
 
   // Create required cards for pack.
   // Create one holo card
-  console.log('AAAAAAAAAAAAA');
   const holoCard = await createHolographicCardForPack(rareCards, megaRareCards);
-  console.log('holo card', holoCard);
   holoCard.packId = packId;
-  console.log('holoCard.packId = packId', holoCard.packId = packId);
   packArray.push(holoCard);
-  console.log('BBBBBBBBBBBBBB');
 
   // For each card find its rariry value
   while (packArray.length < numCards) {

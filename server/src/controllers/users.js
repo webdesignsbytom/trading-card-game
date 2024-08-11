@@ -233,8 +233,6 @@ export const findUserForBattle = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    console.log('found user', foundUser);
-
     const user = { id: foundUser.user.id, username: foundUser.username };
 
     return sendDataResponse(res, 200, { battleUser: user });
@@ -473,18 +471,14 @@ export const openPackAndAddToUser = async (req, res) => {
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
-    console.log('foundPack', foundPack[0]);
     let newCardsArray = [];
 
     for (let index = 0; index < foundPack.cards.length; index++) {
       const card = foundPack.cards[index];
       let updatedCardish = await setCardFromPackToUser(card.id, userId);
-      console.log('updatedCardish', updatedCardish);
       const newCard = await findCardById(card.cardId);
       newCardsArray.push(newCard);
     }
-
-    console.log('newCardsArray', newCardsArray[0]);
 
     const deletedPack = await deletePackbyIdWhenOpened(packId);
     if (!deletedPack) {

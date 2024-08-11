@@ -10,8 +10,6 @@ function CardOverviewPage() {
   const { cardName } = useParams();
   const cardData = location.state;
 
-  console.log('carddata', cardData);
-
   return (
     <div className='grid lg:overflow-hidden main__bg min-h-screen w-full'>
       <section className='grid h-full md:overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>

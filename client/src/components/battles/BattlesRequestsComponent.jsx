@@ -25,7 +25,6 @@ function BattlesRequestsComponent() {
     client
       .post(`${ACCEPT_BATTLE_REQ_API}/${requestId}`)
       .then((res) => {
-        console.log('ssss', res.data.data.updateRequest);
         setConfirmedRequests(res.data.data.updateRequest);
       })
       .catch((err) => {
@@ -34,11 +33,9 @@ function BattlesRequestsComponent() {
   };
 
   const handleDelete = (requestId, isSent) => {
-    console.log('requestId', requestId);
     client
       .delete(`${DELETE_BATTLE_REQ_API}/${requestId}`)
       .then((res) => {
-        console.log('aaa', res.data.data.deletedBattle);
       })
       .catch((err) => {
         console.error('Error deleting battle request', err);

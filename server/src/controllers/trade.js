@@ -23,7 +23,7 @@ import {
 export const getAllTrades = async (req, res) => {
   try {
     const foundTrades = await findAllTrades();
-    console.log('found all trade records', foundTrades);
+
     if (!foundTrades) {
       const notFound = new NotFoundEvent(
         req.user,
@@ -34,7 +34,6 @@ export const getAllTrades = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    // myEmitterUsers.emit('get-all-users', req.user);
     return sendDataResponse(res, 200, { trades: foundTrades });
   } catch (err) {
     // Error

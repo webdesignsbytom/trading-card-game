@@ -33,11 +33,8 @@ const TradingContextProvider = ({ children }) => {
     });
   }, [userTradeCardId]);
 
-  console.log('createdTrade', createdTrade);
 
   const createNewOpenTrade = () => {
-    console.log('createdTrade', createdTrade);
-
     client
       .post(CREATE_OPEN_TRADE_API, createdTrade, false)
       .then((res) => {
