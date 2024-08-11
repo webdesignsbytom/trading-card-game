@@ -16,6 +16,10 @@
   clip-path: polygon(100% 0, 0% 100%, 100% 100%);
 }
 
+.button_shadow {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
 .text__stroke {
   -webkit-text-stroke: 1px #080707;
   /* -webkit-text-stroke: 1px #f5f5f5; */

@@ -79,7 +79,7 @@ model Trade {
   tradingCardId String       @unique // Relation to multiple offers
   offers        TradeOffer[]
 
-  cardId Int
+  cardId   Int
   cardName String
 
   creatorUsername String @default("")
@@ -310,7 +310,7 @@ model Card {
   backgroundColour BackgroundColour @default(WHITE)
   packType         PackType
   cardType         CardType
-  editable         Boolean          @default(false) // holo card option available
+  health           Int?             @default(30)
   imageUrl         String           @default("imageUrl") @db.VarChar(4096)
   isAvailable      Boolean          @default(true)
   cardStats        CardStat[]

@@ -13,11 +13,11 @@ function TradingPageHeader({
         </h1>
       </article>
       <section className='grid h-full w-full items-center justify-end'>
-        <div className='grid h-fit bg-nav-colour font-semibold w-fit main__bg border-4 border-main-border border-solid px-4 py-1 rounded-lg grid-flow-col gap-2 lg:gap-4'>
+        <div className='grid h-fit bg-nav-colour main__bg font-semibold w-fit border-4 border-main-border border-solid px-4 py-1 rounded-lg grid-flow-col gap-2 lg:gap-4 button_shadow'>
           <div className=''>
             <button
               onClick={toggleOpenTrades}
-              className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-1 px-1 w-full lg:py-1.5 lg:px-4 rounded-xl border-4 border-main-border border-solid font-poppins text-lg'
+              className='bg-main-colour hover:bg-blue-800 active:scale-95 no__highlights py-1 px-1 w-full lg:py-1 lg:px-4 rounded-xl border-2 border-main-border border-solid font-poppins button_shadow'
             >
               Open Trades
             </button>
@@ -25,7 +25,7 @@ function TradingPageHeader({
           <div>
             <button
               onClick={openMyTradesComponent}
-              className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-1 px-1 w-full lg:py-1.5 lg:px-4 rounded-xl border-4 border-main-border border-solid font-poppins text-lg'
+              className='bg-main-colour hover:bg-blue-800 active:scale-95 no__highlights py-1 px-1 w-full lg:py-1 lg:px-4 rounded-xl border-2 border-main-border border-solid font-poppins button_shadow'
             >
               Create Trade
             </button>

@@ -8,20 +8,21 @@ export const cardArrayAlpha = [
     holographic: false,
     packType: 'ALPHA',
     cardType: 'MONSTER',
+    health: 30,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png',
     backgroundColour: 'BLUE',
     cardStats: {
       create: [
         {
-          value: 100,
-          description: 'Health',
-          statName: 'Omega Wink',
-          monsterEffectType: 'HEALTH',
+          value: 20,
+          description: 'Take 20 less damage for one turn.',
+          statName: 'Defend',
+          monsterEffectType: 'DEFENCE',
         },
         {
           value: 20,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          description: 'A quick strike attack',
+          statName: 'Shuffle',
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -36,20 +37,21 @@ export const cardArrayAlpha = [
     holographic: false,
     packType: 'ALPHA',
     cardType: 'MONSTER',
+    health: 80,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/002.png',
     backgroundColour: 'GREEN',
     cardStats: {
       create: [
         {
-          value: 120,
-          description: 'Health',
-          statName: 'Omega Wink',
-          monsterEffectType: 'HEALTH',
+          value: 20,
+          description: 'A simple attack of speed.',
+          statName: 'Shriek',
+          monsterEffectType: 'ATTACK',
         },
         {
-          value: 25,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          value: 50,
+          description: 'A hard strike to the creature.',
+          statName: 'Omega Backhand',
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -64,20 +66,15 @@ export const cardArrayAlpha = [
     holographic: false,
     packType: 'ALPHA',
     cardType: 'MONSTER',
+    health: 180,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/003.png',
     backgroundColour: 'GREEN',
     cardStats: {
       create: [
         {
-          value: 150,
-          description: 'Health',
-          statName: 'Omega Wink',
-          monsterEffectType: 'HEALTH',
-        },
-        {
-          value: 30,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          value: 120,
+          description: 'Super attack that hits all enemies on the bench.',
+          statName: `Hudo'ken`,
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -92,20 +89,21 @@ export const cardArrayAlpha = [
     holographic: true,
     packType: 'ALPHA',
     cardType: 'MONSTER',
+    health: 40,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png',
     backgroundColour: 'GREEN',
     cardStats: {
       create: [
         {
-          value: 150,
-          description: 'Health',
-          statName: 'Omega Wink',
+          value: 10,
+          description: 'Get plus 10 health.',
+          statName: 'Remidy',
           monsterEffectType: 'HEALTH',
         },
         {
-          value: 35,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          value: 30,
+          description: 'Spray super sticky cheese on your enemies, so they miss a turn and take 30 damage.',
+          statName: 'Cheese spray',
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -120,20 +118,21 @@ export const cardArrayAlpha = [
     holographic: false,
     packType: 'ALPHA',
     cardType: 'MONSTER',
+    health: 80,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/005.png',
     backgroundColour: 'GREEN',
     cardStats: {
       create: [
         {
-          value: 180,
-          description: 'Health',
-          statName: 'Omega Wink',
-          monsterEffectType: 'HEALTH',
+          value: 40,
+          description: 'A chop with all the power of a bomb.',
+          statName: 'Atomic strike',
+          monsterEffectType: 'ATTACK',
         },
         {
-          value: 40,
-          description: 'Attack',
-          statName: 'Omega Wink',
+          value: 60,
+          description: 'Your monster causes the earth to erupt and crush your enemies.',
+          statName: 'Landslode',
           monsterEffectType: 'ATTACK',
         },
       ],
@@ -148,6 +147,7 @@ export const cardArrayAlpha = [
     holographic: true,
     packType: 'ALPHA',
     cardType: 'MONSTER',
+    health: 80,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/006.png',
     backgroundColour: 'RED',
     cardStats: {
@@ -465,6 +465,7 @@ export const cardArrayBeta = [
     holographic: false,
     packType: 'BETA',
     cardType: 'MONSTER',
+    health: 80,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/019.png',
     backgroundColour: 'BLUE',
     cardStats: {
@@ -493,6 +494,7 @@ export const cardArrayBeta = [
     holographic: false,
     packType: 'BETA',
     cardType: 'MONSTER',
+    health: 80,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/020.png',
     backgroundColour: 'GREEN',
     cardStats: {
@@ -521,6 +523,7 @@ export const cardArrayBeta = [
     holographic: false,
     packType: 'BETA',
     cardType: 'MONSTER',
+    health: 80,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/021.png',
     backgroundColour: 'GREEN',
     cardStats: {
@@ -549,6 +552,7 @@ export const cardArrayBeta = [
     holographic: true,
     packType: 'BETA',
     cardType: 'MONSTER',
+    health: 80,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/022.png',
     backgroundColour: 'GREEN',
     cardStats: {
@@ -577,6 +581,7 @@ export const cardArrayBeta = [
     holographic: false,
     packType: 'BETA',
     cardType: 'MONSTER',
+    health: 80,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/023.png',
     backgroundColour: 'GREEN',
     cardStats: {
@@ -605,6 +610,7 @@ export const cardArrayBeta = [
     holographic: true,
     packType: 'BETA',
     cardType: 'MONSTER',
+    health: 80,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/024.png',
     backgroundColour: 'RED',
     cardStats: {
@@ -922,6 +928,7 @@ export const cardArrayGamma = [
     holographic: false,
     packType: 'GAMMA',
     cardType: 'MONSTER',
+    health: 80,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png',
     backgroundColour: 'BLUE',
     cardStats: {
@@ -950,6 +957,7 @@ export const cardArrayGamma = [
     holographic: false,
     packType: 'GAMMA',
     cardType: 'MONSTER',
+    health: 80,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/002.png',
     backgroundColour: 'GREEN',
     cardStats: {
@@ -978,6 +986,7 @@ export const cardArrayGamma = [
     holographic: false,
     packType: 'GAMMA',
     cardType: 'MONSTER',
+    health: 80,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/003.png',
     backgroundColour: 'GREEN',
     cardStats: {
@@ -1006,6 +1015,7 @@ export const cardArrayGamma = [
     holographic: true,
     packType: 'GAMMA',
     cardType: 'MONSTER',
+    health: 80,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png',
     backgroundColour: 'GREEN',
     cardStats: {
@@ -1034,6 +1044,7 @@ export const cardArrayGamma = [
     holographic: false,
     packType: 'GAMMA',
     cardType: 'MONSTER',
+    health: 80,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/005.png',
     backgroundColour: 'GREEN',
     cardStats: {
@@ -1062,6 +1073,7 @@ export const cardArrayGamma = [
     holographic: true,
     packType: 'GAMMA',
     cardType: 'MONSTER',
+    health: 80,
     imageUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/006.png',
     backgroundColour: 'RED',
     cardStats: {
@@ -1359,7 +1371,7 @@ export const cardArrayGamma = [
     cardStats: {
       create: [
         {
-          value: 110,
+          value: 50,
           description: 'Health Effect',
           statName: 'Dark Elixar',
           powerUpEffectType: 'HEALTH',

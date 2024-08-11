@@ -127,7 +127,7 @@ function UserTradeComponent({
               <div className='grid'>
                 <button
                   onClick={() => setTradeTypeSelected('user')}
-                  className='border-2 border-main-border border-solid bg-nav-colour hover:bg-blue-800 active:scale-95 main__bg no__highlights  py-2 px-4 my-2 rounded-xl'
+                  className='border-2 border-main-border border-solid bg-nav-colour hover:bg-blue-800 active:scale-95 main__bg no__highlights py-2 px-4 my-2 rounded-xl'
                   type='submit'
                 >
                   <span className='text-xl font-semibold'>Trade With User</span>
