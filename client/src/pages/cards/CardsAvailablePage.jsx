@@ -6,7 +6,7 @@ import { ToggleContext } from '../../context/ToggleContext';
 // Components
 import Navbar from '../../components/nav/Navbar';
 import LoadingSpinner from '../../components/utils/LoadingSpinner';
-import Card2 from '../../components/card/Card2';
+import Card from '../../components/card/Card';
 import CardSearchAndSelectionContainer from '../../components/search/CardSearchAndSelectionContainer';
 // Constants
 import { CARDS_PAGE_URL, GET_ALL_CARDS_API } from '../../utils/Constants';
@@ -32,7 +32,7 @@ function CardsAvailablePage() {
   }, []);
 
   const renderCards = (cards) => {
-    return cards.map((card, index) => <Card2 key={index} cardData={card} />);
+    return cards.map((card, index) => <Card key={index} cardData={card} />);
   };
 
   return (

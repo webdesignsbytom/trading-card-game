@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { CardContext } from '../../context/CardContext';
 import { UserContext } from '../../context/UserContext';
 // Components
-import Card2 from '../card/Card2';
+import Card from '../card/Card';
 import EmptyCardSlot from '../card/EmptyCardSlot';
 // Api
 import client from '../../api/client';
@@ -45,7 +45,7 @@ function OpenedPacketDisplayComponent() {
           {loading
             ? emptyArray.map((_, index) => <EmptyCardSlot key={index} />)
             : returnedOpenPack.map((card, index) => (
-                <Card2 cardData={card} key={index} />
+                <Card cardData={card} key={index} />
               ))}
         </section>
       </div>

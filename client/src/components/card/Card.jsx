@@ -1,25 +1,25 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import EmptyCardSlot from './EmptyCardSlot';
-import { ToggleContext } from '../../context/ToggleContext';
 import {
   MEGARAREHOLO_CARD_RARITY,
   RAREHOLO_CARD_RARITY,
-  PACK_TYPE_ALPHA,
-  PACK_TYPE_BETA,
-  PACK_TYPE_GAMMA,
   BACKGROUND_COLORS,
   CARD_TYPE_MONSTER,
   CARD_TYPE_POWERUP,
   CARD_TYPE_ITEM,
   PACK_TYPE_ICONS,
   EDITION_ICONS,
+  ULTIMATE_CARD_RARITY,
 } from '../../utils/cards/CardGameConstants';
+import { useNavigate } from 'react-router-dom';
+import { CARD_PAGE_URL } from '../../utils/Constants';
 
 function Card({ cardData }) {
-  const { toggleCardData } = useContext(ToggleContext);
   const [bgColour, setBgColour] = useState('bg-white');
   const [holoCard, setHoloCard] = useState(false);
   const [rareholoCard, setRareHoloCard] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!cardData.holographic) {
@@ -32,6 +32,11 @@ function Card({ cardData }) {
     } else if (cardData.rarity === MEGARAREHOLO_CARD_RARITY) {
       setRareHoloCard(true);
       setBgColour('bg-slate-500');
+    } else if (cardData.rarity === ULTIMATE_CARD_RARITY) {
+      setRareHoloCard(true);
+      setBgColour('bg-pink-500');
+    } else {
+      setBgColour('bg-white');
     }
   }, [cardData]);
 
@@ -94,37 +99,66 @@ function Card({ cardData }) {
     }
   };
 
+  const openCardPage = (cardData) => {
+    navigate(`${CARD_PAGE_URL}/${cardData.cardName}`, { state: cardData });
+  };
+
   return (
-    <section
-      onClick={() => toggleCardData(cardData)}
-      className={`${holoCard} ${rareholoCard} cursor-pointer outline outline-4 grid grid-rows-a1a outline-blue-800 h-full text-white rounded px-2 py-[1px] ${bgColour} card__bg`}
+    <article
+      className={`grid card__bg ${bgColour} border-[0.5rem] bg-black border-card-border border-solid rounded-lg overflow-hidden h-fit w-full cursor-pointer`}
+      style={{ aspectRatio: '2 / 3' }}
+      onClick={() => openCardPage(cardData)}
     >
-      <div className='flex justify-between items-center text-sm my-1'>
-        <h2 className='text-white text-sm capitalize'>{cardData.cardName}</h2>
-      </div>
+      <div className='grid grid-rows-a1a p-[0.5px] h-full w-full overflow-hidden'>
+        {/* Name */}
+        <section className='grid h-fit'>
+          <div className='truncate'>
+            <h4 className='text-[1rem] font-medium'>{cardData.cardName}</h4>
+          </div>
+        </section>
 
-      <section className='grid grid-rows-2 h-full'>
-        <div className='mb-1 h-full outline outline-1 outline-black bg-white'>
-          <img className='h-full' src={cardData.imageUrl} alt='card' />
-        </div>
-
-        <section className='grid grid-rows-reg'>
-          <div className='flex justify-between text-sm outline outline-1 outline-black py-1 mt-1 px-[2px]'>
-            <p className='text-white capitalize'>{cardData.cardType}</p>
-            <div className='flex'>
+        {/* Image and data */}
+        <section className='grid grid-rows-[1.2fr_1fr] h-full overflow-hidden px-0.5'>
+          <div
+            className='grid h-full w-full overflow-hidden bg-green-200 border-black border-solid border-2'
+            style={{
+              backgroundImage: `url(${cardData.imageUrl})`,
+              backgroundSize: 'contain',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+            }}
+          ></div>
+          <section className='grid grid-rows-reg h-full w-full overflow-hidden'>
+            <div className='flex justify-between h-fit overflow-hidden text-sm lg:text-base px-1 pb-1'>
               <p className='text-white'>{PACK_TYPE_ICONS[cardData.packType]}</p>
               <p className='text-white'>{EDITION_ICONS[cardData.edition]}</p>
             </div>
-          </div>
-
-          <div className='py-1 px-[2px]'>{renderCardDetails()}</div>
+            <div className='grid w-full h-full overflow-hidden text-sm lg:text-sm font-medium py-[1px]'>
+              <div className='grid h-fit gap-2'>
+                {cardData.cardStats.map((stat, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className='grid grid-flow-col justify-between'
+                    >
+                      <div>{stat.statName}</div>
+                      <div>{stat.value}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
         </section>
-      </section>
-      <div className='flex justify-between text-ss'>
-        <p className='text-white'>{cardData.rarity}</p>
-        <p className='text-white'>{cardData.serialNumber}</p>
+
+        <section className='grid h-fit px-1'>
+          <div className='flex justify-between font-medium text-[0.6rem]'>
+            <p>{cardData.serialNumber}</p>
+            <p>{cardData.rarity}</p>
+          </div>
+        </section>
       </div>
-    </section>
+    </article>
   );
 }
 

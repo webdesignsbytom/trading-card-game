@@ -1,32 +1,19 @@
 import React, { useContext, useState, useEffect } from 'react';
 // Context
 import { CardContext } from '../../context/CardContext';
-import { UserContext } from '../../context/UserContext';
 // Components
-import Card2 from '../card/Card2';
+import Card from '../card/Card';
 import EmptyCardSlot from '../card/EmptyCardSlot';
-// Api
-import client from '../../api/client';
 
 function OpenedBoxDisplayComponent() {
   const { returnedOpenBox } = useContext(CardContext);
-  const { user } = useContext(UserContext);
 
   const [loading, setLoading] = useState(true);
   
-  console.log('returnedOpenBox xxxxx', returnedOpenBox);
-
   useEffect(() => {
     if (returnedOpenBox.length > 0) {
       setLoading(false);
-    }
-
-    // client
-    //   .delete(`/us${user.id}`)
-    //   .then((res) => {})
-    //   .catch((err) => {
-    //     console.error('Unable to delete user', err);
-    //   });
+    }console.log('');
   }, [returnedOpenBox]);
 
   const emptyArray = Array(128).fill(0);
@@ -48,7 +35,7 @@ function OpenedBoxDisplayComponent() {
           {loading
             ? emptyArray.map((_, index) => <EmptyCardSlot key={index} />)
             : returnedOpenBox.map((card, index) => (
-                <Card2 cardData={card} key={index} />
+                <Card cardData={card} key={index} />
               ))}
         </section>
       </div>

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 // Components
 import CardSearchAndSelectionContainer from '../search/CardSearchAndSelectionContainer';
-import Card2 from '../card/Card2';
+import Card from '../card/Card';
 // Context
 import { UserContext } from '../../context/UserContext';
 import { CardContext } from '../../context/CardContext';
@@ -19,7 +19,7 @@ function OpenAlbumPage() {
   }, []);
 
   const renderCards = (cards) => {
-    return cards.map((card, index) => <Card2 key={index} cardData={card} />);
+    return cards.map((card, index) => <Card key={index} cardData={card} />);
   };
 
   return (

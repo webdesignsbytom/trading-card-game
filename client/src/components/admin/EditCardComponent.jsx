@@ -1,7 +1,6 @@
 import React from 'react';
 // Components
 import Card from '../card/Card';
-import Card2 from '../card/Card2';
 
 function EditCardComponent({ cardData, setSelectedCardData }) {
   return (
@@ -12,7 +11,7 @@ function EditCardComponent({ cardData, setSelectedCardData }) {
         </section>
         <section className='grid outline outline-2 outline-black rounded-xl p-2 bg-white main__bg h-full overflow-hidden'>
           <div className='p-4 overflow-hidden'>
-            <Card2 cardData={cardData} />
+            <Card cardData={cardData} />
           </div>
         </section>
       </section>

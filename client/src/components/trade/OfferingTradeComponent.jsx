@@ -1,7 +1,7 @@
 import React from 'react';
 // Components
 import CardTradeSelector from '../../utils/cards/CardTradeSelector';
-import Card2 from '../card/Card2';
+import Card from '../card/Card';
 
 function OfferingTradeComponent({ displayCard }) {
   
@@ -17,7 +17,7 @@ function OfferingTradeComponent({ displayCard }) {
           {/* Offered card */}
           <div>
             card
-            {/* <Card2 /> */}
+            {/* <Card /> */}
           </div>
           <div className='grid grid-rows-reg'>
             <div>

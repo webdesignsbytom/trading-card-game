@@ -5,7 +5,7 @@ import { TradingContext } from '../../context/TradingContext';
 // Utils
 import CardTradeSelector from '../../utils/cards/CardTradeSelector';
 // Components
-import Card2 from '../card/Card2';
+import Card from '../card/Card';
 
 function UserTradeComponent({
   handleChange,
@@ -42,7 +42,7 @@ function UserTradeComponent({
         </div>
 
         <div className='grid pt-1'>
-          <Card2 cardData={userCardToTrade} />
+          <Card cardData={userCardToTrade} />
         </div>
       </section>
 

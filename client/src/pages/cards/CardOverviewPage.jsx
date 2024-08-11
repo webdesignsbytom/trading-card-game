@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 // Components
 import Navbar from '../../components/nav/Navbar';
-import Card2 from '../../components/card/Card2';
+import Card from '../../components/card/Card';
 import CardDataCard from '../../components/card/CardDataCard';
 
 function CardOverviewPage() {
@@ -30,7 +30,7 @@ function CardOverviewPage() {
             <section className='grid h-full lg:grid-cols-2 py-2 px-2 gap-4 md:overflow-hidden'>
               <section className='grid h-full w-full overflow-hidden'>
                 <div className='grid w-fit mx-auto my-auto'>
-                  <Card2 cardData={cardData} />
+                  <Card cardData={cardData} />
                 </div>
               </section>
               {/* Data */}

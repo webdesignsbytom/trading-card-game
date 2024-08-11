@@ -1,5 +1,5 @@
 import React from 'react';
-import Card2 from '../card/Card2';
+import Card from '../card/Card';
 
 function RewardCollectedModal({ closeCollectReward, cardData, rewardDataType }) {
   return (
@@ -11,7 +11,7 @@ function RewardCollectedModal({ closeCollectReward, cardData, rewardDataType }) 
           </div>
           <div className='grid w-full mx-auto items-center justify-center p-2'>
             <div className='grid items-center justify-center mx-auto w-1/2'>
-              {rewardDataType === 'card' && <Card2 cardData={cardData} />}
+              {rewardDataType === 'card' && <Card cardData={cardData} />}
             </div>
           </div>
           <div className='grid text-center items-center justify-center capitalize'>

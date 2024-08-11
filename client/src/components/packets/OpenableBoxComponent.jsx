@@ -17,7 +17,6 @@ import LoadingSpinner from '../utils/LoadingSpinner';
 
 function OpenableBoxComponent({ box }) {
   const { toggleOpeningNewBox, isOpening } = useContext(CardContext);
-  console.log('isOpening', isOpening);
   const openBox = (box) => {
     toggleOpeningNewBox(box);
   };
