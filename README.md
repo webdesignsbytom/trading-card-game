@@ -7,7 +7,6 @@ Live Link [MonCards](https://mon-cards.netlify.app/)
 This game has all the classic features of a card collecting game including,
 Collecting Album, Holographic cards, Rariry levels, Trading functions, Basic battles, Daily rewards and Shop.
 
-
 ## Table of contents
 
 - [MonCards - Trading Card Game](#moncards---trading-card-game)
@@ -32,7 +31,6 @@ The Trading Card Game is a sticker book and card collecting game inspired by Pok
   <div><img src="./assets/images/battle_screen.png" alt="Battle Screen" style="width: 100%;"/></div>
   <div><img src="./assets/images/rewards_page.png" alt="Battle Screen" style="width: 100%;"/></div>
 </div>
-
 
 ## Features
 
@@ -59,6 +57,7 @@ The Trading Card Game is a sticker book and card collecting game inspired by Pok
 - Express
 - Prisma
 - JavaScript
+- Docker
 
 ## Cards
 
