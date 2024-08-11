@@ -18,6 +18,7 @@ function CreateTradeComponent({
   notFoundUser,
   searchForUser,
   displayCard,
+  userCardToTrade
 }) {
   const { user } = useContext(UserContext);
 
@@ -31,6 +32,7 @@ function CreateTradeComponent({
           notFoundUser={notFoundUser}
           searchForUser={searchForUser}
           handleChangeCard={handleChangeCard}
+          userCardToTrade={userCardToTrade}
         />
 
         {/* select card to trade */}

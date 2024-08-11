@@ -70,6 +70,7 @@ const CardContextProvider = ({ children }) => {
         toggleOpeningNewPack,
         setReturnedOpenPack,
         returnedOpenPack,
+        allCardsMasterCopy,
       }}
     >
       {children}

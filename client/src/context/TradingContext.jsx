@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 // Api
 import client from '../api/client';
@@ -10,31 +10,38 @@ export const TradingContext = React.createContext();
 
 const TradingContextProvider = ({ children }) => {
   const { user } = useContext(UserContext);
-  // Trading
-  const [gridColSettings, setGridColSettings] = useState('grid-cols-2x gap-4');
-  const [tradeItemOpen, setTradeItemOpen] = useState(false);
+
   const [selectedTradeItem, setSelectedTradeItem] = useState({});
+  const [tradeTypeSelected, setTradeTypeSelected] = useState(null);
 
-  const openTradeItem = (trade) => {
-    setSelectedTradeItem(trade);
-    setTradeItemOpen(true);
-    setGridColSettings('grid-cols-2x gap-4')
-  };
+  // Create trade
+  const [userCardToTrade, setUserCardToTrade] = useState(false);
+  const [userTradeCardId, setUserTradeCardId] = useState(false);
+  const [createdTrade, setCreatedTrade] = useState({
+    createdById: user.id,
+    tradingCardId: userTradeCardId || null,
+  });
 
-  const closeTradeItem = () => {
-    setTradeItemOpen(false);
-  };
+  useEffect(() => {
+    setCreatedTrade({
+      createdById: user.id,
+      tradingCardId: userTradeCardId,
+    });
+  }, [userTradeCardId]);
+
+  console.log('createdTrade', createdTrade);
 
   return (
     <TradingContext.Provider
       value={{
-        openTradeItem,
-        closeTradeItem,
         selectedTradeItem,
-        tradeItemOpen,
-        gridColSettings,
         setSelectedTradeItem,
-        setGridColSettings,
+        tradeTypeSelected,
+        setTradeTypeSelected,
+        userCardToTrade,
+        setUserCardToTrade,
+        userTradeCardId,
+        setUserTradeCardId,
       }}
     >
       {children}

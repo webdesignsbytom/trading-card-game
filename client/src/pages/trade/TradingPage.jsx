@@ -4,29 +4,37 @@ import Navbar from '../../components/nav/Navbar';
 import CreateTradeComponent from '../../components/trade/CreateTradeComponent';
 import OpenRequestsListComponent from '../../components/trade/OpenRequestsListComponent';
 import OpenTradeComponent from '../../components/trade/OpenTradeComponent';
+import TradingPageHeader from '../../components/trade/TradingPageHeader';
 // Context
 import { UserContext } from '../../context/UserContext';
 import { TradingContext } from '../../context/TradingContext';
+import { CardContext } from '../../context/CardContext';
+import { ToggleContext } from '../../context/ToggleContext';
 // API
 import client from '../../api/client';
-import { ToggleContext } from '../../context/ToggleContext';
-import TradingPageHeader from '../../components/trade/TradingPageHeader';
+// Constants
+import { TRADING_PAGE_URL } from '../../utils/Constants';
 
 function TradingPage() {
   const { user } = useContext(UserContext);
   const { setActiveNav } = useContext(ToggleContext);
-  const { tradeItemOpen } = useContext(TradingContext);
+  const {
+    userCardToTrade,
+    setUserCardToTrade,
+    userTradeCardId,
+    setUserTradeCardId,
+  } = useContext(TradingContext);
+  const { allCardsMasterCopy } = useContext(CardContext);
 
   const [searchQuery, setSearchQuery] = useState({ username: '' });
   const [notFoundUser, setNotFoundUser] = useState(false);
   const [tradingPartner, setTradingPartner] = useState({});
   const [displayCard, setDisplayCard] = useState({});
-  const [userCardToTrade, setUserCardToTrade] = useState(false);
   const [openTradeComponentSelected, setOpenTradeComponentSelected] =
     useState(false);
 
   useEffect(() => {
-    setActiveNav('/trading');
+    setActiveNav(TRADING_PAGE_URL);
   }, []);
 
   const handleChange = (event) => {
@@ -58,9 +66,25 @@ function TradingPage() {
       });
   };
 
+  console.log('allCardsMasterCopy', allCardsMasterCopy);
+  console.log('userCardToTrade', userCardToTrade);
+
   const handleChangeCard = (event) => {
-    console.log('CARD', event);
-    // allCardsMasterCopy
+    const selectedCard = JSON.parse(event.target.value);
+
+    console.log('Selected Card Name:', selectedCard.cardName);
+    console.log('Selected Card Id:', selectedCard.id);
+
+    // Find the card in the master list
+    const foundCard = allCardsMasterCopy.find(
+      (card) => card.cardName === selectedCard.cardName
+    );
+
+    console.log('Found Card:', foundCard);
+
+    // // Set the found card as the userCardToTrade
+    setUserCardToTrade(foundCard || null); // If no card is found, set it to null
+    setUserTradeCardId(selectedCard.id); // set id of your card instance
   };
 
   const toggleOpenTrades = () => {
@@ -87,7 +111,7 @@ function TradingPage() {
 
           <section className='grid w-full h-full overflow-hidden'>
             <section className='grid  w-full overflow-hidden'>
-              {!openTradeComponentSelected && !tradeItemOpen && (
+              {!openTradeComponentSelected && (
                 <CreateTradeComponent
                   handleChange={handleChange}
                   tradingPartner={tradingPartner}
@@ -96,6 +120,7 @@ function TradingPage() {
                   notFoundUser={notFoundUser}
                   searchForUser={searchForUser}
                   displayCard={displayCard}
+                  userCardToTrade={userCardToTrade}
                 />
               )}
             </section>

@@ -4,7 +4,6 @@ import { UserContext } from '../../context/UserContext';
 
 function CardTradeSelector({ handleChange }) {
   const { user } = useContext(UserContext);
-console.log('user?.cards', user.cards);
   return (
     <>
       <select
@@ -18,7 +17,7 @@ console.log('user?.cards', user.cards);
 
         {user?.cards?.map((card, index) => {
           return (
-            <option key={index} value={card.cardName}>
+            <option key={index} value={JSON.stringify(card)}>
               {card.cardName}
             </option>
           );
