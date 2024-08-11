@@ -15,7 +15,7 @@ function UserTradeComponent({
   userCardToTrade,
 }) {
   const { user } = useContext(UserContext);
-  const { tradeTypeSelected, setTradeTypeSelected } = useContext(TradingContext);
+  const { tradeTypeSelected, setTradeTypeSelected, createNewOpenTrade } = useContext(TradingContext);
   
   return (
     <section className='grid w-full h-full lg:grid-cols-3 gap-2 overflow-hidden bg-yellow-500'>
@@ -96,39 +96,17 @@ function UserTradeComponent({
         ) : tradeTypeSelected === 'open' ? (
           <section className='grid h-full items-center'>
             <div className='text-center flex-wrap'>
-              <p>Enter the user name of </p>
-              <p className=''>who you wish to trade with</p>
-            </div>
-            <div className='grid items-center justify-center py-1 px-2'>
-              <input
-                onChange={handleChange}
-                className='rounded px-1 py-1'
-                type='text'
-                name='searchUsername'
-                id='searchUsername'
-                placeholder='Search username...'
-                required
-              />
+              <p>Select a card to trade and place it on the open market to see what offers you can get.</p>
             </div>
 
-            {/* Error message */}
-            {notFoundUser && (
-              <section className=''>
-                <div className='text-center bg-white nav__bg outline outline-4 outline-black rounded p-2'>
-                  <p className='text-red-600 font-semibold text-xl'>
-                    User Not Found!
-                  </p>
-                </div>
-              </section>
-            )}
 
             <div className='grid'>
               <button
-                onClick={searchForUser}
+                onClick={createNewOpenTrade}
                 className='border-2 border-main-border border-solid bg-main-colour hover:bg-blue-800 active:scale-95 main__bg no__highlights  py-2 px-4 my-2 rounded-xl'
                 type='submit'
               >
-                <span className='text-xl font-semibold'>Find User</span>
+                <span className='text-xl font-semibold'>Create Trade</span>
               </button>
             </div>
           </section>

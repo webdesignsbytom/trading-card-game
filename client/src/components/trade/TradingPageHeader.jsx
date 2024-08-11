@@ -3,7 +3,7 @@ import React from 'react';
 function TradingPageHeader({
   goToUpdatedTrade,
   toggleOpenTrades,
-  toggleOpenCreateTrade,
+  openMyTradesComponent,
 }) {
   return (
     <section className='grid lg:grid-cols-2 h-fit'>
@@ -16,26 +16,18 @@ function TradingPageHeader({
         <div className='grid h-fit bg-nav-colour font-semibold w-fit main__bg border-4 border-main-border border-solid px-4 py-1 rounded-lg grid-flow-col gap-2 lg:gap-4'>
           <div className=''>
             <button
-              onClick={goToUpdatedTrade}
-              className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-1 px-1 w-full lg:py-2 lg:px-4 rounded-xl border-4 border-main-border border-solid'
-            >
-              Updates
-            </button>
-          </div>
-          <div className=''>
-            <button
               onClick={toggleOpenTrades}
-              className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-1 px-1 w-full lg:py-2 lg:px-4 rounded-xl border-4 border-main-border border-solid'
+              className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-1 px-1 w-full lg:py-1.5 lg:px-4 rounded-xl border-4 border-main-border border-solid font-poppins text-lg'
             >
               Open Trades
             </button>
           </div>
           <div>
             <button
-              onClick={toggleOpenCreateTrade}
-              className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-1 px-1 w-full lg:py-2 lg:px-4 rounded-xl border-4 border-main-border border-solid'
+              onClick={openMyTradesComponent}
+              className='bg-blue-600 hover:bg-blue-800 active:scale-95 main__bg no__highlights py-1 px-1 w-full lg:py-1.5 lg:px-4 rounded-xl border-4 border-main-border border-solid font-poppins text-lg'
             >
-              Create
+              Create Trade
             </button>
           </div>
         </div>

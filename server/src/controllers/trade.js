@@ -1,5 +1,6 @@
 import {
   BadRequestEvent,
+  MissingFieldEvent,
   NotFoundEvent,
   ServerErrorEvent,
 } from '../event/utils/errorUtils.js';
@@ -9,9 +10,9 @@ import {
   sendMessageResponse,
 } from '../utils/responses.js';
 import { myEmitterErrors } from '../event/errorEvents.js';
-import { findCardInstanceById } from '../domain/cards.js';
+import { findCardInstanceById, setCardTradingState } from '../domain/cards.js';
 import {
-  createTradeRecordRequest,
+  createOpenTradeRecord,
   deleteTradeById,
   findTradeById,
   findAllUserTradeRecords,
@@ -22,7 +23,7 @@ import {
 export const getAllTrades = async (req, res) => {
   try {
     const foundTrades = await findAllTrades();
-
+    console.log('found all trade records', foundTrades);
     if (!foundTrades) {
       const notFound = new NotFoundEvent(
         req.user,
@@ -37,7 +38,10 @@ export const getAllTrades = async (req, res) => {
     return sendDataResponse(res, 200, { trades: foundTrades });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get all trades failed: ${err.message}`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Get all trades failed: ${err.message}`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -63,20 +67,31 @@ export const getAllUserTrades = async (req, res) => {
     return sendDataResponse(res, 200, { trades: foundTrades });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get all user trades failed: ${err.message}`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Get all user trades failed: ${err.message}`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
   }
 };
 // add a bank account
-export const createTradeCardWithUser = async (req, res) => {
-  const { createdById, creatorCardInstanceId, receivedById } = req.body;
+export const createOpenTradeHandler = async (req, res) => {
+  const { createdById, tradingCardId, cardName, cardId, creatorUsername } = req.body;
 
   try {
-    const foundCreatorInstanceCard = await findCardInstanceById(
-      creatorCardInstanceId
-    );
+    if (!createdById || !tradingCardId || !cardName || !cardId || !creatorUsername) {
+      //
+      const missingField = new MissingFieldEvent(
+        null,
+        'Trade creation: Missing Field/s event'
+      );
+      myEmitterErrors.emit('error', missingField);
+      return sendMessageResponse(res, missingField.code, missingField.message);
+    }
+
+    const foundCreatorInstanceCard = await findCardInstanceById(tradingCardId);
 
     if (!foundCreatorInstanceCard) {
       const notFound = new NotFoundEvent(
@@ -88,29 +103,41 @@ export const createTradeCardWithUser = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    const createdTradeRecord = await createTradeRecordRequest(
+    const createdTradeRecord = await createOpenTradeRecord(
       createdById,
-      creatorCardInstanceId,
-      receivedById,
-      foundCreatorInstanceCard.cardId,
-      foundCreatorInstanceCard.name
+      tradingCardId,
+      cardName,
+      cardId,
+      creatorUsername
     );
 
-
     if (!createdTradeRecord) {
-      const notFound = new BadRequestEvent(
+      const badRequest = new BadRequestEvent(
         req.user,
         EVENT_MESSAGES.badRequest,
         EVENT_MESSAGES.createTradeFail
       );
-      myEmitterErrors.emit('error', notFound);
-      return sendMessageResponse(res, notFound.code, notFound.message);
+      myEmitterErrors.emit('error', badRequest);
+      return sendMessageResponse(res, badRequest.code, badRequest.message);
     }
 
-    return sendDataResponse(res, 201, { createTrade: createdTradeRecord });
+    const cardUpdated = await setCardTradingState(tradingCardId, true);
+    if (!cardUpdated) {
+      const badRequest = new BadRequestEvent(
+        req.user,
+        EVENT_MESSAGES.badRequest,
+        EVENT_MESSAGES.createTradeFail
+      );
+      myEmitterErrors.emit('error', badRequest);
+      return sendMessageResponse(res, badRequest.code, badRequest.message);
+    }
+
+    return sendDataResponse(res, 201, {
+      createdTradeRecord: createdTradeRecord,
+    });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Create trade failed`);
+    const serverError = new ServerErrorEvent(req.user, `Create new open trade failed`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -139,7 +166,10 @@ export const deleteOpenTrade = async (req, res) => {
     return sendDataResponse(res, 201, { deletedTrade: deletedTrade });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Delete open trade failed`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Delete open trade failed`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;

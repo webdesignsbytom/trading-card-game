@@ -1,19 +1,19 @@
 import dbClient from '../utils/dbClient.js';
 
-export const createTradeRecordRequest = (
+export const createOpenTradeRecord = (
   createdById,
-  creatorCardInstanceId,
-  receivedById,
-  creatorCardId,
-  creatorCardName
+  tradingCardId,
+  cardName,
+  cardId,
+  creatorUsername
 ) =>
-  dbClient.tradeRecord.create({
+  dbClient.trade.create({
     data: {
       createdById: createdById,
-      creatorCardInstanceId: creatorCardInstanceId,
-      receivedById: receivedById,
-      creatorCardId: creatorCardId,
-      creatorCardName: creatorCardName,
+      tradingCardId: tradingCardId,
+      cardName: cardName,
+      cardId: cardId,
+      creatorUsername: creatorUsername
     },
   });
 
@@ -28,7 +28,7 @@ export const tradeCardInstance = (cardInstanceId, userId) =>
   });
 
 export const findAllTrades = (tradeId) =>
-  dbClient.tradeRecord.findMany({
+  dbClient.trade.findMany({
     orderBy: {
       createdAt: 'desc',
     },

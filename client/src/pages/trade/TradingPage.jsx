@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Navbar from '../../components/nav/Navbar';
 import CreateTradeComponent from '../../components/trade/CreateTradeComponent';
 import OpenRequestsListComponent from '../../components/trade/OpenRequestsListComponent';
-import OpenTradeComponent from '../../components/trade/OpenTradeComponent';
+import OpenTradesComponent from '../../components/trade/OpenTradesComponent';
 import TradingPageHeader from '../../components/trade/TradingPageHeader';
 // Context
 import { UserContext } from '../../context/UserContext';
@@ -14,6 +14,9 @@ import { ToggleContext } from '../../context/ToggleContext';
 import client from '../../api/client';
 // Constants
 import { TRADING_PAGE_URL } from '../../utils/Constants';
+import CardTradeSelector from '../../utils/cards/CardTradeSelector';
+// Images
+import TradingImage from '../../assets/images/backgrounds/trading_card_monster_cards_user_trade.png';
 
 function TradingPage() {
   const { user } = useContext(UserContext);
@@ -30,12 +33,20 @@ function TradingPage() {
   const [notFoundUser, setNotFoundUser] = useState(false);
   const [tradingPartner, setTradingPartner] = useState({});
   const [displayCard, setDisplayCard] = useState({});
-  const [openTradeComponentSelected, setOpenTradeComponentSelected] =
+  const [OpenTradesComponentSelected, setOpenTradesComponentSelected] =
     useState(false);
+
+  const [tradingDispayComponent, setTradingDispayComponent] = useState(null);
 
   useEffect(() => {
     setActiveNav(TRADING_PAGE_URL);
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => { 
+      setTradingDispayComponent('my_trades')
+    }, 1500);
+  }, [])
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -66,33 +77,26 @@ function TradingPage() {
       });
   };
 
-  console.log('allCardsMasterCopy', allCardsMasterCopy);
   console.log('userCardToTrade', userCardToTrade);
 
   const handleChangeCard = (event) => {
     const selectedCard = JSON.parse(event.target.value);
 
-    console.log('Selected Card Name:', selectedCard.cardName);
-    console.log('Selected Card Id:', selectedCard.id);
-
     // Find the card in the master list
     const foundCard = allCardsMasterCopy.find(
       (card) => card.cardName === selectedCard.cardName
     );
-
-    console.log('Found Card:', foundCard);
-
     // // Set the found card as the userCardToTrade
     setUserCardToTrade(foundCard || null); // If no card is found, set it to null
     setUserTradeCardId(selectedCard.id); // set id of your card instance
   };
 
   const toggleOpenTrades = () => {
-    setOpenTradeComponentSelected(true);
+    setTradingDispayComponent('open');
   };
 
-  const toggleOpenCreateTrade = () => {
-    setOpenTradeComponentSelected(false);
+  const openMyTradesComponent = () => {
+    setTradingDispayComponent('my_trades');
   };
 
   const goToUpdatedTrade = () => {};
@@ -106,12 +110,12 @@ function TradingPage() {
           <TradingPageHeader
             goToUpdatedTrade={goToUpdatedTrade}
             toggleOpenTrades={toggleOpenTrades}
-            toggleOpenCreateTrade={toggleOpenCreateTrade}
+            openMyTradesComponent={openMyTradesComponent}
           />
 
-          <section className='grid w-full h-full overflow-hidden'>
-            <section className='grid  w-full overflow-hidden'>
-              {!openTradeComponentSelected && (
+          <section className='grid bg-red-500 grid-cols-rev gap-2 w-full h-full overflow-hidden'>
+            {tradingDispayComponent === 'my_trades' ? (
+              <section className='grid w-full overflow-hidden'>
                 <CreateTradeComponent
                   handleChange={handleChange}
                   tradingPartner={tradingPartner}
@@ -122,8 +126,21 @@ function TradingPage() {
                   displayCard={displayCard}
                   userCardToTrade={userCardToTrade}
                 />
-              )}
-            </section>
+              </section>
+            ) : tradingDispayComponent === 'open' ? (
+              <OpenTradesComponent />
+            ) : null}
+
+            {/* Banner section */}
+            <section
+              className='hiddem lg:grid border-4 border-main-border border-solid rounded-xl p-2 min-w-[300px]'
+              style={{
+                backgroundImage: `url(${TradingImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+              }}
+            ></section>
           </section>
         </main>
       </section>

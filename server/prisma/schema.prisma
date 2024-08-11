@@ -79,6 +79,11 @@ model Trade {
   tradingCardId String       @unique // Relation to multiple offers
   offers        TradeOffer[]
 
+  cardId Int
+  cardName String
+
+  creatorUsername String @default("")
+
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 }
@@ -315,23 +320,24 @@ model Card {
 }
 
 model CardInstance {
-  id        String       @id @default(uuid())
-  cardName  String       @default("")
-  userId    String?
-  user      User?        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  cardId    Int
-  card      Card         @relation(fields: [cardId], references: [id], onDelete: Cascade)
-  packId    String?
-  pack      Pack?        @relation(fields: [packId], references: [id], onDelete: Cascade)
-  deckId    String?
-  deck      Deck?        @relation(fields: [deckId], references: [id], onDelete: Cascade)
-  boxId     String?
-  box       Box?         @relation(fields: [boxId], references: [id], onDelete: Cascade)
+  id            String       @id @default(uuid())
+  cardName      String       @default("")
+  userId        String?
+  user          User?        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cardId        Int
+  card          Card         @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  packId        String?
+  pack          Pack?        @relation(fields: [packId], references: [id], onDelete: Cascade)
+  deckId        String?
+  deck          Deck?        @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  boxId         String?
+  box           Box?         @relation(fields: [boxId], references: [id], onDelete: Cascade)
   // Back-relation to TradeOffer model for CardOffers
-  offers    TradeOffer[] @relation("CardOffers")
-  trade     Trade?       @relation("TradingCard")
-  createdAt DateTime     @default(now())
-  updatedAt DateTime?    @updatedAt
+  offers        TradeOffer[] @relation("CardOffers")
+  trade         Trade?       @relation("TradingCard")
+  isBeingTraded Boolean      @default(false)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime?    @updatedAt
 }
 
 model CardStat {

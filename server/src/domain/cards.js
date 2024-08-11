@@ -6,7 +6,7 @@ export const findAllCards = () =>
       createdAt: 'asc',
     },
     include: {
-      cardStats: true,  
+      cardStats: true,
     },
   });
 
@@ -30,7 +30,7 @@ export const findCardById = (id) =>
       id: id,
     },
     include: {
-      cardStats: true,  
+      cardStats: true,
     },
   });
 
@@ -47,7 +47,7 @@ export const findCardByName = (cardName) =>
       cardName: cardName,
     },
     include: {
-      cardStats: true,  
+      cardStats: true,
     },
   });
 
@@ -66,7 +66,7 @@ export const findAllCardsFromPack = (packType) =>
       packType: packType,
     },
     include: {
-      cardStats: true,  
+      cardStats: true,
     },
     orderBy: {
       createdAt: 'desc',
@@ -79,7 +79,7 @@ export const findCardsByCardType = (cardType) =>
       cardType: cardType,
     },
     include: {
-      cardStats: true,  
+      cardStats: true,
     },
   });
 
@@ -119,7 +119,7 @@ export const findAllCardsAvailableToBuy = () =>
       isAvailable: true,
     },
     include: {
-      cardStats: true,  
+      cardStats: true,
     },
     orderBy: {
       createdAt: 'desc',
@@ -149,6 +149,16 @@ export const createManyNewInstanceForPack = (cardArray) =>
     data: cardArray,
   });
 
+export const setCardTradingState = (instanceId, value) =>
+  dbClient.cardInstance.update({
+    where: {
+      id: instanceId,
+    },
+    data: {
+      isBeingTraded: value,
+    },
+  });
+
 export const setCardFromPackToUser = (instanceId, userId) =>
   dbClient.cardInstance.update({
     where: {
@@ -156,7 +166,7 @@ export const setCardFromPackToUser = (instanceId, userId) =>
     },
     data: {
       userId: userId,
-      packId: null
+      packId: null,
     },
   });
 
@@ -216,11 +226,24 @@ export const createMemberCardFromJSON = (
     },
   });
 export const updateMemberCardById = (
-  cardId, serialNumber, cardName, edition, rarity, holographic, editable, imageUrl, backgroundColour, availability, memberName, health, attack, cardStat
+  cardId,
+  serialNumber,
+  cardName,
+  edition,
+  rarity,
+  holographic,
+  editable,
+  imageUrl,
+  backgroundColour,
+  availability,
+  memberName,
+  health,
+  attack,
+  cardStat
 ) =>
   dbClient.card.update({
     where: {
-      id: cardId
+      id: cardId,
     },
     data: {
       serialNumber: serialNumber,
@@ -237,13 +260,13 @@ export const updateMemberCardById = (
           memberName: memberName,
           health: health,
           attack: attack,
-          cardStat: cardStat
+          cardStat: cardStat,
         },
       },
     },
     include: {
-      memberCard: true
-    }
+      memberCard: true,
+    },
   });
 
 export const createPolicyCard = (
@@ -266,9 +289,7 @@ export const createPolicyCard = (
       packType: packType,
       cardType: cardType,
       policyCard: {
-        create: {
-
-        },
+        create: {},
       },
     },
   });
@@ -293,9 +314,7 @@ export const createPartyCard = (
       packType: packType,
       cardType: cardType,
       partyCard: {
-        create: {
-
-        },
+        create: {},
       },
     },
   });
