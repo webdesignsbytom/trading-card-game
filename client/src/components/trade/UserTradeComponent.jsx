@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 // Context
 import { UserContext } from '../../context/UserContext';
 import { TradingContext } from '../../context/TradingContext';

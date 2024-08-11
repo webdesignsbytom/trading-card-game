@@ -1,29 +1,18 @@
 import React, { useContext, useState, useEffect } from 'react';
 // Context
 import { CardContext } from '../../context/CardContext';
-import { UserContext } from '../../context/UserContext';
 // Components
 import Card from '../card/Card';
 import EmptyCardSlot from '../card/EmptyCardSlot';
-// Api
-import client from '../../api/client';
 
 function OpenedPacketDisplayComponent() {
   const { returnedOpenPack } = useContext(CardContext);
-  const { user } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (returnedOpenPack.length > 0) {
       setLoading(false);
     }
-
-    // client
-    //   .delete(`/us${user.id}`)
-    //   .then((res) => {})
-    //   .catch((err) => {
-    //     console.error('Unable to delete user', err);
-    //   });
   }, [returnedOpenPack]);
 
   const emptyArray = Array(12).fill(0);

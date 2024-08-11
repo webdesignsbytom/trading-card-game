@@ -1,7 +1,6 @@
 import React from 'react';
 // Components
 import CardTradeSelector from '../../utils/cards/CardTradeSelector';
-import Card from '../card/Card';
 
 function OfferingTradeComponent({ displayCard }) {
   
