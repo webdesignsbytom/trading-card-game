@@ -7,11 +7,11 @@ import {
   NotFoundEvent,
   ServerErrorEvent,
 } from '../event/utils/errorUtils.js';
-import { addCardInstanceToDeck, createNewDeck, deleteDeckById, findAllDecks, findAllUserDecks, findDeckById, updateNewDeck } from '../domain/decks.js';
+import { addCardInstanceToDeck, createNewDeck, deleteDeckHandlerById, findAllDecks, findAllUserDecks, findDeckById, updateNewDeck } from '../domain/decks.js';
 import { findUserById } from '../domain/users.js';
 import { findCardById } from '../domain/cards.js';
 
-export const getAllDecks = async (req, res) => {
+export const getAllDecksHandler = async (req, res) => {
 
   try {
     const foundDecks = await findAllDecks();
@@ -37,8 +37,14 @@ export const getAllDecks = async (req, res) => {
 };
 
 // Get deck by id
-export const getDeckById = async (req, res) => {
+export const getDeckByIdHandler = async (req, res) => {
   const { deckId } = req.params
+
+  if (!deckId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing deckId',
+    });
+  }
 
   try {
     const foundDeck = await findDeckById(deckId);
@@ -63,9 +69,15 @@ export const getDeckById = async (req, res) => {
   }
 };
 
-// Get getAllDisplayCardsFromDeck
-export const getAllDisplayCardsFromDeck = async (req, res) => {
+// Get getAllDisplayCardsFromDeckHandler
+export const getAllDisplayCardsFromDeckHandler = async (req, res) => {
   const { deckId } = req.params
+
+  if (!deckId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing deckId',
+    });
+  }
 
   try {
     const foundDeck = await findDeckById(deckId);
@@ -97,9 +109,15 @@ export const getAllDisplayCardsFromDeck = async (req, res) => {
   }
 };
 
-// Get getAllDecksByUserId
-export const getAllDecksByUserId = async (req, res) => {
+// Get getAllUserDecksHandler
+export const getAllUserDecksHandler = async (req, res) => {
   const { userId } = req.params;
+
+  if (!userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId',
+    });
+  }
 
   try {
     const foundDecks = await findAllUserDecks(userId);
@@ -124,9 +142,15 @@ export const getAllDecksByUserId = async (req, res) => {
   }
 };
 
-// createDeck
-export const createDeck = async (req, res) => {
+// createDeckHandler
+export const createDeckHandler = async (req, res) => {
   const { deckName, userId } = req.body;
+
+  if (!userId || !deckName) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId or deckname.',
+    });
+  }
 
   try {
     const foundUser = await findUserById(userId);
@@ -134,7 +158,7 @@ export const createDeck = async (req, res) => {
       const notFound = new NotFoundEvent(
         req.user,
         EVENT_MESSAGES.notFound,
-        EVENT_MESSAGES.createDecksFail
+        EVENT_MESSAGES.createDeckHandlersFail
       );
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
@@ -145,16 +169,22 @@ export const createDeck = async (req, res) => {
     return sendDataResponse(res, 200, { deck: createdDeck });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Create new deck`);
+    const serverError = new ServerErrorEvent(req.user, `Create new deck failed`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
   }
 };
 
-// addCardsToDeck
-export const addCardsToDeck = async (req, res) => {
+// addCardsToDeckHandler
+export const addCardsToDeckHandler = async (req, res) => {
   const { deckId, userId, cardInstancesArray } = req.body;
+
+  if (!userId || !cardInstancesArray || !deckId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing data in request',
+    });
+  }
 
   try {
     const foundUser = await findUserById(userId);
@@ -199,8 +229,14 @@ export const addCardsToDeck = async (req, res) => {
 };
 
 // delete deck
-export const deleteDeck = async (req, res) => {
-  const deckId = req.params.deckId;
+export const deleteDeckHandler = async (req, res) => {
+  const { deckId } = req.params;
+
+  if (!deckId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing deckId',
+    });
+  }
 
   try {
     const foundDeck = await findDeckById(deckId);
@@ -215,7 +251,7 @@ export const deleteDeck = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    const deletedDeck = await deleteDeckById(deckId);
+    const deletedDeck = await deleteDeckHandlerById(deckId);
     if (!deletedDeck) {
       const notDeleted = new BadRequestEvent(
         req.user,
@@ -229,7 +265,7 @@ export const deleteDeck = async (req, res) => {
     return sendDataResponse(res, 201, { deletedDeck: deletedDeck });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Delete deck`);
+    const serverError = new ServerErrorEvent(req.user, `Delete deck failed`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;

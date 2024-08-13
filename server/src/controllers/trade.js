@@ -20,7 +20,7 @@ import {
 } from '../domain/trade.js';
 
 // get all trade records
-export const getAllTrades = async (req, res) => {
+export const getAllTradesHandler = async (req, res) => {
   try {
     const foundTrades = await findAllTrades();
 
@@ -48,8 +48,14 @@ export const getAllTrades = async (req, res) => {
 };
 
 // get all user trades
-export const getAllUserTrades = async (req, res) => {
+export const getAllUserTradesHandler = async (req, res) => {
   const { userId } = req.params;
+
+  if (!userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId',
+    });
+  }
 
   try {
     const foundTrades = await findAllUserTradeRecords(userId);
@@ -144,9 +150,15 @@ export const createOpenTradeHandler = async (req, res) => {
 };
 
 // delete trade
-export const deleteOpenTrade = async (req, res) => {
+export const deleteOpenTradeHandler = async (req, res) => {
   const { tradeId } = req.params;
 
+  if (!tradeId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing tradeId',
+    });
+  }
+  
   try {
     const foundTrade = await findTradeById(tradeId);
 

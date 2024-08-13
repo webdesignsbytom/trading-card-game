@@ -69,7 +69,7 @@ export const EVENT_MESSAGES = {
   notFoundInstances: `Failed to find decks/s`,
   userDecksNotFound: `Failed to find user decks`,
   notFoundDeckType: `Cant find deck type`,
-  createDecksFail: `Failed to create decks`,
+  createDeckHandlersFail: `Failed to create decks`,
   markDecksViewedFailed: `Failed to mark decks as viewed`,
   deckNotDeleted: `Deck not deleted`,
   // Packs
@@ -87,6 +87,11 @@ export const EVENT_MESSAGES = {
   userReviewsNotFound: `Failed to find user reviews`,
   createReviewFail: `Failed to create review`,
   markReviewViewedFailed: `Failed to mark review as viewed`,
+  // Rewards
+  rewardsTag: `Reward database`,
+  notFoundReward: `Failed to find reward/s`,
+  createRewardFail: `Failed to claim reward`,
+  markRewardViewedFailed: `Failed to mark review as viewed`,
   // Trades
   tradesTag: `Trade database`,
   notFoundTrade: `Failed to find trade/s`,

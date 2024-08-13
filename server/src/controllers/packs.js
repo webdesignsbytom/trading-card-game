@@ -1,5 +1,5 @@
 import {
-  deletePackbyIdWhenOpened,
+  deletePackByIdHandlerWhenOpened,
   findAllPacks,
   findPackById,
 } from '../domain/packs.js';
@@ -33,7 +33,7 @@ import {
 import { chargePackToBankAccount } from '../domain/bank.js';
 
 // Get all packs of cards
-export const getAllPacks = async (req, res) => {
+export const getAllPacksHandler = async (req, res) => {
   try {
     const foundPacks = await findAllPacks();
 
@@ -59,8 +59,14 @@ export const getAllPacks = async (req, res) => {
 };
 
 // Get pack by ID
-export const getPackById = async (req, res) => {
+export const getPackByIdHandler = async (req, res) => {
   const { packId } = req.params;
+
+  if (!packId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing packId',
+    });
+  }
 
   try {
     const foundPack = await findPackById(packId);
@@ -85,8 +91,14 @@ export const getPackById = async (req, res) => {
 };
 
 // Create a new pack with no user
-export const createNewpack = async (req, res) => {
+export const createNewpackHandler = async (req, res) => {
   const { packType } = req.body;
+
+  if (!packType) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing packType',
+    });
+  }
 
   try {
     const createdPack = await createSinglePacksOfCards(packType);
@@ -128,8 +140,14 @@ export const createNewpack = async (req, res) => {
 };
 
 // Return new pack of any type with user id
-export const createPacksAndAddToUser = async (req, res) => {
+export const createPacksAndAddToUserHandler = async (req, res) => {
   const { packType, userId } = req.body;
+
+  if (!packType || !userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing packType or userId',
+    });
+  }
 
   try {
     const foundUser = await findUserById(userId);
@@ -142,6 +160,7 @@ export const createPacksAndAddToUser = async (req, res) => {
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
+    
     const createdPack = await createSinglePacksOfCardsForUser(packType, userId);
 
     const foundPack = await findPackById(createdPack.newPack.id);
@@ -172,7 +191,7 @@ export const createPacksAndAddToUser = async (req, res) => {
 };
 
 // BUY and Return new pack of any type with user id
-export const buyPackAndAddToUser = async (req, res) => {
+export const buyPacketAddToUserHandler = async (req, res) => {
   const { packType, userId, cost } = req.body;
 
   try {
@@ -231,8 +250,14 @@ export const buyPackAndAddToUser = async (req, res) => {
     throw err;
   }
 };
-export const buyBoxAndAddToUser = async (req, res) => {
+export const buyBoxPackAddToUserHandler = async (req, res) => {
   const { boxType, userId, cost } = req.body;
+
+  if (!userId || !boxType || !cost) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing fields in request',
+    });
+  }
 
   try {
     if (cost !== StandardBoxCost) {
@@ -278,8 +303,14 @@ export const buyBoxAndAddToUser = async (req, res) => {
   }
 };
 
-export const openPackAndAddToUser = async (req, res) => {
+export const openPacketHandler = async (req, res) => {
   const { packId, userId } = req.body;
+
+  if (!userId || !packId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId or packId',
+    });
+  }
 
   try {
     const foundPack = await findPackById(packId);
@@ -313,7 +344,7 @@ export const openPackAndAddToUser = async (req, res) => {
 
     const newCardArray = JSON.stringify(foundPack.cards);
 
-    const deletedPack = await deletePackbyIdWhenOpened(packId);
+    const deletedPack = await deletePackByIdHandlerWhenOpened(packId);
 
     const updatedUserCards = await updateUserCardArray(userId, newCardArray);
 
@@ -329,8 +360,15 @@ export const openPackAndAddToUser = async (req, res) => {
   }
 };
 
-export const deletePackById = async (req, res) => {
-  const packId = req.params.packId;
+export const deletePackByIdHandler = async (req, res) => {
+  const { packId } = req.params;
+
+  if (!packId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing packId',
+    });
+  }
+  
   try {
     const foundPacks = await findAllPacks();
 

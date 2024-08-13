@@ -210,7 +210,7 @@ export const createMemberCard = (
     },
   });
 
-export const createMemberCardFromJSON = (
+export const createNewCardCard = (
   serialNumber,
   cardName,
   edition,

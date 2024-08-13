@@ -1,6 +1,6 @@
 import client from '../api/client';
 
-export const deleteUserApiRequestNoReturn = (userData, setDeletedUserData) => {
+export const deleteUserHandlerApiRequestNoReturn = (userData, setDeletedUserData) => {
   client
     .delete(`/users/delete/${userData.id}`)
     .then((res) => {
@@ -11,7 +11,7 @@ export const deleteUserApiRequestNoReturn = (userData, setDeletedUserData) => {
     });
 };
 
-export const deleteUserApiRequest = (user, setAllUsersArray) => {
+export const deleteUserHandlerApiRequest = (user, setAllUsersArray) => {
   client
     .delete(`/users/delete/${user.id}`)
     .then((res) => {
@@ -22,7 +22,7 @@ export const deleteUserApiRequest = (user, setAllUsersArray) => {
     });
 };
 
-export const deleteEventApiRequest = (event, setAllEventsArray) => {
+export const deleteEventHandlerApiRequest = (event, setAllEventsArray) => {
   client
     .delete(`/events/delete/event/${event.id}`)
     .then((res) => {

@@ -46,7 +46,7 @@ function StartNewBattleComponent() {
     });
   };
 
-  const createBattleRequest = (event) => {
+  const createBattleRequestHandler = (event) => {
     event.preventDefault();
 
     const battleData = {
@@ -170,7 +170,7 @@ function StartNewBattleComponent() {
                       <FanstasyButton onClick={cancelRequest}>
                         <span className='text-red-600'>Cancel</span>
                       </FanstasyButton>
-                      <FanstasyButton onClick={createBattleRequest}>
+                      <FanstasyButton onClick={createBattleRequestHandler}>
                         Confirm
                       </FanstasyButton>
                     </div>

@@ -14,7 +14,7 @@ import {
   findResetRequest,
   findUserById,
   resetUserPassword,
-  deleteUserById,
+  deleteUserHandlerById,
   findUsersByRole,
   createNewsletterMembershipForNewMember,
   findUserByUsername,
@@ -52,7 +52,7 @@ import {
 } from '../domain/cards.js';
 import {
   deleteBoxbyIdWhenOpened,
-  deletePackbyIdWhenOpened,
+  deletePackByIdHandlerWhenOpened,
   findAllBoxesForUser,
   findAllPacksForUser,
   findBoxById,
@@ -64,7 +64,7 @@ import { collectLoginReward } from '../domain/rewards.js';
 // Password hash
 const hashRate = 8;
 
-export const getAllUsers = async (req, res) => {
+export const getAllUsersHandler = async (req, res) => {
   try {
     const foundUsers = await findAllUsers();
 
@@ -93,8 +93,14 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-export const getUserById = async (req, res) => {
+export const getUserByIdHandler = async (req, res) => {
   const { userId } = req.params;
+
+  if (!userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId',
+    });
+  }
 
   try {
     const foundUser = await findUserById(userId);
@@ -122,8 +128,14 @@ export const getUserById = async (req, res) => {
   }
 };
 
-export const getLoginUserData = async (req, res) => {
+export const getLoginUserDataHandler = async (req, res) => {
   const { userId } = req.params;
+
+  if (!userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId',
+    });
+  }
 
   try {
     const foundUser = await findUserByIdForLogin(userId);
@@ -151,8 +163,14 @@ export const getLoginUserData = async (req, res) => {
   }
 };
 
-export const getUserByEmail = async (req, res) => {
+export const getUserByEmailHandler = async (req, res) => {
   const { email } = req.params;
+
+  if (!email) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing email',
+    });
+  }
 
   const lowerCaseEmail = email.toLowerCase();
   try {
@@ -185,10 +203,17 @@ export const getUserByEmail = async (req, res) => {
   }
 };
 
-export const getUserByUsername = async (req, res) => {
+export const getUserByUsernameHandler = async (req, res) => {
   const { username } = req.params;
 
+  if (!username) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing username',
+    });
+  }
+
   const lowerCaseUsername = username.toLowerCase();
+
   try {
     const foundUser = await findUserByUsername(lowerCaseUsername);
 
@@ -219,8 +244,14 @@ export const getUserByUsername = async (req, res) => {
   }
 };
 
-export const findUserForBattle = async (req, res) => {
+export const findUserForBattleHandler = async (req, res) => {
   const { username } = req.params;
+
+  if (!username) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing username',
+    });
+  }
 
   const lowerCaseUsername = username.toLowerCase();
 
@@ -252,13 +283,19 @@ export const findUserForBattle = async (req, res) => {
   }
 };
 
-export const registerNewUser = async (req, res) => {
+export const registerNewUserHandler = async (req, res) => {
   const { email, password, username, country, agreedToTerms } = req.body;
 
   const lowerCaseEmail = email.toLowerCase();
 
   try {
-    if (!lowerCaseEmail || !password || !username) {
+    if (
+      !lowerCaseEmail ||
+      !password ||
+      !username ||
+      !country ||
+      !agreedToTerms
+    ) {
       //
       const missingField = new MissingFieldEvent(
         null,
@@ -350,8 +387,14 @@ export const registerNewUser = async (req, res) => {
   }
 };
 
-export const getAllCardsForUser = async (req, res) => {
+export const getAllCardsHandlerForUserHandler = async (req, res) => {
   const { userId } = req.params;
+
+  if (!userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId',
+    });
+  }
 
   try {
     const foundUser = await findUserById(userId);
@@ -389,8 +432,14 @@ export const getAllCardsForUser = async (req, res) => {
 };
 
 // get all packs for user
-export const getAllPacksForUser = async (req, res) => {
+export const getAllUserPackersHandler = async (req, res) => {
   const { userId } = req.params;
+
+  if (!userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId',
+    });
+  }
 
   try {
     const foundUser = await findUserById(userId);
@@ -419,9 +468,15 @@ export const getAllPacksForUser = async (req, res) => {
   }
 };
 
-export const getAllBoxesForUser = async (req, res) => {
-  console.log('getAllBoxesForUser');
+export const getAllUserBoxPackHandler = async (req, res) => {
+  console.log('getAllUserBoxPackHandler');
   const { userId } = req.params;
+
+  if (!userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId',
+    });
+  }
 
   try {
     const foundUser = await findUserById(userId);
@@ -436,13 +491,13 @@ export const getAllBoxesForUser = async (req, res) => {
     }
 
     const foundBoxes = await findAllBoxesForUser(userId);
-console.log('found', foundBoxes);
+
     return sendDataResponse(res, 200, { boxes: foundBoxes });
   } catch (err) {
     // Error
     const serverError = new ServerErrorEvent(
       req.user,
-      `Get all packs for user`
+      `Get all boxes for user`
     );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
@@ -451,8 +506,14 @@ console.log('found', foundBoxes);
 };
 
 // get all user card instances
-export const getAllUserCardInstances = async (req, res) => {
+export const getAllUserCardInstanceHandler = async (req, res) => {
   const { userId } = req.params;
+
+  if (!userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId',
+    });
+  }
 
   try {
     const foundUser = await findUserById(userId);
@@ -481,8 +542,14 @@ export const getAllUserCardInstances = async (req, res) => {
   }
 };
 
-export const openPackAndAddToUser = async (req, res) => {
+export const openPacketHandler = async (req, res) => {
   const { packId, userId } = req.body;
+
+  if (!userId || !packId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId or userId',
+    });
+  }
 
   try {
     const foundUser = await findUserById(userId);
@@ -506,6 +573,8 @@ export const openPackAndAddToUser = async (req, res) => {
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
+
+    // Emtpy card array
     let newCardsArray = [];
 
     for (let index = 0; index < foundPack.cards.length; index++) {
@@ -515,7 +584,8 @@ export const openPackAndAddToUser = async (req, res) => {
       newCardsArray.push(newCard);
     }
 
-    const deletedPack = await deletePackbyIdWhenOpened(packId);
+    // Delete pack once opened
+    const deletedPack = await deletePackByIdHandlerWhenOpened(packId);
     if (!deletedPack) {
       const badRequest = new BadRequestEvent(
         req.user,
@@ -554,9 +624,15 @@ export const openPackAndAddToUser = async (req, res) => {
   }
 };
 
-export const openBoxAndAddToUser = async (req, res) => {
-  console.log('openBoxAndAddToUser');
+export const openBoxPackHandler = async (req, res) => {
+  console.log('openBoxPackHandler');
   const { boxId, userId } = req.body;
+
+  if (!userId || !boxId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId or boxId',
+    });
+  }
 
   try {
     const foundUser = await findUserById(userId);
@@ -580,6 +656,8 @@ export const openBoxAndAddToUser = async (req, res) => {
       myEmitterErrors.emit('error', notFound);
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
+
+    // Empty card aray
     let newCardsArray = [];
 
     for (let index = 0; index < foundBox.cards.length; index++) {
@@ -589,6 +667,7 @@ export const openBoxAndAddToUser = async (req, res) => {
       newCardsArray.push(newCard);
     }
 
+    // Delete empty box once opened
     const deletedBox = await deleteBoxbyIdWhenOpened(boxId);
     if (!deletedBox) {
       const badRequest = new BadRequestEvent(
@@ -628,9 +707,21 @@ export const openBoxAndAddToUser = async (req, res) => {
   }
 };
 
-export const collectDailyReward = async (req, res) => {
+export const collectDailyRewardHandler = async (req, res) => {
   const { userId } = req.params;
   const { daysInARow } = req.body;
+
+  if (!userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId',
+    });
+  }
+
+  if (!daysInARow) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing daysInARow',
+    });
+  }
 
   try {
     const foundRecord = await findUserLoginRecord(userId);
@@ -649,6 +740,15 @@ export const collectDailyReward = async (req, res) => {
 
     // Create reward
     const loginReward = await collectLoginReward(daysInARow, userId);
+    if (!loginReward) {
+      const badRequest = new BadRequestEvent(
+        req.user,
+        EVENT_MESSAGES.badRequest,
+        EVENT_MESSAGES.createRewardFail
+      );
+      myEmitterErrors.emit('error', badRequest);
+      return sendMessageResponse(res, badRequest.code, badRequest.message);
+    }
 
     return sendDataResponse(res, 200, {
       reward: loginReward,
@@ -665,8 +765,14 @@ export const collectDailyReward = async (req, res) => {
   }
 };
 
-export const collectStarterPacks = async (req, res) => {
+export const collectStarterPacksHandler = async (req, res) => {
   const { userId } = req.params;
+
+  if (!userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId',
+    });
+  }
 
   try {
     const updatedRecord = await setStarterCardsToClaimed(userId);
@@ -699,7 +805,7 @@ export const collectStarterPacks = async (req, res) => {
     // Error
     const serverError = new ServerErrorEvent(
       req.user,
-      `Get daily reward failed`
+      `Get claim new user packs`
     );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
@@ -970,8 +1076,14 @@ export const collectStarterPacks = async (req, res) => {
 //   }
 // };
 
-export const deleteUser = async (req, res) => {
-  const userId = req.params.userId;
+export const deleteUserHandler = async (req, res) => {
+  const { userId } = req.params;
+
+  if (!userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId',
+    });
+  }
 
   try {
     const foundUser = await findUserById(userId);
@@ -985,7 +1097,7 @@ export const deleteUser = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    await deleteUserById(userId);
+    await deleteUserHandlerById(userId);
 
     const updatedUserArray = await findAllUsers();
 

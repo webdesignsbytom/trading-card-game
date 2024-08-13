@@ -1,39 +1,32 @@
 import { Router } from 'express';
 import {
-  getAllCards,
-  getAllCardsByType,
-  getAllCardsFromPackType,
-  buySingleRandomCard,
-  freeSingleRandomCard,
-  getAllCardInstances,
-  getCardInstanceById,
-  getCardById,
+  getAllCardsHandler,
+  getAllCardsByTypeHandler,
+  GetAllCardByPackHandler,
+  buySingleRandomCardHandler,
+  freeSingleRandomCardHandler,
+  getAllCardInstancesHandler,
+  getCardInstanceByIdHandler,
+  getCardByIdHandler,
   createNewMemberCards,
-  searchForCardsByName,
-  createNewPolicyCards,
-  createNewPartyCards,
-  updateCardDateById,
-  createNewMemberCardsFromJSON,
+  searchForCardsByNameHandler,
+  updateCardDateByIdHandler,
+  createNewCardsHandlerHandler,
 } from '../controllers/cards.js';
+import { validateAuthentication, validateDeveloperRole } from '../middleware/auth.js';
 
 const router = Router();
 
-router.get('/get-all-cards', getAllCards);
-router.get('/all-card-instances', getAllCardInstances);
-router.get('/pack/:packType', getAllCardsFromPackType);
-router.get('/card/get-by-id/:cardId', getCardById);
-router.get('/card/cardInstance/get-by-id/:cardInstanceId', getCardInstanceById);
-router.post('/card/search-cards-by-name', searchForCardsByName);
-router.post('/card/create-new-member-cards', createNewMemberCards);
-router.post(
-  '/card/create-new-member-cards/from-json',
-  createNewMemberCardsFromJSON
-);
-router.post('/card/create-new-policy-cards', createNewPolicyCards);
-router.post('/card/create-new-party-cards', createNewPartyCards);
-router.get('/type/:cardType', getAllCardsByType);
-router.post('/free-single-card', freeSingleRandomCard);
-router.post('/buy-single-card', buySingleRandomCard);
-router.patch('/update-card/:cardId', updateCardDateById);
+router.get('/get-all-cards', getAllCardsHandler);
+router.get('/all-card-instances', getAllCardInstancesHandler);
+router.get('/pack/:packType', GetAllCardByPackHandler);
+router.get('/card/get-by-id/:cardId', getCardByIdHandler);
+router.get('/card/cardInstance/get-by-id/:cardInstanceId', getCardInstanceByIdHandler);
+router.post('/card/search-cards-by-name', searchForCardsByNameHandler);
+router.post('/card/admin/create-new-cards/:adminId', validateAuthentication, validateDeveloperRole, createNewCardsHandlerHandler);
+router.get('/type/:cardType', getAllCardsByTypeHandler);
+router.post('/free-single-card', freeSingleRandomCardHandler);
+router.post('/buy-single-card', buySingleRandomCardHandler);
+router.patch('/update-card/:cardId', updateCardDateByIdHandler);
 
 export default router;

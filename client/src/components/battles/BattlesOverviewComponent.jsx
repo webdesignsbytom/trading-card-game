@@ -15,7 +15,7 @@ import { UserContext } from '../../context/UserContext';
 function BattlesOverviewComponent({
   openBattleRequests,
   goToOpenBattle,
-  deleteBattle,
+  deleteBattleHandler,
   setStartingNewBattle,
   startingNewBattle,
 }) {
@@ -86,7 +86,7 @@ function BattlesOverviewComponent({
                       </div>
                       <div>
                         <button
-                          onClick={() => deleteBattle(battle)}
+                          onClick={() => deleteBattleHandler(battle)}
                           className='outline outline-2 outline-black bg-blue-500 hover:bg-bue-700 active:scale-95 p-1'
                         >
                           DELETE

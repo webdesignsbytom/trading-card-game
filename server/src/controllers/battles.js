@@ -27,7 +27,7 @@ import {
 } from '../domain/battles.js';
 import { findUserById, findUserByIdBasic } from '../domain/users.js';
 
-export const getAllBattles = async (req, res) => {
+export const getAllBattlesHandler = async (req, res) => {
   try {
     const foundBattles = await findAllBattles();
 
@@ -51,8 +51,14 @@ export const getAllBattles = async (req, res) => {
   }
 };
 
-export const getAllUserBattleRequests = async (req, res) => {
+export const getAllUserBattleRequestsHandler = async (req, res) => {
   const { userId } = req.params;
+
+  if (!userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId',
+    });
+  }
 
   try {
     const foundUser = await findUserById(userId);
@@ -92,8 +98,14 @@ export const getAllUserBattleRequests = async (req, res) => {
 };
 
 // Get battle by id
-export const getBattleById = async (req, res) => {
+export const getBattleByIdHandler = async (req, res) => {
   const { battleId } = req.params;
+
+  if (!battleId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing battleId',
+    });
+  }
 
   try {
     const foundBattle = await findBattleById(battleId);
@@ -118,9 +130,15 @@ export const getBattleById = async (req, res) => {
   }
 };
 
-// Get getAllBattlesByUserId
-export const getAllBattlesByUserId = async (req, res) => {
+// Get getAllUserBattlesHandler
+export const getAllUserBattlesHandler = async (req, res) => {
   const { userId } = req.params;
+
+  if (!userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId',
+    });
+  }
 
   try {
     const foundBattles = await findAllUserBattles(userId);
@@ -145,10 +163,16 @@ export const getAllBattlesByUserId = async (req, res) => {
   }
 };
 
-// createBattle
-export const createBattle = async (req, res) => {
+// createBattleHandler
+export const createBattleHandler = async (req, res) => {
   const { createdById, receivedById } = req.body;
 
+  if (!userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId',
+    });
+  }
+  
   try {
     const foundUser = await findUserById(createdById);
     if (!foundUser) {
@@ -189,8 +213,8 @@ export const createBattle = async (req, res) => {
   }
 };
 
-// createBattleRequest
-export const createBattleRequest = async (req, res) => {
+// createBattleRequestHandler
+export const createBattleRequestHandler = async (req, res) => {
   const { senderId, receiverId, senderUsername, receiverUsername } = req.body;
 
   try {
@@ -279,7 +303,7 @@ export const opponentConfirmBattle = async (req, res) => {
 };
 
 // delete battle
-export const deleteBattle = async (req, res) => {
+export const deleteBattleHandler = async (req, res) => {
   const { battleId } = req.params;
 
   try {
@@ -316,8 +340,8 @@ export const deleteBattle = async (req, res) => {
   }
 };
 
-// acceptBattleRequest battle
-export const acceptBattleRequest = async (req, res) => {
+// acceptBattleRequestHandler battle
+export const acceptBattleRequestHandler = async (req, res) => {
   const { requestId } = req.params;
 
   try {
@@ -356,8 +380,8 @@ export const acceptBattleRequest = async (req, res) => {
     throw err;
   }
 };
-// deleteBattleRequest
-export const deleteBattleRequest = async (req, res) => {
+// deleteBattleRequestHandler
+export const deleteBattleRequestHandler = async (req, res) => {
   const { requestId } = req.params;
   console.log('requestId', requestId);
   

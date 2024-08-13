@@ -80,7 +80,7 @@ export const findBoxById = (id) =>
     },
   });
 
-export const deletePackbyIdWhenOpened = (packId) =>
+export const deletePackByIdHandlerWhenOpened = (packId) =>
   dbClient.pack.delete({
     where: {
       id: packId,

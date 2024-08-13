@@ -14,7 +14,7 @@ export const findEventById = (eventId) =>
     },
   });
 
-export const deleteEventById = (eventId) =>
+export const deleteEventHandlerById = (eventId) =>
   dbClient.event.delete({
     where: {
       id: eventId,

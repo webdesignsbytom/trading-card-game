@@ -1,24 +1,24 @@
 import { Router } from 'express';
 import {
-  createNewpack,
-  createPacksAndAddToUser,
-  deletePackById,
-  getAllPacks,
-  getPackById,
-  openPackAndAddToUser,
-  buyPackAndAddToUser,
-  buyBoxAndAddToUser
+  createNewpackHandler,
+  createPacksAndAddToUserHandler,
+  deletePackByIdHandler,
+  getAllPacksHandler,
+  getPackByIdHandler,
+  openPacketHandler,
+  buyPacketAddToUserHandler,
+  buyBoxPackAddToUserHandler
 } from '../controllers/packs.js';
 
 const router = Router();
 
-router.get('/get-all-packs', getAllPacks);
-router.get('/get-pack-by-id/:packId', getPackById);
-router.delete('/delete-pack-by-id/:packId', deletePackById);
-router.post('/create-new-pack', createNewpack);
-router.post('/create-packs-for-user', createPacksAndAddToUser);
-router.post('/buy-pack-for-user', buyPackAndAddToUser);
-router.post('/buy-box-for-user', buyBoxAndAddToUser);
-router.post('/open-pack', openPackAndAddToUser);
+router.get('/get-all-packs', getAllPacksHandler);
+router.get('/get-pack-by-id/:packId', getPackByIdHandler);
+router.delete('/delete-pack-by-id/:packId', deletePackByIdHandler);
+router.post('/create-new-pack', createNewpackHandler);
+router.post('/create-packs-for-user', createPacksAndAddToUserHandler);
+router.post('/buy-pack-for-user', buyPacketAddToUserHandler);
+router.post('/buy-box-for-user', buyBoxPackAddToUserHandler);
+router.post('/open-pack', openPacketHandler);
 
 export default router;

@@ -7,7 +7,7 @@ import {
 import { myEmitterErrors } from '../event/errorEvents.js';
 import {
   createMemberCard,
-  createMemberCardFromJSON,
+  createNewCardCard,
   createNewInstanceForCard,
   createPartyCard,
   createPolicyCard,
@@ -25,8 +25,7 @@ import { findUserById } from '../domain/users.js';
 import { createSingleCardsForUser } from '../utils/createCards.js';
 
 // Get all cards from all packs
-export const getAllCards = async (req, res) => {
-
+export const getAllCardsHandler = async (req, res) => {
   try {
     const foundCards = await findAllCards();
 
@@ -43,7 +42,7 @@ export const getAllCards = async (req, res) => {
     return sendDataResponse(res, 200, { cards: foundCards });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get all cards`);
+    const serverError = new ServerErrorEvent(req.user, `Get all cards failed`);
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -51,8 +50,14 @@ export const getAllCards = async (req, res) => {
 };
 
 // Get card by id
-export const getCardById = async (req, res) => {
-  const cardId = Number(req.params.cardId);
+export const getCardByIdHandler = async (req, res) => {
+  const { cardId } = Number(req.params);
+
+  if (!cardId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing cardId',
+    });
+  }
 
   try {
     const foundCard = await findCardById(cardId);
@@ -70,7 +75,10 @@ export const getCardById = async (req, res) => {
     return sendDataResponse(res, 200, { card: foundCard });
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Find card by id`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Find card by id failed`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -78,8 +86,14 @@ export const getCardById = async (req, res) => {
 };
 
 // Get card instance by id
-export const getCardInstanceById = async (req, res) => {
+export const getCardInstanceByIdHandler = async (req, res) => {
   const { cardInstanceId } = req.params;
+
+  if (!cardInstanceId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing cardInstanceId',
+    });
+  }
 
   try {
     const foundCardInstance = await findCardInstanceById(cardInstanceId);
@@ -104,7 +118,7 @@ export const getCardInstanceById = async (req, res) => {
     // Error
     const serverError = new ServerErrorEvent(
       req.user,
-      `Find card instance by id`
+      `Find card instance by id failed`
     );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
@@ -113,8 +127,14 @@ export const getCardInstanceById = async (req, res) => {
 };
 
 // search cards by name
-export const searchForCardsByName = async (req, res) => {
+export const searchForCardsByNameHandler = async (req, res) => {
   const { cardName } = req.body;
+
+  if (!cardName) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing cardName',
+    });
+  }
 
   try {
     const foundCards = await findCardBySearchQuery(cardName);
@@ -137,7 +157,7 @@ export const searchForCardsByName = async (req, res) => {
     // Error
     const serverError = new ServerErrorEvent(
       req.user,
-      `Search for card by name`
+      `Search for card by name failed`
     );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
@@ -148,6 +168,12 @@ export const searchForCardsByName = async (req, res) => {
 // MEMBER createNewCards
 export const createNewMemberCards = async (req, res) => {
   const { cardArray } = req.body;
+
+  if (!cardArray) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing cardArray',
+    });
+  }
 
   try {
     const createdCards = [];
@@ -191,16 +217,29 @@ export const createNewMemberCards = async (req, res) => {
   }
 };
 
-// MEMBER createNewMemberCardsFromJSON
-export const createNewMemberCardsFromJSON = async (req, res) => {
+// createNewMemberCardHandler
+export const createNewCardsHandlerHandler = async (req, res) => {
   const { cardArray } = req.body;
+  const { adminId } = req.params;
+
+  if (!cardArray) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing cardArray',
+    });
+  }
+
+  if (!adminId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing adminId',
+    });
+  }
 
   try {
     const createdCards = [];
 
     for (let index = 0; index < cardArray.length; index++) {
       const card = cardArray[index];
-      const createdCard = await createMemberCardFromJSON(
+      const createdCard = await createNewCardCard(
         card.serialNumber,
         card.cardName.toLowerCase(),
         card.edition.toLowerCase(),
@@ -227,92 +266,7 @@ export const createNewMemberCardsFromJSON = async (req, res) => {
     // Error
     const serverError = new ServerErrorEvent(
       req.user,
-      `Create new member cards from JSON failed`
-    );
-    myEmitterErrors.emit('error', serverError);
-    sendMessageResponse(res, serverError.code, serverError.message);
-    throw err;
-  }
-};
-
-// PARTY createNewPartyCards
-export const createNewPartyCards = async (req, res) => {
-  const { cardArray } = req.body;
-
-  try {
-    const createdCards = [];
-
-    for (let index = 0; index < cardArray.length; index++) {
-      const card = cardArray[index];
-      const createdCard = await createPartyCard(
-        card.serialNumber,
-        card.cardName.toLowerCase(),
-        card.edition.toLowerCase(),
-        card.imageUrl,
-        card.packType,
-        card.cardType
-      );
-      createdCards.push(createdCard);
-    }
-
-    if (!createdCards) {
-      const notFound = new NotFoundEvent(
-        req.user,
-        EVENT_MESSAGES.badRequest,
-        EVENT_MESSAGES.createCardsFail
-      );
-      myEmitterErrors.emit('error', notFound);
-      return sendMessageResponse(res, notFound.code, notFound.message);
-    }
-
-    return sendDataResponse(res, 200, { cards: createdCards });
-  } catch (err) {
-    // Error
-    const serverError = new ServerErrorEvent(
-      req.user,
-      `Create new member cards failed`
-    );
-    myEmitterErrors.emit('error', serverError);
-    sendMessageResponse(res, serverError.code, serverError.message);
-    throw err;
-  }
-};
-// POLICY createNewPolicyCards
-export const createNewPolicyCards = async (req, res) => {
-  const { cardArray } = req.body;
-
-  try {
-    const createdCards = [];
-
-    for (let index = 0; index < cardArray.length; index++) {
-      const card = cardArray[index];
-      const createdCard = await createPolicyCard(
-        card.serialNumber,
-        card.cardName.toLowerCase(),
-        card.edition.toLowerCase(),
-        card.imageUrl,
-        card.packType,
-        card.cardType
-      );
-      createdCards.push(createdCard);
-    }
-
-    if (!createdCards) {
-      const notFound = new NotFoundEvent(
-        req.user,
-        EVENT_MESSAGES.badRequest,
-        EVENT_MESSAGES.createCardsFail
-      );
-      myEmitterErrors.emit('error', notFound);
-      return sendMessageResponse(res, notFound.code, notFound.message);
-    }
-
-    return sendDataResponse(res, 200, { cards: createdCards });
-  } catch (err) {
-    // Error
-    const serverError = new ServerErrorEvent(
-      req.user,
-      `Create new member cards failed`
+      `Create new cards failed`
     );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
@@ -321,7 +275,7 @@ export const createNewPolicyCards = async (req, res) => {
 };
 
 // Get all cards isntances from all packs
-export const getAllCardInstances = async (req, res) => {
+export const getAllCardInstancesHandler = async (req, res) => {
   try {
     const foundInstances = await findAllCardInstances();
 
@@ -349,8 +303,14 @@ export const getAllCardInstances = async (req, res) => {
 };
 
 // get all cards from pack type i.e brexit
-export const getAllCardsFromPackType = async (req, res) => {
-  const { packType } = req.params;
+export const GetAllCardByPackHandler = async (req, res) => {
+  const { packType } = req.body;
+
+  if (!packType) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing packType',
+    });
+  }
 
   try {
     const foundCards = await findAllCardsFromPack(packType);
@@ -379,8 +339,14 @@ export const getAllCardsFromPackType = async (req, res) => {
 };
 
 // Get all cards by type i.e policy
-export const getAllCardsByType = async (req, res) => {
-  const { cardType } = req.params;
+export const getAllCardsByTypeHandler = async (req, res) => {
+  const { cardType } = req.body;
+
+  if (!cardType) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing cardType',
+    });
+  }
 
   try {
     const foundCards = await findCardsByCardType(cardType);
@@ -409,8 +375,14 @@ export const getAllCardsByType = async (req, res) => {
 };
 
 // Get one of any card currently available
-export const buySingleRandomCard = async (req, res) => {
-  const { userId } = req.body;
+export const buySingleRandomCardHandler = async (req, res) => {
+  const { userId } = req.params;
+
+  if (!userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId',
+    });
+  }
 
   try {
     let cardFound = await createSingleCardsForUser();
@@ -445,9 +417,21 @@ export const buySingleRandomCard = async (req, res) => {
 };
 
 // Get one of any card currently available
-export const updateCardDateById = async (req, res) => {
+export const updateCardDateByIdHandler = async (req, res) => {
   const { cardId } = req.params;
-  const cardUpdateData = req.body;
+  const { cardUpdateData } = req.body;
+
+  if (!cardId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing cardId',
+    });
+  }
+
+  if (!cardUpdateData) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing cardUpdateData',
+    });
+  }
 
   try {
     const foundCard = await findCardById(Number(cardId));
@@ -490,8 +474,14 @@ export const updateCardDateById = async (req, res) => {
   }
 };
 
-export const freeSingleRandomCard = async (req, res) => {
+export const freeSingleRandomCardHandler = async (req, res) => {
   const { userId } = req.body;
+
+  if (!userId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing userId',
+    });
+  }
 
   try {
     let cardFound = await createSingleCardsForUser();

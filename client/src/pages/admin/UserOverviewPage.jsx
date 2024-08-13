@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 // Components
 import Navbar from '../../components/nav/Navbar';
 // API
-import { deleteUserApiRequestNoReturn } from '../../api/DeleteRequests';
+import { deleteUserHandlerApiRequestNoReturn } from '../../api/DeleteRequests';
 
 function UserOverviewPage() {
   const [deletedUserData, setDeletedUserData] = useState(false);
@@ -165,7 +165,7 @@ function UserOverviewPage() {
                   </div>
                   <div>
                     <button
-                      onClick={() => deleteUserApiRequestNoReturn(userData, setDeletedUserData)}
+                      onClick={() => deleteUserHandlerApiRequestNoReturn(userData, setDeletedUserData)}
                       className='outline outline-2 outline-black p-1 active:scale-95 hover:bg-red-900 bg-red-700 text-white font-semibold'
                     >
                       Delete User

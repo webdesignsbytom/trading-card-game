@@ -2,7 +2,7 @@
 import { myEmitterErrors } from '../event/errorEvents.js';
 import { myEmitterEvents } from '../event/eventsLog.js';
 // Domain
-import { deleteEventById, findAllEvents, findEventById } from '../domain/events.js';
+import { deleteEventHandlerById, findAllEvents, findEventById } from '../domain/events.js';
 // Response messages
 import { EVENT_MESSAGES, sendDataResponse, sendMessageResponse } from '../utils/responses.js';
 import {
@@ -11,7 +11,7 @@ import {
   ServerErrorEvent,
 } from '../event/utils/errorUtils.js';
 
-export const getAllEvents = async (req, res) => {
+export const getAllEventsHandler = async (req, res) => {
 
   try {
     const foundEvents = await findAllEvents();
@@ -44,8 +44,14 @@ export const getAllEvents = async (req, res) => {
 };
 
 // Get event by id
-export const getEventById = async (req, res) => {
+export const getEventByIdHandler = async (req, res) => {
   const { eventId } = req.params
+
+  if (!eventId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing eventId',
+    });
+  }
 
   try {
     const foundEvent = await findEventById(eventId);
@@ -71,8 +77,14 @@ export const getEventById = async (req, res) => {
 };
 
 // delete event
-export const deleteEvent = async (req, res) => {
+export const deleteEventHandler = async (req, res) => {
   const { eventId } = req.params;
+
+  if (!eventId) {
+    return sendDataResponse(res, 400, {
+      email: 'Missing eventId',
+    });
+  }
 
   try {
     const foundEvent = await findEventById(eventId);
@@ -87,7 +99,7 @@ export const deleteEvent = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    const deletedEvent = await deleteEventById(eventId);
+    const deletedEvent = await deleteEventHandlerById(eventId);
     if (!deletedEvent) {
       const notDeleted = new BadRequestEvent(
         req.user,

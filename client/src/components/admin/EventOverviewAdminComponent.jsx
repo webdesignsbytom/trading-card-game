@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Api
 import client from '../../api/client';
-import { deleteEventApiRequest } from '../../api/DeleteRequests';
+import { deleteEventHandlerApiRequest } from '../../api/DeleteRequests';
 // Constants
 import { ALL_EVENTS_API, EVENT_OVERVIEW_PAGE_URL } from '../../utils/Constants';
 
@@ -125,7 +125,7 @@ function EventOverviewAdminComponent() {
                   <span>
                     <button
                       onClick={() =>
-                        deleteEventApiRequest(event, setAllEventsArray)
+                        deleteEventHandlerApiRequest(event, setAllEventsArray)
                       }
                       className='bg-red-700 px-1 text-white font-semibold outline-black outline outline-2 rounded'
                     >

@@ -3,7 +3,7 @@ import dbClient from '../../utils/dbClient.js';
 import { myEmitterErrors } from '../errorEvents.js';
 import { CreateEventError } from './errorUtils.js';
 
-export const createGetAllEventsEvent = async (user) => {
+export const creategetAllEventsHandlerEvent = async (user) => {
   if (user.role === 'ADMIN') {
     type = 'ADMIN';
   }
@@ -34,7 +34,7 @@ export const createGetAllEventsEvent = async (user) => {
 };
 
 
-export const createDeleteEventEvent = async (user) => {
+export const createdeleteEventHandlerEvent = async (user) => {
   if (user.role === 'ADMIN') {
     type = 'ADMIN';
   }

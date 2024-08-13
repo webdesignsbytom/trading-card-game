@@ -41,7 +41,7 @@ function BattlesMainPage() {
     navigate('/battle/open-battle', { state: battle });
   };
 
-  const deleteBattle = (battle) => {
+  const deleteBattleHandler = (battle) => {
     client
       .delete(`/battles/delete-battle-by-id/${battle.id}`)
       .then((res) => {
@@ -64,7 +64,7 @@ function BattlesMainPage() {
             <BattlesOverviewComponent
               openBattleRequests={openBattleRequests}
               goToOpenBattle={goToOpenBattle}
-              deleteBattle={deleteBattle}
+              deleteBattleHandler={deleteBattleHandler}
               setStartingNewBattle={setStartingNewBattle}
               startingNewBattle={startingNewBattle}
             />

@@ -212,7 +212,7 @@ export const resetUserPassword = (userId, password) =>
     },
   });
 
-export const deleteUserById = (userId) =>
+export const deleteUserHandlerById = (userId) =>
   dbClient.user.delete({
     where: {
       id: userId,

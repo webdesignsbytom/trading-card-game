@@ -53,7 +53,7 @@ export const createNewDeck = (deckName, userId) =>
     },
   });
 
-export const deleteDeckById = (deckId) =>
+export const deleteDeckHandlerById = (deckId) =>
   dbClient.deck.delete({
     where: {
       id: deckId,

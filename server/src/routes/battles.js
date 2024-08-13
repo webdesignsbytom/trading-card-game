@@ -1,15 +1,15 @@
 import { Router } from 'express';
 import {
-  getAllBattles,
-  getBattleById,
-  deleteBattle,
-  createBattle,
-  getAllBattlesByUserId,
+  getAllBattlesHandler,
+  getBattleByIdHandler,
+  deleteBattleHandler,
+  createBattleHandler,
+  getAllUserBattlesHandler,
   opponentConfirmBattle,
-  createBattleRequest,
-  getAllUserBattleRequests,
-  acceptBattleRequest,
-  deleteBattleRequest,
+  createBattleRequestHandler,
+  getAllUserBattleRequestsHandler,
+  acceptBattleRequestHandler,
+  deleteBattleRequestHandler,
 } from '../controllers/battles.js';
 import {
   validateAuthentication,
@@ -18,14 +18,14 @@ import {
 
 const router = Router();
 
-router.get('/all-battles', getAllBattles);
-router.get('/battle/:battleId', getBattleById);
-router.get('/battle/user-battles/:userId', getAllBattlesByUserId);
-router.post('/battle/create-battle', createBattle);
-router.post('/battle/create-battle-request', createBattleRequest);
-router.get('/battle/get-all-user-battle-requests/:userId', getAllUserBattleRequests);
-router.patch('/battle-requests/accept/:requestId', acceptBattleRequest);
-router.delete('/battle-requests/delete/:requestId', deleteBattleRequest);
-router.delete('/delete-battle-by-id/:battleId', deleteBattle);
+router.get('/all-battles', getAllBattlesHandler);
+router.get('/battle/:battleId', getBattleByIdHandler);
+router.get('/battle/user-battles/:userId', getAllUserBattlesHandler);
+router.post('/battle/create-battle', createBattleHandler);
+router.post('/battle/create-battle-request', createBattleRequestHandler);
+router.get('/battle/get-all-user-battle-requests/:userId', getAllUserBattleRequestsHandler);
+router.patch('/battle-requests/accept/:requestId', acceptBattleRequestHandler);
+router.delete('/battle-requests/delete/:requestId', deleteBattleRequestHandler);
+router.delete('/delete-battle-by-id/:battleId', deleteBattleHandler);
 
 export default router;

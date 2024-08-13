@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // API
 import client from '../../api/client';
-import { deleteUserApiRequest } from '../../api/DeleteRequests';
+import { deleteUserHandlerApiRequest } from '../../api/DeleteRequests';
 
 function UserOverviewAdminComponent() {
   const [allUsersArray, setAllUsersArray] = useState([]);
@@ -104,7 +104,7 @@ function UserOverviewAdminComponent() {
                   <div className='grid items-center'>
                     <button
                       onClick={() =>
-                        deleteUserApiRequest(user, setAllUsersArray)
+                        deleteUserHandlerApiRequest(user, setAllUsersArray)
                       }
                       className='bg-red-700 px-1 py-0.5 text-white border-black border-solid border-[1px] text-xs rounded'
                     >

@@ -5,7 +5,7 @@ import {
   createVerifyEvent,
   createNewVerifyEvent,
   createPasswordResetEvent,
-  createDeleteUserEvent,
+  createdeleteUserHandlerEvent,
   createUpdateUserEvent
 } from './utils/userUtils.js';
 
@@ -34,5 +34,5 @@ myEmitterUsers.on('update-user', async (user) => {
 });
 
 myEmitterUsers.on('deleted-user', async (user) => {
-  createDeleteUserEvent(user);
+  createdeleteUserHandlerEvent(user);
 });

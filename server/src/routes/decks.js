@@ -1,12 +1,12 @@
 import { Router } from 'express';
 import {
-  getAllDecks,
-  getDeckById,
-  createDeck,
-  deleteDeck,
-  getAllDecksByUserId,
-  addCardsToDeck,
-  getAllDisplayCardsFromDeck
+  getAllDecksHandler,
+  getDeckByIdHandler,
+  createDeckHandler,
+  deleteDeckHandler,
+  getAllUserDecksHandler,
+  addCardsToDeckHandler,
+  getAllDisplayCardsFromDeckHandler
 } from '../controllers/decks.js';
 import {
   validateAuthentication,
@@ -15,12 +15,12 @@ import {
 
 const router = Router();
 
-router.get('/all-decks', getAllDecks);
-router.get('/deck/:deckId', getDeckById);
-router.get('/deck/:deckId/all-cards', getAllDisplayCardsFromDeck);
-router.patch('/deck/update-deck', addCardsToDeck);
-router.get('/deck/user-decks/:userId', getAllDecksByUserId);
-router.post('/deck/create-deck', createDeck);
-router.delete('/delete-deck-by-id/:deckId', deleteDeck);
+router.get('/all-decks', getAllDecksHandler);
+router.get('/deck/:deckId', getDeckByIdHandler);
+router.get('/deck/:deckId/all-cards', getAllDisplayCardsFromDeckHandler);
+router.patch('/deck/update-deck', addCardsToDeckHandler);
+router.get('/deck/user-decks/:userId', getAllUserDecksHandler);
+router.post('/deck/create-deck', createDeckHandler);
+router.delete('/delete-deck-by-id/:deckId', deleteDeckHandler);
 
 export default router;

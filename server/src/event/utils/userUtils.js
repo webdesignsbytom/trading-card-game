@@ -151,7 +151,7 @@ export const createUpdateUserEvent = async (user) => {
   }
 };
 
-export const createDeleteUserEvent = async (user) => {
+export const createdeleteUserHandlerEvent = async (user) => {
   let type = 'USER';
   if (user.role === 'ADMIN') {
     type = 'ADMIN';

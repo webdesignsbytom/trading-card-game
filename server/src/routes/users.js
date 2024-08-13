@@ -1,21 +1,21 @@
 import { Router } from 'express';
 import {
-  getAllUsers,
-  registerNewUser,
-  getUserById,
-  getUserByEmail,
-  deleteUser,
-  getAllCardsForUser,
-  openPackAndAddToUser,
-  getUserByUsername,
-  collectDailyReward,
-  getAllUserCardInstances,
-  getAllPacksForUser,
-  collectStarterPacks,
-  findUserForBattle,
-  getLoginUserData,
-  getAllBoxesForUser,
-  openBoxAndAddToUser,
+  getAllUsersHandler,
+  registerNewUserHandler,
+  getUserByIdHandler,
+  getUserByEmailHandler,
+  deleteUserHandler,
+  getAllCardsHandlerForUserHandler,
+  openPacketHandler,
+  getUserByUsernameHandler,
+  collectDailyRewardHandler,
+  getAllUserCardInstanceHandler,
+  getAllUserPackersHandler,
+  collectStarterPacksHandler,
+  findUserForBattleHandler,
+  getLoginUserDataHandler,
+  getAllUserBoxPackHandler,
+  openBoxPackHandler,
 } from '../controllers/users.js';
 import {
   validateAuthentication,
@@ -24,24 +24,24 @@ import {
 
 const router = Router();
 
-router.get('/get-all-users', getAllUsers);
-router.post('/register', registerNewUser);
-router.patch('/user/packs/open-pack', openPackAndAddToUser);
-router.patch('/user/boxes/open-box', openBoxAndAddToUser);
-router.patch('/user/rewards/daily-reward/collect/:userId', collectDailyReward);
-router.patch('/starter-packs/collect/:userId', collectStarterPacks);
-router.get('/get-user-by-id/:userId', getUserById);
-router.get('/login/get-user-by-id/:userId', getLoginUserData);
-router.get('/user/userId/:userId/all-cards', getAllCardsForUser);
-router.get('/user/packs/:userId/all-packs', getAllPacksForUser);
-router.get('/user/boxes/:userId/all-boxes', getAllBoxesForUser);
+router.get('/get-all-users', getAllUsersHandler);
+router.post('/register', registerNewUserHandler);
+router.patch('/user/packs/open-pack', openPacketHandler);
+router.patch('/user/boxes/open-box', openBoxPackHandler);
+router.patch('/user/rewards/daily-reward/collect/:userId', collectDailyRewardHandler);
+router.patch('/starter-packs/collect/:userId', collectStarterPacksHandler);
+router.get('/get-user-by-id/:userId', getUserByIdHandler);
+router.get('/login/get-user-by-id/:userId', getLoginUserDataHandler); // TODO: remove this
+router.get('/user/userId/:userId/all-cards', getAllCardsHandlerForUserHandler);
+router.get('/user/packs/:userId/all-packs', getAllUserPackersHandler);
+router.get('/user/boxes/:userId/all-boxes', getAllUserBoxPackHandler);
 router.get(
   '/cards/cardInstances/get-all-card-instances/:userId',
-  getAllUserCardInstances
+  getAllUserCardInstanceHandler
 );
-router.get('/user/email/:email', getUserByEmail);
-router.get('/user/username/:username', getUserByUsername);
-router.get('/user-search/battle-search/:username', findUserForBattle);
-router.delete('/delete/:userId', deleteUser);
+router.get('/user/email/:email', getUserByEmailHandler);
+router.get('/user/username/:username', getUserByUsernameHandler);
+router.get('/user-search/battle-search/:username', findUserForBattleHandler);
+router.delete('/delete/:userId', deleteUserHandler);
 
 export default router;

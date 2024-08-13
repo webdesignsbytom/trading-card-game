@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import {
-  getAllEvents,
-  deleteEvent,
-  getEventById,
+  getAllEventsHandler,
+  deleteEventHandler,
+  getEventByIdHandler,
 } from '../controllers/events.js';
 import {
   validateAuthentication,
@@ -11,8 +11,8 @@ import {
 
 const router = Router();
 
-router.get('/all-events', getAllEvents);
-router.get('/event/:eventId', getEventById);
-router.delete('/delete-event-by-id/:eventId', deleteEvent);
+router.get('/all-events', getAllEventsHandler);
+router.get('/event/:eventId', getEventByIdHandler);
+router.delete('/delete-event-by-id/:eventId', deleteEventHandler);
 
 export default router;

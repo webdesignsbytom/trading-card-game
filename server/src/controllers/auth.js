@@ -14,7 +14,7 @@ import { LoginServerErrorEvent } from '../event/utils/errorUtils.js';
 // Token
 import { createAccessToken } from '../utils/tokens.js';
 
-export const login = async (req, res) => {
+export const loginHandler = async (req, res) => {
   const { email, password } = req.body;
   const lowerCaseEmail = email.toLowerCase();
 
