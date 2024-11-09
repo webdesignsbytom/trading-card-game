@@ -34,7 +34,7 @@ function LargeScreenNavbar({ logoutUser }) {
   };
 
   return (
-    <section className='grid'>
+    <section className='grid main__bg'>
       {/* Header and updates */}
       <section className='grid px-2'>
         <SmallMonCardsHeader />

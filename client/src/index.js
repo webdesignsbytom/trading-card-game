@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 // Context
-import UserContextProvider from './context/UserContext';
+import UserProvider from './context/UserContext';
 import ToggleContextProvider from './context/ToggleContext';
 import CardContextProvider from './context/CardContext';
 import TradingContextProvider from './context/TradingContext';
@@ -13,11 +13,12 @@ import './styles/components.css';
 import './styles/cards.css';
 import './styles/text.css';
 import './styles/animations.css';
+import './styles/backgrounds.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <UserContextProvider>
+    <UserProvider>
       <ToggleContextProvider>
         <CardContextProvider>
           <TradingContextProvider>
@@ -25,6 +26,6 @@ root.render(
           </TradingContextProvider>
         </CardContextProvider>
       </ToggleContextProvider>
-    </UserContextProvider>
+    </UserProvider>
   </BrowserRouter>
 );

@@ -10,9 +10,8 @@ import { ToggleContext } from '../../context/ToggleContext';
 import { HOME_PAGE_URL } from '../../utils/Constants';
 
 function Navbar() {
-  const { user, setUser } = useContext(UserContext);
-  const { toggleNavbar, setActiveNav } =
-    useContext(ToggleContext);
+  const { setUser } = useContext(UserContext);
+  const { toggleNavbar, setActiveNav } = useContext(ToggleContext);
 
   const navigate = useNavigate();
 
@@ -27,11 +26,11 @@ function Navbar() {
 
   return (
     <nav className='grid h-full w-full font-poppins'>
-      <div className='grid h-full nav__bg bg-nav-colour'>
-        <section className='relative grid lg:hidden shadow-[inset_-1px_18px_35px_22px_#00000024] border-2 border-main-border border-solid'>
+      <div className='grid h-full'>
+        <section className='relative grid lg:hidden styled-border mx-1 mt-1'>
           <SmallScreenNavbar logoutUser={logoutUser} />
         </section>
-        <section className='hidden lg:grid shadow-[inset_-1px_43px_35px_48px_#00000024] border-2 border-main-border border-solid'>
+        <section className='hidden lg:grid shadow-[inset_-1px_43px_35px_48px_#00000024] styled-border !rounded-none'>
           <LargeScreenNavbar logoutUser={logoutUser} />
         </section>
       </div>

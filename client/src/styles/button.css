@@ -1,0 +1,34 @@
+.styled-button {
+    display: inline-block;
+    color: #C9A85E;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(145deg, #7F1A1A, #B83232);
+    border: 2px solid #A46C30;
+    border-radius: 0.8rem;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.7), inset 0px 1px 3px rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+  }
+  
+  .styled-button:hover {
+    background: linear-gradient(145deg, #B83232, #7F1A1A);
+    box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.8), inset 0px 1px 4px rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+  
+  .styled-button:active {
+    background: linear-gradient(145deg, #6F1212, #9B2525);
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.5), inset 0px 1px 2px rgba(255, 255, 255, 0.05);
+    transform: translateY(2px);
+  }
+  
+  .styled-button.red-bg {
+    background: linear-gradient(145deg, #8B0000, #FF6347); /* Red gradient for cancel/warning */
+    border-color: #FF4500;
+  }
+  
+  .styled-button.red-bg:hover {
+    background: linear-gradient(145deg, #FF6347, #8B0000);
+  }
+  

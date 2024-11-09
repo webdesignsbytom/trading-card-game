@@ -1,34 +1,36 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
+// Analytics
+import { usePageTracking } from '../../hooks/useAnalytics';
+// Constants
+import { CompanyName } from '../../utils/Constants';
 // Components
 import Navbar from '../../components/nav/Navbar';
-import InvintoryOptions from '../../components/invintory/InvintoryOptions';
-// Context
-import { ToggleContext } from '../../context/ToggleContext';
-// Constants
-import { INVENTORY_PAGE_URL } from '../../utils/Constants';
-import InvintoryHeader from '../../components/invintory/InvintoryHeader';
+import { HelmetItem } from '../../components/utils/HelmetItem';
+import InvintoryPageMainContainer from '../../components/invintory/InvintoryPageMainContainer';
 
-function InvintoryPage() {
-  const { setActiveNav } = useContext(ToggleContext);
-
-  useEffect(() => {
-    setActiveNav(INVENTORY_PAGE_URL);
-  }, []);
+const ShopPage = React.memo(() => {
+  usePageTracking(); // Tracks page views
 
   return (
-    <div className='h-screen grid'>
-      <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
-        <Navbar />
-        <main className='grid bg-main-colour shadow-internal-main main__bg grid-rows-reg gap-2 p-4 lg:overflow-hidden'>
-          {/* Header */}
-          <InvintoryHeader />
+    <>
+      {/* Tab Data */}
+      <HelmetItem
+        PageName={'Invintory'}
+        desc={`Invintory page of ${CompanyName}.`}
+      />
 
-          {/* Main content */}
-          <InvintoryOptions />
-        </main>
-      </section>
-    </div>
+      {/* Page */}
+      <div className='grid min-h-screen lg:h-screen lg:max-h-screen lg:overflow-hidden font-poppins'>
+        <div className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
+          {/* Navigation */}
+          <Navbar />
+
+          {/* Main page content */}
+          <InvintoryPageMainContainer />
+        </div>
+      </div>
+    </>
   );
-}
+});
 
-export default InvintoryPage;
+export default ShopPage;

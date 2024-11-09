@@ -4,11 +4,13 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'cards-display': "url('../assets/images/backgrounds/multiple_cards_framing_background_image_1.png')",
-        'holo-bg': "url('https://res.cloudinary.com/simey/image/upload/Dev/PokemonCards/illusion.webp')",
+        'cards-display':
+          "url('../assets/images/backgrounds/multiple_cards_framing_background_image_1.png')",
+        'holo-bg':
+          "url('https://res.cloudinary.com/simey/image/upload/Dev/PokemonCards/illusion.webp')",
       },
       backgroundSize: {
-        '50': '50%',
+        50: '50%',
       },
       boxShadow: {
         'internal-main': 'inset -1px 43px 35px 48px #00000024',
@@ -18,7 +20,8 @@ module.exports = {
         'secondary-colour': '#ffffff',
         'nav-colour': '#ef4444',
         'footer-colour': '#1F2937',
-        'main-border': '#000000',
+        'fantasy-text': '#C9A85E',
+        'main-border': '#A46C30',
         'main-button': '#60a5fa',
         'selected-button': '#1d4ed8',
         'card-border': '#ffffff',
@@ -28,8 +31,10 @@ module.exports = {
         'transparent-white': 'rgba(255, 255, 255, 0.65)',
         'dark-alt-text': '#FFFFFF',
         'alt-text': '#000000',
-        'error': '#',
-        'success': '#'
+        colour1: '#C9A85E',
+        colour2: '#a46c30',
+        error: '#',
+        success: '#',
       },
       width: {
         eighty: '80%',

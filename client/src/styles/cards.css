@@ -1,16 +1,3 @@
-.card__bg {
-  /* background-color: #004f8c; */
-  background-image: url('https://www.transparenttextures.com/patterns/black-paper.png');
-}
-
-.nav__bg {
-  background-image: url('https://www.transparenttextures.com/patterns/black-paper.png');
-}
-
-.main__bg {
-  background-image: url('https://www.transparenttextures.com/patterns/black-paper.png');
-}
-
 .rainbowGradientOne {
   --space: 5%;
   --posy: 50%;

@@ -1,3 +1,17 @@
+// Company data
+export const CompanyName = 'MonCards';
+export const CompanyPhoneNumber = '07000000000';
+export const ContactEmailAddress = 'hello@company.com';
+export const DirectorName = 'Me Myself';
+
+// Site text
+export const CompantTagLine = 'Our company is great'
+
+// Cookie data
+export const NumberOfCookies = 0;
+export const COOKIE_TIMER = 5000;
+export const CookiePolicyName = 'CookiePolicy';
+
 // Routes
 export const HOME_PAGE_URL = '/';
 export const SHOP_PAGE_URL = '/shop';
@@ -33,6 +47,7 @@ export const TEST_CARD_PAGE_URL = '/test/card';
 export const SecondaryTitle = 'The Monster Trading Card Game';
 
 // API
+export const GET_LOGGED_IN_USER_API = '/users/user/get-logged-in-user'; // userId
 export const GET_ALL_CARDS_API = '/mon-cards/get-all-cards';
 export const STARTING_PACKS_API = '/packs/create-starter-packs-for-user';
 export const GET_USER_API = '/users/get-user-by-id';
@@ -56,3 +71,19 @@ export const GET_USER_BATTLE_REQ_API =
   '/battles/battle/get-all-user-battle-requests';
 export const ACCEPT_BATTLE_REQ_API = '/battles/battle-requests/accept';
 export const DELETE_BATTLE_REQ_API = '/battles/battle-requests/delete';
+
+
+// Social Media Services
+export const FACEBOOK_SERVICE = 'facebook';
+export const INSTAGRAM_SERVICE = 'instagram';
+export const GOOGLE_SERVICE = 'google';
+export const GITHUB_SERVICE = 'github';
+export const APPLE_SERVICE = 'apple';
+export const X_SERVICE = 'x';
+// Social Media URLs
+export const FACEBOOK_URL = 'https://facebook.com/';
+export const INSTAGRAM_URL = 'https://instagram.com/';
+export const GOOGLE_URL = 'https://google.com/';
+export const GITHUB_URL = 'https://github.com/';
+export const APPLE_URL = 'https://apple.com/';
+export const X_URL = 'https://x.com/';

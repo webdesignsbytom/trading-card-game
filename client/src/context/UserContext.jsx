@@ -1,42 +1,56 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 // Api
 import client from '../api/client';
+// Constants
+import {
+  CookiePolicyName,
+  GET_LOGGED_IN_USER_API,
+  HOME_PAGE_URL,
+} from '../utils/Constants';
+// Hooks
+import useNavigateToPage from '../hooks/useNavigateToPage';
 // Utils
 import LoggedInUser from '../utils/user/LoggedInUser';
-// Constants
-import { GET_USER_API, GET_USER_FOR_LOGIN_API } from '../utils/Constants';
 
-export const UserContext = React.createContext();
+// Create the context
+export const UserContext = createContext();
 
-const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+const UserProvider = ({ children }) => {
+  const navigateToPage = useNavigateToPage();
+
+  const [user, setUser] = useState({
+    id: null,
+  });
+
+  const [hasAgreedToCookies, setHasAgreedToCookies] = useState(true);
+
   const [token, setToken] = useState(
     localStorage.getItem(process.env.REACT_APP_USER_TOKEN) || ''
   );
-  const [toggleCookiePolicy, setToggleCookiePolicy] = useState(false);
-  const [newBattleRequestsRecieved, setNewBattleRequestsRecieved] =
-    useState(false);
 
   useEffect(() => {
     const decodedUserData = LoggedInUser();
 
     if (decodedUserData !== null) {
       const userId = decodedUserData.id;
+
       client
-        .get(`${GET_USER_FOR_LOGIN_API}/${userId}`)
+        .get(`${GET_LOGGED_IN_USER_API}/${userId}`)
         .then((res) => {
-          setUser(res.data.data.user);
+          setUser(res.data.data.user); // Set user state based on API response
         })
+        .then(() => navigateToPage(HOME_PAGE_URL)) // Navigate to home page
         .catch((err) => {
           console.error('Unable to retrieve user data', err);
         });
     }
 
-    const cookie = localStorage.getItem('CookiePolicy');
+    const cookie = localStorage.getItem(CookiePolicyName);
 
     if (cookie) {
-      setToggleCookiePolicy(true);
+      setHasAgreedToCookies(true);
+    } else {
+      setHasAgreedToCookies(false);
     }
   }, []);
 
@@ -47,10 +61,8 @@ const UserContextProvider = ({ children }) => {
         setUser,
         token,
         setToken,
-        toggleCookiePolicy,
-        setToggleCookiePolicy,
-        newBattleRequestsRecieved,
-        setNewBattleRequestsRecieved,
+        hasAgreedToCookies,
+        setHasAgreedToCookies,
       }}
     >
       {children}
@@ -58,4 +70,12 @@ const UserContextProvider = ({ children }) => {
   );
 };
 
-export default UserContextProvider;
+export const useUser = () => {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error('useUser must be used within a UserProvider');
+  }
+  return context;
+};
+
+export default UserProvider;

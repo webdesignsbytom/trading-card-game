@@ -1,49 +1,33 @@
-import React, { useContext, useEffect, useState } from 'react';
-// Components
-import ClosedAlbumPage from '../../components/collection/ClosedAlbumPage';
-import OpenAlbumPage from '../../components/collection/OpenAlbumPage';
-import Navbar from '../../components/nav/Navbar';
-// Context
-import { UserContext } from '../../context/UserContext';
-import { ToggleContext } from '../../context/ToggleContext';
+import React from 'react';
+// Analytics
+import { usePageTracking } from '../../hooks/useAnalytics';
 // Constants
-import { ALBUM_PAGE_URL } from '../../utils/Constants';
+import { CompanyName } from '../../utils/Constants';
+// Components
+import Navbar from '../../components/nav/Navbar';
+import { HelmetItem } from '../../components/utils/HelmetItem';
+import AlbumPageMainContainer from '../../components/album/AlbumPageMainContainer';
 
-function AlbumPage() {
-  const { user } = useContext(UserContext);
-  const { viewCard, setActiveNav } = useContext(ToggleContext);
-
-  const [albumOpen, setAlbumOpen] = useState(false);
-
-  useEffect(() => {
-    setActiveNav(ALBUM_PAGE_URL);
-  }, []);
-
-  const openAlbum = () => {
-    setAlbumOpen(!albumOpen);
-  };
+const AlbumPage = React.memo(() => {
+  usePageTracking(); // Tracks page views
 
   return (
-    <div className='h-screen grid overflow-hidden'>
-      <div className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
-        <Navbar />
+    <>
+      {/* Tab Data */}
+      <HelmetItem PageName={'Album'} desc={`Album page of ${CompanyName}.`} />
 
-        <main className='bg-white grid h-full w-full overflow-hidden main__bg'>
-          <div className='grid h-full w-full overflow-hidden'>
-            {/* Closed album cover */}
-            {!albumOpen && !viewCard && (
-              <ClosedAlbumPage openAlbum={openAlbum} />
-            )}
+      {/* Page */}
+      <div className='grid min-h-screen lg:h-screen lg:max-h-screen lg:overflow-hidden  font-poppins'>
+        <div className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg main__bg'>
+          {/* Navigation */}
+          <Navbar />
 
-            {/* Open album */}
-            {albumOpen && !viewCard && (
-              <OpenAlbumPage />
-            )}
-          </div>
-        </main>
+          {/* Main page content */}
+          <AlbumPageMainContainer />
+        </div>
       </div>
-    </div>
+    </>
   );
-}
+});
 
 export default AlbumPage;

@@ -1,20 +1,29 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import '../../styles/button.css'; 
 
-function CustomButton({ onClick, children, xl, black }) {
+function FantasyButton({ text, onClick, type = 'default', ariaLabel, seoAttributes }) {
+  const buttonClass = `styled-button text-center font-bold text-xl py-2 px-4 ${type === 'cancel' || type === 'warning' ? 'red-bg' : ''}`;
+
   return (
     <button
+      className={buttonClass}
       onClick={onClick}
-      className={`main__bg outline outline-2 ${
-        xl ? 'text-3xl lg:text-7xl' : 'text-3xl lg:text-5xl'
-      } ${
-        black ? 'bg-transparent-black' : ''
-      } hover:bg-red-300 shadow-[inset_-1px_18px_35px_22px_#00000024] hover:shadow-[inset_-1px_18px_35px_22px_#00000024] active:scale-95 outline-black rounded-xl px-10 py-2 text__stroke`}
+      aria-label={ariaLabel}
+      {...seoAttributes}
     >
-      <span className='font-fantasy font-extrabold text-main-colour'>
-        {children}
-      </span>
+      {text}
     </button>
   );
 }
 
-export default CustomButton;
+// PropTypes for validation
+FantasyButton.propTypes = {
+  text: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  type: PropTypes.oneOf(['default', 'cancel', 'warning']),
+  ariaLabel: PropTypes.string,
+  seoAttributes: PropTypes.object, // For additional attributes like data-* or role
+};
+
+export default FantasyButton;

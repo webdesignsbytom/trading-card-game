@@ -1,4 +1,5 @@
 import React from 'react';
+import FantasyButton from '../utils/FantasyButton';
 
 function PurchasingContainer({ displayItems, onclickFunction, goBack }) {
   return (
@@ -38,11 +39,12 @@ function PurchasingContainer({ displayItems, onclickFunction, goBack }) {
 
       {/* Back button */}
       <section className='absolute bottom-4 left-1/2 transform -translate-x-1/2'>
-        <button onClick={goBack} className='main__bg text-4xl hover:bg-red-300 shadow-[inset_-1px_18px_35px_22px_#00000024] hover:shadow-[inset_-1px_18px_35px_22px_#00000024] active:scale-95 rounded-xl text__stroke px-4 border-2 border-main-border border-solid'>
-          <span className='text-blue-600 font-fantasy'>
-            GO <span className='text-red-600'>BACK</span>
-          </span>
-        </button>
+        <FantasyButton
+          text='Go Back'
+          onClick={goBack}
+          type='default'
+          ariaLabel='Go back button'
+        />
       </section>
     </section>
   );

@@ -78,10 +78,6 @@ export const getAllUsersHandler = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    foundUsers.forEach((user) => {
-      delete user.password;
-    });
-
     // myEmitterUsers.emit('get-all-users', req.user);
     return sendDataResponse(res, 200, { users: foundUsers });
   } catch (err) {
@@ -98,7 +94,7 @@ export const getUserByIdHandler = async (req, res) => {
 
   if (!userId) {
     return sendDataResponse(res, 400, {
-      email: 'Missing userId',
+      message: 'Missing userId',
     });
   }
 
@@ -115,7 +111,6 @@ export const getUserByIdHandler = async (req, res) => {
     }
 
     delete foundUser.password;
-    delete foundUser.agreedToTerms;
 
     // myEmitterUsers.emit('get-user-by-id', req.user);
     return sendDataResponse(res, 200, { user: foundUser });

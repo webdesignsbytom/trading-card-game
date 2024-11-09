@@ -93,7 +93,7 @@ function SmallScreenNavbar({ logoutUser }) {
         <div className='grid items-center px-2'>
           <button
             onClick={openPhoneNav}
-            className='text-main-colour'
+            className='text-colour1'
             aria-label='Toggle navigation menu'
           >
             <IoMenu size={50} />

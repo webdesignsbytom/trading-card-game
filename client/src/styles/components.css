@@ -41,3 +41,11 @@
   /* -webkit-text-stroke: 1px #f5f5f5; */
   color: #1a7408;
 }
+
+.styled-border {
+  background: linear-gradient(145deg, #7F1A1A, #B83232);
+  border: 2px solid #A46C30;
+  border-radius: 0.8rem;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.7), inset 0px 1px 3px rgba(255, 255, 255, 0.1);
+  color: #C9A85E;
+}
