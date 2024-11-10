@@ -42,12 +42,16 @@ export const USER_OVERVIEW_PAGE_URL = '/admin/user-overview';
 export const EVENT_OVERVIEW_PAGE_URL = '/admin/event-overview';
 export const TEST_PAGE_URL = '/test';
 export const TEST_CARD_PAGE_URL = '/test/card';
+export const MAINTENANCE_PAGE_URL = '/down-for-maintenance';
+export const RESET_PASS_PAGE_URL = '/reset-password';
+export const POLICIES_PAGE_URL = '/user-agreements';
 
 // Text data
 export const SecondaryTitle = 'The Monster Trading Card Game';
 
 // API
 export const GET_LOGGED_IN_USER_API = '/users/user/get-logged-in-user'; // userId
+export const RESET_PASSWORD_API = '/users/user/reset-password'; // userId
 export const GET_ALL_CARDS_API = '/mon-cards/get-all-cards';
 export const STARTING_PACKS_API = '/packs/create-starter-packs-for-user';
 export const GET_USER_API = '/users/get-user-by-id';
