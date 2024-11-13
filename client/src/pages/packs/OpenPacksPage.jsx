@@ -1,29 +1,32 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 // Components
 import Navbar from '../../components/nav/Navbar';
+import { HelmetItem } from '../../components/utils/HelmetItem';
 // Context
-import { UserContext } from '../../context/UserContext';
-import { ToggleContext } from '../../context/ToggleContext';
+import { useUser } from '../../context/UserContext';
+// Constants
+import { CompanyName } from '../../utils/Constants';
 
 function OpenPacksPage() {
-  const { user } = useContext(UserContext);
-  const { setActiveNav } = useContext(ToggleContext)
-
-  useEffect(() => {
-    setActiveNav('/open-packs')
-  }, [])
+  const { user } = useUser();
 
   return (
-    <div className='h-screen bg-red-100 grid'>
-      <section className='bg-blue-500 grid h-full overflow-hidden grid-cols-reg'>
-        <Navbar />
-        <main className='grid items-center justify-center'>
-          <h2>Unopened: {user.unopenedPacks.length}</h2>
-          <Link to='/shop'>Buy New Packs</Link>
-        </main>
-      </section>
-    </div>
+    <>
+      {/* Tab Data */}
+      <HelmetItem PageName={'Packs'} desc={`Packs page of ${CompanyName}.`} />
+
+      {/* Page */}
+      <div className='h-screen bg-red-100 grid'>
+        <section className='bg-blue-500 grid h-full overflow-hidden grid-cols-reg'>
+          <Navbar />
+          <main className='grid items-center justify-center'>
+            <h2>Unopened: {user.unopenedPacks.length}</h2>
+            <Link to='/shop'>Buy New Packs</Link>
+          </main>
+        </section>
+      </div>
+    </>
   );
 }
 

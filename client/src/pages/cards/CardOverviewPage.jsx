@@ -4,6 +4,9 @@ import { useLocation, useParams } from 'react-router-dom';
 import Navbar from '../../components/nav/Navbar';
 import Card from '../../components/card/Card';
 import CardDataCard from '../../components/card/CardDataCard';
+import { HelmetItem } from '../../components/utils/HelmetItem';
+// Constants
+import { CompanyName } from '../../utils/Constants';
 
 function CardOverviewPage() {
   const location = useLocation();
@@ -11,37 +14,43 @@ function CardOverviewPage() {
   const cardData = location.state;
 
   return (
-    <div className='grid lg:overflow-hidden main__bg min-h-screen w-full'>
-      <section className='grid h-full md:overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
-        <Navbar />
+    <>
+      {/* Tab Data */}
+      <HelmetItem PageName={'Cards'} desc={`Cards page of ${CompanyName}.`} />
 
-        <main className='grid h-full w-full p-2 md:overflow-hidden'>
-          <div className='grid grid-rows-reg h-full w-full md:overflow-hidden'>
-            {/* Header - name of monster */}
-            <section className='grid w-full my-2 px-2 overflow-hidden'>
-              <article className='grid bg-main-colour py-1 px-4 rounded w-full text-center items-center justify-center main__bg border-2 border-main-border border-solid shadow-lg'>
-                <h1 className='font-semibold lg:text-2xl font-fantasy tracking-wider'>
-                  {cardName}
-                </h1>
-              </article>
-            </section>
+      {/* Page */}
+      <div className='grid lg:overflow-hidden main__bg min-h-screen w-full'>
+        <section className='grid h-full md:overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
+          <Navbar />
 
-            {/* Card and data  */}
-            <section className='grid h-full lg:grid-cols-2 py-2 px-2 gap-4 md:overflow-hidden'>
-              <section className='grid h-full w-full overflow-hidden'>
-                <div className='grid w-fit mx-auto my-auto'>
-                  <Card cardData={cardData} />
-                </div>
+          <main className='grid h-full w-full p-2 md:overflow-hidden'>
+            <div className='grid grid-rows-reg h-full w-full md:overflow-hidden'>
+              {/* Header - name of monster */}
+              <section className='grid w-full my-2 px-2 overflow-hidden'>
+                <article className='grid bg-main-colour py-1 px-4 rounded w-full text-center items-center justify-center main__bg border-2 border-main-border border-solid shadow-lg'>
+                  <h1 className='font-semibold lg:text-2xl font-fantasy tracking-wider'>
+                    {cardName}
+                  </h1>
+                </article>
               </section>
-              {/* Data */}
-              <section className='grid w-full h-full md:p-10 overflow-hidden'>
-                <CardDataCard cardData={cardData} />
+
+              {/* Card and data  */}
+              <section className='grid h-full lg:grid-cols-2 py-2 px-2 gap-4 md:overflow-hidden'>
+                <section className='grid h-full w-full overflow-hidden'>
+                  <div className='grid w-fit mx-auto my-auto'>
+                    <Card cardData={cardData} />
+                  </div>
+                </section>
+                {/* Data */}
+                <section className='grid w-full h-full md:p-10 overflow-hidden'>
+                  <CardDataCard cardData={cardData} />
+                </section>
               </section>
-            </section>
-          </div>
-        </main>
-      </section>
-    </div>
+            </div>
+          </main>
+        </section>
+      </div>
+    </>
   );
 }
 

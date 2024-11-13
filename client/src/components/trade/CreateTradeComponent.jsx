@@ -6,7 +6,7 @@ import Card from '../card/Card';
 // Data
 import CardTradeSelector from '../../utils/cards/CardTradeSelector';
 // Images
-import TradingImage from '../../assets/images/backgrounds/trading_card_monster_cards_user_trade.png';
+import TradingImage from '../../assets/images/backgrounds/trading-card-monster-cards-user-trade.png';
 import UserTradeComponent from './UserTradeComponent';
 import OfferingTradeComponent from './OfferingTradeComponent';
 

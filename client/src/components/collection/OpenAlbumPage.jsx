@@ -3,13 +3,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import CardSearchAndSelectionContainer from '../search/CardSearchAndSelectionContainer';
 import Card from '../card/Card';
 // Context
-import { UserContext } from '../../context/UserContext';
+import { useUser } from '../../context/UserContext';
 import { CardContext } from '../../context/CardContext';
 // Utils
 import LoadingSpinner from '../utils/LoadingSpinner';
 
 function OpenAlbumPage() {
-  const { user } = useContext(UserContext);
+  const { user } = useUser()
   const { userCardsArray } = useContext(CardContext);
 
   const [userCards, setUserCards] = useState([]);
