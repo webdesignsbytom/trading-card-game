@@ -5,19 +5,21 @@ import Navbar from '../../components/nav/Navbar';
 // Api
 import client from '../../api/client';
 // Context
-import { UserContext } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
+import { useUser } from '../../context/UserContext';
 // Constants
 import {
   BATTLES_PAGE_URL,
+  CompanyName,
   GET_USER_BATTLE_REQ_API,
 } from '../../utils/Constants';
 // Components
 import BattlePageHeader from '../../components/battles/BattlePageHeader';
 import BattlesRequestsComponent from '../../components/battles/BattlesRequestsComponent';
+import { HelmetItem } from '../../components/utils/HelmetItem';
 
 function BattlesRequestsPage() {
-  const { user } = useContext(UserContext);
+  const { user } = useUser()
   const { setActiveNav } = useContext(ToggleContext);
 
   const [foundBattleRequests, setFoundBattleRequests] = useState([]);
@@ -44,27 +46,33 @@ function BattlesRequestsPage() {
   }, []);
 
   return (
-    <div className='h-screen grid md:overflow-hidden w-full'>
-      <section className='grid h-full lg:overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
-        <Navbar />
-        <main className='bg-black main__bg p-4 grid grid-rows-reg gap-2 md:overflow-hidden'>
-          {/* Header */}
-          <BattlePageHeader />
+    <>
+      {/* Tab Data */}
+      <HelmetItem PageName={'Battle'} desc={`Battle page of ${CompanyName}.`} />
 
-          <div className='grid h-full bg-white main__bg md:overflow-hidden rounded'>
-            {foundBattleRequests < 0 ? (
-              <div className='grid items-center justify-center'>
-                <span className='font-fantasy text-5xl tracking-wider'>
-                  NO REQUESTS
-                </span>
-              </div>
-            ) : (
+      {/* Page */}
+      <div className='h-screen grid md:overflow-hidden w-full'>
+        <section className='grid h-full lg:overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
+          <Navbar />
+          <main className='bg-black main__bg p-4 grid grid-rows-reg gap-2 md:overflow-hidden'>
+            {/* Header */}
+            <BattlePageHeader />
+
+            <div className='grid h-full bg-white main__bg md:overflow-hidden rounded'>
+              {foundBattleRequests < 0 ? (
+                <div className='grid items-center justify-center'>
+                  <span className='font-fantasy text-5xl tracking-wider'>
+                    NO REQUESTS
+                  </span>
+                </div>
+              ) : (
                 <BattlesRequestsComponent />
-            )}
-          </div>
-        </main>
-      </section>
-    </div>
+              )}
+            </div>
+          </main>
+        </section>
+      </div>
+    </>
   );
 }
 

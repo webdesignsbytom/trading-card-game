@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+// Api
 import client from '../../api/client';
+// Components
 import LoadingSpinner from '../../components/utils/LoadingSpinner';
-import CountrySelect from '../../utils/CountrySelect';
+// Constants
 import { LOGIN_PAGE_URL, REGISTER_API } from '../../utils/Constants';
+// Utils
+import CountrySelect from '../../utils/CountrySelect';
 
 function RegisterForm() {
   const [formData, setFormData] = useState({

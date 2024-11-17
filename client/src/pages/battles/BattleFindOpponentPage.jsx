@@ -4,17 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/nav/Navbar';
 import BattlesOverviewComponent from '../../components/battles/BattlesOverviewComponent';
 import StartNewBattleComponent from '../../components/battles/StartNewBattleComponent';
-// Api
-import client from '../../api/client';
+import { HelmetItem } from '../../components/utils/HelmetItem';
+import BattlePageHeader from '../../components/battles/BattlePageHeader';
 // Context
-import { UserContext } from '../../context/UserContext';
+import { useUser } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
 // Constants
-import { BATTLES_PAGE_URL } from '../../utils/Constants';
-import BattlePageHeader from '../../components/battles/BattlePageHeader';
+import { BATTLES_PAGE_URL, CompanyName } from '../../utils/Constants';
 
 function BattleFindOpponentPage() {
-  const { user } = useContext(UserContext);
+  const { user } = useUser();
   const { setActiveNav } = useContext(ToggleContext);
 
   const [openBattleRequests, setOpenBattleRequests] = useState([]);
@@ -27,17 +26,23 @@ function BattleFindOpponentPage() {
   }, []);
 
   return (
-    <div className='h-screen grid md:overflow-hidden w-full'>
-      <section className='grid h-full lg:overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
-        <Navbar />
-        <main className='bg-black main__bg p-4 grid grid-rows-reg gap-2 md:overflow-hidden'>
-          {/* Header */}
-          <BattlePageHeader />
+    <>
+      {/* Tab Data */}
+      <HelmetItem PageName={'Battle'} desc={`Battle page of ${CompanyName}.`} />
 
-          <StartNewBattleComponent openBattleRequests={openBattleRequests} />
-        </main>
-      </section>
-    </div>
+      {/* Page */}
+      <div className='h-screen grid md:overflow-hidden w-full'>
+        <section className='grid h-full lg:overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
+          <Navbar />
+          <main className='bg-black main__bg p-4 grid grid-rows-reg gap-2 md:overflow-hidden'>
+            {/* Header */}
+            <BattlePageHeader />
+
+            <StartNewBattleComponent openBattleRequests={openBattleRequests} />
+          </main>
+        </section>
+      </div>
+    </>
   );
 }
 

@@ -1,13 +1,11 @@
 import React, { useContext, useState } from 'react';
 // Context
-import { useUser } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
 // Components
 import ClosedAlbumPage from '../../components/collection/ClosedAlbumPage';
 import OpenAlbumPage from '../../components/collection/OpenAlbumPage';
 
 function AlbumPageMainContainer() {
-  const { user } = useUser();
   const { viewCard } = useContext(ToggleContext);
 
   const [albumOpen, setAlbumOpen] = useState(false);
