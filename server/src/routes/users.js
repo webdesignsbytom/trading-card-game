@@ -28,7 +28,10 @@ router.get('/get-all-users', getAllUsersHandler);
 router.post('/register', registerNewUserHandler);
 router.patch('/user/packs/open-pack', openPacketHandler);
 router.patch('/user/boxes/open-box', openBoxPackHandler);
-router.patch('/user/rewards/daily-reward/collect/:userId', collectDailyRewardHandler);
+router.patch(
+  '/user/rewards/daily-reward/collect/:userId',
+  collectDailyRewardHandler
+);
 router.patch('/starter-packs/collect/:userId', collectStarterPacksHandler);
 router.get('/get-user-by-id/:userId', getUserByIdHandler);
 router.get('/login/get-user-by-id/:userId', getLoginUserDataHandler); // TODO: remove this

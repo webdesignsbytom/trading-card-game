@@ -1,11 +1,6 @@
 import bcrypt from 'bcrypt';
 // Database
-import {
-  findUserByEmail,
-  findUserByEmailForLogin,
-  resetUserLoginRecord,
-  updateUserLoginRecordToRewardAvailable,
-} from '../domain/users.js';
+import { findUserByEmail } from '../domain/users.js';
 // Responses
 import { sendDataResponse, sendMessageResponse } from '../utils/responses.js';
 // Events
@@ -13,57 +8,37 @@ import { myEmitterErrors } from '../event/errorEvents.js';
 import { LoginServerErrorEvent } from '../event/utils/errorUtils.js';
 // Token
 import { createAccessToken } from '../utils/tokens.js';
+// Oauth
+import { OAuth2Client } from 'google-auth-library';
 
-export const loginHandler = async (req, res) => {
+export const loginHelper = async (req, res) => {
   const { email, password } = req.body;
-  const lowerCaseEmail = email.toLowerCase();
 
-  if (!lowerCaseEmail || !password) {
+  if (!email || !password) {
     return sendDataResponse(res, 400, {
       email: 'Missing email and/or password provided',
     });
   }
 
+  const lowerCaseEmail = email.toLowerCase();
+
   try {
-    const foundUser = await findUserByEmail(lowerCaseEmail);
-    const areCredentialsValid = await validateCredentials(password, foundUser);
+    const existingUser = await findUserByEmail(lowerCaseEmail);
+
+    const areCredentialsValid = await validateCredentials(
+      password,
+      existingUser
+    );
 
     if (!areCredentialsValid) {
       return sendDataResponse(res, 400, {
         email: 'Invalid email and/or password provided',
       });
     }
+    console.log('existingUser', existingUser);
+    delete existingUser.password;
 
-    let lastLoginTime = foundUser.loginRecord?.lastLoginDateTime;
-
-    if (lastLoginTime) {
-      let oneDayLater = new Date(lastLoginTime.getTime() + 1);
-
-      // let twoDaysLater = new Date(lastLoginTime.getTime() + 172800000)
-      let twoDaysLater = new Date(lastLoginTime.getTime() + 172800000);
-      let newLoginTime = new Date();
-
-      // rewards
-      if (newLoginTime > oneDayLater && newLoginTime < twoDaysLater) {
-        const updatedRecord = await updateUserLoginRecordToRewardAvailable(
-          foundUser.loginRecord.id,
-          newLoginTime
-        );
-      }
-
-      if (newLoginTime > twoDaysLater) {
-        const updatedRecord = await resetUserLoginRecord(
-          foundUser.loginRecord.id,
-          newLoginTime
-        );
-      }
-    }
-
-    delete foundUser.password;
-    const token = createAccessToken(foundUser.id, foundUser.email);
-
-    const existingUser = await findUserByEmailForLogin(lowerCaseEmail);
-
+    const token = createAccessToken(existingUser.id, existingUser.email);
     return sendDataResponse(res, 200, { token, existingUser });
   } catch (err) {
     //
@@ -90,3 +65,41 @@ export async function validateCredentials(password, user) {
 
   return true;
 }
+
+export const googleLoginHelper = async (req, res) => {
+  console.log('googleLoginHelper');
+
+  try {
+    res.header(
+      'Access-Control-Allow-Origin',
+      `${process.env.OAUTH_CLIENT_URL}`
+    );
+    res.header('Referrer-Policy', 'no-referrer-when-downgrade'); // for http only
+
+    // Redirect url to send the client
+    const redirectUrl = 'http://127.0.0.1:4000/oauth';
+
+    const oAuth2Client = new OAuth2Client(
+      process.env.CLIENT_ID,
+      process.env.CLIENT_SECRET,
+      redirectUrl
+    );
+
+    const authorizeUrl = oAuth2Client.generateAuthUrl({
+      access_type: 'offline', // offline for testing -
+      scope: 'https://www.googleapis.com/auth/userinfo.profile openid',
+      prompt: 'concent', // keep the concent screen open
+    });
+
+    res.json({ url: authorizeUrl });
+  } catch (err) {
+    //
+    const serverError = new LoginServerErrorEvent(
+      email,
+      `Login OAuth Server error`
+    );
+    myEmitterErrors.emit('error-login', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};

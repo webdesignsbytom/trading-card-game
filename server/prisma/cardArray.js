@@ -358,8 +358,7 @@ export const cardArrayAlpha = [
   {
     serialNumber: 'a-015',
     cardName: 'Rare Alpha Powerup card test 1',
-    description:
-      `A rare card infused with saffron magic, it greatly enhances the user’s defense.`,
+    description: `A rare card infused with saffron magic, it greatly enhances the user’s defense.`,
     edition: 'first',
     rarity: 'RARE',
     holographic: false,
@@ -723,8 +722,7 @@ export const cardArrayBeta = [
   {
     serialNumber: 'b-010',
     cardName: 'Rare holo Beta Item card test 1',
-    description:
-      `A holographic item card that uses magic and saffron to skip the opponent’s turn.`,
+    description: `A holographic item card that uses magic and saffron to skip the opponent’s turn.`,
     edition: 'first',
     rarity: 'RAREHOLO',
     holographic: true,
@@ -746,8 +744,7 @@ export const cardArrayBeta = [
   {
     serialNumber: 'b-011',
     cardName: 'Mega rare Beta Item card test 1',
-    description:
-      `This mega rare item card has the power to draw an extra card from your deck, infused with saffron’s essence.`,
+    description: `This mega rare item card has the power to draw an extra card from your deck, infused with saffron’s essence.`,
     edition: 'first',
     rarity: 'MEGARARE',
     holographic: false,
@@ -769,8 +766,7 @@ export const cardArrayBeta = [
   {
     serialNumber: 'b-012',
     cardName: 'Mega rare holo Beta Item card test 1',
-    description:
-      `A mega rare holographic card that can alter the game’s timeline, powered by saffron’s magic.`,
+    description: `A mega rare holographic card that can alter the game’s timeline, powered by saffron’s magic.`,
     edition: 'first',
     rarity: 'MEGARAREHOLO',
     holographic: true,
