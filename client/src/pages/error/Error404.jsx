@@ -4,13 +4,20 @@ import CatNotFound from '../../assets/images/pages/404-page-not-found-cat.png';
 // Components
 import Navbar from '../../components/nav/Navbar';
 import { HelmetItem } from '../../components/utils/HelmetItem';
+// Data
+import { errorPageAdditionalMeta, errorPageStructuredData } from '../../utils/data/PageData';
 
 function Error404() {
   return (
     <>
       {/* Tab Data */}
-      <HelmetItem PageName={'Error'} desc={`Error page Not Found.`} />
-
+      <HelmetItem
+        PageName="Error"
+        desc="The requested page could not be found. Visit our homepage to find what you’re looking for."
+        additionalMeta={errorPageAdditionalMeta}
+        structuredData={errorPageStructuredData}
+      />
+      
       {/* Page */}
       <div className='grid min-h-screen h-screen max-h-screen overflow-hidden w-full bg-main-background font-poppins'>
         <div className='grid grid-rows-reg h-full w-full overflow-hidden'>

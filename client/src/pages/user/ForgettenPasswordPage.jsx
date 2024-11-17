@@ -5,15 +5,20 @@ import ForgotPasswordForm from '../../components/forms/ForgotPasswordForm';
 import { HelmetItem } from '../../components/utils/HelmetItem';
 // Constants
 import { CompanyName } from '../../utils/Constants';
+// Data
+import { forgottenPasswordPageAdditionalMeta, forgottenPasswordPageStructuredData } from '../../utils/data/PageData';
 
 function ForgettenPasswordPage() {
   return (
     <>
       {/* Tab Data */}
       <HelmetItem
-        PageName={'Reset Password'}
-        desc={`Reset your password for ${CompanyName}.`}
+        PageName='Reset Password'
+        desc={`Reset your password for your ${CompanyName} account.`}
+        additionalMeta={forgottenPasswordPageAdditionalMeta}
+        structuredData={forgottenPasswordPageStructuredData}
       />
+
 
       {/* Page */}
       <div className='grid min-h-screen lg:h-screen lg:max-h-screen lg:overflow-hidden bg-main-background font-poppins'>

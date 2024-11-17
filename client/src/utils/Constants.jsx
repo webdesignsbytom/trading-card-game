@@ -5,7 +5,14 @@ export const ContactEmailAddress = 'hello@company.com';
 export const DirectorName = 'Me Myself';
 
 // Site text
-export const CompantTagLine = 'Our company is great'
+export const CompantTagLine = 'Monster Cards';
+export const SubtitleMain = 'Find collect trade and battle';
+export const SubtitleSecondary = `How can ${CompanyName} help you? `;
+
+// URL
+export const FULL_BUSINESS_URL = 'https://www.moncards.bytetoast-studio.co.uk';
+export const SHORT_BUSINESS_URL = 'moncards.bytetoast-studio.co.uk';
+export const DISPLAY_BUSINESS_URL = 'www.moncards.bytetoast-studio.co.uk';
 
 // Cookie data
 export const NumberOfCookies = 0;
@@ -46,9 +53,6 @@ export const MAINTENANCE_PAGE_URL = '/down-for-maintenance';
 export const RESET_PASS_PAGE_URL = '/reset-password';
 export const POLICIES_PAGE_URL = '/user-agreements';
 
-// Text data
-export const SecondaryTitle = 'The Monster Trading Card Game';
-
 // API
 export const GET_LOGGED_IN_USER_API = '/users/user/get-logged-in-user'; // userId
 export const RESET_PASSWORD_API = '/users/user/reset-password'; // userId
@@ -84,6 +88,7 @@ export const GOOGLE_SERVICE = 'google';
 export const GITHUB_SERVICE = 'github';
 export const APPLE_SERVICE = 'apple';
 export const X_SERVICE = 'x';
+
 // Social Media URLs
 export const FACEBOOK_URL = 'https://facebook.com/';
 export const INSTAGRAM_URL = 'https://instagram.com/';
@@ -91,3 +96,12 @@ export const GOOGLE_URL = 'https://google.com/';
 export const GITHUB_URL = 'https://github.com/';
 export const APPLE_URL = 'https://apple.com/';
 export const X_URL = 'https://x.com/';
+
+export const FACEBOOK_NAME = 'bytetoast-studio';
+export const INSTAGRAM_NAME = 'bytetoast-studio';
+export const LINKEDIN_NAME = 'bytetoast-studio';
+
+
+export const FACEBOOK_BUSINESS_URL = `https://www.facebook.com/company/`;
+export const INSTAGRAM_BUSINESS_URL = `https://instagram.com/bytetoaststudio`;
+export const LINKEDIN_BUSINESS_URL = `https://www.linkedin.com/bytetoaststudio`;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // Constants
-import { HOME_PAGE_URL, SecondaryTitle } from '../../utils/Constants';
+import { HOME_PAGE_URL, SubtitleMain } from '../../utils/Constants';
 
 function SmallMonCardsHeader() {
   return (
@@ -14,7 +14,7 @@ function SmallMonCardsHeader() {
             </span>
           </p>
           <p className='font-bold text-xs md:text-sm font-poppins tracking-tight'>
-            <span>{SecondaryTitle}</span>
+            <span>{SubtitleMain}</span>
           </p>
         </div>
       </Link>

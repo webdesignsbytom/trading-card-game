@@ -1,6 +1,6 @@
 import React from 'react';
 // Constants
-import { SecondaryTitle } from '../../utils/Constants';
+import { SubtitleMain } from '../../utils/Constants';
 
 function EmptyCardSlot() {
   return (
@@ -16,7 +16,7 @@ function EmptyCardSlot() {
             </span>
           </p>
           <p className='text-gray-50 text-ss font-semibold text-center'>
-            <span>{SecondaryTitle}</span>
+            <span>{SubtitleMain}</span>
           </p>
         </div>
       </div>

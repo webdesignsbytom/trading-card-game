@@ -1,6 +1,6 @@
 import React from 'react';
 // Constants
-import { SecondaryTitle } from '../../utils/Constants';
+import { SubtitleMain } from '../../utils/Constants';
 
 function LargeMonCardsHeader() {
   return (
@@ -11,7 +11,7 @@ function LargeMonCardsHeader() {
         </span>
       </h1>
       <h2 className='text-center text-xl lg:text-3xl font-bold font-poppins tracking-tight'>
-        {SecondaryTitle}
+        {SubtitleMain}
       </h2>
     </article>
   );
