@@ -7,6 +7,8 @@ import { CompanyName } from '../../utils/Constants';
 import Navbar from '../../components/nav/Navbar';
 import { HelmetItem } from '../../components/utils/HelmetItem';
 import InvintoryPageMainContainer from '../../components/invintory/InvintoryPageMainContainer';
+// Data
+import { inventoryPageAdditionalMeta, inventoryPageStructuredData } from '../../utils/data/PageData';
 
 const ShopPage = React.memo(() => {
   usePageTracking(); // Tracks page views
@@ -15,8 +17,11 @@ const ShopPage = React.memo(() => {
     <>
       {/* Tab Data */}
       <HelmetItem
-        PageName={'Invintory'}
-        desc={`Invintory page of ${CompanyName}.`}
+        PageName="Inventory"
+        desc={`Manage your ${CompanyName} inventory. View your collected items and organize them efficiently.`}
+        keywords={`inventory, item collection, asset management, ${CompanyName}`}
+        additionalMeta={inventoryPageAdditionalMeta}
+        structuredData={inventoryPageStructuredData}
       />
 
       {/* Page */}

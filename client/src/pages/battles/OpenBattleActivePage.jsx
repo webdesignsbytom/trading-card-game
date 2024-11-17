@@ -7,6 +7,8 @@ import BattleFightComponent from '../../components/battles/BattleFightComponent'
 import { HelmetItem } from '../../components/utils/HelmetItem';
 // Constants
 import { CompanyName } from '../../utils/Constants';
+// Data
+import { openBattlePageAdditionalMeta, openBattlePageStructuredData } from '../../utils/data/PageData';
 
 function OpenBattleActivePage() {
   const [loadingBattleData, setLoadingBattleData] = useState(false);
@@ -17,7 +19,13 @@ function OpenBattleActivePage() {
   return (
     <>
       {/* Tab Data */}
-      <HelmetItem PageName={'Battle'} desc={`Battle page of ${CompanyName}.`} />
+      <HelmetItem
+        PageName="Active Battle"
+        desc={`Engage in an ongoing battle within ${CompanyName}. Experience real-time gameplay and strategic combat.`}
+        keywords={`active battle, live gameplay, ${CompanyName}, strategy`}
+        additionalMeta={openBattlePageAdditionalMeta}
+        structuredData={openBattlePageStructuredData}
+      />
 
       {/* Page */}
       <div className='h-screen grid'>

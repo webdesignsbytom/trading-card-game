@@ -6,7 +6,10 @@ import { HelmetItem } from '../../components/utils/HelmetItem';
 import TradingPageMainContainer from '../../components/trade/TradingPageMainContainer';
 // Context
 import { TradingContext } from '../../context/TradingContext';
+// Constants
 import { CompanyName } from '../../utils/Constants';
+// Data
+import { tradingPageAdditionalMeta, tradingPageStructuredData } from '../../utils/data/PageData';
 
 function TradingPage() {
   const {
@@ -28,8 +31,11 @@ function TradingPage() {
     <>
       {/* Tab Data */}
       <HelmetItem
-        PageName={'Trading'}
-        desc={`Trading page of ${CompanyName}.`}
+        PageName="Trading"
+        desc={`Trade your cards in ${CompanyName}'s trading hub. Discover new cards and exchange with other players.`}
+        keywords="trading, card trading, MonCards, collectible cards, trade hub"
+        additionalMeta={tradingPageAdditionalMeta}
+        structuredData={tradingPageStructuredData}
       />
 
       {/* Page */}

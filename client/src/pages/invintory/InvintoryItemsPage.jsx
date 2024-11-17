@@ -5,12 +5,23 @@ import InvintoryItemsPageMainContainer from '../../components/invintory/Invintor
 import { HelmetItem } from '../../components/utils/HelmetItem';
 // Constants
 import { CompanyName } from '../../utils/Constants';
+// Data
+import {
+  inventoryItemsPageAdditionalMeta,
+  inventoryItemsPageStructuredData,
+} from '../../utils/data/PageData';
 
 function InvintoryItemsPage() {
   return (
     <>
       {/* Tab Data */}
-      <HelmetItem PageName={'Invintory'} desc={`Invintory page of ${CompanyName}.`} />
+      <HelmetItem
+        PageName='Inventory Items'
+        desc={`Manage your inventory items in ${CompanyName}. Keep track of your collected items and tools.`}
+        keywords={`inventory, items, collection, ${CompanyName}, tools, management`}
+        additionalMeta={inventoryItemsPageAdditionalMeta}
+        structuredData={inventoryItemsPageStructuredData}
+      />
 
       <div className='bg-black main__bg h-screen grid'>
         <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>

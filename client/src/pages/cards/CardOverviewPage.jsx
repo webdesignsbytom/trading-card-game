@@ -7,16 +7,31 @@ import CardDataCard from '../../components/card/CardDataCard';
 import { HelmetItem } from '../../components/utils/HelmetItem';
 // Constants
 import { CompanyName } from '../../utils/Constants';
+// Data
+import {
+  cardOverviewPageAdditionalMeta,
+  cardOverviewPageStructuredData,
+} from '../../utils/data/PageData';
 
 function CardOverviewPage() {
   const location = useLocation();
   const { cardName } = useParams();
+
   const cardData = location.state;
 
   return (
     <>
       {/* Tab Data */}
-      <HelmetItem PageName={'Cards'} desc={`Cards page of ${CompanyName}.`} />
+      <HelmetItem
+        PageName={cardData.name || 'Card'}
+        desc={
+          cardData.description ||
+          `Details about ${cardData.name} in ${CompanyName}.`
+        }
+        keywords={`cards, ${cardData.name}, game cards, ${CompanyName}`}
+        additionalMeta={cardOverviewPageAdditionalMeta(cardData)}
+        structuredData={cardOverviewPageStructuredData(cardData)}
+      />
 
       {/* Page */}
       <div className='grid lg:overflow-hidden main__bg min-h-screen w-full'>

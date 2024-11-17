@@ -5,6 +5,8 @@ import DeckCoverComponent from '../../components/deck/DeckCoverComponent';
 import { HelmetItem } from '../../components/utils/HelmetItem';
 // Constants
 import { CompanyName } from '../../utils/Constants';
+// Data
+import { decksPageAdditionalMeta, decksPageStructuredData } from '../../utils/data/PageData';
 
 function DecksOverviewPage() {
   const decks = Array.from({ length: 5 }, (_, i) => `Deck ${i + 1}`);
@@ -12,7 +14,13 @@ function DecksOverviewPage() {
   return (
     <>
       {/* Tab Data */}
-      <HelmetItem PageName='Decks' desc={`Decks page of ${CompanyName}.`} />
+      <HelmetItem
+        PageName="Decks"
+        desc={`Manage your custom decks in ${CompanyName}. Save up to 5 decks of cards to enhance your gameplay.`}
+        keywords={`decks, card game, deck management, ${CompanyName}, save decks`}
+        additionalMeta={decksPageAdditionalMeta}
+        structuredData={decksPageStructuredData}
+      />
 
       {/* Page */}
       <div className='bg-black main__bg h-screen grid overflow-hidden'>

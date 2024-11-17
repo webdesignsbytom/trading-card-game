@@ -6,6 +6,7 @@ import { HelmetItem } from '../../components/utils/HelmetItem';
 import { CompanyName } from '../../utils/Constants';
 // Data
 import { TermsAndPoliciesDataArray } from '../../utils/data/TermsData';
+import { termsAndPoliciesAdditionalMeta, termsAndPoliciesStructuredData } from '../../utils/data/PageData';
 
 function TermAndPoliciesPage() {
   const headers = [
@@ -19,8 +20,11 @@ function TermAndPoliciesPage() {
     <>
       {/* Tab Data */}
       <HelmetItem
-        PageName={'Terms and Policies'}
-        desc={`Terms and privacy policies for ${CompanyName}.`}
+        PageName="Terms and Policies"
+        desc={`Explore the terms of service and privacy policies of ${CompanyName}.`}
+        keywords={`terms, policies, privacy, compliance, ${CompanyName}`}
+        additionalMeta={termsAndPoliciesAdditionalMeta}
+        structuredData={termsAndPoliciesStructuredData}
       />
 
       {/* Page */}

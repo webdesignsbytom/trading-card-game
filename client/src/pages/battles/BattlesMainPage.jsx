@@ -1,31 +1,27 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Components
 import Navbar from '../../components/nav/Navbar';
 import BattlesOverviewComponent from '../../components/battles/BattlesOverviewComponent';
 import { HelmetItem } from '../../components/utils/HelmetItem';
-import StartNewBattleComponent from '../../components/battles/StartNewBattleComponent';
 import BattlePageHeader from '../../components/battles/BattlePageHeader';
 // Api
 import client from '../../api/client';
-// Context
-import { ToggleContext } from '../../context/ToggleContext';
 // Constants
-import { BATTLES_PAGE_URL, CompanyName } from '../../utils/Constants';
+import {  CompanyName } from '../../utils/Constants';
 import { useUser } from '../../context/UserContext';
+import {
+  battlesPageAdditionalMeta,
+  battlesPageStructuredData,
+} from '../../utils/data/PageData';
 
 function BattlesMainPage() {
-  const { user } = useUser()
-  const { setActiveNav } = useContext(ToggleContext);
+  const { user } = useUser();
 
   const [openBattleRequests, setOpenBattleRequests] = useState([]);
   const [startingNewBattle, setStartingNewBattle] = useState(false);
 
   let navigate = useNavigate();
-
-  useEffect(() => {
-    setActiveNav(BATTLES_PAGE_URL);
-  }, []);
 
   useEffect(() => {
     client
@@ -56,7 +52,13 @@ function BattlesMainPage() {
   return (
     <>
       {/* Tab Data */}
-      <HelmetItem PageName={'Battle'} desc={`Battle page of ${CompanyName}.`} />
+      <HelmetItem
+        PageName='Battle'
+        desc={`Manage your battles and challenge opponents in ${CompanyName}.`}
+        keywords={`battles, strategy games, competitive gaming, ${CompanyName}`}
+        additionalMeta={battlesPageAdditionalMeta}
+        structuredData={battlesPageStructuredData}
+      />
 
       <div className='h-screen grid md:overflow-hidden w-full'>
         <section className='grid h-full lg:overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>

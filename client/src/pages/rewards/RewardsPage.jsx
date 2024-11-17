@@ -2,18 +2,25 @@ import React from 'react';
 // Components
 import Navbar from '../../components/nav/Navbar';
 import { HelmetItem } from '../../components/utils/HelmetItem';
+import RewardsPageMainContainer from '../../components/rewards/RewardsPageMainContainer';
 // Constants
 import { CompanyName } from '../../utils/Constants';
 // Data
-import RewardsPageMainContainer from '../../components/rewards/RewardsPageMainContainer';
+import {
+  rewardsPageAdditionalMeta,
+  rewardsPageStructuredData,
+} from '../../utils/data/PageData';
 
 function RewardsPage() {
   return (
     <>
       {/* Tab Data */}
       <HelmetItem
-        PageName={'Rewards'}
-        desc={`Rewards page of ${CompanyName}.`}
+        PageName='Rewards'
+        desc={`Explore the ${CompanyName} Rewards Program. Earn points and unlock exclusive rewards.`}
+        keywords={`rewards, benefits, loyalty program, points, ${CompanyName}`}
+        additionalMeta={rewardsPageAdditionalMeta}
+        structuredData={rewardsPageStructuredData}
       />
 
       <div className='h-screen grid overflow-hidden'>

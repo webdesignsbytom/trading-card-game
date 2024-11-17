@@ -11,6 +11,11 @@ import { useUser } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
 // Constants
 import { BATTLES_PAGE_URL, CompanyName } from '../../utils/Constants';
+// Data
+import {
+  battleFindOpponentPageAdditionalMeta,
+  battleFindOpponentPageStructuredData,
+} from '../../utils/data/PageData';
 
 function BattleFindOpponentPage() {
   const { user } = useUser();
@@ -28,7 +33,13 @@ function BattleFindOpponentPage() {
   return (
     <>
       {/* Tab Data */}
-      <HelmetItem PageName={'Battle'} desc={`Battle page of ${CompanyName}.`} />
+      <HelmetItem
+        PageName='Find Opponent'
+        desc={`Find and challenge opponents for exciting battles in ${CompanyName}.`}
+        keywords={`battle matchmaking, find opponents, multiplayer, ${CompanyName}`}
+        additionalMeta={battleFindOpponentPageAdditionalMeta}
+        structuredData={battleFindOpponentPageStructuredData}
+      />
 
       {/* Page */}
       <div className='h-screen grid md:overflow-hidden w-full'>

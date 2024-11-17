@@ -1,9 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// Components
-import Navbar from '../../components/nav/Navbar';
 // Api
 import client from '../../api/client';
+// Components
+import Navbar from '../../components/nav/Navbar';
+import BattlePageHeader from '../../components/battles/BattlePageHeader';
+import BattlesRequestsComponent from '../../components/battles/BattlesRequestsComponent';
+import { HelmetItem } from '../../components/utils/HelmetItem';
 // Context
 import { ToggleContext } from '../../context/ToggleContext';
 import { useUser } from '../../context/UserContext';
@@ -13,13 +16,14 @@ import {
   CompanyName,
   GET_USER_BATTLE_REQ_API,
 } from '../../utils/Constants';
-// Components
-import BattlePageHeader from '../../components/battles/BattlePageHeader';
-import BattlesRequestsComponent from '../../components/battles/BattlesRequestsComponent';
-import { HelmetItem } from '../../components/utils/HelmetItem';
+// Data
+import {
+  battlesRequestsPageAdditionalMeta,
+  battlesRequestsPageStructuredData,
+} from '../../utils/data/PageData';
 
 function BattlesRequestsPage() {
-  const { user } = useUser()
+  const { user } = useUser();
   const { setActiveNav } = useContext(ToggleContext);
 
   const [foundBattleRequests, setFoundBattleRequests] = useState([]);
@@ -48,7 +52,13 @@ function BattlesRequestsPage() {
   return (
     <>
       {/* Tab Data */}
-      <HelmetItem PageName={'Battle'} desc={`Battle page of ${CompanyName}.`} />
+      <HelmetItem
+        PageName='Battle Requests'
+        desc={`Manage your battle requests in ${CompanyName}. Accept challenges and engage in thrilling battles.`}
+        keywords={`battle requests, multiplayer battles, game challenges, ${CompanyName}`}
+        additionalMeta={battlesRequestsPageAdditionalMeta}
+        structuredData={battlesRequestsPageStructuredData}
+      />
 
       {/* Page */}
       <div className='h-screen grid md:overflow-hidden w-full'>
