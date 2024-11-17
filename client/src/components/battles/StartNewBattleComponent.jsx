@@ -1,25 +1,29 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 // Api
 import client from '../../api/client';
 // Components
 import LeaderboardContainer from './LeaderboardContainer';
 import FanstasyButton from '../utils/FantasyButton';
+// Constants
 import {
   BATTLE_REQUESTS_PAGE_URL,
   BATTLE_USER_SEARCH_API,
   CREATE_BATTLE_REQ_API,
 } from '../../utils/Constants';
 // Context
-import { UserContext } from '../../context/UserContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { useUser } from '../../context/UserContext';
+// Hooks
+import useNavigateToPage from '../../hooks/useNavigateToPage';
 
 function StartNewBattleComponent() {
-  const { user } = useContext(UserContext);
+  const { user } = useUser();
+
   const [searchQuery, setSearchQuery] = useState({ username: '' });
   const [notFoundUser, setNotFoundUser] = useState(false);
   const [battlePartnerFound, setBattlePartnerFound] = useState(null);
 
-  const navigate = useNavigate();
+  const navigateToPage = useNavigateToPage();
 
   const searchForUser = () => {
     setNotFoundUser(false);
@@ -59,7 +63,7 @@ function StartNewBattleComponent() {
     client
       .post(CREATE_BATTLE_REQ_API, battleData)
       .then((res) => {
-        navigate(BATTLE_REQUESTS_PAGE_URL, { replace: false });
+        navigateToPage(BATTLE_REQUESTS_PAGE_URL);
       })
       .catch((err) => {
         console.error('Unable to create battle request', err);
@@ -76,13 +80,17 @@ function StartNewBattleComponent() {
     <section className='grid p-4 bg-main-colour main__bg rounded-lg'>
       <section className='grid md:grid-cols-rev'>
         {/* Main container */}
-        <section className='grid items-center gap-4 w-full p-1'>
-          <div className='grid grid-rows-2 w-full'>
+        <section className='grid items-center gap-4 w-full py-4'>
+          <div
+            className={`grid ${
+              battlePartnerFound ? 'grid-rows-2' : 'pb-10'
+            } w-full`}
+          >
             <section>
               <div className='grid justify-center mb-8'>
                 <Link
                   to={BATTLE_REQUESTS_PAGE_URL}
-                  className='border-main-border border-solid border-2 rounded-lg px-4 py-1 bg-white main__bg hover:bg-red-400 active:scale-95'
+                  className='styled-button px-4 py-2'
                 >
                   <span className='text-sm font-semibold'>
                     VIEW OPEN BATTLE REQUESTS
@@ -96,15 +104,16 @@ function StartNewBattleComponent() {
                   </h3>
                 </div>
               </section>
-              <div className='grid h-fit'>
+              <section className='grid h-fit'>
                 <div className='text-center flex-wrap'>
                   <p>Enter the user name of </p>
                   <p className='-mt-2'>who you wish to fight with</p>
                 </div>
-                <div className='grid items-center justify-center py-1 px-2'>
+
+                <div className='grid items-center justify-center py-4 px-2'>
                   <input
                     onChange={handleChange}
-                    className='rounded px-1 py-1'
+                    className='rounded px-1 py-1 w-full'
                     type='text'
                     name='username'
                     id='username'
@@ -122,16 +131,19 @@ function StartNewBattleComponent() {
                   </section>
                 )}
                 <div className='grid items-center justify-center my-4'>
-                  <FanstasyButton onClick={searchForUser} black={true}>
-                    Find <span className='text-red-600'>User</span>
-                  </FanstasyButton>
+                  <button
+                    className='styled-button px-4 py-1 text-xl'
+                    onClick={searchForUser}
+                  >
+                    Find User
+                  </button>
                 </div>
-              </div>
+              </section>
             </section>
 
             {/* Found user and create battle component */}
-            <section className='grid w-full h-full px-10 my-auto'>
-              {battlePartnerFound && (
+            {battlePartnerFound && (
+              <section className='grid w-full h-full px-10 my-auto'>
                 <article className='grid grid-rows-reg bg-white main__bg p-2 border-main-border border-2 border-solid rounded-lg shadow-xl'>
                   <div className='text-center py-1'>
                     <h3 className='font-bold font-fantasy text-2xl'>
@@ -167,17 +179,23 @@ function StartNewBattleComponent() {
 
                     {/* Buttons */}
                     <div className='grid md:grid-cols-2 gap-2 h-fit justify-between px-10 py-2'>
-                      <FanstasyButton onClick={cancelRequest}>
+                      <button
+                        className='styled-button px-4 py-1 text-xl'
+                        onClick={cancelRequest}
+                      >
                         <span className='text-red-600'>Cancel</span>
-                      </FanstasyButton>
-                      <FanstasyButton onClick={createBattleRequestHandler}>
+                      </button>
+                      <button
+                        className='styled-button px-4 py-1 text-xl'
+                        onClick={createBattleRequestHandler}
+                      >
                         Confirm
-                      </FanstasyButton>
+                      </button>
                     </div>
                   </div>
                 </article>
-              )}
-            </section>
+              </section>
+            )}
           </div>
         </section>
 

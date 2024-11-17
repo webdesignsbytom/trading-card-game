@@ -8,16 +8,19 @@ import Navbar from '../../components/nav/Navbar';
 import { HelmetItem } from '../../components/utils/HelmetItem';
 import InvintoryPageMainContainer from '../../components/invintory/InvintoryPageMainContainer';
 // Data
-import { inventoryPageAdditionalMeta, inventoryPageStructuredData } from '../../utils/data/PageData';
+import {
+  inventoryPageAdditionalMeta,
+  inventoryPageStructuredData,
+} from '../../utils/data/PageData';
 
-const ShopPage = React.memo(() => {
+const InvintoryPage = React.memo(() => {
   usePageTracking(); // Tracks page views
 
   return (
     <>
       {/* Tab Data */}
       <HelmetItem
-        PageName="Inventory"
+        PageName='Inventory'
         desc={`Manage your ${CompanyName} inventory. View your collected items and organize them efficiently.`}
         keywords={`inventory, item collection, asset management, ${CompanyName}`}
         additionalMeta={inventoryPageAdditionalMeta}
@@ -26,7 +29,7 @@ const ShopPage = React.memo(() => {
 
       {/* Page */}
       <div className='grid min-h-screen lg:h-screen lg:max-h-screen lg:overflow-hidden font-poppins'>
-        <div className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
+        <div className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg main__bg bg-main-colour'>
           {/* Navigation */}
           <Navbar />
 
@@ -38,4 +41,4 @@ const ShopPage = React.memo(() => {
   );
 });
 
-export default ShopPage;
+export default InvintoryPage;

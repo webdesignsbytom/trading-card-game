@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 // Constants
 import {
   HOME_PAGE_URL,
@@ -18,7 +18,7 @@ import {
   BATTLE_REQUESTS_PAGE_URL,
 } from '../../utils/Constants';
 // Context
-import { UserContext } from '../../context/UserContext';
+import { useUser } from '../../context/UserContext';
 import { ToggleContext } from '../../context/ToggleContext';
 // Images
 import MainLogo from '../../assets/images/logos/mon_card_main_logo_of_creatures.png';
@@ -26,7 +26,7 @@ import MainLogo from '../../assets/images/logos/mon_card_main_logo_of_creatures.
 import { IoMenu } from 'react-icons/io5';
 
 function SmallScreenNavbar({ logoutUser }) {
-  const { user } = useContext(UserContext);
+  const { user } = useUser();
   const { toggleNavbar, activeNav } = useContext(ToggleContext);
   const [phoneNavIsOpen, setPhoneNavIsOpen] = useState(false);
   const [animationClass, setAnimationClass] = useState('');
@@ -74,6 +74,28 @@ function SmallScreenNavbar({ logoutUser }) {
       }, 1200); // Duration of the openNav animation
     }
   };
+
+  const navLinks = [
+    { url: HOME_PAGE_URL, title: 'Home' },
+    { url: SHOP_PAGE_URL, title: 'Shop' },
+    { url: ALBUM_PAGE_URL, title: 'Album' },
+    { url: CARDS_PAGE_URL, title: 'Cards List' },
+    { url: BATTLES_PAGE_URL, title: 'Battles' },
+    { url: INVENTORY_PAGE_URL, title: 'Inventory' },
+    { url: REWARDS_PAGE_URL, title: 'Rewards', bottom: true },
+    ...(!user.email
+      ? [
+          { url: LOGIN_PAGE_URL, title: 'Login' },
+          { url: SIGN_UP_PAGE_URL, title: 'Sign Up' },
+        ]
+      : [{ url: TRADING_PAGE_URL, title: 'Trade' }]),
+    ...(user.role === 'ADMIN' || user.role === 'DEVELOPER'
+      ? [{ url: ADMIN_PAGE_URL, title: 'Admin' }]
+      : []),
+    ...(user.role === 'DEVELOPER'
+      ? [{ url: DEV_PAGE_URL, title: 'Developer' }]
+      : []),
+  ];
 
   return (
     <div className='grid py-1 relative h-full w-full'>
@@ -142,91 +164,9 @@ function SmallScreenNavbar({ logoutUser }) {
             </section>
 
             <ul className='text-center grid h-fit bg-black w-full text-xl font-fantasy border-2 border-solid border-main-border overflow-hidden rounded-lg'>
-              <NavButton
-                to={HOME_PAGE_URL}
-                activeNav={activeNav}
-                text='Home'
-                onClick={navigateToPage}
-                top={true}
-              />
-              <NavButton
-                to={SHOP_PAGE_URL}
-                activeNav={activeNav}
-                text='Shop'
-                onClick={navigateToPage}
-              />
-              <NavButton
-                to={ALBUM_PAGE_URL}
-                activeNav={activeNav}
-                text='Album'
-                onClick={navigateToPage}
-              />
-              {!user.email && (
-                <>
-                  <NavButton
-                    to={LOGIN_PAGE_URL}
-                    activeNav={activeNav}
-                    text='Login'
-                    onClick={navigateToPage}
-                  />
-                  <NavButton
-                    to={SIGN_UP_PAGE_URL}
-                    activeNav={activeNav}
-                    text='Sign Up'
-                    onClick={navigateToPage}
-                  />
-                </>
-              )}
-              {user.email && (
-                <>
-                  <NavButton
-                    to={TRADING_PAGE_URL}
-                    activeNav={activeNav}
-                    text='Trade'
-                    onClick={navigateToPage}
-                  />
-                </>
-              )}
-              {(user.role === 'ADMIN' || user.role === 'DEVELOPER') && (
-                <NavButton
-                  to={ADMIN_PAGE_URL}
-                  activeNav={activeNav}
-                  text='Admin'
-                  onClick={navigateToPage}
-                />
-              )}
-              {user.role === 'DEVELOPER' && (
-                <NavButton
-                  to={DEV_PAGE_URL}
-                  activeNav={activeNav}
-                  text='Developer'
-                  onClick={navigateToPage}
-                />
-              )}
-              <NavButton
-                to={CARDS_PAGE_URL}
-                activeNav={activeNav}
-                text='Cards List'
-                onClick={navigateToPage}
-              />
-              <NavButton
-                to={BATTLES_PAGE_URL}
-                activeNav={activeNav}
-                text='Battles'
-                onClick={navigateToPage}
-              />
-              <NavButton
-                to={INVENTORY_PAGE_URL}
-                activeNav={activeNav}
-                text='Inventory'
-                onClick={navigateToPage}
-              />
-              <NavButton
-                to={REWARDS_PAGE_URL}
-                activeNav={activeNav}
-                text='Rewards'
-                onClick={navigateToPage}
-              />
+              {navLinks.map(({ url, title, bottom }) => (
+                <NavItem key={url} url={url} title={title} bottom={bottom} />
+              ))}
 
               {user.email && (
                 <section className='flex items-center justify-center h-fit bg-black'>
@@ -246,22 +186,29 @@ function SmallScreenNavbar({ logoutUser }) {
   );
 }
 
-const NavButton = ({ to, activeNav, text, onClick, top }) => (
-  <li
-    className={
-      activeNav === to
-        ? `w-full no__highlights nav__bg hover:bg-selected-button active:scale-95 grid py-2 ${
-            !top && 'border-t-2'
-          } border-solid border-main-border bg-selected-button text-gray-800 font-semibold`
-        : `w-full no__highlights nav__bg hover:bg-selected-button active:scale-95 grid py-2 ${
-            !top && 'border-t-2'
-          } border-solid border-main-border bg-main-button text-gray-800 font-semibold`
-    }
-  >
-    <button onClick={onClick} id={to}>
-      {text}
-    </button>
-  </li>
-);
+const NavItem = ({ url, title, bottom }) => {
+  return (
+    <li
+      className={`w-full no__highlights grid ${
+        bottom ? 'border-b-2 border-t-2' : 'border-t-2'
+      } border-solid border-main-border font-semibold`}
+    >
+      <NavLink
+        to={url}
+        aria-label={`${title} page navigation tab`}
+        className={({ isActive }) =>
+          `text-xl md:text-lg font-poppins py-2 active:scale-95 nav__bg ${
+            isActive
+              ? 'bg-selected-button text-gray-800'
+              : 'bg-main-button text-gray-800'
+          }`
+        }
+        aria-current={({ isActive }) => (isActive ? 'page' : undefined)}
+      >
+        {title}
+      </NavLink>
+    </li>
+  );
+};
 
 export default SmallScreenNavbar;

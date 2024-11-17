@@ -193,7 +193,7 @@ function LoginForm() {
           Don’t have an account yet?{' '}
           <Link
             to={SIGN_UP_PAGE_URL}
-            className='font-medium text-blue-600 hover:underline'
+            className='font-medium text-blue-600 hover:underline italic'
             aria-label='Sign up for a new account'
           >
             Sign up now!

@@ -568,7 +568,6 @@ export const inventoryItemsPageAdditionalMeta = [
   },
 ];
 
-
 // Battles
 export const battlesPageStructuredData = {
   '@context': 'https://schema.org',
@@ -919,5 +918,233 @@ export const cardsAvailablePageAdditionalMeta = [
   {
     name: 'twitter:image',
     content: `${FULL_BUSINESS_URL}/assets/images/pages/cards-preview.jpg`,
+  },
+];
+
+export const cardsInBoxPageStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Opened Card Pack',
+  description: `View the contents of your opened card pack in ${CompanyName}.`,
+  url: `${FULL_BUSINESS_URL}/packs/opened`,
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: [
+      {
+        '@type': 'Thing',
+        name: 'Card 1',
+        position: 1,
+        url: `${FULL_BUSINESS_URL}/cards/card-1`,
+      },
+      {
+        '@type': 'Thing',
+        name: 'Card 2',
+        position: 2,
+        url: `${FULL_BUSINESS_URL}/cards/card-2`,
+      },
+      // Add dynamic or placeholder data for pack contents.
+    ],
+  },
+};
+export const cardsInBoxPageAdditionalMeta = [
+  { property: 'og:title', content: `Opened Pack - ${CompanyName}` },
+  {
+    property: 'og:description',
+    content: `Discover the cards in your opened pack from ${CompanyName}.`,
+  },
+  {
+    property: 'og:image',
+    content: `${FULL_BUSINESS_URL}/assets/images/pages/pack-preview.jpg`,
+  },
+  { property: 'og:url', content: `${FULL_BUSINESS_URL}/packs/opened` },
+  { name: 'twitter:card', content: 'summary_large_image' },
+  { name: 'twitter:title', content: `Opened Pack - ${CompanyName}` },
+  {
+    name: 'twitter:description',
+    content: `View the cards you received in your recently opened pack from ${CompanyName}.`,
+  },
+  {
+    name: 'twitter:image',
+    content: `${FULL_BUSINESS_URL}/assets/images/pages/pack-preview.jpg`,
+  },
+];
+
+export const cardsInPackPageStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Opened Card Packet',
+  description: `View the cards inside your opened packet from ${CompanyName}.`,
+  url: `${FULL_BUSINESS_URL}/pack/opened`,
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: [
+      {
+        '@type': 'Thing',
+        name: 'Sample Card 1',
+        position: 1,
+        url: `${FULL_BUSINESS_URL}/cards/sample-card-1`,
+      },
+      {
+        '@type': 'Thing',
+        name: 'Sample Card 2',
+        position: 2,
+        url: `${FULL_BUSINESS_URL}/cards/sample-card-2`,
+      },
+      // Additional cards can be added dynamically.
+    ],
+  },
+};
+export const cardsInPackPageAdditionalMeta = [
+  { property: 'og:title', content: `Opened Pack - ${CompanyName}` },
+  {
+    property: 'og:description',
+    content: `Discover the cards inside your opened packet from ${CompanyName}.`,
+  },
+  {
+    property: 'og:image',
+    content: `${FULL_BUSINESS_URL}/assets/images/pages/pack-preview.jpg`,
+  },
+  { property: 'og:url', content: `${FULL_BUSINESS_URL}/pack/opened` },
+  { name: 'twitter:card', content: 'summary_large_image' },
+  { name: 'twitter:title', content: `Opened Pack - ${CompanyName}` },
+  {
+    name: 'twitter:description',
+    content: `Explore the contents of your recently opened packet from ${CompanyName}.`,
+  },
+  {
+    name: 'twitter:image',
+    content: `${FULL_BUSINESS_URL}/assets/images/pages/pack-preview.jpg`,
+  },
+];
+
+export const openPacksPageStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Unopened Packs',
+  description: `View and manage your unopened card packs in ${CompanyName}.`,
+  url: `${FULL_BUSINESS_URL}/packs`,
+  potentialAction: {
+    '@type': 'Action',
+    name: 'Buy New Packs',
+    target: `${FULL_BUSINESS_URL}/shop`,
+  },
+};
+export const openPacksPageAdditionalMeta = [
+  { property: 'og:title', content: `Unopened Packs - ${CompanyName}` },
+  {
+    property: 'og:description',
+    content: `Check your collection of unopened packs and buy more from ${CompanyName}.`,
+  },
+  {
+    property: 'og:image',
+    content: `${FULL_BUSINESS_URL}/assets/images/pages/unopened-packs-preview.jpg`,
+  },
+  { property: 'og:url', content: `${FULL_BUSINESS_URL}/packs` },
+  { name: 'twitter:card', content: 'summary_large_image' },
+  { name: 'twitter:title', content: `Unopened Packs - ${CompanyName}` },
+  {
+    name: 'twitter:description',
+    content: `Manage your unopened packs and expand your collection with new card packs.`,
+  },
+  {
+    name: 'twitter:image',
+    content: `${FULL_BUSINESS_URL}/assets/images/pages/unopened-packs-preview.jpg`,
+  },
+];
+
+
+export const unopenedBoxesPageStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Unopened Boxes',
+  description: `View and manage your unopened card boxes in ${CompanyName}.`,
+  url: `${FULL_BUSINESS_URL}/boxes/unopened`,
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: [
+      {
+        '@type': 'Thing',
+        name: 'Sample Box 1',
+        position: 1,
+        url: `${FULL_BUSINESS_URL}/boxes/sample-box-1`,
+      },
+      {
+        '@type': 'Thing',
+        name: 'Sample Box 2',
+        position: 2,
+        url: `${FULL_BUSINESS_URL}/boxes/sample-box-2`,
+      },
+      // Add more dynamically as needed.
+    ],
+  },
+};
+export const unopenedBoxesPageAdditionalMeta = [
+  { property: 'og:title', content: `Unopened Boxes - ${CompanyName}` },
+  {
+    property: 'og:description',
+    content: `Check your collection of unopened boxes and explore new cards in ${CompanyName}.`,
+  },
+  {
+    property: 'og:image',
+    content: `${FULL_BUSINESS_URL}/assets/images/pages/unopened-boxes-preview.jpg`,
+  },
+  { property: 'og:url', content: `${FULL_BUSINESS_URL}/boxes/unopened` },
+  { name: 'twitter:card', content: 'summary_large_image' },
+  { name: 'twitter:title', content: `Unopened Boxes - ${CompanyName}` },
+  {
+    name: 'twitter:description',
+    content: `Manage your unopened boxes and discover exciting card packs inside.`,
+  },
+  {
+    name: 'twitter:image',
+    content: `${FULL_BUSINESS_URL}/assets/images/pages/unopened-boxes-preview.jpg`,
+  },
+];
+
+export const unopenedPacketsPageStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Unopened Packets',
+  description: `View and manage your unopened card packets in ${CompanyName}.`,
+  url: `${FULL_BUSINESS_URL}/packets/unopened`,
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: [
+      {
+        '@type': 'Thing',
+        name: 'Sample Packet 1',
+        position: 1,
+        url: `${FULL_BUSINESS_URL}/packets/sample-packet-1`,
+      },
+      {
+        '@type': 'Thing',
+        name: 'Sample Packet 2',
+        position: 2,
+        url: `${FULL_BUSINESS_URL}/packets/sample-packet-2`,
+      },
+      // Add more dynamically as needed.
+    ],
+  },
+};
+export const unopenedPacketsPageAdditionalMeta = [
+  { property: 'og:title', content: `Unopened Packets - ${CompanyName}` },
+  {
+    property: 'og:description',
+    content: `Check your collection of unopened packets and discover exciting new cards from ${CompanyName}.`,
+  },
+  {
+    property: 'og:image',
+    content: `${FULL_BUSINESS_URL}/assets/images/pages/unopened-packets-preview.jpg`,
+  },
+  { property: 'og:url', content: `${FULL_BUSINESS_URL}/packets/unopened` },
+  { name: 'twitter:card', content: 'summary_large_image' },
+  { name: 'twitter:title', content: `Unopened Packets - ${CompanyName}` },
+  {
+    name: 'twitter:description',
+    content: `Manage your unopened packets and discover new cards in each pack.`,
+  },
+  {
+    name: 'twitter:image',
+    content: `${FULL_BUSINESS_URL}/assets/images/pages/unopened-packets-preview.jpg`,
   },
 ];

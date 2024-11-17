@@ -43,8 +43,10 @@ function BattleFindOpponentPage() {
 
       {/* Page */}
       <div className='h-screen grid md:overflow-hidden w-full'>
-        <section className='grid h-full lg:overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
+        <section className='grid h-full bg-black main__bg lg:overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
           <Navbar />
+
+          {/* Main */}
           <main className='bg-black main__bg p-4 grid grid-rows-reg gap-2 md:overflow-hidden'>
             {/* Header */}
             <BattlePageHeader />

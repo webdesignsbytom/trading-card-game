@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 // Constants
 import {
   HOME_PAGE_URL,
@@ -18,20 +18,42 @@ import {
   BATTLE_REQUESTS_PAGE_URL,
 } from '../../utils/Constants';
 // Context
-import { UserContext } from '../../context/UserContext';
-import { ToggleContext } from '../../context/ToggleContext';
+import { useUser } from '../../context/UserContext';
 // Components
 import SmallMonCardsHeader from '../headers/SmallMonCardsHeader';
+// Hooks
+import useNavigateToPage from '../../hooks/useNavigateToPage';
 
 function LargeScreenNavbar({ logoutUser }) {
-  const { user } = useContext(UserContext);
-  const { activeNav } = useContext(ToggleContext);
-
-  const navigate = useNavigate();
+  const { user } = useUser();
+  const navigateToPage = useNavigateToPage();
 
   const goToUnopenedPacks = () => {
-    navigate(UNOPENED_PACKS_URL, { replace: true });
+    navigateToPage(UNOPENED_PACKS_URL);
   };
+
+  // Define links array
+  const navLinks = [
+    { url: HOME_PAGE_URL, title: 'Home' },
+    { url: SHOP_PAGE_URL, title: 'Shop' },
+    { url: ALBUM_PAGE_URL, title: 'Album' },
+    ...(!user.email
+      ? [
+          { url: LOGIN_PAGE_URL, title: 'Login' },
+          { url: SIGN_UP_PAGE_URL, title: 'Sign Up' },
+        ]
+      : [{ url: TRADING_PAGE_URL, title: 'Trade' }]),
+    ...(user.role === 'ADMIN' || user.role === 'DEVELOPER'
+      ? [{ url: ADMIN_PAGE_URL, title: 'Admin' }]
+      : []),
+    ...(user.role === 'DEVELOPER'
+      ? [{ url: DEV_PAGE_URL, title: 'Developer' }]
+      : []),
+    { url: CARDS_PAGE_URL, title: 'Cards List' },
+    { url: BATTLES_PAGE_URL, title: 'Battles' },
+    { url: INVENTORY_PAGE_URL, title: 'Inventory' },
+    { url: REWARDS_PAGE_URL, title: 'Rewards', bottom: true },
+  ];
 
   return (
     <section className='grid main__bg'>
@@ -48,11 +70,12 @@ function LargeScreenNavbar({ logoutUser }) {
                 className='bg-blue-500 main__bg h-fit border-2 border-solid border-main-border rounded animate-pulse'
               >
                 <div className='font-semibold py-1'>
-                  <span>{user.packs.length} Unopened Packs</span>
+                  <span>{user?.packs.length} Unopened Packs</span>
                 </div>
               </button>
             </div>
           )}
+
           {user?.loginRecord?.collectedReward === false && (
             <div className='grid'>
               <Link to={REWARDS_PAGE_URL}>
@@ -64,6 +87,7 @@ function LargeScreenNavbar({ logoutUser }) {
               </Link>
             </div>
           )}
+
           {user?.battleRequestsReceived > 0 && (
             <div className='grid'>
               <Link to={BATTLE_REQUESTS_PAGE_URL}>
@@ -81,63 +105,9 @@ function LargeScreenNavbar({ logoutUser }) {
       <section className='grid grid-rows-rev h-full'>
         <section className='grid'>
           <ul className='text-center grid bg-black h-fit w-full text-xl'>
-            <NavItem to={HOME_PAGE_URL} activeNav={activeNav} text='Home' />
-            <NavItem to={SHOP_PAGE_URL} activeNav={activeNav} text='Shop' />
-            <NavItem to={ALBUM_PAGE_URL} activeNav={activeNav} text='Album' />
-            {!user.email && (
-              <>
-                <NavItem
-                  to={LOGIN_PAGE_URL}
-                  activeNav={activeNav}
-                  text='Login'
-                />
-                <NavItem
-                  to={SIGN_UP_PAGE_URL}
-                  activeNav={activeNav}
-                  text='Sign Up'
-                />
-              </>
-            )}
-            {user.email && (
-              <>
-                <NavItem
-                  to={TRADING_PAGE_URL}
-                  activeNav={activeNav}
-                  text='Trade'
-                />
-              </>
-            )}
-            {(user.role === 'ADMIN' || user.role === 'DEVELOPER') && (
-              <NavItem to={ADMIN_PAGE_URL} activeNav={activeNav} text='Admin' />
-            )}
-            {user.role === 'DEVELOPER' && (
-              <NavItem
-                to={DEV_PAGE_URL}
-                activeNav={activeNav}
-                text='Developer'
-              />
-            )}
-            <NavItem
-              to={CARDS_PAGE_URL}
-              activeNav={activeNav}
-              text='Cards List'
-            />
-            <NavItem
-              to={BATTLES_PAGE_URL}
-              activeNav={activeNav}
-              text='Battles'
-            />
-            <NavItem
-              to={INVENTORY_PAGE_URL}
-              activeNav={activeNav}
-              text='Inventory'
-            />
-            <NavItem
-              to={REWARDS_PAGE_URL}
-              activeNav={activeNav}
-              text='Rewards'
-              bottom={true}
-            />
+            {navLinks.map(({ url, title, bottom }) => (
+              <NavItem key={url} url={url} title={title} bottom={bottom} />
+            ))}
           </ul>
         </section>
 
@@ -156,22 +126,29 @@ function LargeScreenNavbar({ logoutUser }) {
   );
 }
 
-const NavItem = ({ to, activeNav, text, bottom }) => (
-  <li
-    className={
-      activeNav === to
-        ? `w-full no__highlights nav__bg hover:bg-selected-button active:scale-95 grid py-2 ${
-            bottom ? 'border-b-2 border-t-2' : 'border-t-2'
-          } border-solid border-main-border bg-selected-button text-gray-800 font-semibold`
-        : `w-full no__highlights nav__bg hover:bg-selected-button active:scale-95 grid py-2 ${
-            bottom ? 'border-b-2 border-t-2' : 'border-t-2'
-          } border-solid border-main-border bg-main-button text-gray-800 font-semibold`
-    }
-  >
-    <Link className='w-full' to={to}>
-      {text}
-    </Link>
-  </li>
-);
+const NavItem = ({ url, title, bottom }) => {
+  return (
+    <li
+      className={`w-full no__highlights grid ${
+        bottom ? 'border-b-2 border-t-2' : 'border-t-2'
+      } border-solid border-main-border font-semibold`}
+    >
+      <NavLink
+        to={url}
+        aria-label={`${title} page navigation tab`}
+        className={({ isActive }) =>
+          `text-xl md:text-lg font-poppins py-2 active:scale-95 nav__bg ${
+            isActive
+              ? 'bg-selected-button text-gray-800'
+              : 'bg-main-button text-gray-800'
+          }`
+        }
+        aria-current={({ isActive }) => (isActive ? 'page' : undefined)}
+      >
+        {title}
+      </NavLink>
+    </li>
+  );
+};
 
 export default LargeScreenNavbar;

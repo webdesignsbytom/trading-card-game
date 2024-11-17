@@ -7,6 +7,8 @@ import { HelmetItem } from '../../components/utils/HelmetItem';
 import { useUser } from '../../context/UserContext';
 // Constants
 import { CompanyName } from '../../utils/Constants';
+// Data
+import { openPacksPageAdditionalMeta, openPacksPageStructuredData } from '../../utils/data/PageData';
 
 function OpenPacksPage() {
   const { user } = useUser();
@@ -14,7 +16,13 @@ function OpenPacksPage() {
   return (
     <>
       {/* Tab Data */}
-      <HelmetItem PageName={'Packs'} desc={`Packs page of ${CompanyName}.`} />
+      <HelmetItem
+        PageName="Unopened Packs"
+        desc={`Manage your unopened packs in ${CompanyName}. Expand your collection with new card packs.`}
+        keywords={`unopened packs, card packs, ${CompanyName}, buy card packs`}
+        additionalMeta={openPacksPageAdditionalMeta}
+        structuredData={openPacksPageStructuredData}
+      />
 
       {/* Page */}
       <div className='h-screen bg-red-100 grid'>

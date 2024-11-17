@@ -8,7 +8,7 @@ import BattlePageHeader from '../../components/battles/BattlePageHeader';
 // Api
 import client from '../../api/client';
 // Constants
-import {  CompanyName } from '../../utils/Constants';
+import { CompanyName } from '../../utils/Constants';
 import { useUser } from '../../context/UserContext';
 import {
   battlesPageAdditionalMeta,
@@ -60,9 +60,12 @@ function BattlesMainPage() {
         structuredData={battlesPageStructuredData}
       />
 
+      {/* Page */}
       <div className='h-screen grid md:overflow-hidden w-full'>
-        <section className='grid h-full lg:overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
+        <section className='grid h-full bg-black main__bg lg:overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
           <Navbar />
+
+          {/* Main */}
           <main className='bg-black main__bg p-4 grid grid-rows-reg gap-2 md:overflow-hidden'>
             {/* Header */}
             <BattlePageHeader />

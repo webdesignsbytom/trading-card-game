@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // Images
 import BattleBackground from '../../assets/images/backgrounds/battle_page_fantasy_attackers.png';
 // Components
 import LeaderboardContainer from './LeaderboardContainer';
-import FantasyButton from '../utils/FantasyButton';
 // Constants
 import {
   BATTLE_REQUESTS_PAGE_URL,
   FIND_BATTLER_PAGE_URL,
 } from '../../utils/Constants';
-import { UserContext } from '../../context/UserContext';
+// Context
+import { useUser } from '../../context/UserContext';
 
 function BattlesOverviewComponent({
   openBattleRequests,
@@ -19,11 +19,11 @@ function BattlesOverviewComponent({
   setStartingNewBattle,
   startingNewBattle,
 }) {
-  const { user } = useContext(UserContext);
+  const { user } = useUser();
   let navigate = useNavigate();
 
   const openStartingBattleComponent = (user) => {
-    navigate(FIND_BATTLER_PAGE_URL, { replace: true });
+    navigate(FIND_BATTLER_PAGE_URL, { replace: false });
   };
 
   return (
@@ -40,11 +40,16 @@ function BattlesOverviewComponent({
       >
         <div className='grid items-center justify-center'>
           <div className='grid gap-4 h-fit'>
-            <div>
-              <FantasyButton onClick={openStartingBattleComponent} black={true}>
+            {/* New battle button */}
+            <div className='py-4'>
+              <button
+                className='styled-button text-xl  px-4 p-2 font-extrabold font-fantasy tracking-wider'
+                onClick={openStartingBattleComponent}
+              >
                 START <span className='text-red-600'>NEW</span> BATTLE
-              </FantasyButton>
+              </button>
             </div>
+
             {user.battleRequestsReceived && (
               <div className='grid'>
                 <Link to={BATTLE_REQUESTS_PAGE_URL}>
@@ -58,6 +63,8 @@ function BattlesOverviewComponent({
             )}
           </div>
         </div>
+
+        {/* Open battle requests */}
         {openBattleRequests.length >= 1 && (
           <section className='bg-green-400 '>
             <article className=''>

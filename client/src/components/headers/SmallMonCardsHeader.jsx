@@ -13,7 +13,7 @@ function SmallMonCardsHeader() {
               MON <span className='text-red-600'>CARDS</span>
             </span>
           </p>
-          <p className='font-bold text-xs md:text-sm font-poppins tracking-tight'>
+          <p className='font-bold text-xs md:text-sm font-poppins tracking-tight text-gray-900'>
             <span>{SubtitleMain}</span>
           </p>
         </div>

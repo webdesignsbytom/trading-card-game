@@ -1,37 +1,35 @@
-import React, { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 // Components
 import SmallScreenNavbar from './SmallScreenNavbar';
 import LargeScreenNavbar from './LargeScreenNavbar';
 // Context
-import { UserContext } from '../../context/UserContext';
-import { ToggleContext } from '../../context/ToggleContext';
+import { useUser } from '../../context/UserContext';
 // Constants
 import { HOME_PAGE_URL } from '../../utils/Constants';
+// Hooks
+import useNavigateToPage from '../../hooks/useNavigateToPage';
 
 function Navbar() {
-  const { setUser } = useContext(UserContext);
-  const { toggleNavbar, setActiveNav } = useContext(ToggleContext);
+  const { setUser } = useUser();
 
-  const navigate = useNavigate();
+  const navigateToPage = useNavigateToPage();
 
-  const logoutUser = (event) => {
+  const handleLogout = (event) => {
     event.preventDefault();
-    setActiveNav(HOME_PAGE_URL);
-    toggleNavbar();
     setUser({});
     localStorage.removeItem(process.env.REACT_APP_USER_TOKEN);
-    navigate(HOME_PAGE_URL, { replace: true });
+    navigateToPage(HOME_PAGE_URL, { replace: true });
   };
 
   return (
     <nav className='grid h-full w-full font-poppins'>
       <div className='grid h-full'>
         <section className='relative grid lg:hidden styled-border mx-1 mt-1'>
-          <SmallScreenNavbar logoutUser={logoutUser} />
+          <SmallScreenNavbar logoutUser={handleLogout} />
         </section>
+        
         <section className='hidden lg:grid shadow-[inset_-1px_43px_35px_48px_#00000024] styled-border !rounded-none'>
-          <LargeScreenNavbar logoutUser={logoutUser} />
+          <LargeScreenNavbar logoutUser={handleLogout} />
         </section>
       </div>
     </nav>

@@ -5,12 +5,20 @@ import OpenedPacketDisplayComponent from '../../components/packets/OpenedPacketD
 import { HelmetItem } from '../../components/utils/HelmetItem';
 // Constants
 import { CompanyName } from '../../utils/Constants';
+// Data
+import { cardsInPackPageAdditionalMeta, cardsInPackPageStructuredData } from '../../utils/data/PageData';
 
 function CardsInPackPage() {
   return (
     <>
       {/* Tab Data */}
-      <HelmetItem PageName={'Packs'} desc={`Packs page of ${CompanyName}.`} />
+      <HelmetItem
+        PageName="Opened Pack"
+        desc={`View the contents of your recently opened packet from ${CompanyName}. Discover new cards for your collection.`}
+        keywords={`opened packet, card packs, trading cards, ${CompanyName}, collection`}
+        additionalMeta={cardsInPackPageAdditionalMeta}
+        structuredData={cardsInPackPageStructuredData}
+      />
 
       {/* Page */}
       <div className='grid h-screen overflow-hidden'>

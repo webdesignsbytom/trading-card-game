@@ -6,6 +6,7 @@ import client from '../../api/client';
 import LoadingSpinner from '../utils/LoadingSpinner';
 // Constants
 import { RESET_PASSWORD_API, SIGN_UP_PAGE_URL } from '../../utils/Constants';
+import { InputStyle } from '../../utils/Styles';
 // Styles
 
 function ForgotPasswordForm() {
@@ -61,15 +62,17 @@ function ForgotPasswordForm() {
           id='email'
           placeholder='name@email.com'
           onChange={handleChange}
+          className={InputStyle}
           required
           aria-invalid={resetRequestError ? 'true' : 'false'}
           aria-describedby={resetRequestError ? 'email-error' : undefined}
         />
       </div>
 
-      <div>
+      <div className='grid justify-center'>
         <button
           type='submit'
+          className='styled-button px-4 py-1'
           aria-label='Request a password reset'
           disabled={resetRequestInProgress}
         >
@@ -81,10 +84,14 @@ function ForgotPasswordForm() {
         </button>
       </div>
 
-      <div>
-        <p className='font-light text-gray-500 dark:text-gray-400'>
+      <div className='text-center'>
+        <p className='font-light'>
           Don’t have an account yet?
-          <Link to={SIGN_UP_PAGE_URL} aria-label='Sign up for a new account'>
+          <Link
+            to={SIGN_UP_PAGE_URL}
+            aria-label='Sign up for a new account'
+            className='font-medium text-blue-600 hover:underline italic'
+          >
             Sign up
           </Link>
         </p>

@@ -28,6 +28,7 @@ function HomePageMainContainer() {
               <section className='p-4 grid h-full items-center justify-center'>
                 <LargeMonCardsHeader />
               </section>
+              
               <StartingPacks />
             </>
           )}
@@ -35,6 +36,7 @@ function HomePageMainContainer() {
           {!user.email && (
             <section className='p-4 grid grid-rows-rev gap-8 h-fit my-auto items-center justify-center'>
               <LargeMonCardsHeader />
+
               <section className='h-fit'>
                 <div className='grid justify-center py-4'>
                   <Link

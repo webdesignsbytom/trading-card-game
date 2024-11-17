@@ -18,7 +18,6 @@ function TradingPage() {
     setTradingDispayComponent,
   } = useContext(TradingContext);
 
-
   useEffect(() => {
     setTimeout(() => {
       setTradingDispayComponent('my_trades');

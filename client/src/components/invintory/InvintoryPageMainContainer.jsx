@@ -5,7 +5,7 @@ import InvintoryOptions from '../../components/invintory/InvintoryOptions';
 
 function InvintoryPageMainContainer() {
   return (
-    <main className='grid bg-main-colour shadow-internal-main main__bg grid-rows-reg gap-2 p-4 lg:overflow-hidden'>
+    <main className='grid shadow-internal-main main__bg grid-rows-reg gap-2 p-4 lg:overflow-hidden'>
       {/* Header */}
       <InvintoryHeader />
       {/* Main content */}

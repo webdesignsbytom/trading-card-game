@@ -7,7 +7,9 @@ function LeaderboardContainer() {
 
   useEffect(() => {
     // Sort the leaderboard by wins in descending order
-    const sortedLeaderboard = tempLeaderboardData.sort((a, b) => b.wins - a.wins);
+    const sortedLeaderboard = tempLeaderboardData.sort(
+      (a, b) => b.wins - a.wins
+    );
     setLeaderboard(sortedLeaderboard);
   }, []);
 
@@ -30,7 +32,8 @@ function LeaderboardContainer() {
       <div className='grid h-full px-2 pt-4'>
         <div className='grid h-fit gap-2'>
           {leaderBoard.map((user, index) => {
-            let containerStyle = 'grid grid-cols-3 text-gray-50 text-center w-full h-fit border-2 border-white border-solid';
+            let containerStyle =
+              'grid grid-cols-3 text-gray-50 text-center w-full h-fit border-2 border-white border-solid';
             let textStyle = '';
 
             // Apply styles based on rank
@@ -46,10 +49,7 @@ function LeaderboardContainer() {
             }
 
             return (
-              <article
-                key={index}
-                className={containerStyle}
-              >
+              <article key={index} className={containerStyle}>
                 <div>
                   <p className={`capitalize ${textStyle}`}>
                     <span>{user.username}</span>

@@ -5,12 +5,20 @@ import UnopenedBoxesContainer from '../../components/packets/UnopenedBoxesContai
 import { HelmetItem } from '../../components/utils/HelmetItem';
 // Constants
 import { CompanyName } from '../../utils/Constants';
+// Data
+import { unopenedBoxesPageAdditionalMeta, unopenedBoxesPageStructuredData } from '../../utils/data/PageData';
 
 function UnopenedBoxesPage() {
   return (
     <>
       {/* Tab Data */}
-      <HelmetItem PageName={'Packs'} desc={`Packs page of ${CompanyName}.`} />
+      <HelmetItem
+        PageName="Unopened Boxes"
+        desc={`Manage your unopened boxes in ${CompanyName}. Discover new card packs and expand your collection.`}
+        keywords={`unopened boxes, card packs, ${CompanyName}, trading cards`}
+        additionalMeta={unopenedBoxesPageAdditionalMeta}
+        structuredData={unopenedBoxesPageStructuredData}
+      />
 
       <div className='bg-black main__bg h-screen grid'>
         <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>

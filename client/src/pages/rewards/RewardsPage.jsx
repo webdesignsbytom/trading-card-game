@@ -24,7 +24,7 @@ function RewardsPage() {
       />
 
       <div className='h-screen grid overflow-hidden'>
-        <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
+        <section className='grid bg-secondary-colour main__bg h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
           <Navbar />
 
           {/* main */}
