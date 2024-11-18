@@ -7,7 +7,7 @@ import {
   createBlankPackOfCards,
   createBlankPackOfCardsForUser,
 } from '../../domain/packs.js';
-import { createCardsForPack } from '../createCards.js';
+import { createCardsForPack } from '../cardUtils/createCards.js';
 // Constants
 import { NumCardsInBox, NumCardsInPack } from '../constants.js';
 

@@ -11,7 +11,7 @@ import { createAccessToken } from '../utils/tokens.js';
 // Oauth
 import { OAuth2Client } from 'google-auth-library';
 
-export const loginHelper = async (req, res) => {
+export const loginHandler = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {

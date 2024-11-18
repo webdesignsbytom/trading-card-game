@@ -1,5 +1,5 @@
 // Domain
-import { createSingleCardsForUser } from '../utils/createCards.js';
+import { createSingleCardsForUser } from '../utils/cardUtils/createCards.js';
 import { createNewInstanceForCard } from './cards.js';
 // Responses
 import { sendMessageResponse } from '../utils/responses.js';

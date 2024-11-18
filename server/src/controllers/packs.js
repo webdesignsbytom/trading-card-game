@@ -7,7 +7,7 @@ import {
   createBoxOfCardsForUser,
   createSinglePacksOfCards,
   createSinglePacksOfCardsForUser,
-} from '../utils/createPackets.js';
+} from '../utils/cardUtils/createPackets.js';
 import { myEmitterErrors } from '../event/errorEvents.js';
 import {
   ConfictEvent,

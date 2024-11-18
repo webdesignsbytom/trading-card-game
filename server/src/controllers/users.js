@@ -24,12 +24,10 @@ import {
   findUserByUsernameForBattle,
   findUserByIdForLogin,
 } from '../domain/users.js';
-import { createAccessToken } from '../utils/tokens.js';
 import {
   sendVerificationEmail,
   sendResetPasswordEmail,
-  testEmail,
-} from '../utils/sendEmail.js';
+} from '../utils/email/emailHandler.js';
 // Response messages
 import {
   EVENT_MESSAGES,
@@ -59,7 +57,7 @@ import {
   findPackById,
 } from '../domain/packs.js';
 import { starterPackNames } from '../utils/constants.js';
-import { createSinglePacksOfCardsForUser } from '../utils/createPackets.js';
+import { createSinglePacksOfCardsForUser } from '../utils/cardUtils/createPackets.js';
 import { collectLoginReward } from '../domain/rewards.js';
 // Password hash
 const hashRate = 8;
@@ -67,7 +65,6 @@ const hashRate = 8;
 export const getAllUsersHandler = async (req, res) => {
   try {
     const foundUsers = await findAllUsers();
-
     if (!foundUsers) {
       const notFound = new NotFoundEvent(
         req.user,
@@ -78,11 +75,15 @@ export const getAllUsersHandler = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    // myEmitterUsers.emit('get-all-users', req.user);
+    myEmitterUsers.emit('get-all-users', req.user);
     return sendDataResponse(res, 200, { users: foundUsers });
+    //
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get all users failed`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Get all users failed: ${err.message}`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;
@@ -94,7 +95,7 @@ export const getUserByIdHandler = async (req, res) => {
 
   if (!userId) {
     return sendDataResponse(res, 400, {
-      message: 'Missing userId',
+      message: 'Missing user ID.',
     });
   }
 
@@ -112,11 +113,15 @@ export const getUserByIdHandler = async (req, res) => {
 
     delete foundUser.password;
 
-    // myEmitterUsers.emit('get-user-by-id', req.user);
+    myEmitterUsers.emit('get-user-by-id', req.user);
     return sendDataResponse(res, 200, { user: foundUser });
+    //
   } catch (err) {
     // Error
-    const serverError = new ServerErrorEvent(req.user, `Get user by ID failed`);
+    const serverError = new ServerErrorEvent(
+      req.user,
+      `Get user by ID failed ${err.message}`
+    );
     myEmitterErrors.emit('error', serverError);
     sendMessageResponse(res, serverError.code, serverError.message);
     throw err;

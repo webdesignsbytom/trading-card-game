@@ -1,11 +1,11 @@
 import {
   findAllCardsAvailableToBuy,
   findAllCardsFromPack,
-} from '../domain/cards.js';
-import { myEmitterErrors } from '../event/errorEvents.js';
-import { NotFoundEvent } from '../event/utils/errorUtils.js';
-import { NumCardsInPack } from './constants.js';
-import { EVENT_MESSAGES, sendMessageResponse } from './responses.js';
+} from '../../domain/cards.js';
+import { myEmitterErrors } from '../../event/errorEvents.js';
+import { NotFoundEvent } from '../../event/utils/errorUtils.js';
+import { NumCardsInPack } from '../constants.js';
+import { EVENT_MESSAGES, sendMessageResponse } from '../responses.js';
 import {
   createHolographicCardForPack,
   selectCommonCard,

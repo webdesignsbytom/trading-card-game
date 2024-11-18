@@ -4,3 +4,7 @@ export const StandardBoxCost = 80;
 export const NumCardsInBox = 128
 
 export const starterPackNames = ['ALPHA', 'BETA', 'GAMMA']
+
+// General
+export const BusinessName = "MonCards"
+export const BusinessUrl = "www.moncards.com"

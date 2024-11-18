@@ -9,8 +9,6 @@ import {
   createMemberCard,
   createNewCardCard,
   createNewInstanceForCard,
-  createPartyCard,
-  createPolicyCard,
   findAllCardInstances,
   findAllCards,
   findAllCardsFromPack,
@@ -22,7 +20,7 @@ import {
   updateMemberCardById,
 } from '../domain/cards.js';
 import { findUserById } from '../domain/users.js';
-import { createSingleCardsForUser } from '../utils/createCards.js';
+import { createSingleCardsForUser } from '../utils/cardUtils/createCards.js';
 
 // Get all cards from all packs
 export const getAllCardsHandler = async (req, res) => {
@@ -218,7 +216,7 @@ export const createNewMemberCards = async (req, res) => {
 };
 
 // createNewMemberCardHandler
-export const createNewCardsHandlerHandler = async (req, res) => {
+export const createNewCardsHandler = async (req, res) => {
   const { cardArray } = req.body;
   const { adminId } = req.params;
 

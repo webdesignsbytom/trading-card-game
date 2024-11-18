@@ -11,7 +11,7 @@ import {
   createNewMemberCards,
   searchForCardsByNameHandler,
   updateCardDateByIdHandler,
-  createNewCardsHandlerHandler,
+  createNewCardsHandler,
 } from '../controllers/cards.js';
 import { validateAuthentication, validateDeveloperRole } from '../middleware/auth.js';
 
@@ -23,7 +23,7 @@ router.get('/pack/:packType', GetAllCardByPackHandler);
 router.get('/card/get-by-id/:cardId', getCardByIdHandler);
 router.get('/card/cardInstance/get-by-id/:cardInstanceId', getCardInstanceByIdHandler);
 router.post('/card/search-cards-by-name', searchForCardsByNameHandler);
-router.post('/card/admin/create-new-cards/:adminId', validateAuthentication, validateDeveloperRole, createNewCardsHandlerHandler);
+router.post('/card/admin/create-new-cards/:adminId', validateAuthentication, validateDeveloperRole, createNewCardsHandler);
 router.get('/type/:cardType', getAllCardsByTypeHandler);
 router.post('/free-single-card', freeSingleRandomCardHandler);
 router.post('/buy-single-card', buySingleRandomCardHandler);
